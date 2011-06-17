@@ -16,7 +16,7 @@
 .dialog .body
 {
     text-align: center;
-    padding: 35px 25px 25px 25px;
+    padding: 25px 25px 25px 25px;
 }
 
 </style>
@@ -26,7 +26,7 @@
     <div id="message_banner">Invalid username or password.</div>
 
     <div class="dialog">
-        <div class="header"><div class="content"><img style="margin-top:7px" src="volta.logo.small.png"/></div></div>
+        <div class="header"><div class="content"><b>VOLTA</b> v1.2.3.73</div></div>
         <div class="body">
             <form>
                 <div class="form"> 
@@ -43,17 +43,23 @@
 
 <style>
 
+.base
+{
+    width: 100;
+}
+
 .page 
 {
+    background-color: #E7E1D1;
     border: 1px solid #5F6155;
-    width: 99%;
+    margin: 15px;
 }
 
 .page .header
 {
     border-bottom: 1px solid #5F6155;
     background-image:url('header.large.background.png');
-    height: 111px;
+    height: 116px;
 }
 
 .page .header .links .left
@@ -72,7 +78,7 @@
     vertical-align: middle;
     display:table-cell;
     color: #351E0D;
-    padding: 5px 10px 0px 10px;
+    padding: 10px 10px 0px 10px;
 }
 
 .page .header .tabs
@@ -80,7 +86,7 @@
     clear: both;
 }
 
-.page .header .tabs .tab, .tabselected
+.page .header .tabs .tab, .tabselected, .tabdisabled
 {
     height: 35px;
     color: #351E0D;
@@ -103,27 +109,37 @@
     border-color: #5F6155 #5F6155 #E6E0D0 #5F6155;
 }
 
+.page .header .tabs .tabdisabled
+{
+    background: url(button.verydark.png);
+    border: 1px solid #5F6155;
+}
+
 .page .body
 {
     clear: both;
-    background-color: #E7E1D1;
+    padding: 30px;
+    text-align: center;
+}
+
+.page .footer
+{
     padding: 10px;
     text-align: center;
-    padding: 25px;
 }
 
 </style>
-
+<div class="base">
     <div class="page">
         <div class="header">
             <div class="links">
-                <div class="left"><img src="volta.logo.small.png"/></div>
+                <div class="left"><img src="volta.logo.medium.png"/></div>
                 <div class="right">v1.0.0.45 | mobrien | <a class="darkanchor" href="">My Account</a> | <a class="darkanchor" href="">Logout</a></div>
             </div>
             <div class="tabs">
-                <div class="tabselected"><b>BATCHES</b></div>
-                <div class="tab"><a class="lightanchor" href="">HISTORY</a></div>
-                <div class="tab"><a class="lightanchor" href="">ADMINISTRATION</a></div>
+                <div class="tabselected"><b>SELECTED</b></div>
+                <div class="tab"><a class="lightanchor" href="">NOT SELECTED</a></div>
+                <div class="tabdisabled">DISABLED</div>
             </div>
         </div>
         <div class="body">
@@ -137,7 +153,13 @@
 
             <p align="justify">Suspendisse posuere, ipsum in blandit varius, lacus purus volutpat sem, eget pharetra erat elit vitae dui. Phasellus rhoncus nisi a diam luctus accumsan. Donec adipiscing justo nec lectus hendrerit et pulvinar velit eleifend. Praesent ante eros, dictum et cursus non, pretium sed est. Nulla consectetur nisl a dui gravida semper. Suspendisse in nunc nibh. Quisque et nisl libero. Cras sapien nisl, venenatis quis imperdiet consectetur, interdum vel ligula. Fusce nec sem risus. Sed sit amet erat a dui tristique vehicula. Mauris dignissim arcu sed metus fringilla tempor. Maecenas at varius magna.</p>
         </div>
+        
+        <div class="footer">
+            <hr/>
+            Copyright &copy; 2011 Group Sadoway, Cambridge, MA
+        </div>
+        
     </div>
-
+</div>
 </body>
 </html>
