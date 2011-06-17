@@ -1,0 +1,11 @@
+﻿<html>
+  <head>
+    <title>Volta - <use content="title"></use></title>
+    <use content="head" />
+  </head>
+  <body>
+    <div id="content">
+      <use content="view"/>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5D321D95-67D0-4DDC-AA89-B068F111FFE4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Volta.Core</RootNamespace>
+    <AssemblyName>Volta.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FubuMVC.Core">
+      <HintPath>..\..\lib\FubuMVC\FubuMVC.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Norm">
+      <HintPath>..\packages\NoRM.0.9.8\lib\Norm.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\Configuration\Configuration.cs" />
+    <Compile Include="Application\Configuration\ConfigurationSection.cs" />
+    <Compile Include="Application\Configuration\IConfiguration.cs" />
+    <Compile Include="Application\Security\AuthenticationService.cs" />
+    <Compile Include="Application\Security\IAuthenticationService.cs" />
+    <Compile Include="Application\Security\ISecureSession.cs" />
+    <Compile Include="Application\Security\SecureSession.cs" />
+    <Compile Include="Application\Security\Token.cs" />
+    <Compile Include="Domain\IUserFactory.cs" />
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\UserCreationService.cs" />
+    <Compile Include="Domain\UserFactory.cs" />
+    <Compile Include="Infrastructure\Data\IdConvention.cs" />
+    <Compile Include="Infrastructure\Data\IIdentityConvention.cs" />
+    <Compile Include="Infrastructure\Data\IMongoCollectionExtensions.cs" />
+    <Compile Include="Infrastructure\Data\IRepository.cs" />
+    <Compile Include="Infrastructure\Data\MongoConnection.cs" />
+    <Compile Include="Infrastructure\Data\MongoRepository.cs" />
+    <Compile Include="Infrastructure\ByteArrayExtensions.cs" />
+    <Compile Include="Infrastructure\ObjectExtensions.cs" />
+    <Compile Include="Infrastructure\Security\HashedPassword.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

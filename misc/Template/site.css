@@ -1,0 +1,117 @@
+body
+{
+    margin: 0px;
+    background: #B1B1AB;
+    font-family: verdana, arial;
+    font-size: 9pt;
+}
+
+form
+{
+    margin: 0px;
+}
+
+#message_banner
+{
+    background-color: #F8F5F1;
+    padding: 10px;
+    color: #5F6155;
+    font-size: 15pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+#message_banner:empty 
+{
+    padding: 0px;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+.lightanchor:link { color: #ffffff; text-decoration: none;}
+.lightanchor:visited { color: #ffffff; text-decoration: none;}
+.lightanchor:hover { color: #ffffff; text-decoration: underline;}
+
+.darkanchor:link { color: #351E0D; text-decoration: none;}
+.darkanchor:visited { color: #351E0D; text-decoration: none;}
+.darkanchor:hover { color: #351E0D; text-decoration: underline;}
+
+.textbox
+{
+    border: 1px solid #777465;
+    padding: 3px 10px 3px 10px;
+}
+
+.button
+{
+    border: 1px solid #777465;
+    background: url(button.light.png);
+    padding: 7px 15px 7px 15px;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.button:hover
+{
+    border: 1px solid #777465;
+    background: url(button.dark.png);
+    padding: 7px 15px 7px 15px;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.dialog 
+{
+    border: 1px solid #5F6155;
+}
+
+.dialog .header
+{
+    border-bottom: 1px solid #5F6155;
+    background-image:url('header.small.background.png');
+    height: 40px;
+    font-size: 10pt;
+    padding: 0px 10px 0px 10px;
+}
+
+.dialog .header .content
+{
+    height: 40px;
+    vertical-align: middle;
+    display:table-cell;
+    color: #ffffff;
+}
+
+.dialog .body
+{
+    clear: both;
+    background-color: #E7E1D1;
+    padding: 10px;
+}
+
+.form
+{
+    display: table
+}
+
+.formrow
+{
+    display: table-row;
+}
+
+.formitem
+{
+    display: table-cell;
+    text-align: left;
+    padding: 0 10px 5px 0;
+}
+
+.formsubmit
+{
+    display: table-cell;
+    text-align: right;
+    padding-right: 10px;
+}
