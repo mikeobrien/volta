@@ -5,144 +5,201 @@
 <link rel="StyleSheet" href="site.css" type="text/css"/>
 <script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 
-<style>
-
-.dialog
-{
-    width: 320px;
-    margin: 150px auto 200px auto;
-}
-
-.dialog .body
-{
-    text-align: center;
-    padding: 25px 25px 25px 25px;
-}
-
-</style>
-
 </head>
 <body>
     <div id="message_banner">Invalid username or password.</div>
 
-    <div class="dialog">
-        <div class="header"><div class="content"><b>VOLTA</b> v1.2.3.73</div></div>
-        <div class="body">
+        <div class="body" style="width: 320px; margin: 110px auto 200px auto;">
+            <img src="volta.logo.large.png" style="display: block; margin: 0 auto 50px auto"/>
             <form>
                 <div class="form"> 
-                    <div class="formrow"><div class="formitem"><label class="formlabel" id="username" for="username">User</label></div><div class="formitem"><input class="textbox" type="text" name="username" id="username" size="25"/></div></div>
-                    <div class="formrow"><div class="formitem"><label class="formlabel" id="password" for="password">Password</label></div><div class="formitem"><input class="textbox" type="password" name="password" id="password" size="25"/></div></div>
+                    <div class="formrow">
+                        <div class="formitem"><label class="formlabel" id="username" for="username">Username</label></div>
+                        <div class="formitem"><input class="textbox" type="text" name="username" id="username" value="wolff" size="25" style="margin: 0"/></div>
+                    </div>
+                    <div class="formrow">
+                        <div class="formitem"><label class="formlabel" id="password" for="password">Password</label></div>
+                        <div class="formitem"><input class="textbox" type="password" name="password" id="password" value="wolff" size="25" style="margin: 0"/></div>
+                    </div>
                     <div class="formrow"><div class="formitem"></div><div class="formsubmit"><input class="button" type="submit" value="Login"/></div></div>
                 </div>
             </form>
         </div>
-    </div>
 
     <hr/>
     
-
-<style>
-
-.base
-{
-    width: 100;
-}
-
-.page 
-{
-    background-color: #E7E1D1;
-    border: 1px solid #5F6155;
-    margin: 15px;
-}
-
-.page .header
-{
-    border-bottom: 1px solid #5F6155;
-    background-image:url('header.large.background.png');
-    height: 116px;
-}
-
-.page .header .links .left
-{
-    float: left;
-}
-
-.page .header .links .right
-{
-    float: right;
-}
-
-.page .header .links .left, .right
-{
-    height: 70px;
-    vertical-align: middle;
-    display:table-cell;
-    color: #351E0D;
-    padding: 10px 10px 0px 10px;
-}
-
-.page .header .tabs
-{
-    clear: both;
-}
-
-.page .header .tabs .tab, .tabselected, .tabdisabled
-{
-    height: 35px;
-    color: #351E0D;
-    float: left;
-    margin-left: 5px;
-    line-height: 35px;
-    padding: 0 10px 0 10px;
-}
-
-.page .header .tabs .tab
-{
-    background: url(button.dark.png);
-    border: 1px solid #5F6155;
-}
-
-.page .header .tabs .tabselected
-{
-    background: url(button.light.png);
-    border: 1px solid;
-    border-color: #5F6155 #5F6155 #E6E0D0 #5F6155;
-}
-
-.page .header .tabs .tabdisabled
-{
-    background: url(button.verydark.png);
-    border: 1px solid #5F6155;
-}
-
-.page .body
-{
-    clear: both;
-    padding: 30px;
-    text-align: center;
-}
-
-.page .footer
-{
-    padding: 10px;
-    text-align: center;
-}
-
-</style>
+    <style>
+    .datatable
+    {
+        border-width: 1px;
+        border-style: solid;
+        border-color: #938B55;
+        width: 100%;
+        background-color: #ffffff;
+        border-collapse: collapse;
+        border-spacing: 0px;
+    }
+    
+    .datatable th
+    {
+        text-align: left;
+        padding: 3px;
+        background-color: #A29A86;
+        color: #ffffff;
+    }
+    
+    .datatable td
+    {
+        text-align: left;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #938B55;
+        border-width: 1px 0 0 0;
+        padding: 3px;
+    }
+    
+    .datatable tr:nth-child(odd) { background-color:#F0ECE1; }
+    .datatable tr:nth-child(even) { background-color:#ffffff; }
+    
+    .datatable .commands
+    {
+        text-align: right;
+        padding-right: 10px;
+    }
+    </style>
+    
 <div class="base">
     <div class="page">
         <div class="header">
             <div class="links">
                 <div class="left"><img src="volta.logo.medium.png"/></div>
-                <div class="right">v1.0.0.45 | mobrien | <a class="darkanchor" href="">My Account</a> | <a class="darkanchor" href="">Logout</a></div>
+                <div class="right">v1.0.0.45 | wolff | <a class="darkanchor" href="">My Account</a> | <a class="darkanchor" href="">Logout</a></div>
             </div>
             <div class="tabs">
                 <div class="tabselected"><b>SELECTED</b></div>
-                <div class="tab"><a class="lightanchor" href="">NOT SELECTED</a></div>
+                <div class="tab"><a class="lightanchor" href="" title="Not Selected">NOT SELECTED</a></div>
                 <div class="tabdisabled">DISABLED</div>
             </div>
         </div>
         <div class="body">
+
+            <table class="datatable">
+                <tr><th><a class="lightanchor" href="" title="Sort by Batch Name">Batch Name</a></th><th><a class="lightanchor" href="" title="Sort by Description">Description</a></th><th><a class="lightanchor" href="" title="Sort by Created By">Created By</a></th><th><a class="lightanchor" href="" title="Sort by Create Date">Create Date</a></th><th class="commands"><a href=""><img title="Add Batch" src="add.png"/></a></th></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td><a class="darkanchor" href="" title="View Batch">20110516-DJB</a></td><td>Li||Sb-Pb (BN sheath)</td><td>davidb</td><td>05-16-2011</td><td class="commands"><a href="" title="Analyze Batch"><img src="line.chart.png"/></a>&nbsp;<a href="" title="Download Batch Data"><img src="download.data.png"/></a>&nbsp;<a href="" title="Edit Batch"><img src="edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="delete.png"/></a></td></tr>
+                <tr><td class="commands" colspan="5">1-20 of 345 <a class="darkanchor" href="" title="Previous page">Previous</a> | <a class="darkanchor" href="" title="Next page">Next</a></td></tr>
+            </table>
+
+            <hr/>
+
+            <fieldset>
+                <legend>Batch Information</legend>
+
+                <div class="form"> 
+                    <div class="formrow"><div class="formitem">
+                        <div class="form"> 
+                            <div class="formrow">
+                                <div class="formitem"><label class="formlabel" id="name" for="name">Batch Name</label></div>
+                                <div class="formitem"><input class="textbox" type="text" name="name" id="name" size="35" value="20110516-DJB"/></div>
+                            </div>
+                            
+                            <div class="formrow">
+                                <div class="formitem"><label class="formlabel" id="name" for="name">Description</label></div>
+                                <div class="formitem"><input class="textbox" type="text" name="name" id="name" size="35" value="Li||Sb-Pb (BN sheath)"/></div>
+                            </div>
+                            
+                            <div class="formrow">
+                                <div class="formitem"><label class="formlabel" id="name" for="name">Electrolyte Composition</label></div>
+                                <div class="formitem">
+                                    <input type="checkbox" name="collector" value="spear" checked="checked"/> LiCl <input class="textbox" type="text" name="name" id="name" value="50" size="2"/>%<br/>
+                                    <input type="checkbox" name="collector" value="spear" checked="checked" /> LiI <input class="textbox" type="text" name="name" id="name" value="30" size="2"/>%<br/>
+                                    <input type="checkbox" name="collector" value="spear" checked="checked" /> LiF <input class="textbox" type="text" name="name" id="name" value="20" size="2"/>%<br/>
+                                </div>
+                            </div>
+
+                            <div class="formrow">
+                                <div class="formitem"><label class="formlabel" id="name" for="name">Sheath Material</label></div>
+                                <div class="formitem">
+                                    <select name="" id="">
+                                        <option>Boron Nitride</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="formrow">
+                                <div class="formitem"><label class="formlabel" id="name" for="name">Collector Type</label></div>
+                                <div class="formitem">
+                                    <select name="" id="">
+                                        <option>Spear</option>
+                                        <option>Mesh</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="formrow">
+                                <div class="formitem"><label class="formlabel" id="name" for="name">Comments</label></div>
+                                <div><textarea class="textbox" rows="10" cols="70" name="name" id="name">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat auctor turpis sed elementum. Integer neque odio, laoreet a porta a, hendrerit nec diam. Nullam sagittis luctus sodales. Donec at libero erat. Sed varius ipsum et felis vehicula a molestie diam lacinia. Vestibulum at arcu dolor. Nam et massa nec nulla molestie porta eget et lorem. Nullam scelerisque, elit a vehicula convallis, dolor elit ultricies dolor, tincidunt mattis sapien risus id augue. Aliquam erat volutpat. Nulla facilisi. Donec mollis, ligula eu rhoncus malesuada, diam turpis feugiat erat, condimentum posuere arcu quam vitae arcu. Donec aliquet nibh sit amet lacus ullamcorper ut congue ligula fringilla.
+                                </textarea></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+            
+            <div class="formbuttons">
+                <input class="button" type="submit" value="Cancel"/>
+                <input class="button" type="submit" value="Save"/>
+            </div>
+            <hr/>
+            
+            <div class="dialog" style="width: 320px; margin: 10px auto 10px auto;">
+                <div class="header"><div class="content"><b>Add User</b></div></div>
+                <div class="body">
+                    <form>
+                        <div class="form"> 
+                            <div class="formrow">
+                                <div class="formitem"><label class="formlabel" id="username" for="username">Username</label></div>
+                                <div class="formitem"><input class="textbox" type="text" name="username" id="username" size="25" value="davidb"/></div>
+                            </div>
+                            <div class="formrow">
+                                <div class="formitem"><label class="formlabel" id="password" for="password">Password</label></div>
+                                <div class="formitem"><input class="textbox" type="password" name="password" id="password" size="25" value="davidb"/></div>
+                            </div>
+                            <div class="formrow">
+                                <div class="formitem"><label class="formlabel" id="password" for="password">Administrator</label></div>
+                                <div class="formitem"><input class="textbox" type="checkbox" name="password" id="password" checked="checked"/></div>
+                            </div>
+                            <div class="formrow"><div class="formitem"></div><div class="formsubmit">
+                                <input class="button" type="submit" value="Cancel"/>
+                                <input class="button" type="submit" value="Save"/>
+                            </div></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <hr/>
+        
             <p align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat auctor turpis sed elementum. Integer neque odio, laoreet a porta a, hendrerit nec diam. Nullam sagittis luctus sodales. Donec at libero erat. Sed varius ipsum et felis vehicula a molestie diam lacinia. Vestibulum at arcu dolor. Nam et massa nec nulla molestie porta eget et lorem. Nullam scelerisque, elit a vehicula convallis, dolor elit ultricies dolor, tincidunt mattis sapien risus id augue. Aliquam erat volutpat. Nulla facilisi. Donec mollis, ligula eu rhoncus malesuada, diam turpis feugiat erat, condimentum posuere arcu quam vitae arcu. Donec aliquet nibh sit amet lacus ullamcorper ut congue ligula fringilla. Donec aliquam, nunc sed vehicula imperdiet, augue felis pulvinar nulla, sed aliquet augue turpis et turpis. Nullam tristique pretium neque, sit amet eleifend risus porttitor et. Suspendisse nec tortor vitae lorem lacinia luctus. Curabitur vehicula condimentum pretium. Suspendisse potenti. Donec egestas eros sed sem consectetur ullamcorper. Morbi posuere tempus sem id commodo.</p>
 
             <p align="justify">Aliquam mi est, molestie quis vulputate dapibus, placerat vitae ante. Vestibulum non iaculis augue. Donec sed dui in mi lacinia tristique. Maecenas consequat fermentum dignissim. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed interdum mi ut velit ornare accumsan. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus vel imperdiet odio. Duis tincidunt vestibulum turpis sit amet vulputate. Quisque at ligula ac dolor gravida laoreet quis ut urna. Morbi sollicitudin porttitor porta.</p>
