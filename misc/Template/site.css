@@ -95,6 +95,76 @@ a:hover
     cursor: pointer;
 }
 
+.datatable
+{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #938B55;
+    width: 100%;
+    background-color: #ffffff;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+.datatable th
+{
+    text-align: left;
+    padding: 3px;
+    background-color: #A29A86;
+    color: #ffffff;
+}
+
+.datatable td
+{
+    text-align: left;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #938B55;
+    border-width: 1px 0 0 0;
+    padding: 3px;
+}
+
+.datatable tr:nth-child(odd) { background-color:#F0ECE1; }
+.datatable tr:nth-child(even) { background-color:#ffffff; }
+
+.datatable .commands
+{
+    text-align: right;
+    padding-right: 10px;
+}
+
+.form
+{
+    display: table
+}
+
+.formrow
+{
+    display: table-row;
+}
+
+.formitem
+{
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    padding: 0 10px 5px 0;
+    white-space:nowrap;
+}
+
+.formsubmit
+{
+    display: table-cell;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.formbuttons
+{
+    text-align: right;
+    padding: 10px 0 10px 0;
+}
+
 .base
 {
     width: 100;
@@ -174,12 +244,6 @@ a:hover
     text-align: center;
 }
 
-.page .footer
-{
-    padding: 0 30px 20px 30px;
-    text-align: center;
-}
-
 .dialog 
 {
     border: 1px solid #5F6155;
@@ -209,35 +273,9 @@ a:hover
     padding: 10px;
 }
 
-.form
+.footer
 {
-    display: table
-}
-
-.formrow
-{
-    display: table-row;
-}
-
-.formitem
-{
-    display: table-cell;
-    text-align: left;
-    vertical-align: middle;
-    padding: 0 10px 5px 0;
-    white-space:nowrap;
-}
-
-.formsubmit
-{
-    display: table-cell;
-    text-align: right;
-    padding-right: 10px;
-}
-
-.formbuttons
-{
-    text-align: right;
-    padding: 10px 0 10px 0;
+    padding: 0 30px 20px 30px;
+    text-align: center;
 }
 
