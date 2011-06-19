@@ -1,21 +1,36 @@
-﻿<viewdata model="Volta.Web.Controllers.Login.LoginViewModel" />
+﻿<use namespace="Volta.Web.Controllers.Login" />
+<use namespace="HtmlTags.Extended.Attributes" />
+<viewdata model="Volta.Web.Controllers.Login.LoginViewModel" />
 <content:title>Login</content:title>
 <content:header></content:header>
+<content:message><test if="Model.AccessDenied">Invalid username or password</test></content:message>
 
-<h1>Login</h1>
-
-<Form model="Volta.Web.Controllers.Login.LoginViewModel">
-  <div>
-    <LabelFor property="Username" />
-    <InputFor property="Username" />
+<div class="body" style="width: 320px; margin: 110px auto 200px auto;">
+  <img src="/content/volta.logo.large.png" style="display: block; margin: 0 auto 50px auto"/>
+  ${this.FormFor<LoginInputModel>()}
+    <div class="form">
+      <div class="formrow">
+        <div class="formitem">
+          ${this.LabelFor(x => x.Username)}
+        </div>
+        <div class="formitem">
+          ${this.InputFor(x => x.Username)}
+        </div>
+      </div>
+      <div class="formrow">
+        <div class="formitem">
+          ${this.LabelFor(x => x.Password)}
+        </div>
+        <div class="formitem">
+          ${this.InputFor(x => x.Password).PasswordMode()}
+        </div>
+      </div>
+      <div class="formrow">
+        <div class="formitem"></div>
+        <div class="formsubmit">
+          <input class="button" type="submit" value="Login"/>
+        </div>
+      </div>
+    </div>
+    ${this.EndForm()}
   </div>
-  <div>
-    <LabelFor property="Password" />
-    <InputFor property="Password" />
-  </div>
-  <div>
-    <button type="submit">
-      <span>Login</span>
-    </button>
-  </div>
-</Form>

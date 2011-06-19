@@ -1,11 +1,14 @@
-﻿<html>
-  <head>
-    <title>Volta - <use content="title"></use></title>
-    <use content="head" />
-  </head>
-  <body>
-    <div id="content">
-      <use content="view"/>
-    </div>
-  </body>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- "Put your hand on a hot stove for a minute, and it seems like an hour. Sit with a pretty girl for an hour, and it seems like a minute. That's relativity." -->
+<html>
+	<title>Volta - <use content="title"></use></title>
+	<head>
+		<link rel="StyleSheet" href="/content/site.css" type="text/css"/>
+		<script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+		<use content="head" />
+	</head>
+	<body>
+		<div id="message"><use content="message" /></div>
+		<use content="view"/>
+	</body>
 </html>

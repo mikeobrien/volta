@@ -22,6 +22,8 @@ namespace Volta.Web
 
             this.UseSpark();
 
+            HtmlConvention<HtmlConventions>();
+
             Views.TryToAttachWithDefaultConventions();
         }
     }

@@ -1,0 +1,281 @@
+body
+{
+    margin: 0px;
+    background: #B1B1AB;
+    font-family: verdana, arial;
+    font-size: 9pt;
+}
+
+img
+{
+    border: 0px;
+}
+
+form
+{
+    margin: 0px;
+}
+
+hr
+{
+    color: #D3BB8D;
+    height: 0px;
+    background-color: ;
+    border-style: solid;
+    border-width: 1px 0 1px 0;
+    border-color: #938B55 #fff #F1EAD7 #fff;
+    margin: 20px 0 20px 0;
+}
+
+fieldset
+{
+    border: solid 1px #938B55;
+    background-color: #ffffff;
+    padding: 10px 10px 10px 20px;
+}
+
+legend
+{
+    font-weight: bold;
+    color: #351E0D;
+    padding: 0 5px 0 5px;
+}
+
+#message
+{
+    background-color: #F8F5F1;
+    padding: 10px;
+    color: #5F6155;
+    font-size: 15pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+#message:empty 
+{
+    padding: 0px;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+.lightanchor:link { color: #ffffff; text-decoration: none;}
+.lightanchor:visited { color: #ffffff; text-decoration: none;}
+.lightanchor:hover { color: #ffffff; text-decoration: underline;}
+
+.darkanchor:link { color: #351E0D; font-weight: bold; text-decoration: none;}
+.darkanchor:visited { color: #351E0D; font-weight: bold; text-decoration: none;}
+.darkanchor:hover { color: #351E0D; font-weight: bold; text-decoration: underline;}
+
+.textbox
+{
+    border: 1px solid #777465;
+    padding: 3px 10px 3px 10px;
+    background-color: #F0ECE1;
+    margin: 5px 0 5px 0;
+}
+
+.button
+{
+    border: 1px solid #777465;
+    background: url(button.light.png);
+    padding: 7px 15px 7px 15px;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.button:hover
+{
+    border: 1px solid #777465;
+    background: url(button.dark.png);
+    padding: 7px 15px 7px 15px;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.datatable
+{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #938B55;
+    width: 100%;
+    background-color: #ffffff;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+.datatable th
+{
+    text-align: left;
+    padding: 3px;
+    background-color: #A29A86;
+    color: #ffffff;
+}
+
+.datatable td
+{
+    text-align: left;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #938B55;
+    border-width: 1px 0 0 0;
+    padding: 3px;
+}
+
+.datatable tr:nth-child(odd) { background-color:#F0ECE1; }
+.datatable tr:nth-child(even) { background-color:#ffffff; }
+
+.datatable .commands
+{
+    text-align: right;
+    padding-right: 10px;
+}
+
+.form
+{
+    display: table
+}
+
+.formrow
+{
+    display: table-row;
+}
+
+.formitem
+{
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    padding: 0 10px 5px 0;
+    white-space:nowrap;
+}
+
+.formsubmit
+{
+    display: table-cell;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.formbuttons
+{
+    text-align: right;
+    padding: 10px 0 10px 0;
+}
+
+.base
+{
+    width: 100;
+}
+
+.page 
+{
+    background-color: #E7E1D1;
+    border: 1px solid #5F6155;
+    margin: 15px;
+}
+
+.page .header
+{
+    border-bottom: 1px solid #5F6155;
+    background-image:url('header.large.background.png');
+    height: 116px;
+}
+
+.page .header .links .left
+{
+    float: left;
+}
+
+.page .header .links .right
+{
+    float: right;
+}
+
+.page .header .links .left, .right
+{
+    height: 70px;
+    vertical-align: middle;
+    display:table-cell;
+    color: #351E0D;
+    padding: 10px 10px 0px 10px;
+}
+
+.page .header .tabs
+{
+    clear: both;
+}
+
+.page .header .tabs .tab, .tabselected, .tabdisabled
+{
+    height: 35px;
+    color: #351E0D;
+    float: left;
+    margin-left: 5px;
+    line-height: 35px;
+    padding: 0 10px 0 10px;
+}
+
+.page .header .tabs .tab
+{
+    background: url(button.dark.png);
+    border: 1px solid #5F6155;
+}
+
+.page .header .tabs .tabselected
+{
+    background: url(button.light.png);
+    border: 1px solid;
+    border-color: #5F6155 #5F6155 #E6E0D0 #5F6155;
+}
+
+.page .header .tabs .tabdisabled
+{
+    background: url(button.verydark.png);
+    border: 1px solid #5F6155;
+}
+
+.page .body
+{
+    clear: both;
+    padding: 30px;
+    text-align: center;
+}
+
+.dialog 
+{
+    border: 1px solid #5F6155;
+}
+
+.dialog .header
+{
+    border-bottom: 1px solid #5F6155;
+    background-image:url('header.small.background.png');
+    height: 40px;
+    font-size: 10pt;
+    padding: 0px 10px 0px 10px;
+}
+
+.dialog .header .content
+{
+    height: 40px;
+    vertical-align: middle;
+    display:table-cell;
+    color: #351E0D;
+}
+
+.dialog .body
+{
+    clear: both;
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+.footer
+{
+    padding: 0 30px 20px 30px;
+    text-align: center;
+}
+
