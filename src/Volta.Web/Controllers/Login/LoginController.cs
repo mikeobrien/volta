@@ -35,8 +35,8 @@ namespace Volta.Web.Controllers.Login
                     return FubuContinuation.TransferTo(
                         new LoginViewModel
                             {
-                                Username = loginInputModel.Username, 
-                                AccessDenied = true
+                                Username = loginInputModel.Username,
+                                Message = "Invalid username or password."
                             });
                 throw;
             }
@@ -47,15 +47,16 @@ namespace Volta.Web.Controllers.Login
     {
         public string Username { get; set; }
         public string Password { get; set; }
+        public string Action { get; set; }
     }
 
     public class LoginViewModel
     {
         public string Username { get; set; }
         public string Password { get; set; }
-        public bool AccessDenied { get; set; }
+        public string Message { get; set; }
 
         public override bool Equals(object obj) { return this.ObjectEquals(obj); }
-        public override int GetHashCode() { return this.ObjectHashCode(Username, Password, AccessDenied); }
+        public override int GetHashCode() { return this.ObjectHashCode(Username, Password, Message); }
     }
 }

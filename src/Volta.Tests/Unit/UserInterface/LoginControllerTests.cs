@@ -1,3 +1,4 @@
+using System;
 using Volta.Core.Application.Security;
 using Volta.Core.Domain;
 using Volta.Web.Controllers.Dashboard;
@@ -25,7 +26,7 @@ namespace Volta.Tests.Unit.UserInterface
             secureSession.When(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => {throw new AccessDeniedException();});
             var loginController = new LoginController(secureSession);
             var result = loginController.post_Login(new LoginInputModel {Username = "username"});
-            result.AssertWasTransferedTo(new LoginViewModel {Username = "username", AccessDenied = true});
+            result.AssertWasTransferedTo(new LoginViewModel {Username = "username", Message = "Invalid username or password." } );
         }
 
         [Test]
@@ -35,7 +36,7 @@ namespace Volta.Tests.Unit.UserInterface
             secureSession.When(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => { throw new EmptyUsernameOrPasswordException(); });
             var loginController = new LoginController(secureSession);
             var result = loginController.post_Login(new LoginInputModel { Username = "username" });
-            result.AssertWasTransferedTo(new LoginViewModel { Username = "username", AccessDenied = true });
+            result.AssertWasTransferedTo(new LoginViewModel { Username = "username", Message = "Invalid username or password." });
         }
     }
 }

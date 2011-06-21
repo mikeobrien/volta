@@ -31,22 +31,40 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bottles">
+      <HintPath>..\packages\Bottles.0.9.0.69\lib\Bottles.dll</HintPath>
+    </Reference>
     <Reference Include="FubuCore">
-      <HintPath>..\..\lib\FubuMVC\FubuCore.dll</HintPath>
+      <HintPath>..\packages\FubuCore.0.9.1.24\lib\FubuCore.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuLocalization">
+      <HintPath>..\packages\FubuLocalization.0.9.1.24\lib\FubuLocalization.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Core">
-      <HintPath>..\..\lib\FubuMVC\FubuMVC.Core.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.References.0.9.0.487\lib\FubuMVC.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.StructureMap">
+      <HintPath>..\packages\FubuMVC.References.0.9.0.487\lib\FubuMVC.StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlTags">
+      <HintPath>..\packages\HtmlTags.1.0.0.23\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="Interop.SHDocVw, Version=1.1.0.0, Culture=neutral, PublicKeyToken=db7cfd3acb5ad44e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
       <HintPath>..\packages\WatiN.2.1.0\lib\net40\Interop.SHDocVw.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9\lib\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <Private>True</Private>
       <HintPath>..\packages\WatiN.2.1.0\lib\net40\Microsoft.mshtml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Norm">
       <HintPath>..\packages\NoRM.0.9.8\lib\Norm.dll</HintPath>
@@ -80,12 +98,22 @@
     <Reference Include="WatiN.Core">
       <HintPath>..\packages\WatiN.2.1.0\lib\net40\WatiN.Core.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.1.0.0\lib\NETFramework40\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acceptance\Common\WebPageTestBase.cs" />
+    <Compile Include="Acceptance\Common\WebPage.cs" />
+    <Compile Include="Acceptance\Common\Constants.cs" />
+    <Compile Include="Acceptance\MyAccountPage.cs" />
+    <Compile Include="Acceptance\DashboardPage.cs" />
     <Compile Include="Acceptance\LoginPageTests.cs" />
-    <Compile Include="Common\MemorySessionState.cs" />
+    <Compile Include="Acceptance\LoginPage.cs" />
+    <Compile Include="Acceptance\Common\VoltaWebPage.cs" />
+    <Compile Include="Unit\MemorySessionState.cs" />
     <Compile Include="Integration\Application\ConfigurationTests.cs" />
-    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Integration\Constants.cs" />
     <Compile Include="Integration\Application\RegistryTests.cs" />
     <Compile Include="Integration\Infrastructure\MongoRepositoryTests.cs" />
     <Compile Include="Unit\Domain\UserCreationServiceTests.cs" />
@@ -104,7 +132,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Volta.Core\Volta.Core.csproj">
       <Project>{5D321D95-67D0-4DDC-AA89-B068F111FFE4}</Project>

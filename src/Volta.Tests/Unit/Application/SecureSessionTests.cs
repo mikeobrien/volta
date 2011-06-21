@@ -1,6 +1,5 @@
 using Volta.Core.Application.Security;
 using Volta.Core.Domain;
-using Volta.Tests.Common;
 using NSubstitute;
 using NUnit.Framework;
 using Should;

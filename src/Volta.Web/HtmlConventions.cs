@@ -1,4 +1,6 @@
 using FubuMVC.Core.UI;
+using FubuMVC.Core.UI.Configuration;
+using HtmlTags;
 
 namespace Volta.Web
 {

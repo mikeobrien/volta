@@ -1,5 +1,4 @@
 ﻿using Volta.Core.Application.Configuration;
-using Volta.Tests.Common;
 using NUnit.Framework;
 using Should;
 
@@ -12,7 +11,7 @@ namespace Volta.Tests.Integration.Application
         public void Should_Load_Configuration()
         {
             var manager = new Configuration();
-            manager.ConnectionString.ShouldEqual(Constants.VoltaTestConnectionString);
+            manager.ConnectionString.ShouldEqual("mongodb://yada/yada");
         }
     }
 }
