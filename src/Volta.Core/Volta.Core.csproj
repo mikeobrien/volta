@@ -98,6 +98,7 @@
     <Compile Include="Infrastructure\ExpressionExtensions.cs" />
     <Compile Include="Infrastructure\ObjectExtensions.cs" />
     <Compile Include="Infrastructure\Security\HashedPassword.cs" />
+    <Compile Include="Infrastructure\Web\FubuConfigurationExtensions.cs" />
     <Compile Include="Infrastructure\Web\FubuPageExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

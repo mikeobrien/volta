@@ -1,4 +1,4 @@
-﻿<viewdata model="Volta.Web.Controllers.Dashboard.DashboardViewModel" />
+﻿<viewdata model="Volta.Web.Handlers.DashboardOutputModel" />
 
 <content:title>Dashboard</content:title>
 <content:header></content:header>

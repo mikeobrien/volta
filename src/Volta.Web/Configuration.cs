@@ -1,6 +1,8 @@
-using Volta.Web.Controllers.Dashboard;
 using FubuMVC.Core;
+using FubuMVC.Core.Behaviors;
 using FubuMVC.Spark;
+using Volta.Core.Infrastructure.Web;
+using Volta.Web.Handlers;
 
 namespace Volta.Web
 {
@@ -12,19 +14,46 @@ namespace Volta.Web
                 IncludeDiagnostics(true);
             #endif
 
-            Actions.IncludeClassesSuffixedWithController();
+            Actions.IncludeTypeNameSuffix("Handler")
+                   .IncludeMethodsNamed("Query", "Command");
 
-            Routes
-                .HomeIs<DashboardController>(x => x.Index())
-                .IgnoreControllerNamesEntirely()
-                .IgnoreMethodSuffix("Html")
-                .IgnoreNamespaceText("Volta.Web.Controllers");
+            Routes.HomeIs<DashboardHandler>(x => x.Query())
+                  .ConstrainMethodNameToHttpGetMethod("Query")
+                  .ConstrainMethodNameToHttpPostMethod("Command")
+                  .IgnoreMethodsNamed("Query", "Command")
+                  .IgnoreExecutingAssemblyNamespaceText("Handlers")
+                  .IgnoreClassSuffix("Handler");
+
+            Policies.WrapBehaviorChainsWith<OhBehavior>()
+                    .WrapBehaviorChainsWith<HaiBehavior>()
+                    .WrapBehaviorChainsWith<ThereBehavior>();
 
             this.UseSpark();
 
             HtmlConvention<HtmlConventions>();
 
-            Views.TryToAttachWithDefaultConventions();
+            Views.TryToAttach(x => x.by_ViewModel_and_Namespace());
+        }
+    }
+
+    public class OhBehavior : BasicBehavior
+    {
+        public OhBehavior() : base(PartialBehavior.Ignored)
+        {
+        }
+    }
+
+    public class HaiBehavior : BasicBehavior
+    {
+        public HaiBehavior() : base(PartialBehavior.Ignored)
+        {
+        }
+    }
+
+    public class ThereBehavior : BasicBehavior
+    {
+        public ThereBehavior() : base(PartialBehavior.Ignored)
+        {
         }
     }
 }

@@ -1,10 +1,9 @@
 using System;
 using Volta.Core.Application.Security;
 using Volta.Core.Domain;
-using Volta.Web.Controllers.Dashboard;
-using Volta.Web.Controllers.Login;
 using NSubstitute;
 using NUnit.Framework;
+using Volta.Web.Handlers;
 
 namespace Volta.Tests.Unit.UserInterface
 {
@@ -14,9 +13,9 @@ namespace Volta.Tests.Unit.UserInterface
         [Test]
         public void Should_Login_Valid_User_And_Redirect_To_The_Dashboard()
         {
-            var loginController = new LoginController(Substitute.For<ISecureSession>());
-            var result = loginController.post_Login(new LoginInputModel());
-            result.AssertWasRedirectedTo<DashboardController>(x => x.Index());
+            var loginController = new LoginHandler(Substitute.For<ISecureSession>());
+            var result = loginController.Command(new LoginInputModel());
+            result.AssertWasRedirectedTo<DashboardHandler>(x => x.Query());
         }
 
         [Test]
@@ -24,9 +23,9 @@ namespace Volta.Tests.Unit.UserInterface
         {
             var secureSession = Substitute.For<ISecureSession>();
             secureSession.When(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => {throw new AccessDeniedException();});
-            var loginController = new LoginController(secureSession);
-            var result = loginController.post_Login(new LoginInputModel {Username = "username"});
-            result.AssertWasTransferedTo(new LoginViewModel {Username = "username", Message = "Invalid username or password." } );
+            var loginController = new LoginHandler(secureSession);
+            var result = loginController.Command(new LoginInputModel {Username = "username"});
+            result.AssertWasTransferedTo(new LoginOutputModel {Username = "username", Message = "Invalid username or password." } );
         }
 
         [Test]
@@ -34,9 +33,9 @@ namespace Volta.Tests.Unit.UserInterface
         {
             var secureSession = Substitute.For<ISecureSession>();
             secureSession.When(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => { throw new EmptyUsernameOrPasswordException(); });
-            var loginController = new LoginController(secureSession);
-            var result = loginController.post_Login(new LoginInputModel { Username = "username" });
-            result.AssertWasTransferedTo(new LoginViewModel { Username = "username", Message = "Invalid username or password." });
+            var loginController = new LoginHandler(secureSession);
+            var result = loginController.Command(new LoginInputModel { Username = "username" });
+            result.AssertWasTransferedTo(new LoginOutputModel { Username = "username", Message = "Invalid username or password." });
         }
     }
 }

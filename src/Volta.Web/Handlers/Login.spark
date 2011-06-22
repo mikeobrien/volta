@@ -1,7 +1,7 @@
-﻿<use namespace="Volta.Web.Controllers.Login" />
+﻿<use namespace="Volta.Web.Handlers" />
 <use namespace="HtmlTags.Extended.Attributes" />
 <use namespace="Volta.Core.Infrastructure.Web" />
-<viewdata model="Volta.Web.Controllers.Login.LoginViewModel" />
+<viewdata model="Volta.Web.Handlers.LoginOutputModel" />
 <content:title>Login</content:title>
 <content:header></content:header>
 <content:message>${Model.Message}</content:message>
