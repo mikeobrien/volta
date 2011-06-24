@@ -2,7 +2,7 @@ require "albacore"
 require "release/robocopy"
 require "release/common"
 
-task :default => [:deploy]
+task :default => [:acceptanceTests]
 
 desc "Inits the build"
 task :initBuild do
@@ -30,11 +30,11 @@ msbuild :buildTestProject => :buildWebsite do |msb|
     msb.solution = "src/Volta.Tests/Volta.Tests.csproj"
 end
 
-desc "NUnit Test Runner"
+desc "Unit and integration tests"
 nunit :unitTests => :buildTestProject do |nunit|
 	nunit.command = "src/packages/NUnit.2.5.10.11092/tools/nunit-console.exe"
 	nunit.assemblies "src/Volta.Tests/bin/Release/Volta.Tests.dll"
-	nunit.options "/xml=reports/TestResult.xml"
+	nunit.options "/xml=reports/TestResult.xml", "/run:Volta.Tests.Unit,Volta.Tests.Integration"
 end
 
 desc "Deploys the site."
@@ -45,4 +45,11 @@ robocopy :deploy => :unitTests do |rc|
     rc.includeFiles = "*.dll *.config *.spark *.cshtml *.htm *.html *.txt *.css *.asax " \
                       "*.gif *.jpg *.jpeg *.png *.xml *.js *.ico *.xsl"
     rc.logPath = "volta.groupsadoway.org.log"
+end
+
+desc "Acceptance tests"
+nunit :acceptanceTests => :deploy do |nunit|
+	nunit.command = "src/packages/NUnit.2.5.10.11092/tools/nunit-console.exe"
+	nunit.assemblies "src/Volta.Tests/bin/Release/Volta.Tests.dll"
+	nunit.options "/xml=reports/TestResult.xml", "/run:Volta.Tests.Acceptance"
 end

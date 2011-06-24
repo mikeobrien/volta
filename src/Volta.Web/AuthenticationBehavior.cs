@@ -9,13 +9,15 @@ namespace Volta.Web
     public class AuthenticationBehavior : IActionBehavior
     {
         private readonly IUrlRegistry _registry;
+        private readonly IFubuRequest _request;
         private readonly IOutputWriter _writer;
         private readonly IActionBehavior _actionBehavior;
         private readonly ISecureSession _secureSession;
 
-        public AuthenticationBehavior(IUrlRegistry registry, IOutputWriter writer, IActionBehavior actionBehavior, ISecureSession secureSession)
+        public AuthenticationBehavior(IUrlRegistry registry, IFubuRequest request, IOutputWriter writer, IActionBehavior actionBehavior, ISecureSession secureSession)
         {
             _registry = registry;
+            _request = request;
             _writer = writer;
             _actionBehavior = actionBehavior;
             _secureSession = secureSession;
@@ -23,7 +25,7 @@ namespace Volta.Web
 
         public void Invoke()
         {
-            if (_secureSession.IsLoggedIn())_actionBehavior.Invoke();
+            if (_secureSession.IsLoggedIn() && _request.)_actionBehavior.Invoke();
             else _writer.RedirectToUrl(_registry.UrlFor<LoginHandler>(x => x.Query(null)));
         }
 
