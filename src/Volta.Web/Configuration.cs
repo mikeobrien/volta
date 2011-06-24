@@ -1,5 +1,10 @@
+using System;
+using System.Linq.Expressions;
 using FubuMVC.Core;
 using FubuMVC.Core.Behaviors;
+using FubuMVC.Core.Continuations;
+using FubuMVC.Core.Runtime;
+using FubuMVC.Core.Urls;
 using FubuMVC.Spark;
 using Volta.Core.Infrastructure.Web;
 using Volta.Web.Handlers;
@@ -18,41 +23,44 @@ namespace Volta.Web
                    .IncludeMethodsNamed("Query", "Command");
 
             Routes.HomeIs<DashboardHandler>(x => x.Query())
-                  .ConstrainMethodNameToHttpGetMethod("Query")
-                  .ConstrainMethodNameToHttpPostMethod("Command")
+                  .ConstrainMethodNameToHttpGet("Query")
+                  .ConstrainMethodNameToHttpPost("Command")
                   .IgnoreMethodsNamed("Query", "Command")
-                  .IgnoreExecutingAssemblyNamespaceText("Handlers")
+                  .IgnoreNamespaceTextOfType<Configuration>("Handlers")
                   .IgnoreClassSuffix("Handler");
 
-            Policies.WrapBehaviorChainsWith<OhBehavior>()
-                    .WrapBehaviorChainsWith<HaiBehavior>()
-                    .WrapBehaviorChainsWith<ThereBehavior>();
+            Policies.ConditionallyWrapBehaviorChainsWith<AuthenticationBehavior>(x => x.IsNotInHandlerOfType<LoginHandler>() &&
+                                                                                      x.IsInAssemblyContainingType<Configuration>());
 
             this.UseSpark();
 
-            HtmlConvention<HtmlConventions>();
+            HtmlConvention(x => { x.Editors.Always.Modify((r, t) => t.Id(r.ElementId));
+                                  x.Labels.Always.Modify((r, t) => t.Id(r.ElementId));
+                                  x.Displays.Always.Modify((r, t) => t.Id(r.ElementId)); });
 
             Views.TryToAttach(x => x.by_ViewModel_and_Namespace());
         }
     }
 
-    public class OhBehavior : BasicBehavior
+    public class AuthenticationBehavior : IActionBehavior
     {
-        public OhBehavior() : base(PartialBehavior.Ignored)
-        {
-        }
-    }
+        private readonly IUrlRegistry _registry;
+        private readonly IOutputWriter _writer;
+        private readonly IActionBehavior _actionBehavior;
 
-    public class HaiBehavior : BasicBehavior
-    {
-        public HaiBehavior() : base(PartialBehavior.Ignored)
+        public AuthenticationBehavior(IUrlRegistry registry, IOutputWriter writer, IActionBehavior actionBehavior)
         {
+            _registry = registry;
+            _writer = writer;
+            _actionBehavior = actionBehavior;
         }
-    }
 
-    public class ThereBehavior : BasicBehavior
-    {
-        public ThereBehavior() : base(PartialBehavior.Ignored)
+        public void Invoke()
+        {
+            _writer.RedirectToUrl(_registry.UrlFor<LoginHandler>(x => x.Query(null)));
+        }
+
+        public void InvokePartial()
         {
         }
     }
