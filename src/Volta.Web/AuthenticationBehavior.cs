@@ -1,4 +1,6 @@
-﻿using FubuMVC.Core.Behaviors;
+﻿using System;
+using FubuMVC.Core;
+using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Urls;
 using Volta.Core.Application.Security;
@@ -25,8 +27,18 @@ namespace Volta.Web
 
         public void Invoke()
         {
-            if (_secureSession.IsLoggedIn() && _request.)_actionBehavior.Invoke();
-            else _writer.RedirectToUrl(_registry.UrlFor<LoginHandler>(x => x.Query(null)));
+            var requestUrl = new Uri(_request.Get<CurrentRequest>().Path, UriKind.Relative);
+            var loginUrl = new Uri(_registry.UrlFor<LoginHandler>(x => x.Query(null)), UriKind.Relative);
+            if (!_secureSession.IsLoggedIn())
+            {
+                if (requestUrl == loginUrl) _actionBehavior.Invoke();
+                else _writer.RedirectToUrl(loginUrl.ToString());
+            }
+            else
+            {
+                if (requestUrl == loginUrl) _writer.RedirectToUrl(_registry.UrlFor<DashboardHandler>(x => x.Query()));
+                else _actionBehavior.Invoke(); 
+            }
         }
 
         public void InvokePartial()
