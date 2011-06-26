@@ -10,6 +10,7 @@ namespace Volta.Web.Handlers
     {
         public string Username { get; set; }
         public string Password { get; set; }
+        public string RedirectUrl { get; set; }
         public string Action { get; set; }
     }
 
@@ -18,6 +19,7 @@ namespace Volta.Web.Handlers
         public string Username { get; set; }
         public string Password { get; set; }
         public string Message { get; set; }
+        public string RedirectUrl { get; set; }
 
         public override bool Equals(object obj) { return this.ObjectEquals(obj); }
         public override int GetHashCode() { return this.ObjectHashCode(Username, Password, Message); }
@@ -34,6 +36,7 @@ namespace Volta.Web.Handlers
 
         public LoginOutputModel Query(LoginOutputModel loginOutputModel)
         {
+            if (!string.IsNullOrEmpty(loginOutputModel.RedirectUrl)) loginOutputModel.Message = "You need to login to access this resource.";
             return loginOutputModel;
         }
 
@@ -42,7 +45,9 @@ namespace Volta.Web.Handlers
             try
             {
                 _secureSession.Login(loginInputModel.Username, loginInputModel.Password);
-                return FubuContinuation.RedirectTo<DashboardHandler>(x => x.Query());
+                return string.IsNullOrEmpty(loginInputModel.RedirectUrl) ? 
+                    FubuContinuation.RedirectTo<DashboardHandler>(x => x.Query()) : 
+                    FubuContinuation.RedirectTo(loginInputModel.RedirectUrl);
             }
             catch (Exception e)
             {

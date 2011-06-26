@@ -9,6 +9,7 @@
 <div class="body" style="width: 320px; margin: 110px auto 200px auto;">
   <img src="/content/volta.logo.large.png" style="display: block; margin: 0 auto 50px auto"/>
   ${this.StartForm<LoginInputModel>()}
+    ${this.HiddenInputFor(x => x.RedirectUrl)}
     <div class="form">
       <div class="formrow">
         <div class="formitem">

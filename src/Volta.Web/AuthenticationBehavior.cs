@@ -1,4 +1,5 @@
 ﻿using System;
+using FubuCore;
 using FubuMVC.Core;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
@@ -11,12 +12,12 @@ namespace Volta.Web
     public class AuthenticationBehavior : IActionBehavior
     {
         private readonly IUrlRegistry _registry;
-        private readonly IFubuRequest _request;
+        private readonly CurrentRequest _request;
         private readonly IOutputWriter _writer;
         private readonly IActionBehavior _actionBehavior;
         private readonly ISecureSession _secureSession;
 
-        public AuthenticationBehavior(IUrlRegistry registry, IFubuRequest request, IOutputWriter writer, IActionBehavior actionBehavior, ISecureSession secureSession)
+        public AuthenticationBehavior(IUrlRegistry registry, CurrentRequest request, IOutputWriter writer, IActionBehavior actionBehavior, ISecureSession secureSession)
         {
             _registry = registry;
             _request = request;
@@ -27,23 +28,19 @@ namespace Volta.Web
 
         public void Invoke()
         {
-            var requestUrl = new Uri(_request.Get<CurrentRequest>().Path, UriKind.Relative);
-            var loginUrl = new Uri(_registry.UrlFor<LoginHandler>(x => x.Query(null)), UriKind.Relative);
-            if (!_secureSession.IsLoggedIn())
-            {
-                if (requestUrl == loginUrl) _actionBehavior.Invoke();
-                else _writer.RedirectToUrl(loginUrl.ToString());
-            }
-            else
-            {
-                if (requestUrl == loginUrl) _writer.RedirectToUrl(_registry.UrlFor<DashboardHandler>(x => x.Query()));
-                else _actionBehavior.Invoke(); 
-            }
+            var loginPageUrl = _registry.UrlFor<LoginHandler>(x => x.Query(null));
+            var onLoginPage = _request.Path.Equals(loginPageUrl, StringComparison.OrdinalIgnoreCase);
+            var loggedIn = _secureSession.IsLoggedIn();
+
+            if (loggedIn && onLoginPage) _writer.RedirectToUrl(_registry.UrlFor<DashboardHandler>(x => x.Query()));
+            else if (loggedIn) _actionBehavior.Invoke();
+            else if (onLoginPage) _actionBehavior.Invoke();
+            else _writer.RedirectToUrl(loginPageUrl + "?RedirectUrl=" + _request.RawUrl.UrlEncode());
         }
 
         public void InvokePartial()
         {
-            if (_secureSession.IsLoggedIn()) _actionBehavior.InvokePartial();
+            _actionBehavior.InvokePartial();
         }
     }
 }

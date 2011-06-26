@@ -16,7 +16,6 @@ namespace Volta.Web
             For<IIdentityConvention>().Use<IdConvention>();
             For(typeof(IRepository<>)).Use(typeof(MongoRepository<>));
 
-            For<ISessionState>().Use<BasicSessionState>();
             For<ISecureSession>().Use<SecureSession>();
             For<IAuthenticationService>().Use<AuthenticationService>();
 

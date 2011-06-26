@@ -26,6 +26,11 @@ namespace Volta.Core.Infrastructure.Web
             return page.Tags().InputFor(expression).AddClass(className);
         }
 
+        public static HtmlTag HiddenInputFor<T>(this IFubuPage<T> page, Expression<Func<T, object>> expression) where T : class
+        {
+            return page.Tags().InputFor(expression).Attr("type", "hidden");
+        }
+
         public static FormTag StartForm<TInputModel>(this IFubuPage page) where TInputModel : class, new()
         {
             return (FormTag)page.FormFor<TInputModel>().Id(typeof(TInputModel).Name);
