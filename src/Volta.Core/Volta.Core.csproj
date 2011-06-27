@@ -100,6 +100,7 @@
     <Compile Include="Infrastructure\Security\HashedPassword.cs" />
     <Compile Include="Infrastructure\Web\FubuConfigurationExtensions.cs" />
     <Compile Include="Infrastructure\Web\FubuPageExtensions.cs" />
+    <Compile Include="Infrastructure\Web\FubuUrlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

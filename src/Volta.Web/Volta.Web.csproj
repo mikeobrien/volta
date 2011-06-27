@@ -96,16 +96,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
-    <Compile Include="AuthenticationBehavior.cs" />
+    <Compile Include="Behaviors\AuthenticationBehavior.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Handlers\DashboardHandler.cs" />
     <Compile Include="Handlers\LoginHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registry.cs" />
+    <Compile Include="Behaviors\SecureRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Handlers\Dashboard.spark" />
-    <None Include="Handlers\Login.spark" />
+    <None Include="Handlers\Login.spark">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="packages.config" />
     <None Include="Shared\Application.spark" />
   </ItemGroup>

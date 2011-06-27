@@ -1,4 +1,5 @@
 using System;
+using FubuCore;
 using Volta.Core.Application.Security;
 using Volta.Core.Domain;
 using Volta.Core.Infrastructure;
@@ -36,7 +37,8 @@ namespace Volta.Web.Handlers
 
         public LoginOutputModel Query(LoginOutputModel loginOutputModel)
         {
-            if (!string.IsNullOrEmpty(loginOutputModel.RedirectUrl)) loginOutputModel.Message = "You need to login to access this resource.";
+            if (!loginOutputModel.RedirectUrl.IsEmpty() && loginOutputModel.Message.IsEmpty()) 
+                loginOutputModel.Message = "You need to login to access this resource.";
             return loginOutputModel;
         }
 
@@ -57,7 +59,8 @@ namespace Volta.Web.Handlers
                         new LoginOutputModel
                             {
                                 Username = loginInputModel.Username,
-                                Message = "Invalid username or password."
+                                Message = "Invalid username or password.",
+                                RedirectUrl = loginInputModel.RedirectUrl
                             });
                 throw;
             }

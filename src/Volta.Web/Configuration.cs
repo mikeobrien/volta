@@ -1,6 +1,7 @@
 using FubuMVC.Core;
 using FubuMVC.Spark;
 using Volta.Core.Infrastructure.Web;
+using Volta.Web.Behaviors;
 using Volta.Web.Handlers;
 
 namespace Volta.Web
