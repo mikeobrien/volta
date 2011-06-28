@@ -115,7 +115,6 @@
     <Compile Include="Unit\MemorySessionState.cs" />
     <Compile Include="Integration\Application\ConfigurationTests.cs" />
     <Compile Include="Integration\Constants.cs" />
-    <Compile Include="Integration\Application\RegistryTests.cs" />
     <Compile Include="Integration\Infrastructure\MongoRepositoryTests.cs" />
     <Compile Include="Unit\Domain\UserCreationServiceTests.cs" />
     <Compile Include="Unit\Domain\UserFactoryTests.cs" />

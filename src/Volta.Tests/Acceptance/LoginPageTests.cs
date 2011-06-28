@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Should;
 using Volta.Tests.Acceptance.Common;
+using Volta.Web.Handlers;
 
 namespace Volta.Tests.Acceptance
 {
@@ -33,7 +34,7 @@ namespace Volta.Tests.Acceptance
             Page.Submit();
             Page.IsOnPage().ShouldBeTrue();
             Page.HasMessage.ShouldBeTrue();
-            Page.MessageText.ShouldEqual("Invalid username or password.");
+            Page.MessageText.ShouldEqual(LoginHandler.AuthenticationErrorMessage);
         }
          
         [Test]
@@ -50,7 +51,7 @@ namespace Volta.Tests.Acceptance
             Page.NavigateTo<MyAccountPage>();
             Page.IsOnPage().ShouldBeTrue();
             Page.HasMessage.ShouldBeTrue();
-            Page.MessageText.ShouldEqual("You need to login to access this resource.");
+            Page.MessageText.ShouldEqual(LoginHandler.AuthorizationErrorMessage);
         }
 
         [Test]

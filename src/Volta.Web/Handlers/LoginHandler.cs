@@ -23,11 +23,14 @@ namespace Volta.Web.Handlers
         public string RedirectUrl { get; set; }
 
         public override bool Equals(object obj) { return this.ObjectEquals(obj); }
-        public override int GetHashCode() { return this.ObjectHashCode(Username, Password, Message); }
+        public override int GetHashCode() { return this.ObjectHashCode(Username, Password, Message, RedirectUrl); }
     }
 
     public class LoginHandler
     {
+        public const string AuthorizationErrorMessage = "You need to login to access this resource.";
+        public const string AuthenticationErrorMessage = "Invalid username or password.";
+
         private readonly ISecureSession _secureSession;
 
         public LoginHandler(ISecureSession secureSession)
@@ -37,8 +40,8 @@ namespace Volta.Web.Handlers
 
         public LoginOutputModel Query(LoginOutputModel loginOutputModel)
         {
-            if (!loginOutputModel.RedirectUrl.IsEmpty() && loginOutputModel.Message.IsEmpty()) 
-                loginOutputModel.Message = "You need to login to access this resource.";
+            if (!loginOutputModel.RedirectUrl.IsEmpty() && loginOutputModel.Message.IsEmpty())
+                loginOutputModel.Message = AuthorizationErrorMessage;
             return loginOutputModel;
         }
 
@@ -59,7 +62,7 @@ namespace Volta.Web.Handlers
                         new LoginOutputModel
                             {
                                 Username = loginInputModel.Username,
-                                Message = "Invalid username or password.",
+                                Message = AuthenticationErrorMessage,
                                 RedirectUrl = loginInputModel.RedirectUrl
                             });
                 throw;
