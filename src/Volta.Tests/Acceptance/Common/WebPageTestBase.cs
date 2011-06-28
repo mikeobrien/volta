@@ -6,13 +6,18 @@ namespace Volta.Tests.Acceptance.Common
     [TestFixture]
     public abstract class WebPageTestBase<T> where T : WebPage, new()
     {
+        private readonly bool _newProcess;
+
+        protected WebPageTestBase() {}
+        protected WebPageTestBase(bool newProcess) { _newProcess = newProcess; }
+
         protected T Page { get; private set; }
 
         [SetUp]
         public virtual void Setup()
         {
             Page = new T();
-            Page.Open();
+            Page.Open(_newProcess);
         }
 
         [TearDown]

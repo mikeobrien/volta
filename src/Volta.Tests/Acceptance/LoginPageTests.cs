@@ -6,6 +6,8 @@ namespace Volta.Tests.Acceptance
 {
     public class LoginPageTests : WebPageTestBase<LoginPage>
     {
+        public LoginPageTests() : base(true) {}
+
         [Test]
         public void Should_Display_Login_Page()
         {
@@ -33,14 +35,31 @@ namespace Volta.Tests.Acceptance
             Page.HasMessage.ShouldBeTrue();
             Page.MessageText.ShouldEqual("Invalid username or password.");
         }
-
+         
         [Test]
-        public void Should_Be_Redirected_To_The_Login_Page_When_Not_Logged_In_And_Accessing_A_Page()
+        public void Should_Be_Redirected_To_The_Login_Page_When_Not_Logged_In_And_Accessing_Default_Page()
         {
             Page.NavigateTo<DashboardPage>();
             Page.IsOnPage().ShouldBeTrue();
+            Page.HasMessage.ShouldBeFalse();
+        }
+
+        [Test]
+        public void Should_Be_Redirected_To_The_Login_Page_When_Not_Logged_In_And_Accessing_Non_Default_Page()
+        {
+            Page.NavigateTo<MyAccountPage>();
+            Page.IsOnPage().ShouldBeTrue();
             Page.HasMessage.ShouldBeTrue();
             Page.MessageText.ShouldEqual("You need to login to access this resource.");
+        }
+
+        [Test]
+        public void Should_Be_Redirected_To_The_Login_Page_When_Not_Logged_In_And_Accessing_Non_Default_Page_Then_Redirect_Back_On_Login()
+        {
+            Page.NavigateTo<MyAccountPage>();
+            Page.UsernameTextField.TypeText("spin");
+            Page.PasswordTextField.TypeText("onehalf");
+            Page.Submit().SwitchTo<MyAccountPage>().IsOnPage().ShouldBeTrue();
         }
     }
 }

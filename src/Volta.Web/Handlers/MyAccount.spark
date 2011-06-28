@@ -1,0 +1,6 @@
+﻿<viewdata model="Volta.Web.Handlers.MyAccountOutputModel" />
+
+<content:title>My Account</content:title>
+<content:header></content:header>
+
+<h1>The current time is: ${Model.Time}</h1>

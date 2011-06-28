@@ -1,4 +1,7 @@
 using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Runtime.InteropServices;
 using WatiN.Core;
 
 namespace Volta.Tests.Acceptance.Common
@@ -8,22 +11,26 @@ namespace Volta.Tests.Acceptance.Common
         protected IE Browser { get; set; }
         protected Uri BaseUrl { get; set; }
 
-        public void Open()
+        public void Open(bool newProcess)
         {
             Settings.MakeNewIeInstanceVisible = false;
-            Browser = new IE(BaseUrl);
+            Browser = new IE(BaseUrl, newProcess);
             Browser.ClearCache();
             Browser.ClearCookies();
         }
 
         public bool IsOnPage()
         {
-            return Browser.Uri == BaseUrl;
+            return Browser.Uri.AbsolutePath == BaseUrl.AbsolutePath;
         }
+
+        [DllImport("user32.dll")]
+        static extern int GetWindowThreadProcessId(IntPtr windowHandle, IntPtr processId);
 
         public void Close()
         {
-            Browser.Dispose();
+            var threadId = GetWindowThreadProcessId(Browser.hWnd, IntPtr.Zero);
+            Process.GetProcessesByName("iexplore").First(x => x.Threads.Cast<ProcessThread>().Any(y => y.Id == threadId)).Kill();
         }
 
         public WebPage GoHome()
