@@ -6,3 +6,5 @@ _ReSharper.*
 *.orig
 *.log
 aspnet_client
+*.userprefs
+*.pidb
