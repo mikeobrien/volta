@@ -53,7 +53,7 @@ robocopy :deploy => :unitTests do |rc|
 end
 
 desc "Acceptance tests"
-gallio :unitTests => :buildTestProject do |o|
+gallio :acceptanceTests => :buildTestProject do |o|
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
     o.verbosity = "Normal"
     o.filter = "Namespace: Volta.Tests.Acceptance"
