@@ -1,5 +1,6 @@
 require "albacore"
 require "release/robocopy"
+require "release/gallio"
 require "release/common"
 
 task :default => [:acceptanceTests]
@@ -31,10 +32,14 @@ msbuild :buildTestProject => :buildWebsite do |msb|
 end
 
 desc "Unit and integration tests"
-nunit :unitTests => :buildTestProject do |nunit|
-	nunit.command = "src/packages/NUnit.2.5.10.11092/tools/nunit-console.exe"
-	nunit.assemblies "src/Volta.Tests/bin/Release/Volta.Tests.dll"
-	nunit.options "/xml=reports/TestResult.xml", "/run:Volta.Tests.Unit,Volta.Tests.Integration"
+gallio :unitTests => :buildTestProject do |o|
+    o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
+    o.verbosity = "Normal"
+    o.filter = "Namespace: Volta.Tests.Unit, Volta.Tests.Integration"
+    o.reportDirectory = "reports"
+    o.reportNameFormat = "gallio-unit"
+    o.addReportType("Html")
+    o.addReportType("Xml-Inline")
 end
 
 desc "Deploys the site."
@@ -48,8 +53,12 @@ robocopy :deploy => :unitTests do |rc|
 end
 
 desc "Acceptance tests"
-nunit :acceptanceTests => :deploy do |nunit|
-	nunit.command = "src/packages/NUnit.2.5.10.11092/tools/nunit-console.exe"
-	nunit.assemblies "src/Volta.Tests/bin/Release/Volta.Tests.dll"
-	nunit.options "/xml=reports/TestResult.xml", "/run:Volta.Tests.Acceptance"
+gallio :unitTests => :buildTestProject do |o|
+    o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
+    o.verbosity = "Normal"
+    o.filter = "Namespace: Volta.Tests.Acceptance"
+    o.reportDirectory = "reports"
+    o.reportNameFormat = "gallio-acceptance"
+    o.addReportType("Html")
+    o.addReportType("Xml-Inline")
 end
