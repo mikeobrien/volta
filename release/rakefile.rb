@@ -33,6 +33,7 @@ end
 
 desc "Unit and integration tests"
 gallio :unitTests => :buildTestProject do |o|
+    o.echoCommandLine = true
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
     o.verbosity = "Normal"
     o.filter = "Namespace: Volta.Tests.Unit, Volta.Tests.Integration"
@@ -54,6 +55,7 @@ end
 
 desc "Acceptance tests"
 gallio :acceptanceTests => :buildTestProject do |o|
+    o.echoCommandLine = true
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
     o.verbosity = "Normal"
     o.filter = "Namespace: Volta.Tests.Acceptance"

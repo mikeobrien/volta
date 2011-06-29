@@ -5,7 +5,7 @@ class Gallio
                   :runnerProperties, :filter, :reportDirectory, :reportNameFormat, 
                   :reportArchive, :reportTypes, :reportFormatterProperties, :showReports,
                   :testAssemblies, :hintDirectories, :pluginDirectories, :applicationBaseDirectory,
-                  :workingDirectory, :shadowCopy, :debug, :runtimeVersion
+                  :workingDirectory, :shadowCopy, :debug, :runtimeVersion, :echoCommandLine
     
     def initialize()
         @testAssemblies = Array.new
@@ -94,8 +94,9 @@ class Gallio
                        if res.exitstatus > 0
                    end
 
-        #sh gallio, &errorHandler 
-        puts gallio
+        if echoCommandLine = true then puts gallio end
+        
+        sh gallio, &errorHandler 
     end
     
 end
