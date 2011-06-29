@@ -2,7 +2,7 @@ using FubuMVC.Core.Runtime;
 using Volta.Core.Application.Configuration;
 using Volta.Core.Application.Security;
 using Volta.Core.Domain;
-using Volta.Core.Infrastructure.Data;
+using Volta.Core.Infrastructure.Framework.Data;
 
 namespace Volta.Web
 {

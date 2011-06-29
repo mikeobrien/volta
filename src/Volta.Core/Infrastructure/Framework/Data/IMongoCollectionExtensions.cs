@@ -1,7 +1,7 @@
 using Norm;
 using Norm.Collections;
 
-namespace Volta.Core.Infrastructure.Data
+namespace Volta.Core.Infrastructure.Framework.Data
 {
     public static class IMongoCollectionExtensions
     {

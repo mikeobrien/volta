@@ -1,7 +1,7 @@
 using System.Linq;
 using Volta.Core.Domain;
-using Volta.Core.Infrastructure.Data;
-using Volta.Core.Infrastructure.Security;
+using Volta.Core.Infrastructure.Framework.Data;
+using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Core.Application.Security
 {

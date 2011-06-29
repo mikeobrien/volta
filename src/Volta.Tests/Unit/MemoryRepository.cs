@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Volta.Core.Infrastructure;
-using Volta.Core.Infrastructure.Data;
+using Volta.Core.Infrastructure.Framework;
+using Volta.Core.Infrastructure.Framework.Data;
 
 namespace Volta.Tests.Unit
 {

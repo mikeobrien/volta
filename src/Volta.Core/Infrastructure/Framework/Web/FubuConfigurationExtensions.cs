@@ -2,7 +2,7 @@ using System.Linq;
 using FubuMVC.Core.Registration.DSL;
 using FubuMVC.Core.Registration.Nodes;
 
-namespace Volta.Core.Infrastructure.Web
+namespace Volta.Core.Infrastructure.Framework.Web
 {
     public static class FubuConfigurationExtensions
     {

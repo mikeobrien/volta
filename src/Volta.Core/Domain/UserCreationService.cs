@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Volta.Core.Infrastructure.Data;
+using Volta.Core.Infrastructure.Framework.Data;
 
 namespace Volta.Core.Domain
 {

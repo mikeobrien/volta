@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace Volta.Core.Infrastructure
+namespace Volta.Core.Infrastructure.Framework
 {
     public static class ExpressionExtensions
     {

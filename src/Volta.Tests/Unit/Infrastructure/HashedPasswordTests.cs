@@ -1,6 +1,6 @@
-using Volta.Core.Infrastructure.Security;
 using NUnit.Framework;
 using Should;
+using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Tests.Unit.Infrastructure
 {

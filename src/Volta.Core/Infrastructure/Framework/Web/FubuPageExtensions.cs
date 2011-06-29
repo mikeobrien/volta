@@ -4,7 +4,7 @@ using FubuMVC.Core.UI;
 using FubuMVC.Core.View;
 using HtmlTags;
 
-namespace Volta.Core.Infrastructure.Web
+namespace Volta.Core.Infrastructure.Framework.Web
 {
     public static class FubuPageExtensions
     {

@@ -1,9 +1,9 @@
 using System.Linq;
 using Volta.Core.Application.Security;
 using Volta.Core.Domain;
-using Volta.Core.Infrastructure.Data;
 using NUnit.Framework;
 using Should;
+using Volta.Core.Infrastructure.Framework.Data;
 
 namespace Volta.Tests.Unit.Application
 {

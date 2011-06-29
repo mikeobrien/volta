@@ -1,7 +1,7 @@
 using FubuCore;
 using NUnit.Framework;
 using Should;
-using Volta.Core.Infrastructure.Web;
+using Volta.Core.Infrastructure.Framework.Web;
 
 namespace Volta.Tests.Unit.Infrastructure.Web
 {

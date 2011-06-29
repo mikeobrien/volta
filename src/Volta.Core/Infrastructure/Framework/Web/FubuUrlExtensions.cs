@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using FubuCore;
 using FubuCore.Reflection;
 
-namespace Volta.Core.Infrastructure.Web
+namespace Volta.Core.Infrastructure.Framework.Web
 {
     public static class FubuUrlExtensions
     {

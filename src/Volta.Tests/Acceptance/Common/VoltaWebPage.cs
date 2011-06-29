@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Volta.Core.Infrastructure;
+using Volta.Core.Infrastructure.Framework;
 using WatiN.Core;
 using WatiN.Core.Constraints;
 

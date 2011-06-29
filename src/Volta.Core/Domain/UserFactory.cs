@@ -1,5 +1,5 @@
 using System;
-using Volta.Core.Infrastructure.Security;
+using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Core.Domain
 {

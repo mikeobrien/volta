@@ -2,7 +2,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Volta.Core.Infrastructure.Security
+namespace Volta.Core.Infrastructure.Framework.Security
 {
     public class HashedPassword
     {

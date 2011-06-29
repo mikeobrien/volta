@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
-using Volta.Core.Infrastructure.Data;
 using Norm;
 using NUnit.Framework;
 using Should;
+using Volta.Core.Infrastructure.Framework.Data;
 
 namespace Volta.Tests.Integration.Infrastructure
 {

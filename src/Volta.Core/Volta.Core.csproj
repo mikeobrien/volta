@@ -88,23 +88,26 @@
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\UserCreationService.cs" />
     <Compile Include="Domain\UserFactory.cs" />
-    <Compile Include="Infrastructure\Data\IdConvention.cs" />
-    <Compile Include="Infrastructure\Data\IIdentityConvention.cs" />
-    <Compile Include="Infrastructure\Data\IMongoCollectionExtensions.cs" />
-    <Compile Include="Infrastructure\Data\IRepository.cs" />
-    <Compile Include="Infrastructure\Data\MongoConnection.cs" />
-    <Compile Include="Infrastructure\Data\MongoRepository.cs" />
-    <Compile Include="Infrastructure\ByteArrayExtensions.cs" />
-    <Compile Include="Infrastructure\ExpressionExtensions.cs" />
-    <Compile Include="Infrastructure\ObjectExtensions.cs" />
-    <Compile Include="Infrastructure\Security\HashedPassword.cs" />
-    <Compile Include="Infrastructure\Web\FubuConfigurationExtensions.cs" />
-    <Compile Include="Infrastructure\Web\FubuPageExtensions.cs" />
-    <Compile Include="Infrastructure\Web\FubuUrlExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Data\IdConvention.cs" />
+    <Compile Include="Infrastructure\Framework\Data\IIdentityConvention.cs" />
+    <Compile Include="Infrastructure\Framework\Data\IMongoCollectionExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Data\IRepository.cs" />
+    <Compile Include="Infrastructure\Framework\Data\MongoConnection.cs" />
+    <Compile Include="Infrastructure\Framework\Data\MongoRepository.cs" />
+    <Compile Include="Infrastructure\Framework\ByteArrayExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\ExpressionExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\ObjectExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Security\HashedPassword.cs" />
+    <Compile Include="Infrastructure\Framework\Web\FubuConfigurationExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Web\FubuPageExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Web\FubuUrlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Infrastructure\Application\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

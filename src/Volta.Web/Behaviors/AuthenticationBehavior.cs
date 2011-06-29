@@ -3,7 +3,7 @@ using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Urls;
 using Volta.Core.Application.Security;
-using Volta.Core.Infrastructure.Web;
+using Volta.Core.Infrastructure.Framework.Web;
 using Volta.Web.Handlers;
 
 namespace Volta.Web.Behaviors

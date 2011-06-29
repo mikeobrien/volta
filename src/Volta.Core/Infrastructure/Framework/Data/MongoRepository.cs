@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using Norm;
 using Norm.Collections;
 
-namespace Volta.Core.Infrastructure.Data
+namespace Volta.Core.Infrastructure.Framework.Data
 {
     public class MongoRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
