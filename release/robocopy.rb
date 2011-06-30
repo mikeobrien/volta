@@ -9,7 +9,7 @@ class Robocopy
                    "/MIR " \
                    "/XD #{@excludeDirs} " \
                    "/IF #{@includeFiles} " \
-                   "/LOG+:\"#{@logPath}\" " \
+                   "/LOG:\"#{@logPath}\" " \
                    "/TEE"
             
         errorHandler = \

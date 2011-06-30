@@ -31,36 +31,48 @@ msbuild :buildTestProject => :buildWebsite do |msb|
     msb.solution = "src/Volta.Tests/Volta.Tests.csproj"
 end
 
-desc "Unit and integration tests"
+desc "Unit tests"
 gallio :unitTests => :buildTestProject do |o|
     o.echoCommandLine = true
+    o.workingDirectory = Dir.getwd
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
     o.verbosity = "Normal"
-    o.filter = "Namespace: Volta.Tests.Unit, Volta.Tests.Integration"
+    o.filter = "Namespace: Volta.Tests.Unit"
     o.reportDirectory = "reports"
     o.reportNameFormat = "gallio-unit"
     o.addReportType("Html")
-    o.addReportType("Xml-Inline")
+end
+
+desc "Integration tests"
+gallio :integrationTests => :unitTests do |o|
+    o.echoCommandLine = true
+    o.workingDirectory = Dir.getwd
+    o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
+    o.verbosity = "Normal"
+    o.filter = "Namespace: Volta.Tests.Integration"
+    o.reportDirectory = "reports"
+    o.reportNameFormat = "gallio-integration"
+    o.addReportType("Html")
 end
 
 desc "Deploys the site."
-robocopy :deploy => :unitTests do |rc|
+robocopy :deploy => :integrationTests do |rc|
     rc.source = "src/Volta.Web"
     rc.target = "D:/Websites/volta.groupsadoway.org/wwwroot"
     rc.excludeDirs = "obj"
     rc.includeFiles = "*.dll *.config *.spark *.cshtml *.htm *.html *.txt *.css *.asax " \
                       "*.gif *.jpg *.jpeg *.png *.xml *.js *.ico *.xsl"
-    rc.logPath = "volta.groupsadoway.org.log"
+    rc.logPath = "reports/deploy.log"
 end
 
 desc "Acceptance tests"
 gallio :acceptanceTests => :buildTestProject do |o|
     o.echoCommandLine = true
+    o.workingDirectory = Dir.getwd
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
     o.verbosity = "Normal"
     o.filter = "Namespace: Volta.Tests.Acceptance"
     o.reportDirectory = "reports"
     o.reportNameFormat = "gallio-acceptance"
     o.addReportType("Html")
-    o.addReportType("Xml-Inline")
 end
