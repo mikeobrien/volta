@@ -12,12 +12,12 @@ namespace Volta.Web
     {
         public Registry()
         {
-            For<IConfiguration>().Use<Core.Application.Configuration.Configuration>();
+            ForSingletonOf<IConfiguration>().Use<Core.Application.Configuration.Configuration>();
+            ForSingletonOf<ILogger>().Use<Log4NetLogger>();
             For<IContentFile>().Use<ContentFile>();
-            For<ILogger>().Use<Log4NetLogger>();
 
+            ForSingletonOf<IIdentityConvention>().Use<IdConvention>();
             For<MongoConnection>().Use(x => new MongoConnection(x.GetInstance<IConfiguration>().ConnectionString));
-            For<IIdentityConvention>().Use<IdConvention>();
             For(typeof(IRepository<>)).Use(typeof(MongoRepository<>));
 
             For<ISecureSession>().Use<SecureSession>();

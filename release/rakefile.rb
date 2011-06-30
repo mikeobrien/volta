@@ -7,11 +7,34 @@ task :default => [:acceptanceTests]
 
 desc "Inits the build"
 task :initBuild do
+    Common.DeleteDirectory("reports")
 	Common.EnsurePath("reports")
 end
 
+desc "Generate core assembly info."
+assemblyinfo :coreAssemblyInfo => :initBuild do |asm|
+    asm.version = ENV["GO_PIPELINE_LABEL"]
+    asm.company_name = "Sadoway Group"
+    asm.product_name = "Volta"
+    asm.title = "Volta Core"
+    asm.description = "Volta core library."
+    asm.copyright = "Copyright (c) 2011 Sadoway Group"
+    asm.output_file = "src/Volta.Core/Properties/AssemblyInfo.cs"
+end
+
+desc "Generate web assembly info."
+assemblyinfo :webAssemblyInfo => :coreAssemblyInfo do |asm|
+    asm.version = ENV["GO_PIPELINE_LABEL"]
+    asm.company_name = "Sadoway Group"
+    asm.product_name = "Volta"
+    asm.title = "Volta Web"
+    asm.description = "Volta website."
+    asm.copyright = "Copyright (c) 2011 Sadoway Group"
+    asm.output_file = "src/Volta.Web/Properties/AssemblyInfo.cs"
+end
+
 desc "Builds the library."
-msbuild :buildLibrary => :initBuild do |msb|
+msbuild :buildLibrary => :webAssemblyInfo do |msb|
     msb.properties :configuration => :Release
     msb.targets :Clean, :Build
     msb.solution = "src/Volta.Core/Volta.Core.csproj"
