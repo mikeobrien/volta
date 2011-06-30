@@ -66,7 +66,7 @@ robocopy :deploy => :integrationTests do |rc|
 end
 
 desc "Acceptance tests"
-gallio :acceptanceTests => :buildTestProject do |o|
+gallio :acceptanceTests => :deploy do |o|
     o.echoCommandLine = true
     o.workingDirectory = Dir.getwd
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")

@@ -5,7 +5,7 @@ using NUnit.Framework;
 using Should;
 using Volta.Core.Infrastructure.Framework.Data;
 
-namespace Volta.Tests.Integration.Infrastructure
+namespace Volta.Tests.Integration.Infrastructure.Data
 {
     [TestFixture]
     public class MongoRepositoryTests

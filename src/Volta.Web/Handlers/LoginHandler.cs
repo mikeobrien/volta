@@ -2,7 +2,6 @@ using System;
 using FubuCore;
 using Volta.Core.Application.Security;
 using Volta.Core.Domain;
-using Volta.Core.Infrastructure;
 using FubuMVC.Core.Continuations;
 using Volta.Core.Infrastructure.Framework;
 

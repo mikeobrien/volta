@@ -24,7 +24,8 @@ namespace Volta.Web
                   .IgnoreNamespaceTextOfType<Configuration>("Handlers")
                   .IgnoreClassSuffix("Handler");
 
-            Policies.WrapBehaviorChainsWith<AuthenticationBehavior>();
+            Policies.WrapBehaviorChainsWith<AuthenticationBehavior>()
+                    .WrapBehaviorChainsWith<ExceptionHandlerBehavior>();
 
             this.UseSpark();
 

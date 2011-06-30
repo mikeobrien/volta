@@ -53,6 +53,9 @@
     <Reference Include="Ionic.Zip, Version=1.9.1.5, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetZip.1.9\lib\Ionic.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -96,11 +99,15 @@
     <Compile Include="Infrastructure\Framework\Data\MongoRepository.cs" />
     <Compile Include="Infrastructure\Framework\ByteArrayExtensions.cs" />
     <Compile Include="Infrastructure\Framework\ExpressionExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Logging\ILogger.cs" />
+    <Compile Include="Infrastructure\Framework\Logging\Log4NetLogger.cs" />
     <Compile Include="Infrastructure\Framework\ObjectExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Security\HashedPassword.cs" />
+    <Compile Include="Infrastructure\Framework\Web\ContentFile.cs" />
     <Compile Include="Infrastructure\Framework\Web\FubuConfigurationExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Web\FubuPageExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Web\FubuUrlExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Web\IContentFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -92,11 +92,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\site.css" />
+    <Content Include="Content\Error.htm" />
+    <Content Include="Content\NotFound.htm" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="Behaviors\AuthenticationBehavior.cs" />
+    <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Handlers\MyAccountHandler.cs" />
     <Compile Include="Handlers\DashboardHandler.cs" />

@@ -111,11 +111,12 @@
     <Compile Include="Acceptance\LoginPageTests.cs" />
     <Compile Include="Acceptance\LoginPage.cs" />
     <Compile Include="Acceptance\Common\VoltaWebPage.cs" />
+    <Compile Include="Integration\Infrastructure\Web\ContentFileTests.cs" />
     <Compile Include="Unit\Infrastructure\Web\FubuUrlExtensionTests.cs" />
     <Compile Include="Unit\MemorySessionState.cs" />
     <Compile Include="Integration\Application\ConfigurationTests.cs" />
     <Compile Include="Integration\Constants.cs" />
-    <Compile Include="Integration\Infrastructure\MongoRepositoryTests.cs" />
+    <Compile Include="Integration\Infrastructure\Data\MongoRepositoryTests.cs" />
     <Compile Include="Unit\Domain\UserCreationServiceTests.cs" />
     <Compile Include="Unit\Domain\UserFactoryTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\AuthenticationBehaviorTests.cs" />
