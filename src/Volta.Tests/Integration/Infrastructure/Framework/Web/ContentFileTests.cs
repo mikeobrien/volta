@@ -5,7 +5,7 @@ using NUnit.Framework;
 using Should;
 using Volta.Core.Infrastructure.Framework.Web;
 
-namespace Volta.Tests.Integration.Infrastructure.Web
+namespace Volta.Tests.Integration.Infrastructure.Framework.Web
 {
     [TestFixture]
     public class ContentFileTests

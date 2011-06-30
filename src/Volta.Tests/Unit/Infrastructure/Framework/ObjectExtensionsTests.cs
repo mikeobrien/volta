@@ -1,9 +1,8 @@
-using Volta.Core.Infrastructure;
 using NUnit.Framework;
 using Should;
 using Volta.Core.Infrastructure.Framework;
 
-namespace Volta.Tests.Unit.Infrastructure
+namespace Volta.Tests.Unit.Infrastructure.Framework
 {
     [TestFixture]
     public class ObjectExtensionsTests

@@ -1,5 +1,7 @@
+using System.Reflection;
 using FubuMVC.Core;
 using FubuMVC.Spark;
+using Volta.Core.Infrastructure.Framework.Reflection;
 using Volta.Core.Infrastructure.Framework.Web;
 using Volta.Web.Behaviors;
 using Volta.Web.Handlers;
@@ -10,9 +12,9 @@ namespace Volta.Web
     {
         public Configuration()
         {
-            #if DEBUG
-                IncludeDiagnostics(true);
-            #endif
+            var inDebugMode = Assembly.GetExecutingAssembly().IsInDebugMode();
+
+            if (inDebugMode) IncludeDiagnostics(true);
 
             Actions.IncludeTypeNameSuffix("Handler")
                    .IncludeMethodsNamed("Query", "Command");
@@ -25,7 +27,7 @@ namespace Volta.Web
                   .IgnoreClassSuffix("Handler");
 
             Policies.WrapBehaviorChainsWith<AuthenticationBehavior>()
-                    .WrapBehaviorChainsWith<ExceptionHandlerBehavior>();
+                    .ConditionallyWrapBehaviorChainsWith<ExceptionHandlerBehavior>(x => !inDebugMode);
 
             this.UseSpark();
 

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Should;
 using Volta.Core.Infrastructure.Framework.Web;
 
-namespace Volta.Tests.Unit.Infrastructure.Web
+namespace Volta.Tests.Unit.Infrastructure.Framework.Web
 {
     [TestFixture]
     public class FubuUrlExtensionTests
