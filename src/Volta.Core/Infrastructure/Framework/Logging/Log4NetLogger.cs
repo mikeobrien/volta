@@ -4,7 +4,7 @@ namespace Volta.Core.Infrastructure.Framework.Logging
 {
     public class Log4NetLogger : ILogger
     {
-        public void Log(string source, Exception exception)
+        public void Write(string source, Exception exception)
         {
             
         }

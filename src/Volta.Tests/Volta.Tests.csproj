@@ -120,6 +120,7 @@
     <Compile Include="Unit\Domain\UserCreationServiceTests.cs" />
     <Compile Include="Unit\Domain\UserFactoryTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\AuthenticationBehaviorTests.cs" />
+    <Compile Include="Unit\UserInterface\Behaviors\ExceptionHandlerBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\SecureRequestTests.cs" />
     <Compile Include="Unit\UserInterface\LoginControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

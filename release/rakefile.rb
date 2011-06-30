@@ -37,7 +37,7 @@ gallio :unitTests => :buildTestProject do |o|
     o.workingDirectory = Dir.getwd
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
     o.verbosity = "Normal"
-    o.filter = "Namespace: Volta.Tests.Unit"
+    o.filter = "Namespace: /Volta.Tests.Unit.*/"
     o.reportDirectory = "reports"
     o.reportNameFormat = "gallio-unit"
     o.addReportType("Html")
@@ -49,7 +49,7 @@ gallio :integrationTests => :unitTests do |o|
     o.workingDirectory = Dir.getwd
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
     o.verbosity = "Normal"
-    o.filter = "Namespace: Volta.Tests.Integration"
+    o.filter = "Namespace: /Volta.Tests.Integration.*/"
     o.reportDirectory = "reports"
     o.reportNameFormat = "gallio-integration"
     o.addReportType("Html")
@@ -71,7 +71,7 @@ gallio :acceptanceTests => :deploy do |o|
     o.workingDirectory = Dir.getwd
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
     o.verbosity = "Normal"
-    o.filter = "Namespace: Volta.Tests.Acceptance"
+    o.filter = "Namespace: /Volta.Tests.Acceptance.*/"
     o.reportDirectory = "reports"
     o.reportNameFormat = "gallio-acceptance"
     o.addReportType("Html")

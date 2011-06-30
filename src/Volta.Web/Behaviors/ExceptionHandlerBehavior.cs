@@ -32,7 +32,7 @@ namespace Volta.Web.Behaviors
             }
             catch (Exception e)
             {
-                _logger.Log(_request.RawUrl, e);
+                _logger.Write(_request.RawUrl, e);
                 _writer.Write(MimeType.Html.ToString(), _contentFile.ReadAllText("error.htm"));
             }
         }
