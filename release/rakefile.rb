@@ -75,7 +75,7 @@ gallio :unitTests => :testConfigSettings do |o|
     o.filter = "Namespace: /Volta.Tests.Unit.*/"
     o.reportDirectory = "reports"
     o.reportNameFormat = "gallio-unit"
-    o.addReportType("XHtml")
+    o.addReportType("Html")
 end
 
 desc "Integration tests"
@@ -87,7 +87,7 @@ gallio :integrationTests => :unitTests do |o|
     o.filter = "Namespace: /Volta.Tests.Integration.*/"
     o.reportDirectory = "reports"
     o.reportNameFormat = "gallio-integration"
-    o.addReportType("XHtml")
+    o.addReportType("Html")
 end
 
 desc "Website config file settings"
@@ -120,5 +120,5 @@ gallio :acceptanceTests => :deploy do |o|
     o.filter = "Namespace: /Volta.Tests.Acceptance.*/"
     o.reportDirectory = "reports"
     o.reportNameFormat = "gallio-acceptance"
-    o.addReportType("XHtml")
+    o.addReportType("Html")
 end
