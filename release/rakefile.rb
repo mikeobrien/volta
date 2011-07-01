@@ -57,7 +57,7 @@ end
 
 desc "Test config file settings"
 xmlConfig :testConfigSettings => :buildTestProject do |o|
-    o.yamlFile = "volta.yml"
+    o.yamlFile = ENV["USERPROFILE"] + "/.go/volta.yml"
     o.yamlSection = ENV["GO_PIPELINE_LABEL"]
     o.xmlFile = "src/Volta.Tests/bin/Release/Volta.Tests.dll.config"
     o.xmlRoot = "/configuration/"
@@ -92,7 +92,7 @@ end
 
 desc "Website config file settings"
 xmlConfig :websiteConfigSettings => :integrationTests do |o|
-    o.yamlFile = "volta.yml"
+    o.yamlFile = ENV["USERPROFILE"] + "/.go/volta.yml"
     o.yamlSection = ENV["GO_PIPELINE_LABEL"]
     o.xmlFile = "src/Volta.Web/Web.config"
     o.xmlRoot = "/configuration/"
