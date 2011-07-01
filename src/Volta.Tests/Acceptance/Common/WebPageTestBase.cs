@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using NUnit.Framework;
 
@@ -23,7 +24,11 @@ namespace Volta.Tests.Acceptance.Common
         [TearDown]
         public virtual void TearDown()
         {
-            Debug.WriteLine(Page.GetHtml());
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine(Page.GetCurrentUrl());
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine(Page.GetHtml());
+            Console.WriteLine("-------------------------------------------------------------");
             Page.Close();
         }
     }

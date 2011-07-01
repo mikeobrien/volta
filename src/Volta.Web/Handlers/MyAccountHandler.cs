@@ -11,7 +11,6 @@ namespace Volta.Web.Handlers
     {
         public MyAccountOutputModel Query()
         {
-            throw new Exception("You bad, bad man!");
             return new MyAccountOutputModel { Time = DateTime.Now.ToString() };
         }
     }

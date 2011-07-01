@@ -47,7 +47,12 @@ namespace Volta.Tests.Acceptance.Common
 
         public string GetHtml()
         {
-            return Browser.Html;
+            return Browser.ActiveElement.Parent.OuterHtml;
+        }
+
+        public string GetCurrentUrl()
+        {
+            return Browser.Url;
         }
 
         public WebPage NavigateTo<T>() where T : WebPage, new()
