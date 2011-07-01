@@ -55,17 +55,19 @@ msbuild :buildTestProject => :buildWebsite do |msb|
     msb.solution = "src/Volta.Tests/Volta.Tests.csproj"
 end
 
-desc "Test config file replacements"
-xmlConfig :testConfigReplacements => :buildTestProject do |o|
-    o.yamlFile = "ci.yml"
-    o.configFile = "Web.config"
-    o.setValue("integration.test.connection.string", "connectionStrings/add[@name='VoltaIntegration']/@connectionString")
-    o.setValue("acceptance.test.connection.string", "connectionStrings/add[@name='VoltaAcceptance']/@connectionString")
-    o.setValue("volta.url", "appSettings/add[@key='VoltaUrl']/@value")
+desc "Test config file settings"
+xmlConfig :testConfigSettings => :buildTestProject do |o|
+    o.yamlFile = "volta.yml"
+    o.yamlSection = ENV["GO_PIPELINE_LABEL"]
+    o.xmlFile = "src/Volta.Tests/bin/Release/Volta.Tests.dll.config"
+    o.xmlRoot = "/configuration/"
+    o.setAttribute("integration.test.connection.string", "connectionStrings/add[@name='VoltaIntegration']/@connectionString")
+    o.setAttribute("production.connection.string", "connectionStrings/add[@name='VoltaAcceptance']/@connectionString")
+    o.setAttribute("volta.url", "appSettings/add[@key='VoltaUrl']/@value")
 end
 
 desc "Unit tests"
-gallio :unitTests => :testConfigReplacements do |o|
+gallio :unitTests => :testConfigSettings do |o|
     o.echoCommandLine = true
     o.workingDirectory = Dir.getwd
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
@@ -88,17 +90,19 @@ gallio :integrationTests => :unitTests do |o|
     o.addReportType("Html")
 end
 
-desc "Website config file replacements"
-xmlConfig :websiteConfigReplacements => :integrationTests do |o|
-    o.yamlFile = "ci.yml"
-    o.configFile = "Web.config"
-    o.setValue("connection.string", "volta/@connectionString")
-    o.setValue("log.file.path", "log4net/appender[@name='LogFileAppender']/file/@value")
-    o.setValue("smtp.host", "log4net/appender[@name='EmailAppender']/smtpHost/@value")
+desc "Website config file settings"
+xmlConfig :websiteConfigSettings => :integrationTests do |o|
+    o.yamlFile = "volta.yml"
+    o.yamlSection = ENV["GO_PIPELINE_LABEL"]
+    o.xmlFile = "src/Volta.Web/Web.config"
+    o.xmlRoot = "/configuration/"
+    o.setAttribute("production.connection.string", "volta/@connectionString")
+    o.setAttribute("log.file.path", "log4net/appender[@name='LogFileAppender']/file/@value")
+    o.setAttribute("smtp.host", "log4net/appender[@name='EmailAppender']/smtpHost/@value")
 end
 
 desc "Deploys the site."
-robocopy :deploy => :websiteConfigReplacements do |rc|
+robocopy :deploy => :websiteConfigSettings do |rc|
     rc.source = "src/Volta.Web"
     rc.target = "D:/Websites/volta.groupsadoway.org/wwwroot"
     rc.excludeDirs = "obj"

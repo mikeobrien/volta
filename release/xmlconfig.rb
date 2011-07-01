@@ -4,29 +4,38 @@ include REXML
 
 class XmlConfig
 
-    attr_accessor :yamlFile, :configFile, :yamlConfigMap
+    attr_accessor :yamlFile, :yamlSection, :xmlFile, :xmlRoot, :yamlXmlMap
     
     def initialize()
-        @yamlConfigMap = Hash.new
+        @yamlXmlMap = Array.new
     end
     
-    def setValue(key, xpath)
-        yamlConfigMap[key] = xpath
+    def setAttribute(yamlKey, xpath)
+        yamlXmlMap.push(YamlXmlMapping.new(yamlKey, xpath))
     end
     
     def run()
         yaml = YAML::load(File.open(yamlFile))
-        xml = Document.new File.new(configFile)
-        xml.context[:attribute_quote] = :quote
-        yamlConfigMap.each { |key, value| 
-                                xpath = "/configuration/" + value
-                                attribute = XPath.first(xml, xpath)
-                                if attribute == nil then raise "Could not find xpath '#{xpath}' in #{configFile}." end
-                                attribute.element.attributes[attribute.name] = yaml[key]
+        document = Document.new File.new(xmlFile)
+        document.context[:attribute_quote] = :quote
+        yamlXmlMap.each { |mapping| 
+                                xpath = xmlRoot + mapping.xpath
+                                attribute = XPath.first(document, xpath)
+                                if attribute == nil then raise "Could not find xpath '#{xpath}' in #{xmlFile}." end
+                                attribute.element.attributes[attribute.name] = 
+                                    yamlSection != nil ? yaml[yamlSection][mapping.yamlKey] : yaml[mapping.yamlKey]
                            }
         formatter = Formatters::Pretty.new
-        File.open(configFile, 'w') do |result|
-            formatter.write(xml, result)
+        File.open(xmlFile, 'w') do |result|
+            formatter.write(document, result)
+        end
+    end
+    
+    class YamlXmlMapping
+        attr_accessor :yamlKey, :xpath
+        def initialize(yamlKey, xpath)
+            @yamlKey = yamlKey
+            @xpath = xpath
         end
     end
     
@@ -40,4 +49,5 @@ def xmlConfig(*args, &block)
     }
     Rake::Task.define_task(*args, &body)
 end
+    
     
