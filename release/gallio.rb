@@ -106,9 +106,9 @@ end
 
 def gallio(*args, &block)
     body = lambda { |*args|
-        rc = Gallio.new
-        block.call(rc)
-        rc.run
+        gallio = Gallio.new
+        block.call(gallio)
+        gallio.run
     }
     Rake::Task.define_task(*args, &body)
 end

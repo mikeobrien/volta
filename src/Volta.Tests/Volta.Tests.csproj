@@ -105,7 +105,7 @@
   <ItemGroup>
     <Compile Include="Acceptance\Common\WebPageTestBase.cs" />
     <Compile Include="Acceptance\Common\WebPage.cs" />
-    <Compile Include="Acceptance\Common\Constants.cs" />
+    <Compile Include="Acceptance\Constants.cs" />
     <Compile Include="Acceptance\MyAccountPage.cs" />
     <Compile Include="Acceptance\DashboardPage.cs" />
     <Compile Include="Acceptance\LoginPageTests.cs" />
