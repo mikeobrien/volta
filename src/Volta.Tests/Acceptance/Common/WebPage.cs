@@ -48,12 +48,12 @@ namespace Volta.Tests.Acceptance.Common
 
         public string GetHtml()
         {
-            return Browser.ActiveElement.Parent.OuterHtml;
+            return Browser != null ? Browser.ActiveElement.Parent.OuterHtml : "No browser found.";
         }
 
         public string GetCurrentUrl()
         {
-            return Browser.Url;
+            return Browser != null ? Browser.Url : "No browser found.";
         }
 
         public WebPage NavigateTo<T>() where T : WebPage, new()
