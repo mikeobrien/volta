@@ -35,7 +35,7 @@ namespace Volta.Tests.Acceptance.Common
 
         public WebPage GoHome()
         {
-            Browser.GoToNoWait(BaseUrl);
+            Browser.GoTo(BaseUrl);
             return this;
         }
 
@@ -74,7 +74,7 @@ namespace Volta.Tests.Acceptance.Common
         protected WebPage NavigateTo(WebPage fromPage, Uri url)
         {
             Browser = fromPage.Browser;
-            Browser.GoToNoWait(url != null ? new Uri(BaseUrl, url) : BaseUrl);
+            Browser.GoTo(url != null ? new Uri(BaseUrl, url) : BaseUrl);
             return this;
         }
     }
