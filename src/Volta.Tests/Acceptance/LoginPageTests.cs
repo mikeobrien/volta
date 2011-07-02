@@ -7,8 +7,6 @@ namespace Volta.Tests.Acceptance
 {
     public class LoginPageTests : WebPageTestBase<LoginPage>
     {
-        public LoginPageTests() : base(true) {}
-
         [Test]
         public void Should_Display_Login_Page()
         {

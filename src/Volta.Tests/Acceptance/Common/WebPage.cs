@@ -11,10 +11,10 @@ namespace Volta.Tests.Acceptance.Common
         protected IE Browser { get; set; }
         protected Uri BaseUrl { get; set; }
 
-        public void Open(bool newProcess)
+        public void Open()
         {
             Settings.MakeNewIeInstanceVisible = false;
-            Browser = new IE(BaseUrl, false);
+            Browser = new IE(BaseUrl);
             Browser.ClearCache();
             Browser.ClearCookies();
         }
