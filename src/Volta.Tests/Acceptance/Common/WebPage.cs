@@ -14,7 +14,7 @@ namespace Volta.Tests.Acceptance.Common
         public void Open(bool newProcess)
         {
             Settings.MakeNewIeInstanceVisible = false;
-            Browser = new IE(BaseUrl, newProcess);
+            Browser = new IE(BaseUrl, false);
             Browser.ClearCache();
             Browser.ClearCookies();
         }
