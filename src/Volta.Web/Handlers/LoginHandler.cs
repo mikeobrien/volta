@@ -4,6 +4,7 @@ using Volta.Core.Application.Security;
 using Volta.Core.Domain;
 using FubuMVC.Core.Continuations;
 using Volta.Core.Infrastructure.Framework;
+using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Web.Handlers
 {
@@ -31,9 +32,9 @@ namespace Volta.Web.Handlers
         public const string AuthorizationErrorMessage = "You need to login to access this resource.";
         public const string AuthenticationErrorMessage = "Invalid username or password.";
 
-        private readonly ISecureSession _secureSession;
+        private readonly ISecureSession<Token> _secureSession;
 
-        public LoginHandler(ISecureSession secureSession)
+        public LoginHandler(ISecureSession<Token> secureSession)
         {
             _secureSession = secureSession;
         }
@@ -56,7 +57,7 @@ namespace Volta.Web.Handlers
             }
             catch (Exception e)
             {
-                if (e is AccessDeniedException || 
+                if (e is AuthenticationService.AccessDeniedException || 
                     e is EmptyUsernameOrPasswordException)
                     return FubuContinuation.TransferTo(
                         new LoginOutputModel

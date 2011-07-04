@@ -114,8 +114,9 @@
     <Compile Include="Acceptance\LoginPage.cs" />
     <Compile Include="Acceptance\Common\VoltaWebPage.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Reflection\AssemblyExtensionsTests.cs" />
+    <Compile Include="Unit\Infrastructure\Framework\Web\FubuTokenStoreTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Web\FubuUrlExtensionTests.cs" />
-    <Compile Include="Unit\MemorySessionState.cs" />
+    <Compile Include="Unit\MemoryTokenStore.cs" />
     <Compile Include="Integration\Application\ConfigurationTests.cs" />
     <Compile Include="Integration\Constants.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Data\MongoRepositoryTests.cs" />

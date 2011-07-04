@@ -6,6 +6,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Should;
 using Volta.Core.Application.Security;
+using Volta.Core.Infrastructure.Framework.Security;
 using Volta.Web.Behaviors;
 
 namespace Volta.Tests.Unit.UserInterface.Behaviors
@@ -23,7 +24,7 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
         [Test]
         public void Should_Return_Logged_In()
         {
-            var secureSession = Substitute.For<ISecureSession>();
+            var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.IsLoggedIn().Returns(true);
             var request = new SecureRequest<LoginHandler, DefaultHandler>(null, null, secureSession, null, null);
             request.IsLoggedIn().ShouldBeTrue();

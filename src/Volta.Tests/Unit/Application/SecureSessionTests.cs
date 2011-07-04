@@ -1,8 +1,8 @@
 using Volta.Core.Application.Security;
-using Volta.Core.Domain;
 using NSubstitute;
 using NUnit.Framework;
 using Should;
+using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Tests.Unit.Application
 {
@@ -12,11 +12,11 @@ namespace Volta.Tests.Unit.Application
         [Test]
         public void Should_Login_Valid_User()
         {
-            var authenticationService = Substitute.For<IAuthenticationService>();
-            var secureSession = new SecureSession(authenticationService, new MemorySessionState());
+            var authenticationService = Substitute.For<IAuthenticationService<Token>>();
+            var secureSession = new SecureSession<Token>(authenticationService, new MemoryTokenStore<Token>());
 
             authenticationService.Authenticate(Arg.Any<string>(), Arg.Any<string>()).
-                                  ReturnsForAnyArgs(new User {Username = "username", IsAdmin = true});
+                                  ReturnsForAnyArgs(new Token("username", true));
 
             secureSession.Login("username", "password");
 
@@ -30,13 +30,13 @@ namespace Volta.Tests.Unit.Application
         [Test]
         public void Should_Not_Log_In_An_Invalid_User()
         {
-            var authenticationService = Substitute.For<IAuthenticationService>();
-            var secureSession = new SecureSession(authenticationService, new MemorySessionState());
+            var authenticationService = Substitute.For<IAuthenticationService<Token>>();
+            var secureSession = new SecureSession<Token>(authenticationService, new MemoryTokenStore<Token>());
 
             authenticationService.Authenticate(Arg.Any<string>(), Arg.Any<string>()).
-                                  ReturnsForAnyArgs(x => { throw new AccessDeniedException(); });
+                                  ReturnsForAnyArgs(x => { throw new AuthenticationService.AccessDeniedException(); });
 
-            Assert.Throws<AccessDeniedException>(() => secureSession.Login("username", "password"));
+            Assert.Throws<AuthenticationService.AccessDeniedException>(() => secureSession.Login("username", "password"));
 
             secureSession.IsLoggedIn().ShouldBeFalse();
             secureSession.GetCurrentToken().ShouldBeNull();
@@ -45,11 +45,11 @@ namespace Volta.Tests.Unit.Application
         [Test]
         public void Should_Logout_User()
         {
-            var authenticationService = Substitute.For<IAuthenticationService>();
-            var secureSession = new SecureSession(authenticationService, new MemorySessionState());
+            var authenticationService = Substitute.For<IAuthenticationService<Token>>();
+            var secureSession = new SecureSession<Token>(authenticationService, new MemoryTokenStore<Token>());
 
             authenticationService.Authenticate(Arg.Any<string>(), Arg.Any<string>()).
-                                  ReturnsForAnyArgs(new User());
+                                  ReturnsForAnyArgs(new Token(null, false));
 
             secureSession.Login("username", "password");
             secureSession.Logout();

@@ -1,9 +1,9 @@
-﻿using System;
-using FubuMVC.Core;
+﻿using FubuMVC.Core;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Urls;
 using Volta.Core.Application.Security;
+using Volta.Core.Infrastructure.Framework.Security;
 using Volta.Core.Infrastructure.Framework.Web;
 using Volta.Web.Handlers;
 
@@ -15,7 +15,7 @@ namespace Volta.Web.Behaviors
         private readonly IActionBehavior _actionBehavior;
         private readonly SecureRequest<LoginHandler, DashboardHandler> _request;
 
-        public AuthenticationBehavior(IUrlRegistry registry, CurrentRequest request, IOutputWriter writer, IActionBehavior actionBehavior, ISecureSession secureSession)
+        public AuthenticationBehavior(IUrlRegistry registry, CurrentRequest request, IOutputWriter writer, IActionBehavior actionBehavior, ISecureSession<Token> secureSession)
         {
             _request = new SecureRequest<LoginHandler, DashboardHandler>(registry, request, secureSession, x => x.Query(null), x => x.Query());
             _writer = writer;

@@ -83,9 +83,10 @@
     <Compile Include="Application\Configuration\ConfigurationSection.cs" />
     <Compile Include="Application\Configuration\IConfiguration.cs" />
     <Compile Include="Application\Security\AuthenticationService.cs" />
-    <Compile Include="Application\Security\IAuthenticationService.cs" />
-    <Compile Include="Application\Security\ISecureSession.cs" />
-    <Compile Include="Application\Security\SecureSession.cs" />
+    <Compile Include="Infrastructure\Framework\Security\IAuthenticationService.cs" />
+    <Compile Include="Infrastructure\Framework\Security\ISecureSession.cs" />
+    <Compile Include="Infrastructure\Framework\Security\ITokenStore.cs" />
+    <Compile Include="Infrastructure\Framework\Security\SecureSession.cs" />
     <Compile Include="Application\Security\Token.cs" />
     <Compile Include="Domain\IUserFactory.cs" />
     <Compile Include="Domain\User.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Infrastructure\Framework\Security\HashedPassword.cs" />
     <Compile Include="Infrastructure\Framework\Web\FubuConfigurationExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Web\FubuPageExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Web\FubuTokenStore.cs" />
     <Compile Include="Infrastructure\Framework\Web\FubuUrlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,13 +1,14 @@
 using Volta.Core.Application.Security;
 using FubuMVC.Core.Continuations;
+using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Web.Handlers
 {
     public class LogoutHandler
     {
-        private readonly ISecureSession _secureSession;
+        private readonly ISecureSession<Token> _secureSession;
 
-        public LogoutHandler(ISecureSession secureSession)
+        public LogoutHandler(ISecureSession<Token> secureSession)
         {
             _secureSession = secureSession;
         }

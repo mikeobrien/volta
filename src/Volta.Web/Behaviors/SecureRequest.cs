@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using FubuMVC.Core;
 using FubuMVC.Core.Urls;
 using Volta.Core.Application.Security;
+using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Web.Behaviors
 {
@@ -10,13 +11,13 @@ namespace Volta.Web.Behaviors
     {        
         private readonly IUrlRegistry _registry;
         private readonly CurrentRequest _request;
-        private readonly ISecureSession _secureSession;
+        private readonly ISecureSession<Token> _secureSession;
         private readonly Expression<Action<TLoginHandler>> _loginAction;
         private readonly Expression<Action<TDefaultHandler>> _defaultAction;
 
         public SecureRequest(IUrlRegistry registry, 
-                             CurrentRequest request, 
-                             ISecureSession secureSession,
+                             CurrentRequest request,
+                             ISecureSession<Token> secureSession,
                              Expression<Action<TLoginHandler>> loginAction,
                              Expression<Action<TDefaultHandler>> defaultAction)
         {

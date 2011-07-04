@@ -3,6 +3,8 @@ using Volta.Core.Application.Security;
 using Volta.Core.Domain;
 using Volta.Core.Infrastructure.Framework.Data;
 using Volta.Core.Infrastructure.Framework.Logging;
+using Volta.Core.Infrastructure.Framework.Security;
+using Volta.Core.Infrastructure.Framework.Web;
 
 namespace Volta.Web
 {
@@ -17,8 +19,9 @@ namespace Volta.Web
             For<MongoConnection>().Use(x => new MongoConnection(x.GetInstance<IConfiguration>().ConnectionString));
             For(typeof(IRepository<>)).Use(typeof(MongoRepository<>));
 
-            For<ISecureSession>().Use<SecureSession>();
-            For<IAuthenticationService>().Use<AuthenticationService>();
+            For<ITokenStore<Token>>().Use<FubuTokenStore<Token>>();
+            For<ISecureSession<Token>>().Use<SecureSession<Token>>();
+            For<IAuthenticationService<Token>>().Use<AuthenticationService>();
 
             For<IUserFactory>().Use<UserFactory>();
         }
