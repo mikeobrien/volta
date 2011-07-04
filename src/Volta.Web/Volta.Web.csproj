@@ -101,6 +101,7 @@
     <Compile Include="Behaviors\AuthenticationBehavior.cs" />
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="Handlers\LogoutHandler.cs" />
     <Compile Include="Handlers\MyAccountHandler.cs" />
     <Compile Include="Handlers\DashboardHandler.cs" />
     <Compile Include="Handlers\LoginHandler.cs" />

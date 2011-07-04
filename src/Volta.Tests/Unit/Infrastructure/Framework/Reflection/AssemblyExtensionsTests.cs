@@ -6,7 +6,7 @@ using Volta.Core.Infrastructure.Framework.Reflection;
 namespace Volta.Tests.Unit.Infrastructure.Framework.Reflection
 {
     [TestFixture]
-    public class AssemblyExtensionTests
+    public class AssemblyExtensionsTests
     {
 #if DEBUG
         [Test]

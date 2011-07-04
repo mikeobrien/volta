@@ -19,8 +19,8 @@ namespace Volta.Tests.Acceptance
         [Test]
         public void Should_Login_With_Valid_Credentials()
         {
-            Page.UsernameTextField.TypeText("spin");
-            Page.PasswordTextField.TypeText("onehalf");
+            Page.UsernameTextField.TypeText(Constants.TestUsername);
+            Page.PasswordTextField.TypeText(Constants.TestPassword);
             Page.Submit().SwitchTo<DashboardPage>().IsOnPage().ShouldBeTrue();
         }
 
@@ -56,8 +56,8 @@ namespace Volta.Tests.Acceptance
         public void Should_Be_Redirected_To_The_Login_Page_When_Not_Logged_In_And_Accessing_Non_Default_Page_Then_Redirect_Back_On_Login()
         {
             Page.NavigateTo<MyAccountPage>();
-            Page.UsernameTextField.TypeText("spin");
-            Page.PasswordTextField.TypeText("onehalf");
+            Page.UsernameTextField.TypeText(Constants.TestUsername);
+            Page.PasswordTextField.TypeText(Constants.TestPassword);
             Page.Submit().SwitchTo<MyAccountPage>().IsOnPage().ShouldBeTrue();
         }
     }

@@ -106,13 +106,15 @@
     <Compile Include="Acceptance\Common\WebPageTestBase.cs" />
     <Compile Include="Acceptance\Common\WebPage.cs" />
     <Compile Include="Acceptance\Constants.cs" />
+    <Compile Include="Acceptance\LogoutPage.cs" />
+    <Compile Include="Acceptance\LogoutPageTests.cs" />
     <Compile Include="Acceptance\MyAccountPage.cs" />
     <Compile Include="Acceptance\DashboardPage.cs" />
     <Compile Include="Acceptance\LoginPageTests.cs" />
     <Compile Include="Acceptance\LoginPage.cs" />
     <Compile Include="Acceptance\Common\VoltaWebPage.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Web\ContentFileTests.cs" />
-    <Compile Include="Unit\Infrastructure\Framework\Reflection\AssemblyExtensionTests.cs" />
+    <Compile Include="Unit\Infrastructure\Framework\Reflection\AssemblyExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Web\FubuUrlExtensionTests.cs" />
     <Compile Include="Unit\MemorySessionState.cs" />
     <Compile Include="Integration\Application\ConfigurationTests.cs" />
@@ -123,6 +125,7 @@
     <Compile Include="Unit\UserInterface\Behaviors\AuthenticationBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\ExceptionHandlerBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\SecureRequestTests.cs" />
+    <Compile Include="Unit\UserInterface\LogoutControllerTests.cs" />
     <Compile Include="Unit\UserInterface\LoginControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Application\SecureSessionTests.cs" />

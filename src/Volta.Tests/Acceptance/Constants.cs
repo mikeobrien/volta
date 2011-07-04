@@ -7,5 +7,7 @@ namespace Volta.Tests.Acceptance
     {
         public static Uri VoltaUrl = new Uri(ConfigurationManager.AppSettings["VoltaUrl"]);
         public static string VoltaConnectionString = ConfigurationManager.ConnectionStrings["VoltaAcceptance"].ConnectionString;
+        public const string TestUsername = "spin";
+        public const string TestPassword = "onehalf";
     }
 }
