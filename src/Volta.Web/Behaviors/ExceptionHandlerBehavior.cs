@@ -3,22 +3,19 @@ using FubuMVC.Core;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
 using Volta.Core.Infrastructure.Framework.Logging;
-using Volta.Core.Infrastructure.Framework.Web;
 
 namespace Volta.Web.Behaviors
 {
     public class ExceptionHandlerBehavior : IActionBehavior
     {
         private readonly IOutputWriter _writer;
-        private readonly IContentFile _contentFile;
         private readonly CurrentRequest _request;
         private readonly IActionBehavior _behavior;
         private readonly ILogger _logger;
 
-        public ExceptionHandlerBehavior(IOutputWriter writer, IContentFile contentFile, CurrentRequest request, IActionBehavior behavior, ILogger logger)
+        public ExceptionHandlerBehavior(IOutputWriter writer, CurrentRequest request, IActionBehavior behavior, ILogger logger)
         {
             _writer = writer;
-            _contentFile = contentFile;
             _request = request;
             _behavior = behavior;
             _logger = logger;
@@ -33,7 +30,7 @@ namespace Volta.Web.Behaviors
             catch (Exception e)
             {
                 _logger.Write(_request.RawUrl, e);
-                _writer.Write(MimeType.Html.ToString(), _contentFile.ReadAllText("error.htm"));
+                _writer.RedirectToUrl("/content/error.htm");
             }
         }
 

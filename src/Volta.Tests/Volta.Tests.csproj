@@ -113,7 +113,6 @@
     <Compile Include="Acceptance\LoginPageTests.cs" />
     <Compile Include="Acceptance\LoginPage.cs" />
     <Compile Include="Acceptance\Common\VoltaWebPage.cs" />
-    <Compile Include="Integration\Infrastructure\Framework\Web\ContentFileTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Reflection\AssemblyExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Web\FubuUrlExtensionTests.cs" />
     <Compile Include="Unit\MemorySessionState.cs" />

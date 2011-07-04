@@ -104,11 +104,9 @@
     <Compile Include="Infrastructure\Framework\ObjectExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Reflection\AssemblyExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Security\HashedPassword.cs" />
-    <Compile Include="Infrastructure\Framework\Web\ContentFile.cs" />
     <Compile Include="Infrastructure\Framework\Web\FubuConfigurationExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Web\FubuPageExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Web\FubuUrlExtensions.cs" />
-    <Compile Include="Infrastructure\Framework\Web\IContentFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
