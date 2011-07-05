@@ -1,0 +1,27 @@
+﻿<use master="Application" />
+<use namespace="Volta.Web.Handlers" />
+
+<div class="base">
+    <div class="page">
+        <div class="header">
+            <div class="links">
+                <div class="left"><a href="/"><img src="/content/volta.logo.medium.png"/></a></div>
+                <div class="right">
+                #this.Partial<HeaderLinksOutputModel>();
+                </div>
+            </div>
+            <div class="tabs">
+                <div class="tabselected"><b>DASHBOARD</b></div>
+                <div class="tab"><a class="lightanchor" href="" title="Administration">ADMINISTRATION</a></div>
+            </div>
+        </div>
+        <div class="body">
+            <use content="view"/>
+        </div>
+            
+    </div>
+</div>
+            
+<div class="footer">
+#this.Partial<FooterOutputModel>();
+</div>

@@ -1,3 +1,4 @@
+using Volta.Core.Application;
 using Volta.Core.Application.Configuration;
 using Volta.Core.Application.Security;
 using Volta.Core.Domain;
@@ -12,6 +13,7 @@ namespace Volta.Web
     {
         public Registry()
         {
+            ForSingletonOf<IApplication>().Use<Application>();
             ForSingletonOf<IConfiguration>().Use<Core.Application.Configuration.Configuration>();
             ForSingletonOf<ILogger>().Use<Log4NetLogger>();
 

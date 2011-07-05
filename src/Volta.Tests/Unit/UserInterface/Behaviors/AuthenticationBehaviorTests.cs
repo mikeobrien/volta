@@ -39,7 +39,7 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
             secureSession.IsLoggedIn().Returns(true);
             var currentRequest = new CurrentRequest { Path = SomeUrlPath };
             var actionBehavior = Substitute.For<IActionBehavior>();
-            var behavior = new AuthenticationBehavior(_urlRegistry, currentRequest, null, actionBehavior, secureSession);
+            var behavior = new AuthorizationBehavior(_urlRegistry, currentRequest, null, actionBehavior, secureSession);
             behavior.Invoke();
             actionBehavior.Received().Invoke();
         }
@@ -52,7 +52,7 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
             var outputWriter = Substitute.For<IOutputWriter>();
             var currentRequest = new CurrentRequest { Path = LoginUrl };
             var actionBehavior = Substitute.For<IActionBehavior>();
-            var behavior = new AuthenticationBehavior(_urlRegistry, currentRequest, outputWriter, actionBehavior, secureSession);
+            var behavior = new AuthorizationBehavior(_urlRegistry, currentRequest, outputWriter, actionBehavior, secureSession);
             behavior.Invoke();
             actionBehavior.DidNotReceive().Invoke();
             outputWriter.Received().RedirectToUrl(DefaultUrl);
@@ -65,7 +65,7 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
             secureSession.IsLoggedIn().Returns(false);
             var currentRequest = new CurrentRequest { Path = LoginUrl };
             var actionBehavior = Substitute.For<IActionBehavior>();
-            var behavior = new AuthenticationBehavior(_urlRegistry, currentRequest, null, actionBehavior, secureSession);
+            var behavior = new AuthorizationBehavior(_urlRegistry, currentRequest, null, actionBehavior, secureSession);
             behavior.Invoke();
             actionBehavior.Received().Invoke();
         }
@@ -78,7 +78,7 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
             var outputWriter = Substitute.For<IOutputWriter>();
             var currentRequest = new CurrentRequest { Path = DefaultUrl };
             var actionBehavior = Substitute.For<IActionBehavior>();
-            var behavior = new AuthenticationBehavior(_urlRegistry, currentRequest, outputWriter, actionBehavior, secureSession);
+            var behavior = new AuthorizationBehavior(_urlRegistry, currentRequest, outputWriter, actionBehavior, secureSession);
             behavior.Invoke();
             actionBehavior.DidNotReceive().Invoke();
             outputWriter.Received().RedirectToUrl(LoginUrl);
@@ -92,7 +92,7 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
             var outputWriter = Substitute.For<IOutputWriter>();
             var currentRequest = new CurrentRequest { Path = SomeUrlPath, RawUrl = SomeUrlWithQueryString };
             var actionBehavior = Substitute.For<IActionBehavior>();
-            var behavior = new AuthenticationBehavior(_urlRegistry, currentRequest, outputWriter, actionBehavior, secureSession);
+            var behavior = new AuthorizationBehavior(_urlRegistry, currentRequest, outputWriter, actionBehavior, secureSession);
             behavior.Invoke();
             actionBehavior.DidNotReceive().Invoke();
             outputWriter.Received().RedirectToUrl(LoginUrl + "?RedirectUrl=" + SomeUrlWithQueryString.UrlEncode());

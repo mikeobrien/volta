@@ -3,7 +3,13 @@
 <use namespace="Volta.Core.Infrastructure.Framework.Web" />
 <viewdata model="Volta.Web.Handlers.LoginOutputModel" />
 <content:title>Login</content:title>
-<content:header></content:header>
+<content:head>
+<script language="javascript">
+    $(function () {
+        $("input[type='text']:enabled:first").focus();
+    });
+</script>
+</content:head>
 <content:message>${Model.Message}</content:message>
 
 <div class="body" style="width: 320px; margin: 110px auto 200px auto;">

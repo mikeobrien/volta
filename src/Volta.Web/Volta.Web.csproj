@@ -34,39 +34,35 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bottles.0.9.0.69\lib\Bottles.dll</HintPath>
+      <HintPath>..\packages\Bottles.0.9.0.86\lib\Bottles.dll</HintPath>
     </Reference>
     <Reference Include="FubuCore, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuCore.0.9.1.24\lib\FubuCore.dll</HintPath>
+      <HintPath>..\packages\FubuCore.0.9.1.32\lib\FubuCore.dll</HintPath>
     </Reference>
-    <Reference Include="FubuLocalization">
-      <HintPath>..\packages\FubuLocalization.0.9.1.24\lib\FubuLocalization.dll</HintPath>
+    <Reference Include="FubuLocalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuLocalization.0.9.1.32\lib\FubuLocalization.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.0.487\lib\FubuMVC.Core.dll</HintPath>
+    <Reference Include="FubuMVC.Core, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuMVC.References.0.9.1.513\lib\FubuMVC.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Spark">
-      <HintPath>..\packages\FubuMVC.Spark.0.9.0.51735\lib\FubuMVC.Spark.dll</HintPath>
+    <Reference Include="FubuMVC.Spark, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuMVC.Spark.0.9.1.513\lib\FubuMVC.Spark.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.0.487\lib\FubuMVC.StructureMap.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.References.0.9.1.513\lib\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlTags, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="HtmlTags">
       <HintPath>..\packages\HtmlTags.1.0.0.23\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
-    <Reference Include="Ionic.Zip, Version=1.9.1.5, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNetZip.1.9\lib\Ionic.Zip.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
     <Reference Include="Norm, Version=0.9.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NoRM.0.9.8\lib\Norm.dll</HintPath>
     </Reference>
-    <Reference Include="Spark">
-      <HintPath>..\packages\Spark.1.5.1.6\lib\NET40\Spark.dll</HintPath>
+    <Reference Include="Spark, Version=1.6.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Spark.1.6\lib\NET40\Spark.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
@@ -98,18 +94,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
-    <Compile Include="Behaviors\AuthenticationBehavior.cs" />
+    <Compile Include="Behaviors\AuthorizationBehavior.cs" />
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="Handlers\HeaderLinksHandler.cs" />
     <Compile Include="Handlers\LogoutHandler.cs" />
     <Compile Include="Handlers\MyAccountHandler.cs" />
     <Compile Include="Handlers\DashboardHandler.cs" />
     <Compile Include="Handlers\LoginHandler.cs" />
+    <Compile Include="Handlers\FooterHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registry.cs" />
     <Compile Include="Behaviors\SecureRequest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Handlers\HeaderLinks.spark" />
+    <None Include="Handlers\Footer.spark" />
     <None Include="Handlers\MyAccount.spark" />
     <None Include="Handlers\Dashboard.spark" />
     <None Include="Handlers\Login.spark">
@@ -117,6 +117,7 @@
     </None>
     <Content Include="packages.config" />
     <None Include="Shared\Application.spark" />
+    <None Include="Shared\Volta.spark" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Volta.Core\Volta.Core.csproj">

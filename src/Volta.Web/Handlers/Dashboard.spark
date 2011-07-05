@@ -1,6 +1,7 @@
-﻿<viewdata model="Volta.Web.Handlers.DashboardOutputModel" />
+﻿<use master="Volta" />
+<viewdata model="Volta.Web.Handlers.DashboardOutputModel" />
 
 <content:title>Dashboard</content:title>
-<content:header></content:header>
+<content:head></content:head>
 
 <h1>The current time is: ${Model.Time}</h1>
