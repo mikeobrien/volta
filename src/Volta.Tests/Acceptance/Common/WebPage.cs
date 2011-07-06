@@ -24,6 +24,11 @@ namespace Volta.Tests.Acceptance.Common
             return Browser.Uri.AbsolutePath == BaseUrl.AbsolutePath;
         }
 
+        public bool IsUnderPage()
+        {
+            return Browser.Uri.AbsolutePath.StartsWith(BaseUrl.AbsolutePath + "/");
+        }
+
         [DllImport("user32.dll")]
         static extern int GetWindowThreadProcessId(IntPtr windowHandle, IntPtr processId);
 
@@ -56,14 +61,14 @@ namespace Volta.Tests.Acceptance.Common
             return Browser != null ? Browser.Url : "No browser found.";
         }
 
-        public WebPage NavigateTo<T>() where T : WebPage, new()
+        public WebPage NavigateTo<T>(params string[] parts) where T : WebPage, new()
         {
-            return NavigateTo<T>(null);
+            return NavigateTo<T>(null, parts);
         }
 
-        public WebPage NavigateTo<T>(Uri relativeUrl) where T : WebPage, new()
+        public WebPage NavigateTo<T>(Uri relativeUrl, params string[] parts) where T : WebPage, new()
         {
-            return new T().NavigateTo(this, relativeUrl);
+            return new T().NavigateTo(this, relativeUrl, parts);
         }
 
         public T SwitchTo<T>() where T : WebPage, new()
@@ -72,10 +77,10 @@ namespace Volta.Tests.Acceptance.Common
             return new T { Browser = Browser };
         }
 
-        protected WebPage NavigateTo(WebPage fromPage, Uri url)
+        protected WebPage NavigateTo(WebPage fromPage, Uri url, params string[] parts)
         {
             Browser = fromPage.Browser;
-            Browser.GoTo(url != null ? new Uri(BaseUrl, url) : BaseUrl);
+            Browser.GoTo((url != null ? new Uri(BaseUrl, url) : BaseUrl) + parts.Aggregate("/", (a, i) => a + i + "/"));
             return this;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Should;
+using Volta.Tests.Acceptance.Administration.User;
 using Volta.Tests.Acceptance.Common;
 using Volta.Web.Handlers;
 
@@ -46,7 +47,7 @@ namespace Volta.Tests.Acceptance
         [Test]
         public void Should_Be_Redirected_To_The_Login_Page_When_Not_Logged_In_And_Accessing_Non_Default_Page()
         {
-            Page.NavigateTo<MyAccountPage>();
+            Page.NavigateTo<EditPage>(Constants.TestUsername);
             Page.IsOnPage().ShouldBeTrue();
             Page.HasMessage.ShouldBeTrue();
             Page.MessageText.ShouldEqual(LoginHandler.AuthorizationErrorMessage);
@@ -55,10 +56,10 @@ namespace Volta.Tests.Acceptance
         [Test]
         public void Should_Be_Redirected_To_The_Login_Page_When_Not_Logged_In_And_Accessing_Non_Default_Page_Then_Redirect_Back_On_Login()
         {
-            Page.NavigateTo<MyAccountPage>();
+            Page.NavigateTo<EditPage>(Constants.TestUsername);
             Page.UsernameTextField.TypeText(Constants.TestUsername);
             Page.PasswordTextField.TypeText(Constants.TestPassword);
-            Page.Submit().SwitchTo<MyAccountPage>().IsOnPage().ShouldBeTrue();
+            Page.Submit().SwitchTo<EditPage>().IsUnderPage().ShouldBeTrue();
         }
     }
 }

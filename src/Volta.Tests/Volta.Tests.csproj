@@ -106,7 +106,7 @@
     <Compile Include="Acceptance\Constants.cs" />
     <Compile Include="Acceptance\LogoutPage.cs" />
     <Compile Include="Acceptance\LogoutPageTests.cs" />
-    <Compile Include="Acceptance\MyAccountPage.cs" />
+    <Compile Include="Acceptance\Administration\User\EditPage.cs" />
     <Compile Include="Acceptance\DashboardPage.cs" />
     <Compile Include="Acceptance\LoginPageTests.cs" />
     <Compile Include="Acceptance\LoginPage.cs" />
@@ -123,6 +123,7 @@
     <Compile Include="Unit\UserInterface\Behaviors\AuthenticationBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\ExceptionHandlerBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\SecureRequestTests.cs" />
+    <Compile Include="Unit\UserInterface\FullNameUrlPolicyTests.cs" />
     <Compile Include="Unit\UserInterface\LogoutControllerTests.cs" />
     <Compile Include="Unit\UserInterface\LoginControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,7 +150,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Acceptance\Administration\" />
     <Folder Include="Integration\Infrastructure\Application\" />
     <Folder Include="Unit\Infrastructure\Application\" />
   </ItemGroup>
