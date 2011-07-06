@@ -112,7 +112,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registry.cs" />
     <Compile Include="Behaviors\SecureRequest.cs" />
-    <Compile Include="TestUrlPolicy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Handlers\Header.spark" />
