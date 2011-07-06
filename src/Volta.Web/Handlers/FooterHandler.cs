@@ -3,6 +3,8 @@ using Volta.Core.Application;
 
 namespace Volta.Web.Handlers
 {
+    public class FooterInputModel { }
+
     public class FooterOutputModel
     {
         public string Version { get; set; }
@@ -20,7 +22,7 @@ namespace Volta.Web.Handlers
         }
 
         [FubuPartial]
-        public FooterOutputModel Query(FooterOutputModel model)
+        public FooterOutputModel Query(FooterInputModel input)
         {
             return new FooterOutputModel
                        {

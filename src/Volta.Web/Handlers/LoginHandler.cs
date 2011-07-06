@@ -39,21 +39,21 @@ namespace Volta.Web.Handlers
             _secureSession = secureSession;
         }
 
-        public LoginOutputModel Query(LoginOutputModel model)
+        public LoginOutputModel Query(LoginOutputModel input)
         {
-            if (!model.RedirectUrl.IsEmpty() && model.Message.IsEmpty())
-                model.Message = AuthorizationErrorMessage;
-            return model;
+            if (!input.RedirectUrl.IsEmpty() && input.Message.IsEmpty())
+                input.Message = AuthorizationErrorMessage;
+            return input;
         }
 
-        public FubuContinuation Command(LoginInputModel model)
+        public FubuContinuation Command(LoginInputModel input)
         {
             try
             {
-                _secureSession.Login(model.Username, model.Password);
-                return string.IsNullOrEmpty(model.RedirectUrl) ? 
+                _secureSession.Login(input.Username, input.Password);
+                return string.IsNullOrEmpty(input.RedirectUrl) ? 
                     FubuContinuation.RedirectTo<DashboardHandler>(x => x.Query()) : 
-                    FubuContinuation.RedirectTo(model.RedirectUrl);
+                    FubuContinuation.RedirectTo(input.RedirectUrl);
             }
             catch (Exception e)
             {
@@ -62,9 +62,9 @@ namespace Volta.Web.Handlers
                     return FubuContinuation.TransferTo(
                         new LoginOutputModel
                             {
-                                Username = model.Username,
+                                Username = input.Username,
                                 Message = AuthenticationErrorMessage,
-                                RedirectUrl = model.RedirectUrl
+                                RedirectUrl = input.RedirectUrl
                             });
                 throw;
             }

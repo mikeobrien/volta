@@ -4,24 +4,26 @@ using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Web.Handlers
 {
-    public class HeaderLinksOutputModel
+    public class HeaderInputModel { }
+
+    public class HeaderOutputModel
     {
         public string CurrentUser { get; set; }
     }
 
-    public class HeaderLinksHandler
+    public class HeaderHandler
     {
         private readonly ISecureSession<Token> _secureSession;
 
-        public HeaderLinksHandler(ISecureSession<Token> secureSession)
+        public HeaderHandler(ISecureSession<Token> secureSession)
         {
             _secureSession = secureSession;
         }
 
         [FubuPartial]
-        public HeaderLinksOutputModel Query(HeaderLinksOutputModel model)
+        public HeaderOutputModel Query(HeaderInputModel input)
         {
-            return new HeaderLinksOutputModel
+            return new HeaderOutputModel
                        {
                            CurrentUser = _secureSession.GetCurrentToken().Username
                        };

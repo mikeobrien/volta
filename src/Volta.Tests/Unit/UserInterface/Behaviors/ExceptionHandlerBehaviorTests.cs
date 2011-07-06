@@ -4,8 +4,8 @@ using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
 using NSubstitute;
 using NUnit.Framework;
+using Volta.Core.Application.Configuration;
 using Volta.Core.Infrastructure.Framework.Logging;
-using Volta.Core.Infrastructure.Framework.Web;
 using Volta.Web.Behaviors;
 
 namespace Volta.Tests.Unit.UserInterface.Behaviors
@@ -13,6 +13,8 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
     [TestFixture]
     public class ExceptionHandlerBehaviorTests
     {
+        private const string ErrorUrl = "/content/error.htm";
+        private IConfiguration _configuration;
         private IOutputWriter _writer;
         private CurrentRequest _request;
         private IActionBehavior _behavior;
@@ -21,6 +23,8 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
         [SetUp]
         public void Setup()
         {
+            _configuration = Substitute.For<IConfiguration>();
+            _configuration.ErrorUrl.Returns(ErrorUrl);
             _writer = Substitute.For<IOutputWriter>();
             _request = new CurrentRequest { RawUrl = "http://www.google.com" };
             _behavior = Substitute.For<IActionBehavior>();
@@ -32,7 +36,7 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
         {
             var exception = new Exception("Bad");
             _behavior.When(x => x.Invoke()).Do(x => { throw exception; });
-            var exceptionHandler = new ExceptionHandlerBehavior(_writer, _request, _behavior, _logger);
+            var exceptionHandler = new ExceptionHandlerBehavior(_configuration, _writer, _request, _behavior, _logger);
             exceptionHandler.Invoke();
             _logger.Received().Write(_request.RawUrl, exception);
         }
@@ -41,16 +45,15 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
         public void Should_Return_Error_Page()
         {
             _behavior.When(x => x.Invoke()).Do(x => { throw new Exception("Bad"); });
-            const string errorPage = "<html></html>";
-            var exceptionHandler = new ExceptionHandlerBehavior(_writer, _request, _behavior, _logger);
+            var exceptionHandler = new ExceptionHandlerBehavior(_configuration, _writer, _request, _behavior, _logger);
             exceptionHandler.Invoke();
-            _writer.Received().RedirectToUrl("/content/error.htm");
+            _writer.Received().RedirectToUrl(ErrorUrl);
         }
 
         [Test]
         public void Should_Do_Nothing_When_There_Is_No_Error()
         {
-            var exceptionHandler = new ExceptionHandlerBehavior(_writer, _request, _behavior, _logger);
+            var exceptionHandler = new ExceptionHandlerBehavior(_configuration, _writer, _request, _behavior, _logger);
             exceptionHandler.Invoke();
             _behavior.Received().Invoke();
             _logger.DidNotReceiveWithAnyArgs().Write(null, null);
@@ -61,7 +64,7 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
         public void Should_Not_Catch_Partial_Exception()
         {
             _behavior.When(x => x.InvokePartial()).Do(x => { throw new Exception("Bad"); });
-            var exceptionHandler = new ExceptionHandlerBehavior(_writer, _request, _behavior, _logger);
+            var exceptionHandler = new ExceptionHandlerBehavior(_configuration, _writer, _request, _behavior, _logger);
             Assert.Throws<Exception>(exceptionHandler.InvokePartial);
         }
     }

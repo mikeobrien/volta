@@ -7,7 +7,7 @@
             <div class="links">
                 <div class="left"><a href="/"><img src="/content/volta.logo.medium.png"/></a></div>
                 <div class="right">
-                #this.Partial<HeaderLinksOutputModel>();
+                #this.Partial<HeaderInputModel>();
                 </div>
             </div>
             <div class="tabs">
@@ -23,5 +23,5 @@
 </div>
             
 <div class="footer">
-#this.Partial<FooterOutputModel>();
+#this.Partial<FooterInputModel>();
 </div>

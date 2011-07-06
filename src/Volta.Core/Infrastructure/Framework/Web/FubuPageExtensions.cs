@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using System.Linq.Expressions;
+using FubuMVC.Core;
 using FubuMVC.Core.UI;
 using FubuMVC.Core.View;
 using HtmlTags;
@@ -47,5 +49,13 @@ namespace Volta.Core.Infrastructure.Framework.Web
                 Attr("value", text).
                 Attr("type", "submit");
         }
+
+        //public static HtmlTag LinkTo<TInputModel>(this IFubuPage page, params Expression<Func<TInputModel, object>>[] querystring) where TInputModel : class, new()
+        //{
+        //    var tag = FubuMVC.Core.UI.FubuPageExtensions.LinkTo<TInputModel>(page);
+        //    if (querystring.Any()) tag.Attr("href", string.Format("{0}?{1}", tag.Attr("href"), querystring.Select(x => string.Format("{0}={1}", x.))));
+        //    return tag;
+        //}
+
     }
 }

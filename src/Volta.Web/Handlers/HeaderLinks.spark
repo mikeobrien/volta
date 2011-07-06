@@ -1,3 +1,0 @@
-﻿<use namespace="Volta.Web.Handlers" />
-<viewdata model="Volta.Web.Handlers.HeaderLinksOutputModel" />
-${Model.CurrentUser} | !{this.LinkTo<MyAccountHandler>(x => x.Query()).Text("My Account").AddClass("darkanchor")} | !{this.LinkTo<LogoutHandler>(x => x.Query()).Text("Logout").AddClass("darkanchor")}

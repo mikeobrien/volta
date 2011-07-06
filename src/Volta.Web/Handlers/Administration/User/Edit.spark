@@ -1,0 +1,7 @@
+﻿<use master="Frame" />
+<viewdata model="Volta.Web.Handlers.Administration.User.EditOutputModel" />
+
+<content:title>Edit User</content:title>
+<content:head></content:head>
+
+<h1>The username is: ${Model.Username}</h1>
