@@ -1,4 +1,4 @@
-﻿<use master="Frame" />
+﻿<use master="Chrome" />
 <viewdata model="Volta.Web.Handlers.DashboardOutputModel" />
 
 <content:title>Dashboard</content:title>

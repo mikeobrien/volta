@@ -41,21 +41,6 @@ legend
     padding: 0 5px 0 5px;
 }
 
-#message
-{
-    background-color: #F8F5F1;
-    padding: 10px;
-    color: #5F6155;
-    font-size: 15pt;
-    font-weight: bold;
-    text-align: center;
-}
-
-#message:empty 
-{
-    padding: 0px;
-}
-
 a:hover
 {
     text-decoration: underline;
@@ -68,6 +53,10 @@ a:hover
 .darkanchor:link { color: #351E0D; font-weight: bold; text-decoration: none;}
 .darkanchor:visited { color: #351E0D; font-weight: bold; text-decoration: none;}
 .darkanchor:hover { color: #351E0D; font-weight: bold; text-decoration: underline;}
+
+.darkfineanchor:link { color: #351E0D; text-decoration: none;}
+.darkfineanchor:visited { color: #351E0D; text-decoration: none;}
+.darkfineanchor:hover { color: #351E0D; text-decoration: underline;}
 
 .textbox
 {
@@ -94,6 +83,8 @@ a:hover
     cursor: hand;
     cursor: pointer;
 }
+
+/* --------------------- Data tables ----------------------- */
 
 .datatable
 {
@@ -133,6 +124,8 @@ a:hover
     padding-right: 10px;
 }
 
+/* --------------------- Forms ----------------------- */
+
 .form
 {
     display: table
@@ -165,6 +158,23 @@ a:hover
     padding: 10px 0 10px 0;
 }
 
+/* --------------------- Page ----------------------- */
+
+#message
+{
+    background-color: #F8F5F1;
+    padding: 10px;
+    color: #5F6155;
+    font-size: 15pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+#message:empty 
+{
+    padding: 0px;
+}
+
 .base
 {
     width: 100;
@@ -176,6 +186,21 @@ a:hover
     border: 1px solid #5F6155;
     margin: 15px;
 }
+
+.page .body
+{
+    clear: both;
+    padding: 30px;
+    text-align: center;
+}
+
+.footer
+{
+    padding: 0 30px 20px 30px;
+    text-align: center;
+}
+
+/* --------------------- Header ----------------------- */
 
 .page .header
 {
@@ -194,7 +219,8 @@ a:hover
     float: right;
 }
 
-.page .header .links .left, .right
+.page .header .links .left, 
+.page .header .links .right
 {
     height: 70px;
     vertical-align: middle;
@@ -203,12 +229,16 @@ a:hover
     padding: 10px 10px 0px 10px;
 }
 
+/* --------------------- Tabs ----------------------- */
+
 .page .header .tabs
 {
     clear: both;
 }
 
-.page .header .tabs .tab, .tabselected, .tabdisabled
+.page .header .tabs .tab, 
+.page .header .tabs .tabselected, 
+.page .header .tabs .tabdisabled
 {
     height: 35px;
     color: #351E0D;
@@ -229,20 +259,34 @@ a:hover
     background: url(button.light.png);
     border: 1px solid;
     border-color: #5F6155 #5F6155 #E6E0D0 #5F6155;
+    font-weight: bold;
 }
 
 .page .header .tabs .tabdisabled
 {
     background: url(button.verydark.png);
     border: 1px solid #5F6155;
+    color: #000;
 }
 
-.page .body
+/* --------------------- Sub tabs ----------------------- */
+
+.page .body .tabs .tab,
+.page .body .tabs .tabselected
 {
-    clear: both;
-    padding: 30px;
-    text-align: center;
+    height: 25px;
+    float: left;
+    padding-right: 10px;
+    line-height: 25px;
+    margin: 10px 0 10px 0;
 }
+
+.page .body .tabs .tabselected
+{
+    font-weight: bold;
+}
+
+/* --------------------- Dialog ----------------------- */
 
 .dialog 
 {
@@ -271,11 +315,5 @@ a:hover
     clear: both;
     background-color: #ffffff;
     padding: 10px;
-}
-
-.footer
-{
-    padding: 0 30px 20px 30px;
-    text-align: center;
 }
 

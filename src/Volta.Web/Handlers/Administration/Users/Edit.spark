@@ -1,5 +1,5 @@
-﻿<use master="Frame" />
-<viewdata model="Volta.Web.Handlers.Administration.User.EditOutputModel" />
+﻿<use master="Chrome" />
+<viewdata model="Volta.Web.Handlers.Administration.Users.EditOutputModel" />
 
 <content:title>Edit User</content:title>
 <content:head></content:head>

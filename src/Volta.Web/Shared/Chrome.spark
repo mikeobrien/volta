@@ -11,8 +11,7 @@
                 </div>
             </div>
             <div class="tabs">
-                <div class="tabselected"><b>DASHBOARD</b></div>
-                <div class="tab"><a class="lightanchor" href="" title="Administration">ADMINISTRATION</a></div>
+                #this.Partial<TabsInputModel>();
             </div>
         </div>
         <div class="body">

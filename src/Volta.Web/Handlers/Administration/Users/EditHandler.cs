@@ -1,4 +1,4 @@
-namespace Volta.Web.Handlers.Administration.User
+namespace Volta.Web.Handlers.Administration.Users
 {
     public class EditInputModel
     {

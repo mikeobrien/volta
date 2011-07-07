@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bottles.0.9.0.86\lib\Bottles.dll</HintPath>
+      <HintPath>..\packages\Bottles.0.9.0.91\lib\Bottles.dll</HintPath>
     </Reference>
     <Reference Include="FubuCore, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuCore.0.9.1.32\lib\FubuCore.dll</HintPath>
@@ -41,11 +41,10 @@
       <HintPath>..\packages\FubuLocalization.0.9.1.32\lib\FubuLocalization.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Core, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuMVC.References.0.9.1.513\lib\FubuMVC.Core.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.References.0.9.1.521\lib\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.1.513\lib\FubuMVC.StructureMap.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.References.0.9.1.521\lib\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="HtmlTags">
       <HintPath>..\packages\HtmlTags.1.0.0.23\lib\4.0\HtmlTags.dll</HintPath>
@@ -123,7 +122,7 @@
     <Compile Include="Unit\UserInterface\Behaviors\AuthenticationBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\ExceptionHandlerBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\SecureRequestTests.cs" />
-    <Compile Include="Unit\UserInterface\FullNameUrlPolicyTests.cs" />
+    <Compile Include="Unit\Infrastructure\Framework\Web\FullNameUrlPolicyTests.cs" />
     <Compile Include="Unit\UserInterface\LogoutControllerTests.cs" />
     <Compile Include="Unit\UserInterface\LoginControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

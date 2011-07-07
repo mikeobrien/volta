@@ -1,0 +1,7 @@
+﻿<use master="Chrome" />
+<viewdata model="Volta.Web.Handlers.Administration.Users.AddOutputModel" />
+
+<content:title>Add User</content:title>
+<content:head></content:head>
+
+<h1>Add user</h1>

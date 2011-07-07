@@ -1,0 +1,7 @@
+﻿<use master="Chrome" />
+<viewdata model="Volta.Web.Handlers.TestBatches.QueryOutputModel" />
+
+<content:title>Test Batches</content:title>
+<content:head></content:head>
+
+<h1>Test Batches</h1>

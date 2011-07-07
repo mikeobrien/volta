@@ -1,0 +1,7 @@
+﻿<use master="Chrome" />
+<viewdata model="Volta.Web.Handlers.Administration.Users.QueryOutputModel" />
+
+<content:title>Users</content:title>
+<content:head></content:head>
+
+<h1>Users</h1>
