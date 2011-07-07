@@ -69,7 +69,7 @@ namespace Volta.Core.Infrastructure.Framework.Web
                 MethodToUrlBuilder.Alter(route, methodName, new TypeDescriptorCache().GetPropertiesFor(call.InputType()).Keys, x => { });
                 route.ApplyInputType(call.InputType());
             }
-            else if (!string.IsNullOrEmpty(methodName)) route.Append(methodName);
+            else if (!string.IsNullOrEmpty(methodName)) route.Append(methodName.ToLower());
         }
 
         private static string RemovePattern(string source, IEnumerable<string> pattern)

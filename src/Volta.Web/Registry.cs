@@ -22,11 +22,11 @@ namespace Volta.Web
             For<MongoConnection>().Use(x => new MongoConnection(x.GetInstance<IConfiguration>().ConnectionString));
             For(typeof(IRepository<>)).Use(typeof(MongoRepository<>));
 
+            For<IUserFactory>().Use<UserFactory>();
+
             For<ITokenStore<Token>>().Use<FubuTokenStore<Token>>();
             For<ISecureSession<Token>>().Use<SecureSession<Token>>();
             For<IAuthenticationService<Token>>().Use<AuthenticationService>();
-
-            For<IUserFactory>().Use<UserFactory>();
 
             For<ITabFactory>().Use<TabFactory>();
         }
