@@ -111,8 +111,9 @@
     <Compile Include="Acceptance\LoginPage.cs" />
     <Compile Include="Acceptance\Common\VoltaWebPage.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Reflection\AssemblyExtensionsTests.cs" />
-    <Compile Include="Unit\Infrastructure\Framework\Web\FubuTokenStoreTests.cs" />
-    <Compile Include="Unit\Infrastructure\Framework\Web\FubuUrlExtensionTests.cs" />
+    <Compile Include="Unit\Infrastructure\Framework\Web\FubuMvc\TokenStoreTests.cs" />
+    <Compile Include="Unit\Infrastructure\Framework\Web\FubuMvc\UrlExtensionTests.cs" />
+    <Compile Include="Unit\Infrastructure\Framework\Web\Navigation\TabTests.cs" />
     <Compile Include="Unit\MemoryTokenStore.cs" />
     <Compile Include="Integration\Application\ConfigurationTests.cs" />
     <Compile Include="Integration\Constants.cs" />
@@ -122,7 +123,8 @@
     <Compile Include="Unit\UserInterface\Behaviors\AuthenticationBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\ExceptionHandlerBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\SecureRequestTests.cs" />
-    <Compile Include="Unit\Infrastructure\Framework\Web\FullNameUrlPolicyTests.cs" />
+    <Compile Include="Unit\Infrastructure\Framework\Web\FubuMvc\FullNameUrlPolicyTests.cs" />
+    <Compile Include="Unit\UserInterface\Widgets\NavigationCommon.cs" />
     <Compile Include="Unit\UserInterface\Widgets\TabsHandlerTests.cs" />
     <Compile Include="Unit\UserInterface\Widgets\LinksHandlerTests.cs" />
     <Compile Include="Unit\UserInterface\LogoutHandlerTests.cs" />

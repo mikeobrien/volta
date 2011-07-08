@@ -1,5 +1,4 @@
 using FubuMVC.Core.Continuations;
-using Volta.Core.UserInterface.Navigation;
 
 namespace Volta.Web.Handlers.Administration.Users
 {
@@ -12,7 +11,6 @@ namespace Volta.Web.Handlers.Administration.Users
 
     public class AddHandler
     {
-        [Navigation(Module.Administration, "Add User", 1)]
         public AddOutputModel Query()
         {
             return new AddOutputModel();

@@ -2,7 +2,7 @@
 
 <for each="var tab in Model.Tabs">
     <div class="tab?{!tab.Selected && !tab.Disabled} tabselected?{tab.Selected} tabdisabled?{tab.Disabled}">
-        <a if="!tab.Disabled && !tab.Selected" class="lightanchor" href="${tab.Url}" title="${tab.Name}">${tab.Name}</a>
-        <else>${tab.Name}</else>
+        <a if="!tab.Disabled && !tab.Selected" class="lightanchor" href="${tab.Url}" title="${tab.Name}">${tab.Name.ToUpper()}</a>
+        <else>${tab.Name.ToUpper()}</else>
     </div>
 </for>

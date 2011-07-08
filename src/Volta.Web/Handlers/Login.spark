@@ -1,6 +1,6 @@
 ﻿<use namespace="Volta.Web.Handlers" />
 <use namespace="HtmlTags.Extended.Attributes" />
-<use namespace="Volta.Core.Infrastructure.Framework.Web" />
+<use namespace="Volta.Core.Infrastructure.Framework.Web.FubuMvc" />
 <viewdata model="Volta.Web.Handlers.LoginOutputModel" />
 <content:title>Login</content:title>
 <content:head>

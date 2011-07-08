@@ -6,7 +6,7 @@ using FubuMVC.Core.Registration.Conventions;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Routes;
 
-namespace Volta.Core.Infrastructure.Framework.Web
+namespace Volta.Core.Infrastructure.Framework.Web.FubuMvc
 {
     public class FullNameUrlPolicy : IUrlPolicy
     {

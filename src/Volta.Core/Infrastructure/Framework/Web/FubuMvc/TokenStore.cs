@@ -1,7 +1,7 @@
 ﻿using FubuMVC.Core.Runtime;
 using Volta.Core.Infrastructure.Framework.Security;
 
-namespace Volta.Core.Infrastructure.Framework.Web
+namespace Volta.Core.Infrastructure.Framework.Web.FubuMvc
 {
     public class FubuTokenStore<TToken> : ITokenStore<TToken> where TToken : class
     {

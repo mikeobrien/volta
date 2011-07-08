@@ -1,9 +1,9 @@
 using FubuCore;
 using NUnit.Framework;
 using Should;
-using Volta.Core.Infrastructure.Framework.Web;
+using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
 
-namespace Volta.Tests.Unit.Infrastructure.Framework.Web
+namespace Volta.Tests.Unit.Infrastructure.Framework.Web.FubuMvc
 {
     [TestFixture]
     public class FubuUrlExtensionTests
@@ -46,6 +46,32 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web
         {
             var url = (BaseUrl + "?There=Yada&   ").AppendQueryStringValueFor<Oh>(x => x.Hai, Value);
             url.ShouldEqual("{0}?There=Yada&Hai={1}".ToFormat(BaseUrl, Value));
+        }
+
+        [Test]
+        public void Should_Match_Url()
+        {
+            var url = "/some/url";
+            url.MatchesUrl(url).ShouldBeTrue();
+        }
+
+        [Test]
+        public void Should_Match_Url_With_Different_Case()
+        {
+            var url = "/some/url";
+            url.MatchesUrl(url.ToUpper()).ShouldBeTrue();
+        }
+
+        [Test]
+        public void Should_Match_Parameterized_Url()
+        {
+            "/some/url/{With}/{Paramaters}".MatchesUrl("/some/url/with/parameters").ShouldBeTrue();
+        }
+
+        [Test]
+        public void Should_Not_Match_Different_Urls()
+        {
+            "/some/other/url/{With}/{Paramaters}".MatchesUrl("/some/url/with/parameters").ShouldBeFalse();
         }
     }
 }

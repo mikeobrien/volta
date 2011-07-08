@@ -4,9 +4,9 @@ using FubuMVC.Core.UI;
 using FubuMVC.Core.View;
 using HtmlTags;
 
-namespace Volta.Core.Infrastructure.Framework.Web
+namespace Volta.Core.Infrastructure.Framework.Web.FubuMvc
 {
-    public static class FubuPageExtensions
+    public static class PageExtensions
     {
         public static HtmlTag DisplayFor<T>(this IFubuPage<T> page, Expression<Func<T, object>> expression, string className)
             where T : class

@@ -3,6 +3,7 @@ using FubuMVC.Core;
 using FubuMVC.Spark;
 using Volta.Core.Infrastructure.Framework.Reflection;
 using Volta.Core.Infrastructure.Framework.Web;
+using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
 using Volta.Web.Behaviors;
 using Volta.Web.Handlers;
 

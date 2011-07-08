@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using FubuMVC.Core;
-using Volta.Core.UserInterface.Navigation;
+using FubuMVC.Core.Urls;
+using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
+using Volta.Core.Infrastructure.Framework.Web.Navigation;
 
 namespace Volta.Web.Handlers.Widgets
 {
@@ -23,32 +26,35 @@ namespace Volta.Web.Handlers.Widgets
 
     public class TabsHandler
     {
-        private readonly ILinkFactory _linkFactory;
+        private readonly IUrlRegistry _urlRegistry;
+        private readonly TabCollection _tabCollection;
         private readonly CurrentRequest _request;
 
-        public TabsHandler(ILinkFactory linkFactory, CurrentRequest request)
+        public TabsHandler(IUrlRegistry urlRegistry, TabCollection tabCollection, CurrentRequest request)
         {
-            _linkFactory = linkFactory;
+            _urlRegistry = urlRegistry;
+            _tabCollection = tabCollection;
             _request = request;
         }
 
         [FubuPartial]
         public TabsOutputModel Query(TabsInputModel input)
         {
-            var links = _linkFactory.Build();
-            Func<Link, bool> isSelected = link => link.HasUrl && (_request.Path.StartsWith(link.Url));
+            // TODO: Add come caching of the tabs
+            Func<MethodInfo, string> getUrl = m => _urlRegistry.UrlFor(m.DeclaringType, m);
+            Func<Tab, bool> isSelected = link => link.HasAction && getUrl(link.Action).MatchesUrl(_request.Path);
             return new TabsOutputModel
-                       {
-                           Tabs = links.Where(x => x.Visible).
-                                        OrderBy(x => x.Order).
-                                        Select(x => new TabsOutputModel.Tab
-                                                  {
-                                                      Name = x.Name,
-                                                      Selected = isSelected(x) || (x.HasChildren && x.Children.Any(isSelected)),
-                                                      Disabled = false,
-                                                      Url = x.HasUrl ? x.Url : x.Children.First().Url
-                                                  })
-                       };
+                {
+                    Tabs = _tabCollection.
+                                OrderBy(x => x.Order).
+                                Select(x => new TabsOutputModel.Tab
+                                            {
+                                                Name = x.Name,
+                                                Selected = isSelected(x) || (x.HasChildren && x.Any(isSelected)),
+                                                Disabled = false,
+                                                Url = getUrl(x.HasAction ? x.Action : x.First().Action)
+                                            })
+                };
         }
     }
 }

@@ -5,8 +5,8 @@ using Volta.Core.Domain;
 using Volta.Core.Infrastructure.Framework.Data;
 using Volta.Core.Infrastructure.Framework.Logging;
 using Volta.Core.Infrastructure.Framework.Security;
-using Volta.Core.Infrastructure.Framework.Web;
-using Volta.Core.UserInterface.Navigation;
+using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
+using Volta.Core.Infrastructure.Framework.Web.Navigation;
 
 namespace Volta.Web
 {
@@ -28,7 +28,7 @@ namespace Volta.Web
             For<ISecureSession<Token>>().Use<SecureSession<Token>>();
             For<IAuthenticationService<Token>>().Use<AuthenticationService>();
 
-            For<ILinkFactory>().Use<LinkFactory>();
+            For<TabCollection>().Use<Navigation>();
         }
     }
 }

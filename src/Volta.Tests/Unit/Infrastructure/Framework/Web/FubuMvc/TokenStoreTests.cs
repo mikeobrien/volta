@@ -2,9 +2,9 @@
 using NSubstitute;
 using NUnit.Framework;
 using Should;
-using Volta.Core.Infrastructure.Framework.Web;
+using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
 
-namespace Volta.Tests.Unit.Infrastructure.Framework.Web
+namespace Volta.Tests.Unit.Infrastructure.Framework.Web.FubuMvc
 {
     [TestFixture]
     public class FubuTokenStoreTests

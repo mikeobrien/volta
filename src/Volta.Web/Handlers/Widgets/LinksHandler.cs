@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using FubuMVC.Core;
-using Volta.Core.UserInterface.Navigation;
+using FubuMVC.Core.Urls;
+using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
+using Volta.Core.Infrastructure.Framework.Web.Navigation;
 
 namespace Volta.Web.Handlers.Widgets
 {
@@ -19,42 +22,41 @@ namespace Volta.Web.Handlers.Widgets
             public bool Selected { get; set; }
             public bool Disabled { get; set; }
             public string Url { get; set; }
-            public bool HasUrl { get; set; }
         }
     }
 
     public class LinksHandler
     {
-        private readonly ILinkFactory _linkFactory;
+        private readonly IUrlRegistry _urlRegistry;
+        private readonly TabCollection _tabCollection;
         private readonly CurrentRequest _request;
 
-        public LinksHandler(ILinkFactory linkFactory, CurrentRequest request)
+        public LinksHandler(IUrlRegistry urlRegistry, TabCollection tabCollection, CurrentRequest request)
         {
-            _linkFactory = linkFactory;
+            _urlRegistry = urlRegistry;
+            _tabCollection = tabCollection;
             _request = request;
         }
 
         [FubuPartial]
         public LinksOutputModel Query(LinksInputModel input)
         {
-            var links = _linkFactory.Build();
-            Func<Link, bool> isSelected = link => link.HasUrl && (_request.Path.StartsWith(link.Url));
-            return new LinksOutputModel
-                       {
-                           Links = links.Where(x => x.HasChildren && x.Children.Any(isSelected)).
-                                         SelectMany(x => x.Children).
-                                         Where(x => x.Visible).
-                                         OrderBy(x => x.Order).
-                                         Select((x, i) => new LinksOutputModel.Link
-                                                  {
-                                                      Name = x.Name,
-                                                      Index = i,
-                                                      Selected = isSelected(x),
-                                                      Disabled = false,
-                                                      Url = x.Url,
-                                                      HasUrl = x.HasUrl
-                                                  })
-                       };
+            // TODO: Add come caching of the links
+            Func<MethodInfo, string> getUrl = m => _urlRegistry.UrlFor(m.DeclaringType, m);
+            Func<Tab, bool> isSelected = link => link.HasAction && getUrl(link.Action).MatchesUrl(_request.Path);
+            var links = _tabCollection.Where(x => x.HasChildren && x.Any(isSelected)).
+                                       SelectMany(x => x).
+                                       Where(x => x.HasName).
+                                       OrderBy(x => x.Order).
+                                       Select((x, i) => new LinksOutputModel.Link
+                                                {
+                                                    Name = x.Name,
+                                                    Index = i,
+                                                    Selected = isSelected(x),
+                                                    Disabled = false,
+                                                    Url = getUrl(x.Action)
+                                                });
+            return new LinksOutputModel { Links = links.Count() > 1 ? links : Enumerable.Empty<LinksOutputModel.Link>() };
         }
     }
 }

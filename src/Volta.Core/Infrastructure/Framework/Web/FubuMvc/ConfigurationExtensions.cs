@@ -1,9 +1,9 @@
 using System.Linq;
 using FubuMVC.Core.Registration.DSL;
 
-namespace Volta.Core.Infrastructure.Framework.Web
+namespace Volta.Core.Infrastructure.Framework.Web.FubuMvc
 {
-    public static class FubuConfigurationExtensions
+    public static class ConfigurationExtensions
     {
         public static ActionCallCandidateExpression IncludeTypeNameSuffix(this ActionCallCandidateExpression expression, string methodNameSuffix)
         {

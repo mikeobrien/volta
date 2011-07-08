@@ -1,11 +1,11 @@
 ﻿using FubuMVC.Core.Registration.Nodes;
 using NUnit.Framework;
 using Should;
-using Volta.Core.Infrastructure.Framework.Web;
-using Volta.Tests.Unit.Infrastructure.Framework.Web.Handlers;
-using Volta.Tests.Unit.Infrastructure.Framework.Web.Handlers.Administration;
+using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
+using Volta.Tests.Unit.Infrastructure.Framework.Web.FubuMvc.Handlers;
+using Volta.Tests.Unit.Infrastructure.Framework.Web.FubuMvc.Handlers.Administration;
 
-namespace Volta.Tests.Unit.Infrastructure.Framework.Web
+namespace Volta.Tests.Unit.Infrastructure.Framework.Web.FubuMvc
 {
     namespace Handlers
     {
@@ -53,7 +53,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web
             var policy = new FullNameUrlPolicy();
             policy.IgnoreClassName("Handler");
             var route = policy.Build(UserHandlerQueryActionCall);
-            route.Pattern.ShouldEqual("volta/tests/unit/infrastructure/framework/web/handlers/administration/user/query");
+            route.Pattern.ShouldEqual("volta/tests/unit/infrastructure/framework/web/fubumvc/handlers/administration/user/query");
         }
 
         [Test]
@@ -62,10 +62,10 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web
             var policy = new FullNameUrlPolicy();
             policy.IgnoreMethodName("Query", "Command");
             var route = policy.Build(UserHandlerQueryActionCall);
-            route.Pattern.ShouldEqual("volta/tests/unit/infrastructure/framework/web/handlers/administration/userhandler");
+            route.Pattern.ShouldEqual("volta/tests/unit/infrastructure/framework/web/fubumvc/handlers/administration/userhandler");
             route.Input.ShouldBeNull();
             route = policy.Build(UserHandlerCommandActionCall);
-            route.Pattern.ShouldEqual("volta/tests/unit/infrastructure/framework/web/handlers/administration/userhandler");
+            route.Pattern.ShouldEqual("volta/tests/unit/infrastructure/framework/web/fubumvc/handlers/administration/userhandler");
             route.Input.ShouldNotBeNull();
         }
 
@@ -75,7 +75,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web
             var policy = new FullNameUrlPolicy();
             policy.IgnoreMethodName("Query", "Command");
             var route = policy.Build(UserHandlerQueryWithParametersActionCall);
-            route.Pattern.ShouldEqual("volta/tests/unit/infrastructure/framework/web/handlers/administration/userhandler/{Username}/{Password}");
+            route.Pattern.ShouldEqual("volta/tests/unit/infrastructure/framework/web/fubumvc/handlers/administration/userhandler/{Username}/{Password}");
             route.Input.ShouldNotBeNull();
         }
     }
