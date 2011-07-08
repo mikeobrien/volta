@@ -32,7 +32,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         {
             var linkFactory = Substitute.For<ILinkFactory>();
             linkFactory.Build().Returns(_links);
-            var handler = new TabsHandler(linkFactory, new CurrentRequest());
+            var handler = new TabsHandler(linkFactory, new CurrentRequest { Path = "/testbatches" });
             var output = handler.Query(null);
 
             output.Tabs.ElementAt(0).Name.ShouldEqual(_links.First(x => x.Order == 0).Name);
@@ -45,7 +45,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         {
             var linkFactory = Substitute.For<ILinkFactory>();
             linkFactory.Build().Returns(_links);
-            var handler = new TabsHandler(linkFactory, new CurrentRequest());
+            var handler = new TabsHandler(linkFactory, new CurrentRequest { Path = "/testbatches" });
             var output = handler.Query(null);
 
             output.Tabs.ElementAt(0).Url.ShouldEqual(_links.First(x => x.Order == 0).Url);
@@ -104,7 +104,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         }
 
         [Test]
-        public void Should_Not_Set_Link_Parent_As_Selected_When_Link_Not_Visible()
+        public void Should_Set_Link_Parent_As_Selected_When_Link_Not_Visible()
         {
             var linkFactory = Substitute.For<ILinkFactory>();
             linkFactory.Build().Returns(_links);
@@ -113,7 +113,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
 
             output.Tabs.ElementAt(0).Selected.ShouldBeFalse();
             output.Tabs.ElementAt(1).Selected.ShouldBeFalse();
-            output.Tabs.ElementAt(2).Selected.ShouldBeFalse();
+            output.Tabs.ElementAt(2).Selected.ShouldBeTrue();
         }
     }
 }
