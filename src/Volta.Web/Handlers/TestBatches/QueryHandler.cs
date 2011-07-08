@@ -1,4 +1,4 @@
-using Volta.Core.UserInterface.Tabs;
+using Volta.Core.UserInterface.Navigation;
 
 namespace Volta.Web.Handlers.TestBatches
 {
@@ -8,7 +8,7 @@ namespace Volta.Web.Handlers.TestBatches
 
     public class QueryHandler
     {
-        [Tab(TabName.TestBatches)]
+        [Navigation(Module.TestBatches)]
         public QueryOutputModel Query()
         {
             return new QueryOutputModel();

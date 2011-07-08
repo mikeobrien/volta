@@ -9,7 +9,7 @@ using Volta.Web.Handlers;
 namespace Volta.Tests.Unit.UserInterface
 {
     [TestFixture]
-    public class LoginControllerTests
+    public class LoginHandlerTests
     {
         private const string RedirectUrl = "/myaccount";
         private const string Username = "username";

@@ -1,7 +1,7 @@
 ﻿using FubuMVC.Core;
 using Volta.Core.Application;
 
-namespace Volta.Web.Handlers
+namespace Volta.Web.Handlers.Widgets
 {
     public class FooterInputModel { }
 

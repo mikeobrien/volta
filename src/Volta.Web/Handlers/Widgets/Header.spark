@@ -1,4 +1,4 @@
 ﻿<use namespace="Volta.Web.Handlers" />
 <use namespace="Volta.Web.Handlers.Administration.Users" />
-<viewdata model="Volta.Web.Handlers.HeaderOutputModel" />
+<viewdata model="Volta.Web.Handlers.Widgets.HeaderOutputModel" />
 !{this.LinkTo(new EditInputModel {Username = Model.CurrentUser}).Text(Model.CurrentUser).AddClass("darkanchor")} | !{this.LinkTo<DashboardHandler>(x => x.Query()).Text("Dashboard").AddClass("darkanchor")} | !{this.LinkTo<LogoutHandler>(x => x.Query()).Text("Logout").AddClass("darkanchor")}

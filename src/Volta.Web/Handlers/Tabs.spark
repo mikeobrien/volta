@@ -1,4 +1,0 @@
-﻿<viewdata model="Volta.Web.Handlers.TabsOutputModel" />
-
-<div class="tabselected"><b>DASHBOARD</b></div>
-<div class="tab"><a class="lightanchor" href="" title="Administration">ADMINISTRATION</a></div>

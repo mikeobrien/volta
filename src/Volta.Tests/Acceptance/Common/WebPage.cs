@@ -80,7 +80,7 @@ namespace Volta.Tests.Acceptance.Common
         protected WebPage NavigateTo(WebPage fromPage, Uri url, params string[] parts)
         {
             Browser = fromPage.Browser;
-            Browser.GoTo((url != null ? new Uri(BaseUrl, url) : BaseUrl) + parts.Aggregate("/", (a, i) => a + i + "/"));
+            Browser.GoTo((url != null ? new Uri(BaseUrl, url) : BaseUrl) + parts.Aggregate(string.Empty, (a, i) => a + "/" + i));
             return this;
         }
     }

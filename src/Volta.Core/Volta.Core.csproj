@@ -115,10 +115,10 @@
     <Compile Include="Infrastructure\Framework\Web\FubuUrlExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Web\FullNameUrlPolicy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserInterface\Tabs\ITabFactory.cs" />
-    <Compile Include="UserInterface\Tabs\TabAttribute.cs" />
-    <Compile Include="UserInterface\Tabs\Tab.cs" />
-    <Compile Include="UserInterface\Tabs\TabFactory.cs" />
+    <Compile Include="UserInterface\Navigation\ILinkFactory.cs" />
+    <Compile Include="UserInterface\Navigation\NavigationAttribute.cs" />
+    <Compile Include="UserInterface\Navigation\Link.cs" />
+    <Compile Include="UserInterface\Navigation\LinkFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

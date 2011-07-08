@@ -190,7 +190,12 @@ a:hover
 .page .body
 {
     clear: both;
-    padding: 30px;
+    padding: 0 30px 30px 30px;
+}
+
+.page .body .content
+{
+    clear: both;
     text-align: center;
 }
 
@@ -229,16 +234,16 @@ a:hover
     padding: 10px 10px 0px 10px;
 }
 
-/* --------------------- Tabs ----------------------- */
+/* --------------------- Navigation Tabs ----------------------- */
 
-.page .header .tabs
+.page .header .navigation
 {
     clear: both;
 }
 
-.page .header .tabs .tab, 
-.page .header .tabs .tabselected, 
-.page .header .tabs .tabdisabled
+.page .header .navigation .tab, 
+.page .header .navigation .tabselected, 
+.page .header .navigation .tabdisabled
 {
     height: 35px;
     color: #351E0D;
@@ -248,13 +253,13 @@ a:hover
     padding: 0 10px 0 10px;
 }
 
-.page .header .tabs .tab
+.page .header .navigation .tab
 {
     background: url(button.dark.png);
     border: 1px solid #5F6155;
 }
 
-.page .header .tabs .tabselected
+.page .header .navigation .tabselected
 {
     background: url(button.light.png);
     border: 1px solid;
@@ -262,17 +267,18 @@ a:hover
     font-weight: bold;
 }
 
-.page .header .tabs .tabdisabled
+.page .header .navigation .tabdisabled
 {
     background: url(button.verydark.png);
     border: 1px solid #5F6155;
     color: #000;
 }
 
-/* --------------------- Sub tabs ----------------------- */
+/* --------------------- Navigation Links ----------------------- */
 
-.page .body .tabs .tab,
-.page .body .tabs .tabselected
+.page .body .navigation .link,
+.page .body .navigation .linkselected,
+.page .body .navigation .linkdisabled
 {
     height: 25px;
     float: left;
@@ -281,9 +287,14 @@ a:hover
     margin: 10px 0 10px 0;
 }
 
-.page .body .tabs .tabselected
+.page .body .navigation .linkselected
 {
     font-weight: bold;
+}
+
+.page .body .navigation .linkdisabled
+{
+    color: #6A6A62;
 }
 
 /* --------------------- Dialog ----------------------- */

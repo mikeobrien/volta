@@ -1,6 +1,5 @@
 ﻿using System;
 using Volta.Tests.Acceptance.Common;
-using WatiN.Core;
 
 namespace Volta.Tests.Acceptance
 {

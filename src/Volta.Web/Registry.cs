@@ -6,7 +6,7 @@ using Volta.Core.Infrastructure.Framework.Data;
 using Volta.Core.Infrastructure.Framework.Logging;
 using Volta.Core.Infrastructure.Framework.Security;
 using Volta.Core.Infrastructure.Framework.Web;
-using Volta.Core.UserInterface.Tabs;
+using Volta.Core.UserInterface.Navigation;
 
 namespace Volta.Web
 {
@@ -28,7 +28,7 @@ namespace Volta.Web
             For<ISecureSession<Token>>().Use<SecureSession<Token>>();
             For<IAuthenticationService<Token>>().Use<AuthenticationService>();
 
-            For<ITabFactory>().Use<TabFactory>();
+            For<ILinkFactory>().Use<LinkFactory>();
         }
     }
 }

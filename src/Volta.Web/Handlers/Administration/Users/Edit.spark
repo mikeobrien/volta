@@ -4,4 +4,4 @@
 <content:title>Edit User</content:title>
 <content:head></content:head>
 
-<h1>The username is: ${Model.Username}</h1>
+<h1>Edit user: ${Model.Username}</h1>

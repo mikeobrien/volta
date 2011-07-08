@@ -7,7 +7,7 @@ namespace Volta.Tests.Acceptance.Administration.User
     {
         public EditPage()
         {
-            BaseUrl = new Uri(Constants.VoltaUrl, "/administration/user/edit");
+            BaseUrl = new Uri(Constants.VoltaUrl, "/administration/users/edit");
         }
     }
 }

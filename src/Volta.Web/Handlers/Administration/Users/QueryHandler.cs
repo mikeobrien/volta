@@ -1,4 +1,4 @@
-using Volta.Core.UserInterface.Tabs;
+using Volta.Core.UserInterface.Navigation;
 
 namespace Volta.Web.Handlers.Administration.Users
 {
@@ -8,7 +8,7 @@ namespace Volta.Web.Handlers.Administration.Users
 
     public class QueryHandler
     {
-        [Tab(TabName.Administration, "Users", 0)]
+        [Navigation(Module.Administration, "Users", 0)]
         public QueryOutputModel Query()
         {
             return new QueryOutputModel();

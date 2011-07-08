@@ -7,7 +7,7 @@ using Volta.Web.Handlers;
 namespace Volta.Tests.Unit.UserInterface
 {
     [TestFixture]
-    public class LogoutControllerTests
+    public class LogoutHandlerTests
     {
         [Test]
         public void Should_Login_Valid_User_And_Redirect_To_The_Dashboard()

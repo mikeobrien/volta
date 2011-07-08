@@ -4,4 +4,4 @@
 <content:title>Dashboard</content:title>
 <content:head></content:head>
 
-<h1>The current time is: ${Model.Time}</h1>
+<h1>Dashboard</h1>

@@ -1,0 +1,9 @@
+﻿<viewdata model="Volta.Web.Handlers.Widgets.LinksOutputModel" />
+
+<for each="var link in Model.Links">
+    <div if="link.Index > 0" class="link">|</div>
+    <div class="link?{!link.Selected && !link.Disabled} linkselected?{link.Selected} linkdisabled?{link.Disabled}">
+        <a if="!link.Disabled && !link.Selected" class="darkfineanchor" href="${link.Url}" title="${link.Name}">${link.Name}</a>
+        <else>${link.Name}</else>
+    </div>
+</for>

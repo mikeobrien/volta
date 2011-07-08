@@ -103,26 +103,28 @@
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
     <Compile Include="Behaviors\SecureRequest.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="Handlers\Widgets\LinksHandler.cs" />
     <Compile Include="Handlers\TestBatches\QueryHandler.cs" />
     <Compile Include="Handlers\Administration\Users\AddHandler.cs" />
     <Compile Include="Handlers\Administration\Users\QueryHandler.cs" />
-    <Compile Include="Handlers\TabsHandler.cs" />
-    <Compile Include="Handlers\HeaderHandler.cs" />
+    <Compile Include="Handlers\Widgets\TabsHandler.cs" />
+    <Compile Include="Handlers\Widgets\HeaderHandler.cs" />
     <Compile Include="Handlers\LogoutHandler.cs" />
     <Compile Include="Handlers\Administration\Users\EditHandler.cs" />
     <Compile Include="Handlers\DashboardHandler.cs" />
     <Compile Include="Handlers\LoginHandler.cs" />
-    <Compile Include="Handlers\FooterHandler.cs" />
+    <Compile Include="Handlers\Widgets\FooterHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registry.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Handlers\Widgets\Links.spark" />
     <None Include="Handlers\TestBatches\Query.spark" />
     <None Include="Handlers\Administration\Users\Add.spark" />
     <None Include="Handlers\Administration\Users\Query.spark" />
-    <None Include="Handlers\Tabs.spark" />
-    <None Include="Handlers\Header.spark" />
-    <None Include="Handlers\Footer.spark" />
+    <None Include="Handlers\Widgets\Tabs.spark" />
+    <None Include="Handlers\Widgets\Header.spark" />
+    <None Include="Handlers\Widgets\Footer.spark" />
     <None Include="Handlers\Administration\Users\Edit.spark" />
     <None Include="Handlers\Dashboard.spark" />
     <None Include="Handlers\Login.spark">
