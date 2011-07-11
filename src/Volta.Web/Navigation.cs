@@ -10,6 +10,7 @@ namespace Volta.Web
                 {
                     x.Name = "Test Batches";
                     x.Add<Handlers.TestBatches.QueryHandler>("Batches", y => y.Query());
+                    x.Add<Handlers.TestBatches.AddHandler>(y => y.Query());
                 });
 
             Add(x =>

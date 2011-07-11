@@ -1,0 +1,7 @@
+﻿<use master="Chrome" />
+<viewdata model="Volta.Web.Handlers.TestBatches.AddOutputModel" />
+
+<content:title>Add Test Batch</content:title>
+<content:head></content:head>
+
+<h1>Add test batch</h1>

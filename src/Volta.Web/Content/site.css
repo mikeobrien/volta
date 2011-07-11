@@ -36,8 +36,11 @@ fieldset
 
 legend
 {
+    border: solid 1px #938B55;
+    background-color: #ffffff;
     font-weight: bold;
     color: #351E0D;
+    background-color: #ffffff;
     padding: 0 5px 0 5px;
 }
 
@@ -190,7 +193,8 @@ a:hover
 .page .body
 {
     clear: both;
-    padding: 0 30px 30px 30px;
+    height: 400px;
+    padding: 30px 30px 30px 30px;
 }
 
 .page .body .content
@@ -284,7 +288,7 @@ a:hover
     float: left;
     padding-right: 10px;
     line-height: 25px;
-    margin: 10px 0 10px 0;
+    margin: -20px 0 10px 0;
 }
 
 .page .body .navigation .linkselected

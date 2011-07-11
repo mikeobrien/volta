@@ -103,6 +103,7 @@
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
     <Compile Include="Behaviors\SecureRequest.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="Handlers\TestBatches\AddHandler.cs" />
     <Compile Include="Handlers\Widgets\LinksHandler.cs" />
     <Compile Include="Handlers\TestBatches\QueryHandler.cs" />
     <Compile Include="Handlers\Administration\Users\AddHandler.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Registry.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Handlers\TestBatches\Add.spark" />
     <None Include="Handlers\Widgets\Links.spark" />
     <None Include="Handlers\TestBatches\Query.spark" />
     <None Include="Handlers\Administration\Users\Add.spark" />
