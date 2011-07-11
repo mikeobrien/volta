@@ -32,7 +32,7 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
             collection.Insert(Person1);
             collection.Insert(Person2);
             collection.Insert(Person3);
-            _repository = new MongoRepository<Person>(_mongo, new IdConvention());
+            _repository = new MongoRepository<Person>(_mongo);
         }
 
         [TearDown]
@@ -58,15 +58,6 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         }
 
         [Test]
-        public void Should_Get()
-        {
-            var result = _repository.Get(Person2.Id);
-            result.ShouldNotBeNull();
-            result.Id.ShouldEqual(Person2.Id);
-            result.Name.ShouldEqual(Person2.Name);
-        }
-
-        [Test]
         public void Should_Add()
         {
             var person = new Person {Id = Guid.Empty, Name = "yada"};
@@ -81,7 +72,7 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         public void Should_Update()
         {
             var person = new Person { Id = Person2.Id, Name = "yada" };
-            _repository.Update(person);
+            _repository.Update(x => x.Id, person);
             var collection = _mongo.Connection.GetCollection<Person>().AsQueryable().ToList();
             collection.Count().ShouldEqual(3);
             collection.Exists(x => x.Id == Person1.Id && x.Name == Person1.Name);
@@ -92,30 +83,11 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         [Test]
         public void Should_Delete_Single()
         {
-            _repository.Delete(Person2.Id);
+            _repository.Delete(x => x.Id == Person2.Id);
             var collection = _mongo.Connection.GetCollection<Person>().AsQueryable().ToList();
             collection.Count().ShouldEqual(2);
             collection.Exists(x => x.Id == Person1.Id && x.Name == Person1.Name);
             collection.Exists(x => x.Id == Person3.Id && x.Name == Person3.Name);
-        }
-
-        [Test]
-        public void Should_Delete_Single_By_Expression()
-        {
-            _repository.Delete(Person2.Id);
-            var collection = _mongo.Connection.GetCollection<Person>().AsQueryable().ToList();
-            collection.Count().ShouldEqual(2);
-            collection.Exists(x => x.Id == Person1.Id && x.Name == Person1.Name);
-            collection.Exists(x => x.Id == Person3.Id && x.Name == Person3.Name);
-        }
-
-        [Test]
-        public void Should_Delete_Multiple_By_Expression()
-        {
-            _repository.DeleteMany(x => x.Name.StartsWith("W"));
-            var collection = _mongo.Connection.GetCollection<Person>().AsQueryable().ToList();
-            collection.Count().ShouldEqual(1);
-            collection.Exists(x => x.Id == Person1.Id && x.Name == Person1.Name);
         }
     }
 }

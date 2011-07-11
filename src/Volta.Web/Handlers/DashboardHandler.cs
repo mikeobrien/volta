@@ -1,17 +1,12 @@
-using System;
-
 namespace Volta.Web.Handlers
 {
-    public class DashboardOutputModel
-    {
-        public string Time { get; set; }
-    }
+    public class DashboardOutputModel { }
 
     public class DashboardHandler
     {
         public DashboardOutputModel Query()
         {
-            return new DashboardOutputModel { Time = DateTime.Now.ToString() };
+            return new DashboardOutputModel();
         }
     }
 }

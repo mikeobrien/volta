@@ -13,7 +13,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Set_Tab_Names_In_Proper_Order()
         {
             var handler = new TabsHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.TestBatchesUrl });
-            var output = handler.Query(null);
+            var output = handler.Query(new TabsOutputModel());
 
             output.Tabs.Count().ShouldEqual(2);
             output.Tabs.ElementAt(0).Name.ShouldEqual(NavigationCommon.TestBatchesName);
@@ -24,7 +24,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Set_Tab_Urls_From_Tab_Or_First_Child_In_Proper_Order()
         {
             var handler = new TabsHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.AdministrationName });
-            var output = handler.Query(null);
+            var output = handler.Query(new TabsOutputModel());
 
             output.Tabs.Count().ShouldEqual(2);
             output.Tabs.ElementAt(0).Url.ShouldEqual(NavigationCommon.TestBatchesUrl);
@@ -35,7 +35,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Not_Display_Non_Visible_Tabs()
         {
             var handler = new TabsHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.TestBatchesUrl });
-            var output = handler.Query(null);
+            var output = handler.Query(new TabsOutputModel());
 
             output.Tabs.Count().ShouldEqual(2);
             output.Tabs.Any(x => x.Name == "Test Groups").ShouldBeFalse();
@@ -45,7 +45,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Only_Set_Tab_As_Selected()
         {
             var handler = new TabsHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.TestBatchesUrl });
-            var output = handler.Query(null);
+            var output = handler.Query(new TabsOutputModel());
 
             output.Tabs.Count().ShouldEqual(2);
             output.Tabs.ElementAt(0).Selected.ShouldBeTrue();
@@ -56,7 +56,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Set_Link_Parent_As_Selected_When_Link_Visible()
         {
             var handler = new TabsHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.AddUserUrl });
-            var output = handler.Query(null);
+            var output = handler.Query(new TabsOutputModel());
 
             output.Tabs.Count().ShouldEqual(2);
             output.Tabs.ElementAt(0).Selected.ShouldBeFalse();
@@ -67,7 +67,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Set_Link_Parent_As_Selected_When_Link_With_Parameterized_Url_Visible()
         {
             var handler = new TabsHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.EditSomeUserUrl });
-            var output = handler.Query(null);
+            var output = handler.Query(new TabsOutputModel());
 
             output.Tabs.Count().ShouldEqual(2);
             output.Tabs.ElementAt(0).Selected.ShouldBeFalse();
@@ -78,7 +78,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Set_Link_Parent_As_Selected_When_Link_Not_Visible()
         {
             var handler = new TabsHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.DeleteUserUrl });
-            var output = handler.Query(null);
+            var output = handler.Query(new TabsOutputModel());
 
             output.Tabs.Count().ShouldEqual(2);
             output.Tabs.ElementAt(0).Selected.ShouldBeFalse();

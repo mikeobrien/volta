@@ -1,4 +1,4 @@
-namespace Volta.Core.Domain
+namespace Volta.Core.Domain.Administration
 {
     public interface IUserFactory
     {

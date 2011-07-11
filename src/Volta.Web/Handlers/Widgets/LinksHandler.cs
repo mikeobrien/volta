@@ -9,8 +9,6 @@ using Volta.Core.Infrastructure.Framework.Web.Navigation;
 
 namespace Volta.Web.Handlers.Widgets
 {
-    public class LinksInputModel { }
-
     public class LinksOutputModel
     {
         public IEnumerable<Link> Links { get; set; }
@@ -39,7 +37,7 @@ namespace Volta.Web.Handlers.Widgets
         }
 
         [FubuPartial]
-        public LinksOutputModel Query(LinksInputModel input)
+        public LinksOutputModel Query(LinksOutputModel output)
         {
             // TODO: Add come caching of the links
             Func<MethodInfo, string> getUrl = m => _urlRegistry.UrlFor(m.DeclaringType, m);
@@ -56,7 +54,8 @@ namespace Volta.Web.Handlers.Widgets
                                                     Disabled = false,
                                                     Url = getUrl(x.Action)
                                                 });
-            return new LinksOutputModel { Links = links.Count() > 1 ? links : Enumerable.Empty<LinksOutputModel.Link>() };
+            output.Links = links.Count() > 1 ? links : Enumerable.Empty<LinksOutputModel.Link>();
+            return output;
         }
     }
 }

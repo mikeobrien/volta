@@ -7,16 +7,16 @@
             <div class="links">
                 <div class="left"><a href="/"><img src="/content/volta.logo.medium.png"/></a></div>
                 <div class="right">
-                    #this.Partial<HeaderInputModel>();
+                    #this.Partial<HeaderOutputModel>();
                 </div>
             </div>
             <div class="navigation">
-                #this.Partial<TabsInputModel>();
+                #this.Partial<TabsOutputModel>();
             </div>
         </div>
         <div class="body">
             <div class="navigation">
-                #this.Partial<LinksInputModel>();
+                #this.Partial<LinksOutputModel>();
             </div>
             <div class="content">   
                 <use content="view"/>
@@ -27,5 +27,5 @@
 </div>
             
 <div class="footer">
-#this.Partial<FooterInputModel>();
+#this.Partial<FooterOutputModel>();
 </div>

@@ -110,7 +110,10 @@
     <Compile Include="Acceptance\LoginPageTests.cs" />
     <Compile Include="Acceptance\LoginPage.cs" />
     <Compile Include="Acceptance\Common\VoltaWebPage.cs" />
+    <Compile Include="Unit\Domain\Administration\UserModificationServiceTests.cs" />
+    <Compile Include="Unit\Infrastructure\Application\ComparableModelBaseTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Reflection\AssemblyExtensionsTests.cs" />
+    <Compile Include="Unit\Infrastructure\Framework\Reflection\ExpressionExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Web\FubuMvc\TokenStoreTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Web\FubuMvc\UrlExtensionTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Web\Navigation\TabTests.cs" />
@@ -118,8 +121,8 @@
     <Compile Include="Integration\Application\ConfigurationTests.cs" />
     <Compile Include="Integration\Constants.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Data\MongoRepositoryTests.cs" />
-    <Compile Include="Unit\Domain\UserCreationServiceTests.cs" />
-    <Compile Include="Unit\Domain\UserFactoryTests.cs" />
+    <Compile Include="Unit\Domain\Administration\UserCreationServiceTests.cs" />
+    <Compile Include="Unit\UserInterface\Administration\EditHandlerTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\AuthenticationBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\ExceptionHandlerBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\SecureRequestTests.cs" />
@@ -130,10 +133,9 @@
     <Compile Include="Unit\UserInterface\LogoutHandlerTests.cs" />
     <Compile Include="Unit\UserInterface\LoginHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unit\Application\SecureSessionTests.cs" />
+    <Compile Include="Unit\Infrastructure\Framework\Security\SecureSessionTests.cs" />
     <Compile Include="Unit\Application\AuthenticationServiceTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\HashedPasswordTests.cs" />
-    <Compile Include="Unit\Infrastructure\Framework\ObjectExtensionsTests.cs" />
     <Compile Include="Unit\MemoryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -154,7 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Integration\Infrastructure\Application\" />
-    <Folder Include="Unit\Infrastructure\Application\" />
+    <Folder Include="Unit\UserInterface\TestBatches\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

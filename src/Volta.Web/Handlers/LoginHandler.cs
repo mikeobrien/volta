@@ -3,11 +3,19 @@ using FubuCore;
 using Volta.Core.Application.Security;
 using Volta.Core.Domain;
 using FubuMVC.Core.Continuations;
-using Volta.Core.Infrastructure.Framework;
+using Volta.Core.Domain.Administration;
+using Volta.Core.Infrastructure.Application;
 using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Web.Handlers
 {
+    public class LoginOutputModel : ComparableModelBase
+    {
+        public MessageModel Message { get; set; }
+        public string Username { get; set; }
+        public string RedirectUrl { get; set; }
+    }
+
     public class LoginInputModel
     {
         public string Username { get; set; }
@@ -16,21 +24,10 @@ namespace Volta.Web.Handlers
         public string Action { get; set; }
     }
 
-    public class LoginOutputModel
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Message { get; set; }
-        public string RedirectUrl { get; set; }
-
-        public override bool Equals(object obj) { return this.ObjectEquals(obj); }
-        public override int GetHashCode() { return this.ObjectHashCode(Username, Password, Message, RedirectUrl); }
-    }
-
     public class LoginHandler
     {
-        public const string AuthorizationErrorMessage = "You need to login to access this resource.";
-        public const string AuthenticationErrorMessage = "Invalid username or password.";
+        public const string NotAuthenticatedMessage = "You need to login to access this resource.";
+        public const string InvalidUsernameOrPasswordMessage = "Invalid username or password.";
 
         private readonly ISecureSession<Token> _secureSession;
 
@@ -39,11 +36,11 @@ namespace Volta.Web.Handlers
             _secureSession = secureSession;
         }
 
-        public LoginOutputModel Query(LoginOutputModel input)
+        public LoginOutputModel Query(LoginOutputModel output)
         {
-            if (!input.RedirectUrl.IsEmpty() && input.Message.IsEmpty())
-                input.Message = AuthorizationErrorMessage;
-            return input;
+            if (!output.RedirectUrl.IsEmpty() && (output.Message == null || !output.Message.HasMessageText))
+                output.Message =  MessageModel.Information(NotAuthenticatedMessage);
+            return output;
         }
 
         public FubuContinuation Command(LoginInputModel input)
@@ -63,7 +60,7 @@ namespace Volta.Web.Handlers
                         new LoginOutputModel
                             {
                                 Username = input.Username,
-                                Message = AuthenticationErrorMessage,
+                                Message = MessageModel.Information(InvalidUsernameOrPasswordMessage),
                                 RedirectUrl = input.RedirectUrl
                             });
                 throw;

@@ -4,8 +4,6 @@ using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Web.Handlers.Widgets
 {
-    public class HeaderInputModel { }
-
     public class HeaderOutputModel
     {
         public string CurrentUser { get; set; }
@@ -21,12 +19,10 @@ namespace Volta.Web.Handlers.Widgets
         }
 
         [FubuPartial]
-        public HeaderOutputModel Query(HeaderInputModel input)
+        public HeaderOutputModel Query(HeaderOutputModel output)
         {
-            return new HeaderOutputModel
-                       {
-                           CurrentUser = _secureSession.GetCurrentToken().Username
-                       };
+            output.CurrentUser = _secureSession.GetCurrentToken().Username;
+            return output;
         }
     }
 }

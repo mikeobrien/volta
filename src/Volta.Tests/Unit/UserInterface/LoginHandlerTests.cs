@@ -3,6 +3,7 @@ using Volta.Core.Application.Security;
 using Volta.Core.Domain;
 using NSubstitute;
 using NUnit.Framework;
+using Volta.Core.Domain.Administration;
 using Volta.Core.Infrastructure.Framework.Security;
 using Volta.Web.Handlers;
 
@@ -20,7 +21,7 @@ namespace Volta.Tests.Unit.UserInterface
             var loginController = new LoginHandler(null);
             var result = loginController.Query(new LoginOutputModel { RedirectUrl = RedirectUrl });
             result.RedirectUrl.ShouldEqual(RedirectUrl);
-            result.Message.ShouldEqual(LoginHandler.AuthorizationErrorMessage);
+            result.Message.MessageText.ShouldEqual(LoginHandler.NotAuthenticatedMessage);
         }
 
         [Test]
@@ -28,9 +29,9 @@ namespace Volta.Tests.Unit.UserInterface
         {
             const string message = "Oh hai";
             var loginController = new LoginHandler(null);
-            var result = loginController.Query(new LoginOutputModel { Message = message, RedirectUrl = RedirectUrl });
+            var result = loginController.Query(new LoginOutputModel { Message = MessageModel.Information(message), RedirectUrl = RedirectUrl });
             result.RedirectUrl.ShouldEqual(RedirectUrl);
-            result.Message.ShouldEqual(message);
+            result.Message.MessageText.ShouldEqual(message);
         }
 
         [Test]
@@ -56,7 +57,7 @@ namespace Volta.Tests.Unit.UserInterface
             secureSession.When(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => {throw new AuthenticationService.AccessDeniedException();});
             var loginController = new LoginHandler(secureSession);
             var result = loginController.Command(new LoginInputModel { Username = Username });
-            result.AssertWasTransferedTo(new LoginOutputModel { Username = Username, Message = LoginHandler.AuthenticationErrorMessage });
+            result.AssertWasTransferedTo(new LoginOutputModel { Username = Username, Message = MessageModel.Information(LoginHandler.InvalidUsernameOrPasswordMessage) });
         }
 
         [Test]
@@ -66,7 +67,7 @@ namespace Volta.Tests.Unit.UserInterface
             secureSession.When(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => { throw new EmptyUsernameOrPasswordException(); });
             var loginController = new LoginHandler(secureSession);
             var result = loginController.Command(new LoginInputModel { Username = Username });
-            result.AssertWasTransferedTo(new LoginOutputModel { Username = Username, Message = LoginHandler.AuthenticationErrorMessage });
+            result.AssertWasTransferedTo(new LoginOutputModel { Username = Username, Message = MessageModel.Information(LoginHandler.InvalidUsernameOrPasswordMessage) });
         }
 
         [Test]
@@ -76,7 +77,7 @@ namespace Volta.Tests.Unit.UserInterface
             secureSession.When(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => { throw new AuthenticationService.AccessDeniedException(); });
             var loginController = new LoginHandler(secureSession);
             var result = loginController.Command(new LoginInputModel { Username = Username, RedirectUrl = RedirectUrl });
-            result.AssertWasTransferedTo(new LoginOutputModel { Username = Username, Message = LoginHandler.AuthenticationErrorMessage, RedirectUrl = RedirectUrl });
+            result.AssertWasTransferedTo(new LoginOutputModel { Username = Username, Message = MessageModel.Information(LoginHandler.InvalidUsernameOrPasswordMessage), RedirectUrl = RedirectUrl });
         }
     }
 }

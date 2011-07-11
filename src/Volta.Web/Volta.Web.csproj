@@ -103,6 +103,7 @@
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
     <Compile Include="Behaviors\SecureRequest.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="Handlers\MessageModel.cs" />
     <Compile Include="Handlers\TestBatches\AddHandler.cs" />
     <Compile Include="Handlers\Widgets\LinksHandler.cs" />
     <Compile Include="Handlers\TestBatches\QueryHandler.cs" />

@@ -5,38 +5,36 @@
 <content:title>Login</content:title>
 <content:head>
 <script language="javascript">
-    $(function () {
-        $("input[type='text']:enabled:first").focus();
-    });
+    $(function () { $("input[type='text']:enabled:first").focus(); });
 </script>
 </content:head>
-<content:message>${Model.Message}</content:message>
+<content:message>$!{Model.Message.MessageText}</content:message>
 
 <div class="body" style="width: 320px; margin: 110px auto 200px auto;">
   <img src="/content/volta.logo.large.png" style="display: block; margin: 0 auto 50px auto"/>
-  ${this.StartForm<LoginInputModel>()}
+  ${this.FormAndIdFor<LoginInputModel>()}
     ${this.HiddenInputFor(x => x.RedirectUrl)}
     <div class="form">
       <div class="formrow">
         <div class="formitem">
-          ${this.LabelFor(x => x.Username, "formlabel")}
+          ${this.LabelFor(x => x.Username)}
         </div>
         <div class="formitem">
-          ${this.InputFor(x => x.Username, "textbox")}
+          ${this.InputFor(x => x.Username)}
         </div>
       </div>
       <div class="formrow">
         <div class="formitem">
-          ${this.LabelFor(x => x.Password, "formlabel")}
+          ${this.LabelFor<LoginInputModel>(x => x.Password)}
         </div>
         <div class="formitem">
-          ${this.InputFor(x => x.Password, "textbox").PasswordMode()}
+          ${this.InputFor<LoginInputModel>(x => x.Password).PasswordMode()}
         </div>
       </div>
       <div class="formrow">
         <div class="formitem"></div>
         <div class="formsubmit">
-          ${this.SubmitFor<LoginInputModel>(x => x.Action, "Login", "button")}
+          ${this.SubmitFor<LoginInputModel>(x => x.Action, "Login").AddClass("button")}
         </div>
       </div>
     </div>

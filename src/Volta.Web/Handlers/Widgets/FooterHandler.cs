@@ -3,8 +3,6 @@ using Volta.Core.Application;
 
 namespace Volta.Web.Handlers.Widgets
 {
-    public class FooterInputModel { }
-
     public class FooterOutputModel
     {
         public string Version { get; set; }
@@ -22,14 +20,12 @@ namespace Volta.Web.Handlers.Widgets
         }
 
         [FubuPartial]
-        public FooterOutputModel Query(FooterInputModel input)
+        public FooterOutputModel Query(FooterOutputModel output)
         {
-            return new FooterOutputModel
-                       {
-                           Version = _application.Version,
-                           ReleaseDate = _application.ReleaseDate.ToString("MM/dd/yyyy hh:mm:ss"),
-                           CopyrightYear = _application.CopyrightYear
-                       };
+            output.Version = _application.Version;
+            output.ReleaseDate = _application.ReleaseDate.ToString("MM/dd/yyyy hh:mm:ss");
+            output.CopyrightYear = _application.CopyrightYear;
+            return output;
         }
     }
 }

@@ -81,24 +81,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Administration\IUserCreationService.cs" />
+    <Compile Include="Domain\Administration\IUserModificationService.cs" />
+    <Compile Include="Domain\Administration\UserModificationService.cs" />
+    <Compile Include="Infrastructure\Application\ComparableModelBase.cs" />
     <Compile Include="Application\Configuration\Configuration.cs" />
     <Compile Include="Application\Configuration\ConfigurationSection.cs" />
     <Compile Include="Application\Configuration\IConfiguration.cs" />
     <Compile Include="Application\Security\AuthenticationService.cs" />
     <Compile Include="Application\Application.cs" />
     <Compile Include="Application\IApplication.cs" />
+    <Compile Include="Infrastructure\Framework\Reflection\ExpressionExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Security\IAuthenticationService.cs" />
     <Compile Include="Infrastructure\Framework\Security\ISecureSession.cs" />
     <Compile Include="Infrastructure\Framework\Security\ITokenStore.cs" />
     <Compile Include="Infrastructure\Framework\Security\SecureSession.cs" />
     <Compile Include="Application\Security\Token.cs" />
-    <Compile Include="Domain\IUserFactory.cs" />
-    <Compile Include="Domain\User.cs" />
-    <Compile Include="Domain\UserCreationService.cs" />
-    <Compile Include="Domain\UserFactory.cs" />
-    <Compile Include="Infrastructure\Framework\Data\IdConvention.cs" />
-    <Compile Include="Infrastructure\Framework\Data\IIdentityConvention.cs" />
-    <Compile Include="Infrastructure\Framework\Data\IMongoCollectionExtensions.cs" />
+    <Compile Include="Domain\Administration\IUserFactory.cs" />
+    <Compile Include="Domain\Administration\User.cs" />
+    <Compile Include="Domain\Administration\UserCreationService.cs" />
     <Compile Include="Infrastructure\Framework\Data\IRepository.cs" />
     <Compile Include="Infrastructure\Framework\Data\MongoConnection.cs" />
     <Compile Include="Infrastructure\Framework\Data\MongoRepository.cs" />
@@ -122,9 +123,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\Application\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,19 +1,16 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Should;
-using Volta.Core.Infrastructure.Framework;
+using Volta.Core.Infrastructure.Application;
 
-namespace Volta.Tests.Unit.Infrastructure.Framework
+namespace Volta.Tests.Unit.Infrastructure.Application
 {
     [TestFixture]
-    public class ObjectExtensionsTests
+    public class ComparableModelBaseTests
     {
-        private class SomeClass
+        private class SomeClass : ComparableModelBase
         {
             public string Name { get; set; }
             public int Age { get; set; }
-
-            public override bool Equals(object obj) { return this.ObjectEquals(obj); }
-            public override int GetHashCode() { return this.ObjectHashCode(Name, Age); }
         }
 
         [Test]

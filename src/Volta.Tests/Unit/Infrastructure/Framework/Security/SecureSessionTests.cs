@@ -4,11 +4,23 @@ using NUnit.Framework;
 using Should;
 using Volta.Core.Infrastructure.Framework.Security;
 
-namespace Volta.Tests.Unit.Application
+namespace Volta.Tests.Unit.Infrastructure.Framework.Security
 {
     [TestFixture]
     public class SecureSessionTests
     {
+        [Test]
+        public void Should_Login_Token()
+        {
+            var secureSession = new SecureSession<Token>(null, new MemoryTokenStore<Token>());
+            var token = new Token(null, false);
+
+            secureSession.Login(token);
+
+            secureSession.IsLoggedIn().ShouldBeTrue();
+            secureSession.GetCurrentToken().ShouldEqual(token);
+        }
+
         [Test]
         public void Should_Login_Valid_User()
         {

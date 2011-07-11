@@ -13,7 +13,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Not_Display_A_Single_Link()
         {
             var handler = new LinksHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.TestBatchesUrl });
-            var output = handler.Query(null);
+            var output = handler.Query(new LinksOutputModel());
 
             output.Links.Count().ShouldEqual(0);
         }
@@ -22,7 +22,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Set_Link_Names_In_Proper_Order()
         {
             var handler = new LinksHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.UsersUrl });
-            var output = handler.Query(null);
+            var output = handler.Query(new LinksOutputModel());
 
             output.Links.Count().ShouldEqual(2);
             output.Links.ElementAt(0).Name.ShouldEqual(NavigationCommon.UsersName);
@@ -33,7 +33,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Set_Link_Urls_In_Proper_Order()
         {
             var handler = new LinksHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.UsersUrl });
-            var output = handler.Query(null);
+            var output = handler.Query(new LinksOutputModel());
 
             output.Links.Count().ShouldEqual(2);
             output.Links.ElementAt(0).Url.ShouldEqual(NavigationCommon.UsersUrl);
@@ -44,7 +44,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Not_Display_Invisible_Links()
         {
             var handler = new LinksHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.DeleteUserUrl });
-            var output = handler.Query(null);
+            var output = handler.Query(new LinksOutputModel());
 
             output.Links.Count().ShouldEqual(2);
             output.Links.Any(x => x.Url == NavigationCommon.DeleteUserUrl).ShouldBeFalse();
@@ -54,7 +54,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Only_Set_Selected_Link_As_Selected()
         {
             var handler = new LinksHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.AddUserUrl });
-            var output = handler.Query(null);
+            var output = handler.Query(new LinksOutputModel());
 
             output.Links.Count().ShouldEqual(2);
             output.Links.ElementAt(0).Selected.ShouldBeFalse();
@@ -65,7 +65,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
         public void Should_Not_Set_Any_Links_As_Selected_When_On_Invisible_Url()
         {
             var handler = new LinksHandler(NavigationCommon.TestUrlRegistry, NavigationCommon.TestNavigation, new CurrentRequest { Path = NavigationCommon.EditSomeUserUrl });
-            var output = handler.Query(null);
+            var output = handler.Query(new LinksOutputModel());
 
             output.Links.Count().ShouldEqual(2);
             output.Links.ElementAt(0).Selected.ShouldBeFalse();

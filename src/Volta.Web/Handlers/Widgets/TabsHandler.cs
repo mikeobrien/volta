@@ -9,8 +9,6 @@ using Volta.Core.Infrastructure.Framework.Web.Navigation;
 
 namespace Volta.Web.Handlers.Widgets
 {
-    public class TabsInputModel { }
-
     public class TabsOutputModel
     {
         public IEnumerable<Tab> Tabs { get; set; }
@@ -38,23 +36,21 @@ namespace Volta.Web.Handlers.Widgets
         }
 
         [FubuPartial]
-        public TabsOutputModel Query(TabsInputModel input)
+        public TabsOutputModel Query(TabsOutputModel output)
         {
             // TODO: Add come caching of the tabs
             Func<MethodInfo, string> getUrl = m => _urlRegistry.UrlFor(m.DeclaringType, m);
             Func<Tab, bool> isSelected = link => link.HasAction && getUrl(link.Action).MatchesUrl(_request.Path);
-            return new TabsOutputModel
-                {
-                    Tabs = _tabCollection.
-                                OrderBy(x => x.Order).
-                                Select(x => new TabsOutputModel.Tab
+            output.Tabs = _tabCollection.
+                            OrderBy(x => x.Order).
+                            Select(x => new TabsOutputModel.Tab
                                             {
                                                 Name = x.Name,
                                                 Selected = isSelected(x) || (x.HasChildren && x.Any(isSelected)),
                                                 Disabled = false,
                                                 Url = getUrl(x.HasAction ? x.Action : x.First().Action)
-                                            })
-                };
+                                            });
+            return output;
         }
     }
 }

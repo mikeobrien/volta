@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Volta.Core.Infrastructure;
-using Volta.Core.Infrastructure.Framework;
 using Volta.Core.Infrastructure.Framework.Data;
+using Volta.Core.Infrastructure.Framework.Reflection;
 
 namespace Volta.Tests.Unit
 {
@@ -19,31 +18,21 @@ namespace Volta.Tests.Unit
             _entites = new List<TEntity>(entities);
             _query = _entites.AsQueryable();
         }
-
-        public TEntity Get(object id)
-        {
-            return _entites.FirstOrDefault(x => x.ToDynamic().Id == id);
-        }
-
+         
         public void Add(TEntity entity)
         {
             _entites.Add(entity);
         }
 
-        public void Update(TEntity entity)
+        public void Update<TType>(Expression<Func<TEntity, TType>> filter, TEntity entity)
         {
-            Delete(entity.ToDynamic().Id);
+            Delete(filter.PropertyEquals(entity));
             Add(entity);
         }
 
-        public void Delete(object id)
+        public void Delete(Expression<Func<TEntity, bool>> filter)
         {
-            _entites.Where(x => x.ToDynamic().Id == id).Take(1).ToList().ForEach(x => _entites.Remove(x));
-        }
-
-        public void DeleteMany(Expression<Func<TEntity, bool>> filter)
-        {
-            _query.Where(filter).ToList().ForEach(x => _entites.Remove(x));
+            _entites.AsQueryable().Where(filter).Take(1).ToList().ForEach(x => _entites.Remove(x));
         }
 
         public IEnumerator<TEntity> GetEnumerator() { return _entites.GetEnumerator(); }

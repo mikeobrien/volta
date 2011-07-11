@@ -33,7 +33,7 @@ namespace Volta.Tests.Acceptance
             Page.Submit();
             Page.IsOnPage().ShouldBeTrue();
             Page.HasMessage.ShouldBeTrue();
-            Page.MessageText.ShouldEqual(LoginHandler.AuthenticationErrorMessage);
+            Page.MessageText.ShouldEqual(LoginHandler.InvalidUsernameOrPasswordMessage);
         }
          
         [Test]
@@ -50,7 +50,7 @@ namespace Volta.Tests.Acceptance
             Page.NavigateTo<EditPage>(Constants.TestUsername);
             Page.IsOnPage().ShouldBeTrue();
             Page.HasMessage.ShouldBeTrue();
-            Page.MessageText.ShouldEqual(LoginHandler.AuthorizationErrorMessage);
+            Page.MessageText.ShouldEqual(LoginHandler.NotAuthenticatedMessage);
         }
 
         [Test]

@@ -6,10 +6,8 @@ namespace Volta.Core.Infrastructure.Framework.Data
 {
     public interface IRepository<TEntity> : IQueryable<TEntity> where TEntity : class
     {
-        TEntity Get(object id);
         void Add(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(object id);
-        void DeleteMany(Expression<Func<TEntity, bool>> filter);
+        void Update<TKey>(Expression<Func<TEntity, TKey>> key, TEntity entity);
+        void Delete(Expression<Func<TEntity, bool>> filter);
     }
 }
