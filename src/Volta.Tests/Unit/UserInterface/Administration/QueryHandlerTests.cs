@@ -17,7 +17,7 @@ namespace Volta.Tests.Unit.UserInterface.Administration
         [SetUp]
         public void Setup()
         {
-            _userRepository = new MemoryRepository<User>(Enumerable.Range(1, TotalRecords).Select(x => new User { Username = x.ToString(), Administrator = (x % 2 == 0) }).ToArray());
+            _userRepository = new MemoryRepository<User>(Enumerable.Range(1, TotalRecords).Select(x => new User { Username = x.ToString().PadLeft(2, '0'), Administrator = (x % 2 == 0) }).ToArray());
         }
 
         [Test]
