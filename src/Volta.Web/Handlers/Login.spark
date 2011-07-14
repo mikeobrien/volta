@@ -34,7 +34,7 @@
       <div class="formrow">
         <div class="formitem"></div>
         <div class="formsubmit">
-          ${this.SubmitFor<LoginInputModel>(x => x.Action, "Login").AddClass("button")}
+          <input value="Login" type="submit" class="button" /> 
         </div>
       </div>
     </div>

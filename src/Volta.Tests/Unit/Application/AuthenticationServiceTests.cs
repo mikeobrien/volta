@@ -22,7 +22,7 @@ namespace Volta.Tests.Unit.Application
             var authenticationService = new AuthenticationService(_userRepository, new UserCreationService(_userRepository));
             var result = authenticationService.Authenticate(Username, Password);
             result.ShouldNotBeNull();
-            result.Username.ShouldEqual(Username);
+            result.Username.ToString().ShouldEqual(Username);
             result.IsAdministrator.ShouldBeTrue();
         }
 

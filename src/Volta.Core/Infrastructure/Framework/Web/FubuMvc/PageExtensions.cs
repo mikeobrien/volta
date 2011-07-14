@@ -18,7 +18,7 @@ namespace Volta.Core.Infrastructure.Framework.Web.FubuMvc
             return (FormTag)page.FormFor<TInputModel>().Id(typeof(TInputModel).Name);
         }
 
-        public static HtmlTag SubmitFor<TInputModel>(this IFubuPage page, Expression<Func<TInputModel, object>> property, string text) 
+        public static HtmlTag SubmitFor<TInputModel>(this IFubuPage page, Expression<Func<TInputModel, object>> property, object text) 
             where TInputModel : class, new()
         {
             var name = property.GetPropertyName();

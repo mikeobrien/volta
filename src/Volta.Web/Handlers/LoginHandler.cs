@@ -1,7 +1,6 @@
 using System;
 using FubuCore;
 using Volta.Core.Application.Security;
-using Volta.Core.Domain;
 using FubuMVC.Core.Continuations;
 using Volta.Core.Domain.Administration;
 using Volta.Core.Infrastructure.Application;
@@ -21,7 +20,6 @@ namespace Volta.Web.Handlers
         public string Username { get; set; }
         public string Password { get; set; }
         public string RedirectUrl { get; set; }
-        public string Action { get; set; }
     }
 
     public class LoginHandler
@@ -54,8 +52,9 @@ namespace Volta.Web.Handlers
             }
             catch (Exception e)
             {
-                if (e is AuthenticationService.AccessDeniedException || 
-                    e is EmptyUsernameOrPasswordException)
+                if (e is AuthenticationService.AccessDeniedException ||
+                    e is EmptyUsernameException ||
+                    e is EmptyPasswordException)
                     return FubuContinuation.TransferTo(
                         new LoginOutputModel
                             {

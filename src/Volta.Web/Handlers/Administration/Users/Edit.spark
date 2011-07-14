@@ -1,7 +1,66 @@
 ﻿<use master="Chrome" />
+<use namespace="HtmlTags.Extended.Attributes" />
+<use namespace="Volta.Core.Infrastructure.Framework.Web.FubuMvc" />
+<use namespace="Volta.Web.Handlers" />
+<use namespace="Volta.Web.Handlers.Administration.Users" />
 <viewdata model="Volta.Web.Handlers.Administration.Users.EditOutputModel" />
 
-<content:title>Edit User</content:title>
-<content:head></content:head>
+<content:head>
+<script language="javascript">
+    $(function () {
+        $("#EditInputModel").submit(function () {
+            if ($("input#Password").val() != $("input#Password2").val()) {
+                $("#error").html("Passwords do not match.");
+                return false;
+            }
+        });
+    });
+</script>
+</content:head>
 
-<h1>Edit user: ${Model.Username}</h1>
+<content:title>Edit User</content:title>
+<content:error if="Model.Message.HasError()">$!{Model.Message.MessageText}</content:error>
+
+<div class="formcontainer">
+
+    ${this.FormAndIdFor<EditInputModel>()}
+    ${this.HiddenInputFor(x => x.Username)}
+    <fieldset>
+        <legend>User ${Model.Username}</legend>
+        <div class="form"> 
+            <div class="formrow"><div class="formitem">
+                <div class="form"> 
+                    <div class="formrow">
+                        <div class="formitem">${this.LabelFor(x => x.Username)}</div>
+                        <div class="formitem">${this.InputFor(x => x.NewUsername)}</div>
+                    </div>
+                                
+                    <div class="formrow">
+                        <div class="formitem">${this.LabelFor<EditInputModel>(x => x.Password)}</div>
+                        <div class="formitem">${this.InputFor<EditInputModel>(x => x.Password).PasswordMode()}</div>
+                    </div>
+                                
+                    <div class="formrow">
+                        <div class="formitem"><label class="formlabel" id="Password2" for="Password2">Re-enter Password</label></div>
+                        <div class="formitem"><input class="textbox" type="password" name="Password2" id="Password2"  autocomplete="off"/></div>
+                    </div>
+                                
+                    <div class="formrow">
+                        <div class="formitem">${this.LabelFor(x => x.Administrator)}</div>
+                        <div class="formitem">${this.InputFor(x => x.Administrator)}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+                
+    <input value="Save" type="submit" class="button" /> 
+    ${this.EndForm()}
+
+    ${this.FormFor<QueryHandler>(x => x.Query()).Method("get").Id("Cancel")}
+        <input value="Cancel" type="submit" class="button" />
+    ${this.EndForm()}
+
+</div>

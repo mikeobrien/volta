@@ -14,7 +14,8 @@ namespace Volta.Tests.Unit.UserInterface.Administration
     public class EditHandlerTests
     {
         private const string Username1 = "someuser";
-        private const string Username3 = "andanotheruser";
+        private const string Username2 = "andanotheruser";
+        private const string Password = "password";
         private const string PasswordHash = "FFFFFFFFFF";
         private IRepository<User> _userRepository;
 
@@ -33,7 +34,7 @@ namespace Volta.Tests.Unit.UserInterface.Administration
             result.Message.ShouldBeNull();
             result.Username.ShouldEqual(Username1);
             result.NewUsername.ShouldEqual(Username1);
-            result.IsAdministrator.ShouldBeTrue();
+            result.Administrator.ShouldBeTrue();
         }
 
         [Test]
@@ -45,14 +46,16 @@ namespace Volta.Tests.Unit.UserInterface.Administration
             result.Message.MessageText.ShouldEqual(EditHandler.UserNotFoundMessage);
             result.Username.ShouldBeNull();
             result.NewUsername.ShouldBeNull();
-            result.IsAdministrator.ShouldBeFalse();
+            result.Administrator.ShouldBeFalse();
         }
 
         [Test]
         public void Should_Update_Existing_User()
         {
-            var handler = new EditHandler(_userRepository, Substitute.For<IUserModificationService>());
-            var result = handler.Command(new EditInputModel());
+            var modificationService = Substitute.For<IUserModificationService>();
+            var handler = new EditHandler(_userRepository, modificationService);
+            var result = handler.Command(new EditInputModel { Username = Username1, NewUsername = Username2, Administrator = true, Password = Password });
+            modificationService.Received().Modify(Arg.Is<Username>(x => x == Username1), Arg.Is<User>(x => x.Username == Username2 && x.Administrator && x.Password == Password));
             result.AssertWasRedirectedTo<QueryHandler>(x => x.Query());
         }
 
@@ -72,9 +75,20 @@ namespace Volta.Tests.Unit.UserInterface.Administration
             var modificationService = Substitute.For<IUserModificationService>();
             modificationService.WhenForAnyArgs(x => x.Modify(null, null)).Do(x => { throw new DuplicateUsernameException(); });
             var handler = new EditHandler(_userRepository, modificationService);
-            var result = handler.Command(new EditInputModel { Username = Username1, NewUsername = Username3, IsAdministrator = true });
-            result.AssertWasTransferedTo(new EditOutputModel { Username = Username1, NewUsername = Username3, IsAdministrator = true, 
-                                                               Message = MessageModel.Information(EditHandler.DuplicateUserFoundMessage) });
+            var result = handler.Command(new EditInputModel { Username = Username1, NewUsername = Username2, Administrator = true });
+            result.AssertWasTransferedTo(new EditOutputModel { Username = Username1, NewUsername = Username2, Administrator = true, 
+                                                               Message = MessageModel.Error(EditHandler.DuplicateUserFoundMessage) });
+        }
+
+        [Test]
+        public void Should_Return_A_Message_If_The_Username_Is_Empty()
+        {
+            var modificationService = Substitute.For<IUserModificationService>();
+            modificationService.WhenForAnyArgs(x => x.Modify(null, null)).Do(x => { throw new EmptyUsernameException(); });
+            var handler = new EditHandler(_userRepository, modificationService);
+            var result = handler.Command(new EditInputModel { Username = Username1, NewUsername = Username2, Administrator = true });
+            result.AssertWasTransferedTo(new EditOutputModel { Username = Username1, NewUsername = Username2, Administrator = true, 
+                                                               Message = MessageModel.Error(EditHandler.EmptyUsernameMessage) });
         }
     }
 }

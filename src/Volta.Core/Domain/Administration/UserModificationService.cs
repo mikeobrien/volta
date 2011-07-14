@@ -19,20 +19,27 @@ namespace Volta.Core.Domain.Administration
             _secureSession = secureSession;
         }
 
-        public User Modify(string username, User modifedUser)
+        public User Modify(Username username, User modifiedUser)
         {
-            var user = _userRepository.FirstOrDefault(x => x.Username == username);
+            if (string.IsNullOrEmpty(modifiedUser.Username))
+                throw new EmptyUsernameException();
+
+            var user = _userRepository.FirstOrDefault(x => x.Username == (string)username);
 
             if (user == null) throw new UserNotFoundException();
 
-            if (_userRepository.Any(x => x.Username == modifedUser.Username))
+            if (username != modifiedUser.Username && _userRepository.Any(x => x.Username == modifiedUser.Username))
                 throw new DuplicateUsernameException();
 
-            user.Username = modifedUser.Username;
-            user.Password = !string.IsNullOrEmpty(modifedUser.Password) ?
-                HashedPassword.Create(modifedUser.Password).ToString() : user.Password;
-            user.Administrator = modifedUser.Administrator;
+            user.Username = modifiedUser.Username;
+            user.Password = !string.IsNullOrEmpty(modifiedUser.Password) ?
+                HashedPassword.Create(modifiedUser.Password).ToString() : user.Password;
+            user.Administrator = modifiedUser.Administrator;
             _userRepository.Update(x => x.Id, user);
+
+            if (_secureSession.IsLoggedIn() && _secureSession.GetCurrentToken().Username == username) 
+                _secureSession.Login(new Token(user.Username, user.Administrator));
+
             return user;
         }
     }

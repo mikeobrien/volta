@@ -4,4 +4,10 @@
 <content:title>Users</content:title>
 <content:head></content:head>
 
-<h1>Users</h1>
+<table class="datatable">
+    <tr><th><a class="lightanchor" href="" title="Sort by Batch Name">Username</a></th><th><a class="lightanchor" href="" title="Sort by Description">Administrator</a></th><th class="commands"></th></tr>
+    
+    <tr><td><a class="darkanchor" href="" title="Username">mobrien</a></td><td><img src="/content/check.png"/></td><td class="commands"><a href="" title="Edit Batch"><img src="/content/edit.png"/></a>&nbsp;<a href="" title="Delete Batch"><img src="/content/delete.png"/></a></td></tr>
+
+    <tr><td class="commands" colspan="3">!{Model.PageStart}-!{Model.PageEnd} of !{Model.Total} <a class="darkanchor" href="" title="Previous page">Previous</a> | <a class="darkanchor" href="" title="Next page">Next</a></td></tr>
+</table>

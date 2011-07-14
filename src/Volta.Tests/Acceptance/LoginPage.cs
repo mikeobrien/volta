@@ -14,7 +14,7 @@ namespace Volta.Tests.Acceptance
 
         public TextField UsernameTextField { get { return Form.TextField(FindById(x => x.Username)); } }
         public TextField PasswordTextField { get { return Form.TextField(FindById(x => x.Password)); } }
-        public Button SubmitButton { get { return Form.Button(FindById(x => x.Action)); } }
+        public Button SubmitButton { get { return Form.Button(x => true); } }
 
         public LoginPage Submit()
         {

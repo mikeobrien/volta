@@ -17,7 +17,7 @@
 
 .dashboard
 {
-    padding: 40px 0 0 0;
+    padding: 40px 0 40px 0;
 }
 
 .dashboard .item
@@ -45,7 +45,7 @@
 
     <div class="item">
         <img class="icon" src="/Content/user.add.png"/>
-        !{this.LinkTo<Volta.Web.Handlers.Administration.Users.AddHandler>(x => x.Query()).Text("Add a new user").AddClass("darkanchor")}
+        !{this.LinkTo<Volta.Web.Handlers.Administration.Users.AddHandler>(x => x.Query(null)).Text("Add a new user").AddClass("darkanchor")}
     </div>
 
 </div>

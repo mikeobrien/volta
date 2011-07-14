@@ -111,6 +111,7 @@
     <Compile Include="Acceptance\LoginPage.cs" />
     <Compile Include="Acceptance\Common\VoltaWebPage.cs" />
     <Compile Include="Unit\Domain\Administration\UserModificationServiceTests.cs" />
+    <Compile Include="Unit\Domain\Administration\UsernameTests.cs" />
     <Compile Include="Unit\Infrastructure\Application\ComparableModelBaseTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Reflection\AssemblyExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Reflection\ExpressionExtensionsTests.cs" />
@@ -122,8 +123,9 @@
     <Compile Include="Integration\Constants.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Data\MongoRepositoryTests.cs" />
     <Compile Include="Unit\Domain\Administration\UserCreationServiceTests.cs" />
+    <Compile Include="Unit\UserInterface\Administration\AddHandlerTests.cs" />
     <Compile Include="Unit\UserInterface\Administration\EditHandlerTests.cs" />
-    <Compile Include="Unit\UserInterface\Behaviors\AuthenticationBehaviorTests.cs" />
+    <Compile Include="Unit\UserInterface\Behaviors\AuthorizationBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\ExceptionHandlerBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\SecureRequestTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Web\FubuMvc\FullNameUrlPolicyTests.cs" />

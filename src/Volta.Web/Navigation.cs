@@ -17,8 +17,9 @@ namespace Volta.Web
                 {
                     x.Name = "Administration";
                     x.Add<Handlers.Administration.Users.QueryHandler>("Users", y => y.Query());
-                    x.Add<Handlers.Administration.Users.AddHandler>("Add User", y => y.Query());
+                    x.Add<Handlers.Administration.Users.AddHandler>("Add User", y => y.Query(null));
                     x.Add<Handlers.Administration.Users.EditHandler>(y => y.Query_Username(null));
+                    x.Add<Handlers.Administration.Users.EditHandler>(y => y.Query(null));
                 });
         }
     }

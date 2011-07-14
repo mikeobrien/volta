@@ -5,7 +5,7 @@ namespace Volta.Core.Infrastructure.Framework
 {
     public static class ExpressionExtensions
     {
-        public static string GetPropertyName<T>(this Expression<Func<T, object>> property)
+        public static string GetPropertyName<TType, TValue>(this Expression<Func<TType, TValue>> property)
         {
             if (property.Body.NodeType != ExpressionType.MemberAccess)
                 throw new ArgumentException("Mapping must be a property.", "property");

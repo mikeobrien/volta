@@ -54,17 +54,27 @@ namespace Volta.Tests.Unit.UserInterface
         public void Should_Redirect_Invalid_User_Back_To_the_Login_Page_On_Access_Denied_Exception()
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
-            secureSession.When(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => {throw new AuthenticationService.AccessDeniedException();});
+            secureSession.WhenForAnyArgs(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => { throw new AuthenticationService.AccessDeniedException(); });
             var loginController = new LoginHandler(secureSession);
             var result = loginController.Command(new LoginInputModel { Username = Username });
             result.AssertWasTransferedTo(new LoginOutputModel { Username = Username, Message = MessageModel.Information(LoginHandler.InvalidUsernameOrPasswordMessage) });
         }
 
         [Test]
-        public void Should_Redirect_Invalid_User_Back_To_the_Login_Page_On_Empty_Username_Or_Password_Exception()
+        public void Should_Redirect_Invalid_User_Back_To_the_Login_Page_On_Empty_Username_Exception()
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
-            secureSession.When(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => { throw new EmptyUsernameOrPasswordException(); });
+            secureSession.WhenForAnyArgs(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => { throw new EmptyUsernameException(); });
+            var loginController = new LoginHandler(secureSession);
+            var result = loginController.Command(new LoginInputModel { Username = Username });
+            result.AssertWasTransferedTo(new LoginOutputModel { Username = Username, Message = MessageModel.Information(LoginHandler.InvalidUsernameOrPasswordMessage) });
+        }
+
+        [Test]
+        public void Should_Redirect_Invalid_User_Back_To_the_Login_Page_On_Empty_Password_Exception()
+        {
+            var secureSession = Substitute.For<ISecureSession<Token>>();
+            secureSession.WhenForAnyArgs(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => { throw new EmptyPasswordException(); });
             var loginController = new LoginHandler(secureSession);
             var result = loginController.Command(new LoginInputModel { Username = Username });
             result.AssertWasTransferedTo(new LoginOutputModel { Username = Username, Message = MessageModel.Information(LoginHandler.InvalidUsernameOrPasswordMessage) });
@@ -74,7 +84,7 @@ namespace Volta.Tests.Unit.UserInterface
         public void Should_Redirect_Invalid_User_Back_To_the_Login_Page_On_Access_Denied_Exception_With_A_Redirection()
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
-            secureSession.When(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => { throw new AuthenticationService.AccessDeniedException(); });
+            secureSession.WhenForAnyArgs(x => x.Login(Arg.Any<string>(), Arg.Any<string>())).Do(x => { throw new AuthenticationService.AccessDeniedException(); });
             var loginController = new LoginHandler(secureSession);
             var result = loginController.Command(new LoginInputModel { Username = Username, RedirectUrl = RedirectUrl });
             result.AssertWasTransferedTo(new LoginOutputModel { Username = Username, Message = MessageModel.Information(LoginHandler.InvalidUsernameOrPasswordMessage), RedirectUrl = RedirectUrl });

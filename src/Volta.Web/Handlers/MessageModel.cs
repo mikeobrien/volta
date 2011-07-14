@@ -18,4 +18,17 @@ namespace Volta.Web.Handlers
         public string MessageText { get; set; }
         public bool IsError { get; set; }
     }
+
+    public static class MessageModelExtensions
+    {
+        public static bool HasMessage(this MessageModel message)
+        {
+            return message != null && message.HasMessageText && !message.IsError;
+        }
+
+        public static bool HasError(this MessageModel message)
+        {
+            return message != null && message.HasMessageText && message.IsError;
+        }
+    }
 }

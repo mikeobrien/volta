@@ -55,14 +55,14 @@ namespace Volta.Tests.Unit.Domain.Administration
         public void Should_Not_Create_User_With_Empty_Username()
         {
             var userCreationService = new UserCreationService(new MemoryRepository<User>());
-            Assert.Throws<EmptyUsernameOrPasswordException>(() => userCreationService.Create(Username, string.Empty, false));
+            Assert.Throws<EmptyUsernameException>(() => userCreationService.Create(string.Empty, Password, false));
         }
 
         [Test]
         public void Should_Not_Create_User_With_Empty_Password()
         {
             var userCreationService = new UserCreationService(new MemoryRepository<User>());
-            Assert.Throws<EmptyUsernameOrPasswordException>(() => userCreationService.Create(string.Empty, Password, false));
+            Assert.Throws<EmptyPasswordException>(() => userCreationService.Create(Username, string.Empty, false));
         }
     }
 }

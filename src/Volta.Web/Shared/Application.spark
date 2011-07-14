@@ -9,6 +9,7 @@
 	</head>
 	<body>
 		<div id="message"><use content="message" /></div>
+		<div id="error"><use content="error" /></div>
 		<use content="view"/>
 	</body>
 </html>

@@ -6,7 +6,8 @@ using Volta.Core.Infrastructure.Framework.Security;
 namespace Volta.Core.Domain.Administration
 {
     public class DuplicateUsernameException : Exception { }
-    public class EmptyUsernameOrPasswordException : Exception { }
+    public class EmptyUsernameException : Exception { }
+    public class EmptyPasswordException : Exception { }
 
     public class UserCreationService : IUserCreationService
     {
@@ -17,17 +18,18 @@ namespace Volta.Core.Domain.Administration
             _userRepository = userRepository;
         }
 
-        public User Create(string username, string password, bool isAdmin)
+        public User Create(Username username, string password, bool isAdministrator)
         {
-            if (_userRepository.Any(x => x.Username.ToLower() == username.ToLower()))
+            if (_userRepository.Any(x => x.Username == (string)username))
                 throw new DuplicateUsernameException();
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                throw new EmptyUsernameOrPasswordException();
+            if (username.IsEmpty) throw new EmptyUsernameException();
+            if (string.IsNullOrEmpty(password)) throw new EmptyPasswordException();
+                
             var user = new User
                 {
-                    Username = username.ToLower(),
+                    Username = username,
                     Password = HashedPassword.Create(password).ToString(),
-                    Administrator = isAdmin
+                    Administrator = isAdministrator
                 };
             _userRepository.Add(user);
             return user;

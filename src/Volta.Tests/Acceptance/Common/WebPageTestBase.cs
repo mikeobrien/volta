@@ -24,6 +24,7 @@ namespace Volta.Tests.Acceptance.Common
             Console.WriteLine(Page.GetHtml());
             Console.WriteLine("-------------------------------------------------------------");
             Page.Close();
+            //Page.Kill();
         }
     }
 }

@@ -29,15 +29,16 @@ namespace Volta.Tests.Acceptance.Common
             return Browser.Uri.AbsolutePath.StartsWith(BaseUrl.AbsolutePath + "/");
         }
 
-        [DllImport("user32.dll")]
-        static extern int GetWindowThreadProcessId(IntPtr windowHandle, IntPtr processId);
-
         public void Close()
         {
             Browser.Dispose();
-            //if (Browser == null || Browser.hWnd == IntPtr.Zero) return;
-            //var threadId = GetWindowThreadProcessId(Browser.hWnd, IntPtr.Zero);
-            //Process.GetProcessesByName("iexplore").First(x => x.Threads.Cast<ProcessThread>().Any(y => y.Id == threadId)).Kill();
+        }
+
+        public void Kill()
+        {
+            if (Browser == null || Browser.hWnd == IntPtr.Zero) return;
+            var threadId = GetWindowThreadProcessId(Browser.hWnd, IntPtr.Zero);
+            Process.GetProcessesByName("iexplore").First(x => x.Threads.Cast<ProcessThread>().Any(y => y.Id == threadId)).Kill();
         }
 
         public WebPage GoHome()
@@ -84,5 +85,8 @@ namespace Volta.Tests.Acceptance.Common
             Browser.GoTo((url != null ? new Uri(BaseUrl, url) : BaseUrl) + parts.Aggregate(string.Empty, (a, i) => a + "/" + i));
             return this;
         }
+
+        [DllImport("user32.dll")]
+        private static extern int GetWindowThreadProcessId(IntPtr windowHandle, IntPtr processId);
     }
 }

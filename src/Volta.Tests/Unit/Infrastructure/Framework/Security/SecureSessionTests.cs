@@ -35,7 +35,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Security
             secureSession.IsLoggedIn().ShouldBeTrue();
             var token = secureSession.GetCurrentToken();
             token.ShouldNotBeNull();
-            token.Username.ShouldEqual("username");
+            token.Username.ToString().ShouldEqual("username");
             token.IsAdministrator.ShouldBeTrue();
         }
 

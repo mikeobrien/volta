@@ -13,11 +13,11 @@ namespace Volta.Web.Behaviors
     {
         private readonly IOutputWriter _writer;
         private readonly IActionBehavior _actionBehavior;
-        private readonly SecureRequest<LoginHandler, DashboardHandler> _request;
+        private readonly SecureRequest<LoginHandler, LogoutHandler, DashboardHandler> _request;
 
         public AuthorizationBehavior(IUrlRegistry registry, CurrentRequest request, IOutputWriter writer, IActionBehavior actionBehavior, ISecureSession<Token> secureSession)
         {
-            _request = new SecureRequest<LoginHandler, DashboardHandler>(registry, request, secureSession, x => x.Query(null), x => x.Query());
+            _request = new SecureRequest<LoginHandler, LogoutHandler, DashboardHandler>(registry, request, secureSession, x => x.Query(null), x => x.Query(), x => x.Query());
             _writer = writer;
             _actionBehavior = actionBehavior;
         }
@@ -36,7 +36,7 @@ namespace Volta.Web.Behaviors
         private void WhenNotLoggedIn()
         {
             if (_request.IsOnLoginPage()) _actionBehavior.Invoke();
-            else _writer.RedirectToUrl(_request.IsOnDefaultPage() ? _request.LoginPageUrl() : 
+            else _writer.RedirectToUrl(_request.IsOnDefaultPage() || _request.IsOnLogoutPage() ? _request.LoginPageUrl() : 
                                            _request.LoginPageUrl().AppendQueryStringValueFor<LoginOutputModel>(x => x.RedirectUrl, _request.Url()));
         }
 

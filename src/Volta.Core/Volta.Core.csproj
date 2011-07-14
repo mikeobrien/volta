@@ -81,6 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Framework\Security\Username.cs" />
     <Compile Include="Domain\Administration\IUserCreationService.cs" />
     <Compile Include="Domain\Administration\IUserModificationService.cs" />
     <Compile Include="Domain\Administration\UserModificationService.cs" />

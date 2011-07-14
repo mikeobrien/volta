@@ -1,7 +1,9 @@
+using Volta.Core.Infrastructure.Framework.Security;
+
 namespace Volta.Core.Domain.Administration
 {
     public interface IUserCreationService
     {
-        User Create(string username, string password, bool isAdmin);
+        User Create(Username username, string password, bool isAdministrator);
     }
 }

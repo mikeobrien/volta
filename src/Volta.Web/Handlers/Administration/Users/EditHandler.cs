@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using FubuMVC.Core.Continuations;
 using Volta.Core.Domain.Administration;
@@ -16,7 +17,7 @@ namespace Volta.Web.Handlers.Administration.Users
         public MessageModel Message { get; set; }
         public string Username { get; set; }
         public string NewUsername { get; set; }
-        public bool IsAdministrator { get; set; }
+        public bool Administrator { get; set; }
     }
 
     public class EditInputModel
@@ -24,21 +25,22 @@ namespace Volta.Web.Handlers.Administration.Users
         public string Username { get; set; }
         public string NewUsername { get; set; }
         public string Password { get; set; }
-        public bool IsAdministrator { get; set; }
+        public bool Administrator { get; set; }
     }
 
     public class EditHandler
     {
         public const string UserNotFoundMessage = "User not found.";
         public const string DuplicateUserFoundMessage = "A user with that username already exists.";
+        public const string EmptyUsernameMessage = "Username is empty.";
 
-        private readonly IRepository<User> _userRepository;
-        private readonly IUserModificationService _userModificationService;
+        private readonly IRepository<User> _users;
+        private readonly IUserModificationService _modificationService;
 
-        public EditHandler(IRepository<User> userRepository, IUserModificationService userModificationService)
+        public EditHandler(IRepository<User> users, IUserModificationService modificationService)
         {
-            _userRepository = userRepository;
-            _userModificationService = userModificationService;
+            _users = users;
+            _modificationService = modificationService;
         }
 
         public EditOutputModel Query(EditOutputModel output)
@@ -48,13 +50,13 @@ namespace Volta.Web.Handlers.Administration.Users
 
         public EditOutputModel Query_Username(EditQueryModel query)
         {
-            var user = _userRepository.FirstOrDefault(x => x.Username == query.Username);
+            var user = _users.FirstOrDefault(x => x.Username == query.Username);
             return user != null 
                 ? new EditOutputModel
                     {
                         Username = user.Username,
                         NewUsername = user.Username,
-                        IsAdministrator = user.Administrator
+                        Administrator = user.Administrator
                     }
                 : new EditOutputModel { Message = MessageModel.Error(UserNotFoundMessage) };
         }
@@ -63,27 +65,33 @@ namespace Volta.Web.Handlers.Administration.Users
         {
             try
             {
-                _userModificationService.Modify(
-                    input.Username, 
+                _modificationService.Modify(
+                    input.Username,
                     new User
                         {
                             Username = input.NewUsername,
                             Password = input.Password,
-                            Administrator = input.IsAdministrator
+                            Administrator = input.Administrator
                         });
             }
-            catch (UserNotFoundException)
+            catch (Exception e)
             {
-                return FubuContinuation.TransferTo(
-                    new EditOutputModel { Message = MessageModel.Error(UserNotFoundMessage) });
-            }
-            catch (DuplicateUsernameException)
-            {
-                return FubuContinuation.TransferTo(new EditOutputModel { 
-                    Username = input.Username,
-                    NewUsername = input.NewUsername,
-                    IsAdministrator = input.IsAdministrator,
-                    Message = MessageModel.Information(DuplicateUserFoundMessage) });
+                if (e is EmptyUsernameException ||
+                    e is UserNotFoundException ||
+                    e is DuplicateUsernameException)
+                {
+                    var output = new EditOutputModel
+                        {
+                            Username = input.Username,
+                            NewUsername = input.NewUsername,
+                            Administrator = input.Administrator
+                        };
+                    if (e is EmptyUsernameException) output.Message = MessageModel.Error(EmptyUsernameMessage);
+                    if (e is UserNotFoundException) output.Message = MessageModel.Error(UserNotFoundMessage);
+                    if (e is DuplicateUsernameException) output.Message = MessageModel.Error(DuplicateUserFoundMessage);
+                    return FubuContinuation.TransferTo(output);
+                }
+                throw;
             }
             return FubuContinuation.RedirectTo<QueryHandler>(x => x.Query());
         }

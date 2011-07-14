@@ -13,7 +13,9 @@ img
 
 form
 {
-    margin: 0px;
+    margin: 0;
+    padding: 0;
+    display:inline;
 }
 
 hr
@@ -29,19 +31,24 @@ hr
 
 fieldset
 {
+    text-align: left;
     border: solid 1px #938B55;
     background-color: #ffffff;
     padding: 10px 10px 10px 20px;
+    margin-bottom: 10px;
 }
 
 legend
 {
-    border: solid 1px #938B55;
+    top: -10px;
+    border-style: solid;
+    border-color: #938B55;
+    border-width: 1px 1px 0 1px;
     background-color: #ffffff;
     font-weight: bold;
     color: #351E0D;
     background-color: #ffffff;
-    padding: 0 5px 0 5px;
+    padding: 5px 10px 5px 15px;
 }
 
 a:hover
@@ -129,6 +136,12 @@ a:hover
 
 /* --------------------- Forms ----------------------- */
 
+.formcontainer
+{
+    text-align: right;
+    padding-bottom: 10px;
+}
+
 .form
 {
     display: table
@@ -155,12 +168,6 @@ a:hover
     padding-right: 10px;
 }
 
-.formbuttons
-{
-    text-align: right;
-    padding: 10px 0 10px 0;
-}
-
 /* --------------------- Page ----------------------- */
 
 #message
@@ -174,6 +181,21 @@ a:hover
 }
 
 #message:empty 
+{
+    padding: 0px;
+}
+
+#error
+{
+    background-color: #FFA4A4;
+    padding: 10px;
+    color: #6C0000;
+    font-size: 15pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+#error:empty 
 {
     padding: 0px;
 }
@@ -193,7 +215,6 @@ a:hover
 .page .body
 {
     clear: both;
-    height: 400px;
     padding: 30px 30px 30px 30px;
 }
 
