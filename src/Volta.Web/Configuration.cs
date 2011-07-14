@@ -20,12 +20,12 @@ namespace Volta.Web
                    .IncludeMethodsPrefixed("Query", "Command");
 
             Routes.HomeIs<DashboardHandler>(x => x.Query())
-                .ConstrainMethodPrefixToHttpGet("Query")
-                .ConstrainMethodPrefixToHttpPost("Command")
-                .UrlPolicy(FullNameUrlPolicy.Create().
-                            IgnoreNamespace<LoginHandler>().
-                            IgnoreClassName("Handler").
-                            IgnoreMethodName("Query", "Command"));
+                  .ConstrainMethodPrefixToHttpGet("Query")
+                  .ConstrainMethodPrefixToHttpPost("Command")
+                  .UrlPolicy(FullNameUrlPolicy.Create().
+                                IgnoreNamespace<LoginHandler>().
+                                IgnoreClassName("Handler").
+                                IgnoreMethodName("Query", "Command"));
 
             Policies.WrapBehaviorChainsWith<AuthorizationBehavior>()
                     .ConditionallyWrapBehaviorChainsWith<ExceptionHandlerBehavior>(x => !inDebugMode);

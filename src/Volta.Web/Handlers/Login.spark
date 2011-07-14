@@ -11,7 +11,7 @@
 <content:message>$!{Model.Message.MessageText}</content:message>
 
 <div class="body" style="width: 320px; margin: 110px auto 200px auto;">
-  <img src="/content/volta.logo.large.png" style="display: block; margin: 0 auto 50px auto"/>
+  <img src="/content/images/volta.logo.large.png" style="display: block; margin: 0 auto 50px auto"/>
   ${this.FormAndIdFor<LoginInputModel>()}
     ${this.HiddenInputFor(x => x.RedirectUrl)}
     <div class="form">

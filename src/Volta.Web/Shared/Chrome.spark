@@ -5,7 +5,7 @@
     <div class="page">
         <div class="header">
             <div class="links">
-                <div class="left"><a href="/"><img src="/content/volta.logo.medium.png"/></a></div>
+                <div class="left"><a href="/"><img src="/content/images/volta.logo.medium.png"/></a></div>
                 <div class="right">
                     #this.Partial<HeaderOutputModel>();
                 </div>

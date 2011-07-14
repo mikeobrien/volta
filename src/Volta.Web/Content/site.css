@@ -79,7 +79,7 @@ a:hover
 .button
 {
     border: 1px solid #777465;
-    background: url(button.light.png);
+    background: url(images/button.light.png);
     padding: 7px 15px 7px 15px;
     cursor: hand;
     cursor: pointer;
@@ -88,7 +88,7 @@ a:hover
 .button:hover
 {
     border: 1px solid #777465;
-    background: url(button.dark.png);
+    background: url(images/button.dark.png);
     padding: 7px 15px 7px 15px;
     cursor: hand;
     cursor: pointer;
@@ -110,7 +110,7 @@ a:hover
 .datatable th
 {
     text-align: left;
-    padding: 3px;
+    padding: 3px 3px 3px 10px;
     background-color: #A29A86;
     color: #ffffff;
 }
@@ -122,7 +122,7 @@ a:hover
     border-style: solid;
     border-color: #938B55;
     border-width: 1px 0 0 0;
-    padding: 3px;
+    padding: 3px 3px 3px 10px;
 }
 
 .datatable tr:nth-child(odd) { background-color:#F0ECE1; }
@@ -235,7 +235,7 @@ a:hover
 .page .header
 {
     border-bottom: 1px solid #5F6155;
-    background-image:url('header.large.background.png');
+    background-image:url('images/header.large.background.png');
     height: 116px;
 }
 
@@ -280,13 +280,13 @@ a:hover
 
 .page .header .navigation .tab
 {
-    background: url(button.dark.png);
+    background: url(images/button.dark.png);
     border: 1px solid #5F6155;
 }
 
 .page .header .navigation .tabselected
 {
-    background: url(button.light.png);
+    background: url(images/button.light.png);
     border: 1px solid;
     border-color: #5F6155 #5F6155 #E6E0D0 #5F6155;
     font-weight: bold;
@@ -294,7 +294,7 @@ a:hover
 
 .page .header .navigation .tabdisabled
 {
-    background: url(button.verydark.png);
+    background: url(images/button.verydark.png);
     border: 1px solid #5F6155;
     color: #000;
 }
@@ -332,7 +332,7 @@ a:hover
 .dialog .header
 {
     border-bottom: 1px solid #5F6155;
-    background-image:url('header.small.background.png');
+    background-image:url('images/header.small.background.png');
     height: 40px;
     font-size: 10pt;
     padding: 0px 10px 0px 10px;

@@ -34,17 +34,17 @@
 <div class="dashboard">
 
     <div class="item">
-        <img class="icon" src="/Content/battery.view.png"/>
+        <img class="icon" src="/content/images/battery.view.png"/>
         !{this.LinkTo<Volta.Web.Handlers.TestBatches.QueryHandler>(x => x.Query()).Text("View test batches").AddClass("darkanchor")}
     </div>
 
     <div class="item">
-        <img class="icon" src="/Content/battery.add.png"/>
+        <img class="icon" src="/content/images/battery.add.png"/>
         !{this.LinkTo<Volta.Web.Handlers.TestBatches.AddHandler>(x => x.Query()).Text("Add a new test batch").AddClass("darkanchor")}
     </div>
 
     <div class="item">
-        <img class="icon" src="/Content/user.add.png"/>
+        <img class="icon" src="/content/images/user.add.png"/>
         !{this.LinkTo<Volta.Web.Handlers.Administration.Users.AddHandler>(x => x.Query(null)).Text("Add a new user").AddClass("darkanchor")}
     </div>
 
