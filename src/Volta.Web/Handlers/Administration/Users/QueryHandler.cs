@@ -40,7 +40,7 @@ namespace Volta.Web.Handlers.Administration.Users
         public QueryOutputModel Query_Page(QueryPagedModel query)
         {
             const int pageSize = 20;
-            var pagedResults = _users.GetPage(pageSize, query.Page);
+            var pagedResults = _users.OrderBy(x => x.Username).GetPage(pageSize, query.Page);
             var paging = new PagingModel(pagedResults.TotalRecords, pageSize, query.Page);
             return new QueryOutputModel
                        {
