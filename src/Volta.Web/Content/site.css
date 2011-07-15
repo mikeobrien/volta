@@ -26,7 +26,7 @@ hr
     border-style: solid;
     border-width: 1px 0 1px 0;
     border-color: #938B55 #fff #F1EAD7 #fff;
-    margin: 20px 0 20px 0;
+    margin: 10px 0 15px 0;
 }
 
 fieldset
@@ -139,7 +139,7 @@ a:hover
 .formcontainer
 {
     text-align: right;
-    padding-bottom: 10px;
+    margin: 0 auto 0 auto;
 }
 
 .form
@@ -326,6 +326,7 @@ a:hover
 
 .dialog 
 {
+    margin: 10px auto 10px auto;
     border: 1px solid #5F6155;
 }
 
@@ -350,6 +351,6 @@ a:hover
 {
     clear: both;
     background-color: #ffffff;
-    padding: 10px;
+    padding: 20px;
 }
 

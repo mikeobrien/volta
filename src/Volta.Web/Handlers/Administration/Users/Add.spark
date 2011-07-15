@@ -24,50 +24,63 @@
         });
     });
 </script>
+<style>
+.dialog
+{
+    width: 450px;
+}
+</style>
 </content:head>
 
 <content:title>Add User</content:title>
 <content:error if="Model.Message.HasError()">$!{Model.Message.MessageText}</content:error>
 
-<div class="formcontainer">
+<div class="dialog">
 
-    ${this.FormAndIdFor<AddInputModel>()}
-    <fieldset>
-        <legend>New User</legend>
-        <div class="form"> 
-            <div class="formrow"><div class="formitem">
-                <div class="form"> 
-                    <div class="formrow">
-                        <div class="formitem">${this.LabelFor(x => x.Username)}</div>
-                        <div class="formitem">${this.InputFor(x => x.Username)}</div>
-                    </div>
-                                
-                    <div class="formrow">
-                        <div class="formitem">${this.LabelFor<AddInputModel>(x => x.Password)}</div>
-                        <div class="formitem">${this.InputFor<AddInputModel>(x => x.Password).PasswordMode()}</div>
-                    </div>
-                                
-                    <div class="formrow">
-                        <div class="formitem"><label class="formlabel" id="Password2" for="Password2">Re-enter Password</label></div>
-                        <div class="formitem"><input class="textbox" type="password" name="Password2" id="Password2"  autocomplete="off"/></div>
-                    </div>
-                                
-                    <div class="formrow">
-                        <div class="formitem">${this.LabelFor(x => x.Administrator)}</div>
-                        <div class="formitem">${this.InputFor(x => x.Administrator)}</div>
-                    </div>
+    <div class="header"><div class="content"><b>Add User</b></div></div>
 
-                </div>
+    <div class="body">
+
+        <div class="formcontainer">
+
+            ${this.FormAndIdFor<AddInputModel>()}
+
+            <div class="form"> 
+                <div class="formrow"><div class="formitem">
+                    <div class="form"> 
+                        <div class="formrow">
+                            <div class="formitem">${this.LabelFor(x => x.Username)}</div>
+                            <div class="formitem">${this.InputFor(x => x.Username)}</div>
+                        </div>
+                                
+                        <div class="formrow">
+                            <div class="formitem">${this.LabelFor<AddInputModel>(x => x.Password)}</div>
+                            <div class="formitem">${this.InputFor<AddInputModel>(x => x.Password).PasswordMode()}</div>
+                        </div>
+                                
+                        <div class="formrow">
+                            <div class="formitem"><label class="formlabel" id="Password2" for="Password2">Re-enter Password</label></div>
+                            <div class="formitem"><input class="textbox" type="password" name="Password2" id="Password2"  autocomplete="off"/></div>
+                        </div>
+                                
+                        <div class="formrow">
+                            <div class="formitem">${this.LabelFor(x => x.Administrator)}</div>
+                            <div class="formitem">${this.InputFor(x => x.Administrator)}</div>
+                        </div>
+
+                    </div>
+                </div></div>
             </div>
+
+            <hr/>
+
+            <input value="Save" type="submit" class="button" /> 
+            ${this.EndForm()}
+
+            ${this.FormFor<QueryHandler>(x => x.Query()).Method("get").Id("Cancel")}
+                <input value="Cancel" type="submit" class="button" />
+            ${this.EndForm()}
+
         </div>
-
-    </fieldset>
-                
-    <input value="Save" type="submit" class="button" /> 
-    ${this.EndForm()}
-
-    ${this.FormFor<QueryHandler>(x => x.Query()).Method("get").Id("Cancel")}
-        <input value="Cancel" type="submit" class="button" />
-    ${this.EndForm()}
-
+    </div>
 </div>

@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!-- "Put your hand on a hot stove for a minute, and it seems like an hour. Sit with a pretty girl for an hour, and it seems like a minute. That's relativity." -->
+
+<html>
+
+	<title>Volta - Add Test Batch</title>
+
+	<head>
+
+		<link rel="StyleSheet" href="site.css" type="text/css"/>
+
+	</head>
+
+	<body>
+
+		<div id="message"></div>
+
+		<div id="error"></div>
+
+
+
+<div class="base">
+
+    <div class="page">
+
+        <div class="header">
+
+            <div class="links">
+
+                <div class="left"><a href="/"><img src="volta.logo.medium.png"/></a></div>
+
+                <div class="right"> 
+<a href="/administration/users/edit/spin" class="darkanchor">spin</a> | <a href="/" class="darkanchor">Dashboard</a> | <a href="/logout" class="darkanchor">Logout</a> 
+
+
+                </div>
+
+            </div>
+
+            <div class="navigation"> 
+
+
+    <div class="tabselected">
+
+        TEST BATCHES
+
+    </div>
+
+    <div class=" tab">
+
+        <a class="lightanchor" href="/testbatches/query" title="Test Batches">ADMINISTRATION</a>
+
+    </div> 
+
+
+            </div>
+
+        </div>
+
+        <div class="body">
+
+            <div class="navigation"> 
+
+
+    <div class="link">
+
+        <a class="darkfineanchor" href="/administration/users/query" title="Users">Test Batches</a>
+
+    </div>
+
+    <div class="link">|</div>
+
+    <div class=" linkselected">
+
+        Add Test Batch
+
+    </div> 
+
+
+            </div>
+
+            <div class="content">   
+ 
+ 
+<style>
+.formcontainer
+{
+    width: 500px;
+}
+</style>
+
+<div class="dialog" style="width: 550px; margin: 10px auto 10px auto;">
+
+                    <div class="header"><div class="content"><b>Add Test Batch</b></div></div>
+
+                    <div class="body">
+
+
+<div class="formcontainer">
+
+
+
+    <form id="AddInputModel" method="post" action="/administration/users/add"> 
+
+        <div class="form"> 
+
+            <div class="formrow">
+
+                <div class="form"> 
+
+                    <div class="formrow">
+
+                        <div class="formitem"><label id="Batch Id" class="formlabel">Batch Id <span style="color: #918F92">(YYYYMMDD-DRS)</span></label></div>
+
+                        <div class="formitem"><input type="text" id="Username" name="Username" class="textbox" /></div>
+
+                    </div>
+
+                    <div class="formrow">
+
+                        <div class="formitem"><label id="Batch Id" class="formlabel">Primary Operator</label></div>
+
+                        <div class="formitem"><select><option>KJ</option><option>DJB</option></select></div>
+
+                    </div>
+
+                    <div class="formrow">
+
+                        <div class="formitem"><label id="Batch Id" class="formlabel">Cell Nominal Capacity</label></div>
+
+                        <div class="formitem"><select><option>1 Ah</option><option>20 Ah</option><option>200 Ah</option></select></div>
+
+                    </div>
+
+                    <div class="formrow">
+
+                        <div class="formitem">
+                            <label id="Batch Id" class="formlabel">Cell inner diameter</label>
+                        </div>
+
+                        <div class="formitem"><input type="text" id="Username" name="Username" class="textbox" /></div>
+
+                    </div>
+
+                    <div class="formrow">
+
+                        <div class="formitem"><label id="Batch Id" class="formlabel">Electrode materials (mm)</label></div>
+
+                        <div class="formitem"><input type="text" id="Username" name="Username" class="textbox" /></div>
+
+                    </div>
+
+                    <div class="formrow">
+
+                        <div class="formitem"><label id="Batch Id" class="formlabel">Electrolyte mass (g)</label></div>
+
+                        <div class="formitem">
+                            Li <input type="text" id="Username" name="Username" class="textbox" size="5" /><br/>
+                            Sb <input type="text" id="Username" name="Username" class="textbox" size="5" /><br/>
+                            Pb <input type="text" id="Username" name="Username" class="textbox" size="5" /><br/>
+                        </div>
+
+                    </div>
+
+                    <div class="formrow">
+
+                        <div class="formitem"><label id="Batch Id" class="formlabel">Electrolyte density (g/cm3)</label></div>
+
+                        <div class="formitem"><input type="text" id="Username" name="Username" class="textbox" /></div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+<hr/>
+
+    <input value="Save" type="submit" class="button"/> 
+    <input value="Save & Import" type="submit" class="button"/> 
+    </form>
+
+
+
+    <form id="Cancel" method="get" action="/administration/users/query">
+
+        <input value="Cancel" type="submit" class="button"/>
+
+    </form>
+
+
+
+</div>
+
+</div>
+</div>
+
+            </div>
+
+        </div>
+
+            
+
+    </div>
+
+</div>
+
+            
+
+<div class="footer"> 
+Volta v1.0.0.73 &bull; Copyright &copy; 2011 Group Sadoway &bull; Cambridge, MA
+
+
+</div>
+
+	</body>
+
+</html>

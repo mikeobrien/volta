@@ -15,39 +15,44 @@
     font-size: 13pt;
 }
 
-.dashboard
-{
-    padding: 40px 0 40px 0;
-}
-
-.dashboard .item
+.item
 {
     text-align: left;
-    background-color: #fff;
     padding: 10px 20px 10px 20px;
     width: 300px;
     margin: 20px auto 20px auto;
     border: solid 1px #CABD9B;
 }
+
+.dialog
+{
+    width: 450px;
+}
+
 </style>
 
-<div class="dashboard">
+<div class="dialog">
 
-    <div class="item">
-        <img class="icon" src="/content/images/battery.view.png"/>
-        !{this.LinkTo<Volta.Web.Handlers.TestBatches.QueryHandler>(x => x.Query()).Text("View test batches").AddClass("darkanchor")}
+    <div class="header"><div class="content"><b>Dashboard</b></div></div>
+
+    <div class="body">
+
+        <div class="item">
+            <img class="icon" src="/content/images/battery.view.png"/>
+            !{this.LinkTo<Volta.Web.Handlers.TestBatches.QueryHandler>(x => x.Query()).Text("View test batches").AddClass("darkanchor")}
+        </div>
+
+        <div class="item">
+            <img class="icon" src="/content/images/battery.add.png"/>
+            !{this.LinkTo<Volta.Web.Handlers.TestBatches.AddHandler>(x => x.Query()).Text("Add a new test batch").AddClass("darkanchor")}
+        </div>
+
+        <div class="item">
+            <img class="icon" src="/content/images/user.add.png"/>
+            !{this.LinkTo<Volta.Web.Handlers.Administration.Users.AddHandler>(x => x.Query(null)).Text("Add a new user").AddClass("darkanchor")}
+        </div>
+
     </div>
-
-    <div class="item">
-        <img class="icon" src="/content/images/battery.add.png"/>
-        !{this.LinkTo<Volta.Web.Handlers.TestBatches.AddHandler>(x => x.Query()).Text("Add a new test batch").AddClass("darkanchor")}
-    </div>
-
-    <div class="item">
-        <img class="icon" src="/content/images/user.add.png"/>
-        !{this.LinkTo<Volta.Web.Handlers.Administration.Users.AddHandler>(x => x.Query(null)).Text("Add a new user").AddClass("darkanchor")}
-    </div>
-
 </div>
 
 
