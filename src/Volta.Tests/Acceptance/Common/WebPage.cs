@@ -36,7 +36,8 @@ namespace Volta.Tests.Acceptance.Common
 
         public void Kill()
         {
-            if (Browser == null || Browser.hWnd == IntPtr.Zero) return;
+            try { if (Browser == null || Browser.hWnd == IntPtr.Zero) return; }
+            catch (Exception) { return; }
             var threadId = GetWindowThreadProcessId(Browser.hWnd, IntPtr.Zero);
             Process.GetProcessesByName("iexplore").First(x => x.Threads.Cast<ProcessThread>().Any(y => y.Id == threadId)).Kill();
         }

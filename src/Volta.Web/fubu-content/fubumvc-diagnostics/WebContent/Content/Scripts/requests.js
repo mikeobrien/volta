@@ -197,6 +197,7 @@
             data: JSON.stringify(params),
             dataType: "json",
             success: function(data) {
+                $('#NoData').hide();
                 grid()[0].addJSONData(data);
             },
             error: function() {
@@ -208,6 +209,11 @@
     }
     
     function setupGrid() {
+        if(!columnModel.length) {
+            $('#NoData').show();
+            return;
+        }
+        
         grid()
             .jqGrid({
                 datatype: function(gridData) {
@@ -217,7 +223,7 @@
                 colNames: colNames(),
                 colModel: columnModel,
                 jsonReader: $.fubu.jsonReader,
-                rowNum: 20,
+                rowNum: 50,
                 autowidth: true,
                 height: '100%',
                 mtype: 'POST',
@@ -225,6 +231,9 @@
                 sortname: 'Route',
                 caption: 'Routes',
                 pager: '#pager',
+                onCellSelect: function (rowId, iRow, content, e) {
+                    window.location = rowId;
+                },
                 ondblClickRow: function (rowId, iRow, iCol, e) {
                     window.location = rowId;
                 },

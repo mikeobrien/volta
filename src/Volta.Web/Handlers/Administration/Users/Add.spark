@@ -51,6 +51,11 @@
                         <div class="formrow">
                             <div class="formitem">${this.LabelFor(x => x.Username)}</div>
                             <div class="formitem">${this.InputFor(x => x.Username)}</div>
+                          ${this.Edit(x => x.Username)}
+                          
+                          
+                          
+                              
                         </div>
                                 
                         <div class="formrow">

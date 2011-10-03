@@ -36,8 +36,8 @@ namespace Volta.Tests.Acceptance.Common
         public bool HasFormLabelAndInput(Expression<Func<TInputModel, object>> property)
         {
             var form = Browser.Form(FindById());
-            return form.Label(FindById(property)).Exists &&
-                   form.Label(FindById(property)).Exists;
+            return form.Label(FindById(property, "{0}-label")).Exists &&
+                   form.TextField(FindById(property)).Exists;
         }
 
         public Form Form { get { return Browser.Form(FindById()); } }
@@ -50,6 +50,11 @@ namespace Volta.Tests.Acceptance.Common
         public AttributeConstraint FindById(Expression<Func<TInputModel, object>> id)
         {
             return Find.ById(id.GetPropertyName());
+        }
+
+        public AttributeConstraint FindById(Expression<Func<TInputModel, object>> id, string format)
+        {
+            return Find.ById(string.Format(format, id.GetPropertyName()));
         }
     }
 }

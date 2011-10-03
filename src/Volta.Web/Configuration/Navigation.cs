@@ -1,0 +1,26 @@
+﻿using Volta.Core.Infrastructure.Framework.Web.Navigation;
+
+namespace Volta.Web.Configuration
+{
+    public class Navigation : TabCollection
+    {
+        public Navigation()
+        {
+            Add(x =>
+                {
+                    x.Name = "Test Batches";
+                    x.Add<Handlers.TestBatches.QueryHandler>("Batches", y => y.Query());
+                    x.Add<Handlers.TestBatches.AddHandler>(y => y.Query());
+                });
+
+            Add(x =>
+                {
+                    x.Name = "Administration";
+                    x.Add<Handlers.Administration.Users.QueryHandler>("Users", y => y.Query());
+                    x.Add<Handlers.Administration.Users.AddHandler>("Add User", y => y.Query(null));
+                    x.Add<Handlers.Administration.Users.EditHandler>(y => y.Query_Username(null));
+                    x.Add<Handlers.Administration.Users.EditHandler>(y => y.Query(null));
+                });
+        }
+    }
+}
