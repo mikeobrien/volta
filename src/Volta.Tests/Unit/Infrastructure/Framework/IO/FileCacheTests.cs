@@ -29,16 +29,16 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.IO
             Directory.Delete(_fileCachePath, true);
         }
 
-        //[Test]
-        //public void Should_Cache_File()
-        //{
-        //    var cache = new FileCache(_fileCachePath);
-        //    var path = cache.Save(GetFileStream());
-        //    path.ShouldNotBeNull();
-        //    File.Exists(path).ShouldBeTrue();
-        //    var contents = File.ReadAllText(path);
-        //    contents.ShouldEqual(FileData);
-        //}
+        [Test]
+        public void Should_Cache_File()
+        {
+            var cache = new FileCache(_fileCachePath);
+            var path = cache.Save(GetFileStream());
+            path.ShouldNotBeNull();
+            File.Exists(path).ShouldBeTrue();
+            var contents = File.ReadAllText(path);
+            contents.ShouldEqual(FileData);
+        }
     }
 
     public class FileCache
@@ -53,6 +53,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.IO
         public string Save(Stream stream)
         {
             var path = Path.Combine(_path, Guid.NewGuid().ToString("N"));
+            using (var file = File.Create(path)) { stream.CopyTo(file); }
             return path;
         }
     }

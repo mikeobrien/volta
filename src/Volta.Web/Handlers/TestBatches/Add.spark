@@ -1,7 +1,55 @@
 ﻿<use master="Chrome" />
+<use namespace="Volta.Web.Handlers.TestBatches" />
+<use namespace="HtmlTags.Extended.Attributes" />
+<use namespace="Volta.Core.Infrastructure.Framework.Web.FubuMvc" />
 <viewdata model="Volta.Web.Handlers.TestBatches.AddOutputModel" />
 
-<content:title>Add Test Batch</content:title>
-<content:head></content:head>
+<content:title>Add User</content:title>
 
-<h1>Add test batch</h1>
+<div class="dialog">
+
+  <div class="header">
+    <div class="content">
+      <b>Add User</b>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <div class="formcontainer">
+
+      ${this.FormAndIdFor<AddInputModel>
+        ()}
+
+        <div class="form">
+          <div class="formrow">
+            <div class="formitem">
+              <div class="form">
+                <div class="formrow">
+                  <div class="formitem"></div>
+                  <div class="formitem"></div>
+                </div>
+
+                <div class="formrow">
+                  <div class="formitem"></div>
+                  <div class="formitem"></div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr/>
+
+        <input value="Save" type="submit" class="button" />
+        ${this.EndForm()}
+
+        ${this.FormFor<QueryHandler>
+          (x => x.Query()).Method("get").Id("Cancel")}
+          <input value="Cancel" type="submit" class="button" />
+          ${this.EndForm()}
+
+        </div>
+  </div>
+</div>

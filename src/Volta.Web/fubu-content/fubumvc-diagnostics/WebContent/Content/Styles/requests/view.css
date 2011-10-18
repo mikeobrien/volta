@@ -20,6 +20,27 @@
     text-align:center;
 }
 
+li
+{
+    list-style-type: none;
+}
+
+.request-info
+{
+    float: left;
+    width: 50%;
+}
+
+.request-actions
+{
+    float: right;
+}
+
+ul.request-actions li
+{
+    list-style-type: none;
+}
+
 h2.request
 {
     margin-bottom:0;
@@ -39,7 +60,7 @@ h4.request-identifier
     white-space:normal;
 }
 
-.last .console
+.last .console, .log-viewer .console
 {
     border-bottom:0;
 }
@@ -54,8 +75,10 @@ h4.request-identifier
 
 .console .message
 {
-    float:left;
-    margin-top:-2px;
+    float: left;
+    margin-top: -2px;
+    width: 95%;
+    margin-right: -25px;
 }
 
 .console .message p
@@ -67,7 +90,7 @@ h4.request-identifier
 
 .console .message p.statement
 {
-    color:#0080ff;
+    font-weight: bold;
 }
 
 .console .message p.msg-info
@@ -91,4 +114,45 @@ h4.request-identifier
 .console .message ul
 {
     width:100%;
+}
+
+.exception
+{
+    border: 1px dotted red; 
+}
+
+.exception pre
+{
+    width: auto;
+    background: #fcf0f0; 
+    color: #280b0b;
+}
+
+.behavior-details .message ul
+{
+    margin-top: 10px;
+}
+
+.behaviors .inner-behavior
+{
+    margin-bottom: 20px;
+}
+
+.chain-visualizer
+{
+    list-style-type: none;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.chain-visualizer li
+{
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+
+.chain-visualizer li.arrow
+{
+    margin-bottom: 0;
 }
