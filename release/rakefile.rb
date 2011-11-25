@@ -4,17 +4,20 @@ require "release/gallio"
 require "release/common"
 require "release/xmlconfig"
 
-task :default => [:acceptanceTests]
+reportsPath = "reports"
+version = ENV["BUILD_NUMBER"]
+
+task :buildAndDeploy => :acceptanceTests
 
 desc "Inits the build"
 task :initBuild do
-    Common.DeleteDirectory("reports")
-	Common.EnsurePath("reports")
+    Common.DeleteDirectory(reportsPath)
+	Common.EnsurePath(reportsPath)
 end
 
 desc "Generate core assembly info."
 assemblyinfo :coreAssemblyInfo => :initBuild do |asm|
-    asm.version = ENV["GO_PIPELINE_LABEL"]
+    asm.version = version
     asm.company_name = "Sadoway Group"
     asm.product_name = "Volta"
     asm.title = "Volta Core"
@@ -25,7 +28,7 @@ end
 
 desc "Generate web assembly info."
 assemblyinfo :webAssemblyInfo => :coreAssemblyInfo do |asm|
-    asm.version = ENV["GO_PIPELINE_LABEL"]
+    asm.version = version
     asm.company_name = "Sadoway Group"
     asm.product_name = "Volta"
     asm.title = "Volta Web"
@@ -57,13 +60,11 @@ end
 
 desc "Test config file settings"
 xmlConfig :testConfigSettings => :buildTestProject do |o|
-    o.yamlFile = ENV["USERPROFILE"] + "/.go/volta.yml"
-    o.yamlSection = ENV["GO_STAGE_NAME"]
     o.xmlFile = "src/Volta.Tests/bin/Release/Volta.Tests.dll.config"
     o.xmlRoot = "/configuration/"
-    o.setAttribute("integration.test.connection.string", "connectionStrings/add[@name='VoltaIntegration']/@connectionString")
-    o.setAttribute("production.connection.string", "connectionStrings/add[@name='VoltaAcceptance']/@connectionString")
-    o.setAttribute("volta.url", "appSettings/add[@key='VoltaUrl']/@value")
+    o.setAttribute(ENV["VOLTA_TEST_CONN_STRING"], "connectionStrings/add[@name='VoltaIntegration']/@connectionString")
+    o.setAttribute(ENV["VOLTA_PROD_CONN_STRING"], "connectionStrings/add[@name='VoltaAcceptance']/@connectionString")
+    o.setAttribute(ENV["VOLTA_URL"], "appSettings/add[@key='VoltaUrl']/@value")
 end
 
 desc "Unit tests"
@@ -73,7 +74,7 @@ gallio :unitTests => :testConfigSettings do |o|
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
     o.verbosity = "Normal"
     o.filter = "Namespace: /Volta.Tests.Unit.*/"
-    o.reportDirectory = "reports"
+    o.reportDirectory = reportsPath
     o.reportNameFormat = "gallio-unit"
     o.addReportType("Html")
 end
@@ -85,20 +86,18 @@ gallio :integrationTests => :unitTests do |o|
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
     o.verbosity = "Normal"
     o.filter = "Namespace: /Volta.Tests.Integration.*/"
-    o.reportDirectory = "reports"
+    o.reportDirectory = reportsPath
     o.reportNameFormat = "gallio-integration"
     o.addReportType("Html")
 end
 
 desc "Website config file settings"
 xmlConfig :websiteConfigSettings => :integrationTests do |o|
-    o.yamlFile = ENV["USERPROFILE"] + "/.go/volta.yml"
-    o.yamlSection = ENV["GO_STAGE_NAME"]
     o.xmlFile = "src/Volta.Web/Web.config"
     o.xmlRoot = "/configuration/"
-    o.setAttribute("production.connection.string", "volta/@connectionString")
-    o.setAttribute("log.file.path", "log4net/appender[@name='LogFileAppender']/file/@value")
-    o.setAttribute("smtp.host", "log4net/appender[@name='EmailAppender']/smtpHost/@value")
+    o.setAttribute(ENV["VOLTA_PROD_CONN_STRING"], "volta/@connectionString")
+    o.setAttribute(ENV["VOLTA_LOG_FILE_PATH"], "log4net/appender[@name='LogFileAppender']/file/@value")
+    o.setAttribute(ENV["VOLTA_SMTP_HOST"], "log4net/appender[@name='EmailAppender']/smtpHost/@value")
 end
 
 desc "Deploys the site."
@@ -108,7 +107,7 @@ robocopy :deploy => :websiteConfigSettings do |rc|
     rc.excludeDirs = "obj"
     rc.includeFiles = "*.dll *.config *.spark *.cshtml *.htm *.html *.txt *.css *.asax " \
                       "*.gif *.jpg *.jpeg *.png *.xml *.js *.ico *.xsl"
-    rc.logPath = "reports/deploy.log"
+    rc.logPath = File.join(reportsPath, "deploy.log")
 end
 
 desc "Acceptance tests"
@@ -118,7 +117,7 @@ gallio :acceptanceTests => :deploy do |o|
     o.addTestAssembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
     o.verbosity = "Normal"
     o.filter = "Namespace: /Volta.Tests.Acceptance.*/"
-    o.reportDirectory = "reports"
+    o.reportDirectory = reportsPath
     o.reportNameFormat = "gallio-acceptance"
     o.addReportType("Html")
 end

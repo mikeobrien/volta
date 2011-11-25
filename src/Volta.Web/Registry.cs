@@ -9,7 +9,7 @@ using Volta.Core.Infrastructure.Framework.Security;
 using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
 using Volta.Core.Infrastructure.Framework.Web.Navigation;
 
-namespace Volta.Web.Configuration
+namespace Volta.Web
 {
     public class Registry : StructureMap.Configuration.DSL.Registry
     {

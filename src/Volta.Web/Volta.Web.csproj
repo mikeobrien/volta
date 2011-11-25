@@ -189,8 +189,7 @@
     <Compile Include="Behaviors\AuthorizationBehavior.cs" />
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
     <Compile Include="Behaviors\SecureRequest.cs" />
-    <Compile Include="Configuration\Configuration.cs" />
-    <Compile Include="Configuration\HtmlConvetions.cs" />
+    <Compile Include="HtmlConvetions.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Handlers\Administration\Users\DeleteHandler.cs" />
     <Compile Include="Handlers\MessageModel.cs" />
@@ -207,9 +206,9 @@
     <Compile Include="Handlers\DashboardHandler.cs" />
     <Compile Include="Handlers\LoginHandler.cs" />
     <Compile Include="Handlers\Widgets\FooterHandler.cs" />
-    <Compile Include="Configuration\Navigation.cs" />
+    <Compile Include="Navigation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Configuration\Registry.cs" />
+    <Compile Include="Registry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />

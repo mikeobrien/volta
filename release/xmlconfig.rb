@@ -1,29 +1,26 @@
-require "yaml"
 require "rexml/document"
 include REXML
 
 class XmlConfig
 
-    attr_accessor :yamlFile, :yamlSection, :xmlFile, :xmlRoot, :yamlXmlMap
+    attr_accessor :xmlFile, :xmlRoot, :settings
     
     def initialize()
-        @yamlXmlMap = Array.new
+        @settings = Array.new
     end
     
-    def setAttribute(yamlKey, xpath)
-        yamlXmlMap.push(YamlXmlMapping.new(yamlKey, xpath))
+    def setAttribute(value, xpath)
+        settings.push(Setting.new(value, xpath))
     end
     
     def run()
-        yaml = YAML::load(File.open(yamlFile))
         document = Document.new File.new(xmlFile)
         document.context[:attribute_quote] = :quote
-        yamlXmlMap.each { |mapping| 
-                                xpath = xmlRoot + mapping.xpath
+        settings.each { |setting| 
+                                xpath = xmlRoot + setting.xpath
                                 attribute = XPath.first(document, xpath)
                                 if attribute == nil then raise "Could not find xpath '#{xpath}' in #{xmlFile}." end
-                                attribute.element.attributes[attribute.name] = 
-                                    yamlSection != nil ? yaml[yamlSection][mapping.yamlKey] : yaml[mapping.yamlKey]
+                                attribute.element.attributes[attribute.name] = setting.value
                            }
         formatter = Formatters::Pretty.new
         File.open(xmlFile, 'w') do |result|
@@ -31,10 +28,10 @@ class XmlConfig
         end
     end
     
-    class YamlXmlMapping
-        attr_accessor :yamlKey, :xpath
-        def initialize(yamlKey, xpath)
-            @yamlKey = yamlKey
+    class Setting
+        attr_accessor :value, :xpath
+        def initialize(value, xpath)
+            @value = value
             @xpath = xpath
         end
     end

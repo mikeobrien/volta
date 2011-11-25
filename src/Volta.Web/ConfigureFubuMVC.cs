@@ -1,4 +1,10 @@
+using System.Reflection;
 using FubuMVC.Core;
+using FubuMVC.Spark;
+using Volta.Core.Infrastructure.Framework.Reflection;
+using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
+using Volta.Web.Behaviors;
+using Volta.Web.Handlers;
 
 namespace Volta.Web
 {
@@ -6,22 +12,29 @@ namespace Volta.Web
     {
         public ConfigureFubuMVC()
         {
-            // This line turns on the basic diagnostics and request tracing
-            IncludeDiagnostics(true);
+            var debug = Assembly.GetExecutingAssembly().IsInDebugMode();
 
-            // All public methods from concrete classes ending in "Controller"
-            // in this assembly are assumed to be action methods
-            Actions.IncludeClassesSuffixedWithController();
+            IncludeDiagnostics(debug);
 
-            // Policies
-            Routes
-                .IgnoreControllerNamesEntirely()
-                .IgnoreMethodSuffix("Html")
-                .RootAtAssemblyNamespace();
+            Actions.IncludeTypeNameSuffix("Handler")
+                   .IncludeMethodsPrefixed("Query", "Command");
 
-            // Match views to action methods by matching
-            // on model type, view name, and namespace
-            Views.TryToAttachWithDefaultConventions();
+            Routes.HomeIs<DashboardHandler>(x => x.Query())
+                  .ConstrainMethodPrefixToHttpGet("Query")
+                  .ConstrainMethodPrefixToHttpPost("Command")
+                  .UrlPolicy(FullNameUrlPolicy.Create().
+                                IgnoreNamespace<ConfigureFubuMVC>().
+                                IgnoreClassName("Handler").
+                                IgnoreMethodName("Query", "Command"));
+
+            Policies.WrapBehaviorChainsWith<AuthorizationBehavior>()
+                    .ConditionallyWrapBehaviorChainsWith<ExceptionHandlerBehavior>(x => !debug);
+
+            this.UseSpark();
+
+            HtmlConvention<VoltaHtmlConventions>();
+
+            Views.TryToAttach(x => x.by_ViewModel_and_Namespace());
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using FubuMVC.Core.UI;
 using HtmlTags;
 
-namespace Volta.Web.Configuration
+namespace Volta.Web
 {
     public class VoltaHtmlConventions : HtmlConventionRegistry
     {
