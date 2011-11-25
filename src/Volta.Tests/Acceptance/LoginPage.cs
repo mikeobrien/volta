@@ -9,7 +9,7 @@ namespace Volta.Tests.Acceptance
     {
         public LoginPage()
         {
-            BaseUrl = new Uri(Constants.VoltaUrl, "/login");
+            BaseUrl = new Uri(Constants.VoltaUrl, "/handlers/login");
         }
 
         public TextField UsernameTextField { get { return Form.TextField(FindById(x => x.Username)); } }

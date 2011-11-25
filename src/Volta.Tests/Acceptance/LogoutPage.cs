@@ -7,7 +7,7 @@ namespace Volta.Tests.Acceptance
     {
         public LogoutPage()
         {
-            BaseUrl = new Uri(Constants.VoltaUrl, "/logout");
+            BaseUrl = new Uri(Constants.VoltaUrl, "/handlers/logout");
         }
     }
 }
