@@ -37,7 +37,7 @@ namespace Volta.Tests.Unit.UserInterface.Widgets
 
         public class UrlRegistry : UrlRegistryBase
         {
-            public override string UrlFor(Type handlerType, MethodInfo method)
+            public override string UrlFor(Type handlerType, MethodInfo method, string categoryOrHttpMethodOrHttpMethod = null)
             {
                 Func<Type, bool> isMatch = t => (handlerType == t && method == t.GetMethod("Query"));
                 string url = null;

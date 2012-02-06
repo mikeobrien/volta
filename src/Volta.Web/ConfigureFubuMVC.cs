@@ -34,7 +34,7 @@ namespace Volta.Web
 
             HtmlConvention<VoltaHtmlConventions>();
 
-            Views.TryToAttach(x => x.by_ViewModel_and_Namespace());
+            Views.TryToAttachWithDefaultConventions();
         }
     }
 }

@@ -68,11 +68,11 @@
             <hr/>
 
             <input value="Save" type="submit" class="button" /> 
-            ${this.EndForm()}
+            !{this.EndForm()}
 
             ${this.FormFor<QueryHandler>(x => x.Query()).Method("get").Id("Cancel")}
                 <input value="Cancel" type="submit" class="button" />
-            ${this.EndForm()}
+            !{this.EndForm()}
 
         </div>
     </div>

@@ -8,3 +8,10 @@ _ReSharper.*
 aspnet_client
 *.userprefs
 *.pidb
+
+# Fubu bottle soruces
+src/*/fubu-content/*
+!src/*/fubu-content/*.zip
+
+# Nuget sources
+src/packages/*/src/*

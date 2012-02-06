@@ -57,7 +57,7 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
             exceptionHandler.Invoke();
             _behavior.Received().Invoke();
             _logger.DidNotReceiveWithAnyArgs().Write(null, null);
-            _writer.DidNotReceiveWithAnyArgs().Write(null, null);
+            _writer.DidNotReceiveWithAnyArgs().Write(null, (string)null);
         }
 
         [Test]

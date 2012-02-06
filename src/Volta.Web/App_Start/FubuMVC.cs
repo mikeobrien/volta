@@ -1,4 +1,5 @@
 using System.Web.Routing;
+using Bottles;
 using Volta.Web.App_Start;
 using FubuMVC.Core;
 using FubuMVC.StructureMap;
@@ -14,7 +15,8 @@ namespace Volta.Web.App_Start
         {
             FubuApplication.For<ConfigureFubuMVC>()
                 .StructureMap(new Container(new Registry()))
-                .Bootstrap(RouteTable.Routes);
+                .Bootstrap();
+            PackageRegistry.AssertNoFailures();
         }
     }
 }

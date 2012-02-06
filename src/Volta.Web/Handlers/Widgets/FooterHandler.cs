@@ -1,4 +1,5 @@
-﻿using FubuMVC.Core;
+﻿using System;
+using FubuMVC.Core;
 using Volta.Core.Application;
 
 namespace Volta.Web.Handlers.Widgets

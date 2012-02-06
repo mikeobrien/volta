@@ -12,7 +12,7 @@ namespace Volta.Core.Infrastructure.Framework.Web.FubuMvc
 
         public static ActionCallCandidateExpression IncludeMethodsPrefixed(this ActionCallCandidateExpression expression, params string[] prefix)
         {
-            prefix.ToList().ForEach(x => expression.IncludeMethods(y => y.Method.Name.StartsWith(x)));
+            prefix.ToList().ForEach(x => expression.IncludeMethods(y => y.Name.StartsWith(x)));
             return expression;
         }
 

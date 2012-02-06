@@ -38,5 +38,5 @@
         </div>
       </div>
     </div>
-    ${this.EndForm()}
+    !{this.EndForm()}
   </div>
