@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using FubuMVC.Core;
 using FubuMVC.Core.Urls;
-using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
+using Volta.Core.Infrastructure.Framework.Web.Fubu;
 using Volta.Core.Infrastructure.Framework.Web.Navigation;
 
 namespace Volta.Web.Handlers.Widgets

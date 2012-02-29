@@ -13,7 +13,7 @@ namespace Volta.Web.App_Start
     {
         public static void Start()
         {
-            FubuApplication.For<ConfigureFubuMVC>()
+            FubuApplication.For<Conventions>()
                 .StructureMap(new Container(new Registry()))
                 .Bootstrap();
             PackageRegistry.AssertNoFailures();

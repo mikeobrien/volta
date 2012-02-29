@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using FubuMVC.Core.Urls;
-using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
 using Volta.Core.Infrastructure.Framework.Web.Navigation;
 
 namespace Volta.Tests.Unit.UserInterface.Widgets

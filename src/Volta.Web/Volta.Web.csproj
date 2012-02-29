@@ -33,26 +33,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=2.1.265.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.2.1.265\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bottles.0.9.1.186\lib\Bottles.dll</HintPath>
+      <HintPath>..\packages\Bottles.0.9.1.197\lib\Bottles.dll</HintPath>
     </Reference>
     <Reference Include="FubuCore, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuCore.0.9.4.111\lib\FubuCore.dll</HintPath>
+      <HintPath>..\packages\FubuCore.0.9.4.114\lib\FubuCore.dll</HintPath>
     </Reference>
     <Reference Include="FubuLocalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuLocalization.0.9.4.111\lib\FubuLocalization.dll</HintPath>
+      <HintPath>..\packages\FubuLocalization.0.9.4.114\lib\FubuLocalization.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Core, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.3.724\lib\net40\FubuMVC.Core.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.References.0.9.3.740\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Spark, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.Spark.0.9.3.724\lib\net40\FubuMVC.Spark.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.Spark.0.9.3.740\lib\net40\FubuMVC.Spark.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.3.724\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.References.0.9.3.740\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlTags, Version=1.0.0.54, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlTags.1.0.0.54\lib\4.0\HtmlTags.dll</HintPath>
+    <Reference Include="HtmlTags, Version=1.0.0.55, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HtmlTags.1.0.0.55\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -91,20 +96,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\AccessDenied.htm" />
-    <Content Include="Content\site.css" />
-    <Content Include="Content\Error.htm" />
-    <Content Include="Content\NotFound.htm" />
+    <Content Include="AccessDenied.htm" />
+    <Content Include="app.js">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>app.coffee</DependentUpon>
+    </Content>
+    <Content Include="Content\application.css" />
+    <Content Include="Error.htm" />
+    <Content Include="main.js">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>main.coffee</DependentUpon>
+    </Content>
+    <Content Include="NotFound.htm" />
     <Content Include="Shared\Bindings.xml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="Behaviors\AuthorizationBehavior.cs" />
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
     <Compile Include="Behaviors\SecureRequest.cs" />
-    <Compile Include="HtmlConvetions.cs" />
-    <Compile Include="ConfigureFubuMVC.cs" />
+    <Compile Include="Conventions.cs" />
     <Compile Include="Handlers\Administration\Users\DeleteHandler.cs" />
     <Compile Include="Handlers\MessageModel.cs" />
     <Compile Include="Handlers\PagingModel.cs" />
@@ -120,11 +136,15 @@
     <Compile Include="Handlers\DashboardHandler.cs" />
     <Compile Include="Handlers\LoginHandler.cs" />
     <Compile Include="Handlers\Widgets\FooterHandler.cs" />
-    <Compile Include="Navigation.cs" />
+    <Compile Include="Handlers\Navigation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registry.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.coffee">
+      <Generator>CoffeeScriptGenerator</Generator>
+      <LastGenOutput>app.js</LastGenOutput>
+    </None>
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <None Include="Handlers\TestBatches\Add.spark" />
     <None Include="Handlers\Widgets\Links.spark" />
@@ -144,8 +164,11 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="packages.config" />
+    <None Include="main.coffee">
+      <Generator>CoffeeScriptGenerator</Generator>
+      <LastGenOutput>main.js</LastGenOutput>
+    </None>
     <None Include="Shared\Application.spark" />
-    <None Include="Shared\Chrome.spark" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Volta.Core\Volta.Core.csproj">

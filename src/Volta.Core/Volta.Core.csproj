@@ -32,25 +32,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bottles.0.9.1.186\lib\Bottles.dll</HintPath>
+      <HintPath>..\packages\Bottles.0.9.1.197\lib\Bottles.dll</HintPath>
     </Reference>
     <Reference Include="FubuCore, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuCore.0.9.4.111\lib\FubuCore.dll</HintPath>
+      <HintPath>..\packages\FubuCore.0.9.4.114\lib\FubuCore.dll</HintPath>
     </Reference>
     <Reference Include="FubuLocalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuLocalization.0.9.4.111\lib\FubuLocalization.dll</HintPath>
+      <HintPath>..\packages\FubuLocalization.0.9.4.114\lib\FubuLocalization.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Core, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuMVC.References.0.9.3.724\lib\net40\FubuMVC.Core.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.References.0.9.3.740\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.3.724\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.References.0.9.3.740\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlTags, Version=1.0.0.54, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="HtmlTags, Version=1.0.0.55, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\HtmlTags.1.0.0.54\lib\4.0\HtmlTags.dll</HintPath>
+      <HintPath>..\packages\HtmlTags.1.0.0.55\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
@@ -106,11 +104,15 @@
     <Compile Include="Infrastructure\Framework\ObjectExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Reflection\AssemblyExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Security\HashedPassword.cs" />
-    <Compile Include="Infrastructure\Framework\Web\FubuMvc\ConfigurationExtensions.cs" />
-    <Compile Include="Infrastructure\Framework\Web\FubuMvc\PageExtensions.cs" />
-    <Compile Include="Infrastructure\Framework\Web\FubuMvc\TokenStore.cs" />
-    <Compile Include="Infrastructure\Framework\Web\FubuMvc\UrlExtensions.cs" />
-    <Compile Include="Infrastructure\Framework\Web\FubuMvc\FullNameUrlPolicy.cs" />
+    <Compile Include="Infrastructure\Framework\Web\Fubu\ConfigurationExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Web\Fubu\PageExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Web\Fubu\RegexUrlPolicy.cs" />
+    <Compile Include="Infrastructure\Framework\Web\Fubu\RouteConventionExpressionExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Web\ISession.cs" />
+    <Compile Include="Infrastructure\Framework\Web\Session.cs" />
+    <Compile Include="Infrastructure\Framework\Web\TokenStore.cs" />
+    <Compile Include="Infrastructure\Framework\Web\Fubu\UrlExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Web\Fubu\UrlRegistryExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Web\Navigation\Tab.cs" />
     <Compile Include="Infrastructure\Framework\Web\Navigation\TabCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

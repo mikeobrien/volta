@@ -4,7 +4,7 @@ using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Urls;
 using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Framework.Security;
-using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
+using Volta.Core.Infrastructure.Framework.Web.Fubu;
 using Volta.Web.Handlers;
 
 namespace Volta.Web.Behaviors

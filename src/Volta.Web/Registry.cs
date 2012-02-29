@@ -1,4 +1,3 @@
-using FubuCore.Binding;
 using Volta.Core.Application;
 using Volta.Core.Application.Configuration;
 using Volta.Core.Application.Security;
@@ -6,7 +5,7 @@ using Volta.Core.Domain.Administration;
 using Volta.Core.Infrastructure.Framework.Data;
 using Volta.Core.Infrastructure.Framework.Logging;
 using Volta.Core.Infrastructure.Framework.Security;
-using Volta.Core.Infrastructure.Framework.Web.FubuMvc;
+using Volta.Core.Infrastructure.Framework.Web;
 using Volta.Core.Infrastructure.Framework.Web.Navigation;
 
 namespace Volta.Web
@@ -16,13 +15,14 @@ namespace Volta.Web
         public Registry()
         {
             ForSingletonOf<IApplication>().Use<Application>();
-            ForSingletonOf<IConfiguration>().Use<Core.Application.Configuration.Configuration>();
+            ForSingletonOf<IConfiguration>().Use<Configuration>();
             ForSingletonOf<ILogger>().Use<Log4NetLogger>();
 
             For<MongoConnection>().Use(x => new MongoConnection(x.GetInstance<IConfiguration>().ConnectionString));
             For(typeof(IRepository<>)).Use(typeof(MongoRepository<>));
 
-            For<ITokenStore<Token>>().Use<FubuTokenStore<Token>>();
+            For<ISession>().Use<ISession>();
+            For<ITokenStore<Token>>().Use<TokenStore<Token>>();
             For<ISecureSession<Token>>().Use<SecureSession<Token>>();
             For<IAuthenticationService<Token>>().Use<AuthenticationService>();
 
@@ -30,9 +30,6 @@ namespace Volta.Web
             For<IUserModificationService>().Use<UserModificationService>();
 
             For<TabCollection>().Use<Navigation>();
-
-            // Just a hack that can be removed when the next nuget is deployed (0.9.1.569)
-            For<IBindingLogger>().Use<NulloBindingLogger>();
         }
     }
 }
