@@ -4,7 +4,7 @@ require_relative "gallio-task"
 require_relative "common"
 require_relative "xml-config-task"
 require_relative "dynamic-tasks"
-require_relative "coffee-compile-task"
+require_relative "coffeescript-compile-task"
 
 reportsPath = "reports"
 version = ENV["BUILD_NUMBER"]
