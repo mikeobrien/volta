@@ -29,7 +29,7 @@ class CoffeeCompiler
                 puts "Coffeescript compiler failed: #{$?}."
                 errors = true
             else
-                put "Success."
+                puts "Success."
             end
         end
     
