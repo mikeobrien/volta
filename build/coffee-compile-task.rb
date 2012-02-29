@@ -22,10 +22,10 @@ class CoffeeCompiler
         Dir.glob(File.join(@path, '**/*.coffee')) do |path|
             puts "Compiling coffee script #{path}..."
             command = "\"#{node_path}\" \"#{coffee_path}\" -b -c \"#{File.expand_path(path)}\""
-            puts command
             result = `#{command} 2>&1`
             puts result
             if $? != 0 then
+                puts command
                 puts "Coffeescript compiler failed: #{$?}."
                 errors = true
             else
