@@ -86,8 +86,8 @@ robocopy :deploy => :website_config_settings do |options|
     options.source = "src/Volta.Web"
     options.target = "D:/Websites/volta.groupsadoway.org/wwwroot"
     options.exclude_dirs("obj")
-    options.include_files("*.dll *.config *.spark *.cshtml *.htm *.html *.txt *.css *.asax " \
-                          "*.gif *.jpg *.jpeg *.png *.xml *.js *.ico *.xsl")
+    options.include_files("*.dll", "*.config", "*.spark", "*.htm", "*.html", "*.txt", "*.css",
+                          "*.gif", "*.jpg", "*.jpeg", "*.png", "*.js", "*.ico")
     options.log_path = File.join(reportsPath, "deploy.log")
 end
 

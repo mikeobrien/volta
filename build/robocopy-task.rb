@@ -20,11 +20,11 @@ class Robocopy
 		@retry_wait = 30
 	end
 	
-	def exclude_dirs(dirs)
+	def exclude_dirs(dirs*)
 		@exclude_dirs.concat(dirs)
 	end
 	
-	def include_files(files)
+	def include_files(files*)
 		@include_files.concat(files)
 	end
 	
