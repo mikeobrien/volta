@@ -40,8 +40,8 @@ end
 compile_coffee :compile_coffee => :compile do |options|
     options.path = '.'
     options.report_path = './artifacts'
-    options.node_path = 'D:/Software/node.js/node.exe'
-    options.coffee_path = 'D:/Software/coffeescript/coffee'
+    options.node_path = 'D:/Software/node.js'
+    options.coffee_path = 'D:/Software/coffeescript'
 end
 
 xml_config :test_config_settings => :compile_coffee do |options|
