@@ -1,3 +1,3 @@
 define [], ->
-	start: ->
+	start: ->//
 		console.log 'app starting...'
