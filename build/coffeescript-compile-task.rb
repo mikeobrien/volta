@@ -1,6 +1,6 @@
 require "fileutils"
 
-def compile_coffee(*args, &block)
+def compile_coffeescript(*args, &block)
 	body = lambda { |*args|
 		task = CoffeeCompiler.new
 		block.call(task)
@@ -11,11 +11,11 @@ end
 	
 class CoffeeCompiler
 
-    attr_accessor :node_path, :coffee_path, :path, :report_path
+    attr_accessor :node_path, :coffee_path, :path
     
     def run()
     
-        node_path = File.join @node_path, 'node.exe'
+        node_path = 'node' #File.join @node_path, 'node.exe'
         coffee_path = File.join @coffee_path, 'coffee'
         errors = false
         

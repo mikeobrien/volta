@@ -37,9 +37,8 @@ tasks :compile, projects do |task, project|
     end
 end
 
-compile_coffee :compile_coffee => :compile do |options|
-    options.path = '.'
-    options.report_path = './artifacts'
+compile_coffeescript :compile_coffee => :compile do |options|
+    options.path = 'src/Volta.Web'
     options.node_path = 'D:/Software/node.js'
     options.coffee_path = 'D:/Software/coffeescript/bin'
 end
