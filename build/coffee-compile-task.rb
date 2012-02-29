@@ -20,12 +20,16 @@ class CoffeeCompiler
         errors = false
         
         Dir.glob(File.join(@path, '**/*.coffee')) do |path|
-            puts "Compiling coffee script #{path}"
-            result = `\"#{node_path}\" \"#{coffee_path}\" -b -c \"#{File.expand_path(path)}\" 2>&1`
+            puts "Compiling coffee script #{path}..."
+            command = "\"#{node_path}\" \"#{coffee_path}\" -b -c \"#{File.expand_path(path)}\""
+            puts command
+            result = `#{command} 2>&1`
             puts result
             if $? != 0 then
                 puts "Coffeescript compiler failed: #{$?}."
                 errors = true
+            else
+                put "Success."
             end
         end
     
