@@ -11,17 +11,15 @@ end
 	
 class CoffeeCompiler
 
-    attr_accessor :node_path, :coffee_path, :path
+    attr_accessor :path
     
     def run()
     
-        node_path = 'node' #File.join @node_path, 'node.exe'
-        coffee_path = File.join @coffee_path, 'coffee'
         errors = false
         
         Dir.glob(File.join(@path, '**/*.coffee')) do |path|
             puts "Compiling coffee script #{path}..."
-            command = "\"#{node_path}\" \"#{coffee_path}\" -b -c \"#{File.expand_path(path)}\""
+            command = "coffee -b -c \"#{File.expand_path(path)}\""
             result = `#{command} 2>&1`
             puts result
             if $? != 0 then

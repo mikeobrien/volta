@@ -39,8 +39,6 @@ end
 
 compile_coffeescript :compile_coffee => :compile do |options|
     options.path = 'src/Volta.Web'
-    options.node_path = 'D:/Software/node.js'
-    options.coffee_path = 'D:/Software/coffeescript/bin'
 end
 
 xml_config :test_config_settings => :compile_coffee do |options|
