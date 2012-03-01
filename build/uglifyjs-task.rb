@@ -1,33 +1,33 @@
 require "fileutils"
 
-def compile_coffeescript(*args, &block)
+def uglifyjs(*args, &block)
 	body = lambda { |*args|
-		task = CoffeeCompiler.new
+		task = UglifyJs.new
 		block.call(task)
 		task.run
 	}
 	Rake::Task.define_task(*args, &body)
 end
 	
-class CoffeeCompiler
+class UglifyJs
 
     attr_accessor :path
     
     def run()
         errors = false
         
-        Dir.glob(File.join(@path, '**/*.coffee')) do |path|
-            puts "Compiling coffee script #{path}..."
-            command = "coffee -b -c \"#{File.expand_path(path)}\""
+        Dir.glob(File.join(@path, '**/*.js')) do |path|
+            puts "Uglifying javascript #{path}..."
+            command = "uglifyjs --overwrite \"#{File.expand_path(path)}\""
             result = `#{command} 2>&1`
             puts result unless result.empty? 
             if $? != 0 then
                 puts command
-                puts "Coffeescript compiliation failed: #{$?}."
+                puts "Uglifying failed: #{$?}."
                 errors = true
             end
         end
     
-		fail "Coffeescript compiliation failed." unless !errors
+		fail "Uglifying javascript failed." unless !errors
     end
 end

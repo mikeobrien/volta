@@ -79,7 +79,11 @@ xml_config :website_config_settings => :integration_tests do |options|
     options.set_node("log4net/appender[@name='EmailAppender']/smtpHost/@value", ENV["VOLTA_SMTP_HOST"])
 end
 
-robocopy :deploy => :website_config_settings do |options|
+uglifyjs :uglifyjs => :website_config_settings do |options|
+    options.path = 'src/Volta.Web'
+end
+
+robocopy :deploy => :uglifyjs do |options|
     options.source = "src/Volta.Web"
     options.target = "D:/Websites/volta.groupsadoway.org/wwwroot"
     options.exclude_dirs("obj")
