@@ -80,7 +80,16 @@ xml_config :website_config_settings => :integration_tests do |options|
     options.set_node("log4net/appender[@name='EmailAppender']/smtpHost/@value", ENV["VOLTA_SMTP_HOST"])
 end
 
-uglifyjs :uglifyjs => :website_config_settings do |options|
+require_optimize :optimize_requirejs => :website_config_settings do |options|
+    options.path = 'src/Volta.Web'
+    options.main_file = 'main.js'
+    options.exclude_path_filter = /\/scripts\//
+    options.include_path_filter = /\/scripts\/require\//
+    options.noop_plugins 'text'
+    options.exclude_modules 'data'
+end
+
+uglifyjs :uglifyjs => :optimize_requirejs do |options|
     options.path = 'src/Volta.Web'
 end
 
