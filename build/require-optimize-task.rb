@@ -107,6 +107,7 @@ class RequireOptimizer
         if paths_section.length > 0 and paths_section[0].length > 0
             return Hash[paths_section[0][0].scan(/\s*(\w*)\s*:\s*'(.*?)'\s*,?/m)]
         end
+        Hash.new
     end
 end
 
