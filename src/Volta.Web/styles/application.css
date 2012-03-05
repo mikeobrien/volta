@@ -1,0 +1,27 @@
+html{height:100%}
+
+.login-body {
+  background-color: #A0A0A0;
+  background-image: -moz-radial-gradient(center 45deg,circle cover, #EAEAEA, #A0A0A0);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%,800, from(#EAEAEA), to(#A0A0A0));
+  background-image: radial-gradient(center 45deg,circle cover, #EAEAEA, #A0A0A0);
+}
+
+.login-body2 {
+  background-color: #6E8EA7;
+  background-image: -moz-radial-gradient(center 45deg,circle cover, #6E8EA7, #3C5A76);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%,800, from(#6E8EA7), to(#3C5A76));
+  background-image: radial-gradient(center 45deg,circle cover, #6E8EA7, #3C5A76);
+}
+
+.error-body {
+  background-color: #A0A0A0;
+  background-image: -moz-radial-gradient(center 45deg,circle cover, #EAEAEA, #A0A0A0);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%,800, from(#EAEAEA), to(#A0A0A0));
+  background-image: radial-gradient(center 45deg,circle cover, #EAEAEA, #A0A0A0);
+}
+
+.error-text {
+    font-size: 30pt;
+    font-family: arial;
+}
