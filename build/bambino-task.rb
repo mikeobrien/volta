@@ -55,7 +55,7 @@ class Bambino
         if @xml_output_filename then command << '--xml-output-filename' << @xml_output_filename end
         if @html_output_filename then command << '--html-output-filename' << @html_output_filename end
         if @script_paths.length > 0 then @script_paths.each{|script| command << "--script-path" << "\"#{script}\""} end
-        if @module_paths.length > 0 then @module_paths.each{|module| command << "--module-path" << module} end
+        if @module_paths.length > 0 then @module_paths.each{|mod| command << "--module-path" << mod} end
         
         command = command.join(" ")
         
