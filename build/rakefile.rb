@@ -1,5 +1,6 @@
 require "albacore"
 require_relative "robocopy-task"
+require_relative "bambino-task"
 require_relative "gallio-task"
 require_relative "common"
 require_relative "xml-config-task"
@@ -51,7 +52,21 @@ xml_config :test_config_settings => :compile_coffee do |options|
     options.set_node("appSettings/add[@key='VoltaUrl']/@value", ENV["VOLTA_URL"])
 end
 
-gallio :unit_tests => :test_config_settings do |options|
+bambino :javascript_unit_tests => :test_config_settings do |options|
+    options.phantom_path = "src/Volta.Tests/Client/lib/phantomjs"
+    options.bambino_path = "src/Volta.Tests/Client/lib"
+    options.path = "src/Volta.Web"
+    options.specs_path = "src/Volta.Tests/Client/specs"
+    options.require_path = "src/Volta.Tests/Client/lib"
+    options.jasmine_path = "src/Volta.Tests/Client/lib/jasmine"
+    options.xml_output = true
+    options.html_output = true
+    options.output_path = File.join(reportsPath, "bambino")
+    options.add_script_paths('src/Volta.Tests/Client/lib/jasmine/jasmine-jquery.js')
+    options.add_module_paths('src/Volta.Web/scripts/underscore/underscore-config.js')
+end
+
+gallio :unit_tests => :javascript_unit_tests do |options|
     options.echo_command_line = true
     options.working_directory = Dir.getwd
     options.add_test_assembly("src/Volta.Tests/bin/Release/Volta.Tests.dll")
