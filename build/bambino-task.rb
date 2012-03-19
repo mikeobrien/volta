@@ -34,8 +34,8 @@ class Bambino
     
     def run()
         command = []
-        command << "\"#{File.expand_path(Path.join(@phantom_path, Phantom))}\""
-        command << "\"#{File.expand_path(Path.join(@bambino_path, Bambino))}\""
+        command << "\"#{File.expand_path(File.join(@phantom_path, Phantom))}\""
+        command << "\"#{File.expand_path(File.join(@bambino_path, Bambino))}\""
         command << "\"#{@path}\""
         command << '--run'
         
