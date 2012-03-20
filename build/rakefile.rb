@@ -59,6 +59,7 @@ bambino :javascript_unit_tests => :test_config_settings do |options|
     options.specs_path = "src/Volta.Tests/Client/specs"
     options.require_path = "src/Volta.Tests/Client/lib"
     options.jasmine_path = "src/Volta.Tests/Client/lib/jasmine"
+    options.teamcity_output = true
     options.xml_output = true
     options.html_output = true
     options.output_path = File.join(reportsPath, "bambino")

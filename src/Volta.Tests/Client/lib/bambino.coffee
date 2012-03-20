@@ -151,7 +151,7 @@ class Config
         printOption 'output-filename', 'filename of report, defaults to "results"'
         printOption 'xml-output-filename', 'filename of xml report, defaults to output-filename'
         printOption 'html-output-filename', 'filename of html report, defaults to output-filename'
-        printOption 'output*', 'output type: xml, html'
+        printOption 'output*', 'output type: xml, html, teamcity'
         printOption 'script-path*', 'path to a script'
         printOption 'module-path*', 'path to a require.js module'
         console.log ''
@@ -505,6 +505,24 @@ class HtmlWriter extends ResultWriter
         @writeln "</div></body></html>"
         @save()
 
+class TeamCityWriter
+    escape: (message) -> 
+        if !message then '' 
+        else message.replace(/\|/g, "||").replace(/\'/g, "|'").replace(/\n/g, "|n").replace(/\r/g, "|r").replace(/\u0085/g, "|x")
+                    .replace(/\u2028/g, "|l").replace(/\u2029/g, "|p").replace(/\[/g, "|[").replace(/]/g, "|]")
+                    
+    writeSummary: (summary) ->
+        for suite in summary.suites
+            console.log "##teamcity[testSuiteStarted name='#{@escape(suite.name)}']"
+            for spec in suite.specs
+                console.log "##teamcity[testStarted name='#{@escape(spec.fullName)}' captureStandardOutput='true']"
+                if spec.failed 
+                    messages = @escape(spec.messages.map((x) -> x.fail ? x.log).join(', '))
+                    stackTrace = @escape(spec.messages.map((x) -> x.stack).join(', '))
+                    console.log "##teamcity[testFailed name='#{@escape(spec.fullName)}' message='#{messages}' details='#{stackTrace}']"
+                console.log "##teamcity[testFinished name='#{@escape(spec.fullName)}' duration='#{spec.duration}']"
+            console.log "##teamcity[testSuiteFinished name='#{@escape(suite.name)}']"
+            
 console.log 'Bambino Test Runner'
 console.log ''
 
@@ -520,6 +538,7 @@ if config.output.contains('xml')
 if config.output.contains('html') 
     resultWriters.push new HtmlWriter(config.htmlOutputPath ? config.outputPath, config.htmlOutputFilename ? config.outputFilename, 
                                       config.autorun, config.autorunFrequency, config.createRunner, config.runnerFilename)
+if config.output.contains('teamcity') then resultWriters.push new TeamCityWriter()
 
 runner = new TestRunner(config.path, config.appFilter, config.testsPath, config.testFilter, config.requirePath, 
                         config.jasminePath, config.scriptPaths, config.modulePaths, resultWriters)

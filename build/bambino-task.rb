@@ -16,8 +16,8 @@ class Bambino
 
     attr_accessor :phantom_path, :bambino_path, :path, :create_runner, :runner_filename, :app_filter, 
                   :specs_path, :spec_filter, :require_path, :jasmine_path, :xml_output, :html_output, 
-                  :output_path, :xml_output_path, :html_output_path, :output_filename, :xml_output_filename,
-                  :html_output_filename, :script_paths, :module_paths
+                  :teamcity_output, :output_path, :xml_output_path, :html_output_path, :output_filename, 
+                  :xml_output_filename, :html_output_filename, :script_paths, :module_paths
     
     def initialize()
         @script_paths = []
@@ -48,6 +48,7 @@ class Bambino
         if @jasmine_path then command << '--jasmine-path' << "\"#{@jasmine_path}\"" end
         if @xml_output then command << '--output' << 'xml' end
         if @html_output then command << '--output' << 'html' end
+        if @teamcity_output then command << '--output' << 'teamcity' end
         if @output_path then command << '--output-path' << "\"#{@output_path}\"" end
         if @xml_output_path then command << '--xml-output-path' << "\"#{@xml_output_path}\"" end
         if @html_output_path then command << '--html-output-path' << "\"#{@html_output_path}\"" end

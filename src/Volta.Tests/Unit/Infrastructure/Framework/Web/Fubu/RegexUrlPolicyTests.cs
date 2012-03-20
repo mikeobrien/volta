@@ -69,7 +69,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreAssemblyNamespace<RegexUrlPolicyTests>();
             var route = CreateRoute<GetHandler>(policy, x => x.Execute());
-            route.Pattern.ShouldEqual(RelativeNamespace + "/web/gethandler/execute");
+            route.Pattern.ShouldEqual(RelativeNamespace + "/web/handlers/gethandler/execute");
         }
 
         [Test]
