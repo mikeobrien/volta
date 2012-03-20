@@ -117,6 +117,9 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="widget.js">
+      <DependentUpon>widget.coffee</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
@@ -165,6 +168,7 @@
     <Content Include="packages.config" />
     <None Include="main.coffee" />
     <None Include="Shared\Application.spark" />
+    <None Include="widget.coffee" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Volta.Core\Volta.Core.csproj">
