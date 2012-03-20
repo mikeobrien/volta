@@ -513,7 +513,7 @@ class TeamCityWriter
                     
     writeSummary: (summary) ->
         for suite in summary.suites
-            console.log "##teamcity[testSuiteStarted name='#{@escape(suite.name)}']"
+            console.log "##teamcity[testSuiteStarted name='#{@escape(suite.path)}']"
             for spec in suite.specs
                 console.log "##teamcity[testStarted name='#{@escape(spec.fullName)}' captureStandardOutput='true']"
                 if spec.failed 
@@ -521,7 +521,7 @@ class TeamCityWriter
                     stackTrace = @escape(spec.messages.map((x) -> x.stack).join(', '))
                     console.log "##teamcity[testFailed name='#{@escape(spec.fullName)}' message='#{messages}' details='#{stackTrace}']"
                 console.log "##teamcity[testFinished name='#{@escape(spec.fullName)}' duration='#{spec.duration}']"
-            console.log "##teamcity[testSuiteFinished name='#{@escape(suite.name)}']"
+            console.log "##teamcity[testSuiteFinished name='#{@escape(suite.path)}']"
             
 console.log 'Bambino Test Runner'
 console.log ''

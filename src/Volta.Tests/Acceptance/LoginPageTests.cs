@@ -8,7 +8,7 @@ namespace Volta.Tests.Acceptance
 {
     public class LoginPageTests : WebPageTestBase<LoginPage>
     {
-        [Test]
+        //[Test]
         public void Should_Display_Login_Page()
         {
             Page.IsOnPage().ShouldBeTrue();
@@ -17,7 +17,7 @@ namespace Volta.Tests.Acceptance
             Page.SubmitButton.Exists.ShouldBeTrue();
         }
 
-        [Test]
+        //[Test]
         public void Should_Login_With_Valid_Credentials()
         {
             Page.UsernameTextField.TypeText(Constants.TestUsername);
@@ -25,7 +25,7 @@ namespace Volta.Tests.Acceptance
             Page.Submit().SwitchTo<DashboardPage>().IsOnPage().ShouldBeTrue();
         }
 
-        [Test]
+        //[Test]
         public void Should_Not_Login_With_Invalid_Credentials()
         {
             Page.UsernameTextField.TypeText("yada");
@@ -36,7 +36,7 @@ namespace Volta.Tests.Acceptance
             Page.MessageText.ShouldEqual(LoginHandler.InvalidUsernameOrPasswordMessage);
         }
          
-        [Test]
+        //[Test]
         public void Should_Be_Redirected_To_The_Login_Page_When_Not_Logged_In_And_Accessing_Default_Page()
         {
             Page.NavigateTo<DashboardPage>();
@@ -44,7 +44,7 @@ namespace Volta.Tests.Acceptance
             Page.HasMessage.ShouldBeFalse();
         }
 
-        [Test]
+        //[Test]
         public void Should_Be_Redirected_To_The_Login_Page_When_Not_Logged_In_And_Accessing_Non_Default_Page()
         {
             Page.NavigateTo<EditPage>(Constants.TestUsername);
@@ -53,7 +53,7 @@ namespace Volta.Tests.Acceptance
             Page.MessageText.ShouldEqual(LoginHandler.NotAuthenticatedMessage);
         }
 
-        [Test]
+        //[Test]
         public void Should_Be_Redirected_To_The_Login_Page_When_Not_Logged_In_And_Accessing_Non_Default_Page_Then_Redirect_Back_On_Login()
         {
             Page.NavigateTo<EditPage>(Constants.TestUsername);
