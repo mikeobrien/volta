@@ -6,7 +6,7 @@ namespace Volta.Tests.Acceptance
 {
     public class LogoutPageTests : WebPageTestBase<LoginPage>
     {
-        [Test]
+        //[Test]
         public void Should_Logout_And_Redirect_To_Login_Page()
         {
             Page.UsernameTextField.TypeText(Constants.TestUsername);
