@@ -1,43 +1,41 @@
-﻿using FubuMVC.Core;
+﻿using System.Net;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
-using FubuMVC.Core.Urls;
 using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Framework.Security;
-using Volta.Core.Infrastructure.Framework.Web.Fubu;
-using Volta.Web.Handlers;
+using Volta.Core.Infrastructure.Framework.Web;
 
 namespace Volta.Web.Behaviors
 {
     public class AuthorizationBehavior : IActionBehavior
     {
+        public const string UnauthorizedMessage = "You need to login to perform this action.";
+
         private readonly IOutputWriter _writer;
         private readonly IActionBehavior _actionBehavior;
-        private readonly SecureRequest<LoginHandler, LogoutHandler, DashboardHandler> _request;
+        private readonly ISecureSession<Token> _secureSession;
+        private readonly IWebServer _webServer;
 
-        public AuthorizationBehavior(IUrlRegistry registry, CurrentRequest request, IOutputWriter writer, IActionBehavior actionBehavior, ISecureSession<Token> secureSession)
+        public AuthorizationBehavior(
+            IOutputWriter writer, 
+            IActionBehavior actionBehavior, 
+            ISecureSession<Token> secureSession, 
+            IWebServer webServer)
         {
-            _request = new SecureRequest<LoginHandler, LogoutHandler, DashboardHandler>(registry, request, secureSession, x => x.Query(null), x => x.Query(), x => x.Query());
             _writer = writer;
             _actionBehavior = actionBehavior;
+            _secureSession = secureSession;
+            _webServer = webServer;
         }
 
         public void Invoke()
         {
-            if (_request.IsLoggedIn()) WhenLoggedIn(); else WhenNotLoggedIn();
-        }
-
-        private void WhenLoggedIn()
-        {
-            if (_request.IsOnLoginPage()) _writer.RedirectToUrl(_request.DefaultPageUrl());
+            if (!_secureSession.IsLoggedIn())
+            {   
+                _webServer.IgnoreErrorStatus = true;
+                _writer.WriteResponseCode(HttpStatusCode.Unauthorized, UnauthorizedMessage);
+            }
             else _actionBehavior.Invoke();
-        }
-
-        private void WhenNotLoggedIn()
-        {
-            if (_request.IsOnLoginPage()) _actionBehavior.Invoke();
-            else _writer.RedirectToUrl(_request.IsOnDefaultPage() || _request.IsOnLogoutPage() ? _request.LoginPageUrl() : 
-                                           _request.LoginPageUrl().AppendQueryStringValueFor<LoginOutputModel>(x => x.RedirectUrl, _request.Url()));
         }
 
         public void InvokePartial()

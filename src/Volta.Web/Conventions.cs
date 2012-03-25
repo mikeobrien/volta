@@ -15,8 +15,6 @@ namespace Volta.Web
 
             IncludeDiagnostics(debug);
 
-            Applies.ToAssemblyContainingType(GetType());
-
             Actions
                 .IncludeTypeNamesSuffixed("Handler")
                 .IncludeMethodsPrefixed("Execute");
@@ -38,7 +36,7 @@ namespace Volta.Web
                     .ConstrainClassToHttpDeleteStartingWith("PublicDelete"));
 
             Policies.WrapBehaviorChainsWith<AuthorizationBehavior>()
-                    .ConditionallyWrapBehaviorChainsWith<ExceptionHandlerBehavior>(x => !debug);
+                    .WrapBehaviorChainsWith<ExceptionHandlerBehavior>();
 
             Media.ApplyContentNegotiationToActions(x => x.HandlerType.Assembly == GetType().Assembly);
 

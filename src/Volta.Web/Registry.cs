@@ -21,15 +21,13 @@ namespace Volta.Web
             For<MongoConnection>().Use(x => new MongoConnection(x.GetInstance<IConfiguration>().ConnectionString));
             For(typeof(IRepository<>)).Use(typeof(MongoRepository<>));
 
-            For<ISession>().Use<ISession>();
+            For<ISession>().Use<Session>();
             For<ITokenStore<Token>>().Use<TokenStore<Token>>();
             For<ISecureSession<Token>>().Use<SecureSession<Token>>();
             For<IAuthenticationService<Token>>().Use<AuthenticationService>();
 
             For<IUserCreationService>().Use<UserCreationService>();
             For<IUserModificationService>().Use<UserModificationService>();
-
-            For<TabCollection>().Use<Navigation>();
         }
     }
 }

@@ -12,8 +12,6 @@ namespace Volta.Tests.Integration.Application
         {
             var manager = new Configuration();
             manager.ConnectionString.ShouldEqual("mongodb://yada/yada");
-            manager.ErrorUrl.ShouldEqual("/content/error.htm");
-            manager.AccessDeniedUrl.ShouldEqual("/content/accessdenied.htm");
         }
     }
 }

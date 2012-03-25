@@ -1,11 +1,12 @@
 ﻿using System;
-using FubuMVC.Core;
+using System.Net;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
 using NSubstitute;
 using NUnit.Framework;
-using Volta.Core.Application.Configuration;
+using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Framework.Logging;
+using Volta.Core.Infrastructure.Framework.Web;
 using Volta.Web.Behaviors;
 
 namespace Volta.Tests.Unit.UserInterface.Behaviors
@@ -13,59 +14,64 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
     [TestFixture]
     public class ExceptionHandlerBehaviorTests
     {
-        private const string ErrorUrl = "/content/error.htm";
-        private IConfiguration _configuration;
-        private IOutputWriter _writer;
-        private CurrentRequest _request;
-        private IActionBehavior _behavior;
-        private ILogger _logger;
-
-        [SetUp]
-        public void Setup()
+        [Test]
+        public void should_not_do_anything_if_there_is_not_an_exception()
         {
-            _configuration = Substitute.For<IConfiguration>();
-            _configuration.ErrorUrl.Returns(ErrorUrl);
-            _writer = Substitute.For<IOutputWriter>();
-            _request = new CurrentRequest { RawUrl = "http://www.google.com" };
-            _behavior = Substitute.For<IActionBehavior>();
-            _logger = Substitute.For<ILogger>();
+            var outputWriter = Substitute.For<IOutputWriter>();
+            var innerBehavior = Substitute.For<IActionBehavior>();
+            var logger = Substitute.For<ILogger>();
+            var webServer = Substitute.For<IWebServer>();
+
+            var exceptionHandlerBehavior = new ExceptionHandlerBehavior(innerBehavior, outputWriter, logger, webServer);
+
+            exceptionHandlerBehavior.Invoke();
+
+            innerBehavior.Received().Invoke();
+            webServer.DidNotReceiveWithAnyArgs().IgnoreErrorStatus = true;
+            outputWriter.DidNotReceiveWithAnyArgs().WriteResponseCode(0);
+            outputWriter.DidNotReceiveWithAnyArgs().WriteResponseCode(HttpStatusCode.OK);
+            logger.DidNotReceiveWithAnyArgs().Write(null);
         }
 
         [Test]
-        public void Should_Log_Exception()
+        public void should_log_and_set_status_to_500_when_there_is_an_unhandled_exception()
         {
-            var exception = new Exception("Bad");
-            _behavior.When(x => x.Invoke()).Do(x => { throw exception; });
-            var exceptionHandler = new ExceptionHandlerBehavior(_configuration, _writer, _request, _behavior, _logger);
-            exceptionHandler.Invoke();
-            _logger.Received().Write(_request.RawUrl, exception);
+            var outputWriter = Substitute.For<IOutputWriter>();
+            var innerBehavior = Substitute.For<IActionBehavior>();
+            var logger = Substitute.For<ILogger>();
+            var webServer = Substitute.For<IWebServer>();
+            var exception = new Exception("bad things happening");
+
+            innerBehavior.When(x => x.Invoke()).Do(x => { throw exception; });
+
+            var exceptionHandlerBehavior = new ExceptionHandlerBehavior(innerBehavior, outputWriter, logger, webServer);
+
+            exceptionHandlerBehavior.Invoke();
+
+            webServer.Received().IgnoreErrorStatus = true;
+            innerBehavior.Received().Invoke();
+            outputWriter.Received().WriteResponseCode(HttpStatusCode.InternalServerError, "A system error has occured.");
+            logger.Received().Write(exception);
         }
 
         [Test]
-        public void Should_Return_Error_Page()
+        public void should_not_log_and_set_status_to_403_when_there_is_an_authorization_exception()
         {
-            _behavior.When(x => x.Invoke()).Do(x => { throw new Exception("Bad"); });
-            var exceptionHandler = new ExceptionHandlerBehavior(_configuration, _writer, _request, _behavior, _logger);
-            exceptionHandler.Invoke();
-            _writer.Received().RedirectToUrl(ErrorUrl);
-        }
+            var outputWriter = Substitute.For<IOutputWriter>();
+            var innerBehavior = Substitute.For<IActionBehavior>();
+            var logger = Substitute.For<ILogger>();
+            var webServer = Substitute.For<IWebServer>();
 
-        [Test]
-        public void Should_Do_Nothing_When_There_Is_No_Error()
-        {
-            var exceptionHandler = new ExceptionHandlerBehavior(_configuration, _writer, _request, _behavior, _logger);
-            exceptionHandler.Invoke();
-            _behavior.Received().Invoke();
-            _logger.DidNotReceiveWithAnyArgs().Write(null, null);
-            _writer.DidNotReceiveWithAnyArgs().Write(null, (string)null);
-        }
+            innerBehavior.When(x => x.Invoke()).Do(x => { throw new AuthorizationException(); });
 
-        [Test]
-        public void Should_Not_Catch_Partial_Exception()
-        {
-            _behavior.When(x => x.InvokePartial()).Do(x => { throw new Exception("Bad"); });
-            var exceptionHandler = new ExceptionHandlerBehavior(_configuration, _writer, _request, _behavior, _logger);
-            Assert.Throws<Exception>(exceptionHandler.InvokePartial);
+            var exceptionHandlerBehavior = new ExceptionHandlerBehavior(innerBehavior, outputWriter, logger, webServer);
+
+            exceptionHandlerBehavior.Invoke();
+
+            webServer.Received().IgnoreErrorStatus = true;
+            innerBehavior.Received().Invoke();
+            outputWriter.Received().WriteResponseCode(HttpStatusCode.Forbidden, "You are not authorized to perform this action.");
+            logger.DidNotReceiveWithAnyArgs().Write(null);
         }
     }
 }

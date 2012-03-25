@@ -48,22 +48,28 @@
       <HintPath>..\packages\AutoMapper.2.1.265\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bottles.0.9.1.197\lib\Bottles.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Bottles.0.9.1.202\lib\Bottles.dll</HintPath>
     </Reference>
     <Reference Include="FubuCore, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuCore.0.9.4.114\lib\FubuCore.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuCore.0.9.4.117\lib\FubuCore.dll</HintPath>
     </Reference>
     <Reference Include="FubuLocalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuLocalization.0.9.4.114\lib\FubuLocalization.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuLocalization.0.9.4.116\lib\FubuLocalization.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.3.740\lib\net40\FubuMVC.Core.dll</HintPath>
+    <Reference Include="FubuMVC.Core, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuMVC.References.0.9.4.762\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Spark, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.Spark.0.9.3.740\lib\net40\FubuMVC.Spark.dll</HintPath>
+    <Reference Include="FubuMVC.Spark, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuMVC.Spark.0.9.4.762\lib\net40\FubuMVC.Spark.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.3.740\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuMVC.References.0.9.4.762\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="HtmlTags, Version=1.0.0.55, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -106,26 +112,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AccessDenied.htm" />
-    <Content Include="Content\application.css" />
-    <Content Include="Error.htm" />
+    <Content Include="dashboard.html" />
+    <Content Include="dashboard.js">
+      <DependentUpon>dashboard.coffee</DependentUpon>
+    </Content>
+    <Content Include="error.html" />
+    <Content Include="login.html" />
+    <Content Include="login.js">
+      <DependentUpon>login.coffee</DependentUpon>
+    </Content>
     <Content Include="main.js">
       <DependentUpon>main.coffee</DependentUpon>
     </Content>
-    <Content Include="NotFound.htm" />
-    <Content Include="Shared\Bindings.xml" />
+    <Content Include="notfound.html" />
+    <Content Include="styles\application.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="widget.js">
-      <DependentUpon>widget.coffee</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="Behaviors\AuthorizationBehavior.cs" />
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
-    <Compile Include="Behaviors\SecureRequest.cs" />
     <Compile Include="Conventions.cs" />
     <Compile Include="Handlers\Administration\Users\DeleteHandler.cs" />
     <Compile Include="Handlers\MessageModel.cs" />
@@ -147,7 +155,9 @@
     <Compile Include="Registry.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="index.html" />
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
+    <None Include="dashboard.coffee" />
     <None Include="Handlers\TestBatches\Add.spark" />
     <None Include="Handlers\Widgets\Links.spark" />
     <None Include="Handlers\TestBatches\Query.spark" />
@@ -166,9 +176,8 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="packages.config" />
+    <None Include="login.coffee" />
     <None Include="main.coffee" />
-    <None Include="Shared\Application.spark" />
-    <None Include="widget.coffee" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Volta.Core\Volta.Core.csproj">

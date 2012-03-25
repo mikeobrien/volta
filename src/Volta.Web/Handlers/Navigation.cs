@@ -1,6 +1,6 @@
 ﻿using Volta.Core.Infrastructure.Framework.Web.Navigation;
 
-namespace Volta.Web
+namespace Volta.Web.Handlers
 {
     public class Navigation : TabCollection
     {

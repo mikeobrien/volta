@@ -14,9 +14,9 @@ namespace Volta.Core.Infrastructure.Framework.Logging
             XmlConfigurator.Configure();
         }
 
-        public void Write(string source, Exception exception)
+        public void Write(Exception exception)
         {
-            _logger.Error(source, exception);
+            _logger.Error(exception);
         }
     }
 }

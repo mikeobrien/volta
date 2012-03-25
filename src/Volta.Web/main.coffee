@@ -9,5 +9,7 @@ require.config
 		"postalajax": "scripts/postal/postal.ajax"
 		"postalscroll": "scripts/postal/postal.scroll"
 
-require [], ->
-	console.log 'app starting...'
+require ['login', 'dashboard'], (Login, Dashboard) ->
+	@dashboardRouter = new Dashboard.Router
+	@loginRouter = new Login.Router 
+	Backbone.history.start()
