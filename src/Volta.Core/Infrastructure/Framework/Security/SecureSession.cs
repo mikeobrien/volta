@@ -11,9 +11,12 @@ namespace Volta.Core.Infrastructure.Framework.Security
             _tokenStore = tokenStore;
         }
 
-        public void Login(Username username, string password)
+        public bool Login(Username username, string password)
         {
-            Login(_authenticationService.Authenticate(username, password));
+            var token = _authenticationService.Authenticate(username, password);
+            if (token == null) return false;
+            Login(token);
+            return true;
         }
 
         public void Login(TToken token)

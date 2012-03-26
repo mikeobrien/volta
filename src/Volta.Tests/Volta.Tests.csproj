@@ -99,56 +99,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Acceptance\Common\WebPageTestBase.cs" />
-    <Compile Include="Acceptance\Common\WebPage.cs" />
-    <Compile Include="Acceptance\Constants.cs" />
-    <Compile Include="Acceptance\LogoutPage.cs" />
-    <Compile Include="Acceptance\LogoutPageTests.cs" />
-    <Compile Include="Acceptance\Administration\User\EditPage.cs" />
-    <Compile Include="Acceptance\DashboardPage.cs" />
-    <Compile Include="Acceptance\LoginPageTests.cs" />
-    <Compile Include="Acceptance\LoginPage.cs" />
-    <Compile Include="Acceptance\Common\VoltaWebPage.cs" />
-    <Compile Include="Acceptance\Setup.cs" />
     <Compile Include="Unit\Domain\Administration\UserModificationServiceTests.cs" />
     <Compile Include="Unit\Domain\Administration\UsernameTests.cs" />
-    <Compile Include="Unit\Infrastructure\Application\ComparableModelBaseTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Data\QueryableExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\IO\FileCacheTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Reflection\AssemblyExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Reflection\ExpressionExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Web\Fubu\RegexUrlPolicyTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Web\TokenStoreTests.cs" />
-    <Compile Include="Unit\Infrastructure\Framework\Web\Fubu\UrlExtensionTests.cs" />
-    <Compile Include="Unit\Infrastructure\Framework\Web\Navigation\TabTests.cs" />
     <Compile Include="Unit\MemoryTokenStore.cs" />
     <Compile Include="Integration\Application\ConfigurationTests.cs" />
     <Compile Include="Integration\Constants.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Data\MongoRepositoryTests.cs" />
     <Compile Include="Unit\Domain\Administration\UserCreationServiceTests.cs" />
-    <Compile Include="Unit\UserInterface\Administration\AddHandlerTests.cs" />
-    <Compile Include="Unit\UserInterface\Administration\DeleteHandlerTests.cs" />
-    <Compile Include="Unit\UserInterface\Administration\QueryHandlerTests.cs" />
-    <Compile Include="Unit\UserInterface\Administration\EditHandlerTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\AuthorizationBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\ExceptionHandlerBehaviorTests.cs" />
-    <Compile Include="Unit\UserInterface\PagingModelTests.cs" />
-    <Compile Include="Unit\UserInterface\Widgets\NavigationCommon.cs" />
-    <Compile Include="Unit\UserInterface\Widgets\TabsHandlerTests.cs" />
-    <Compile Include="Unit\UserInterface\Widgets\LinksHandlerTests.cs" />
-    <Compile Include="Unit\UserInterface\LogoutHandlerTests.cs" />
-    <Compile Include="Unit\UserInterface\LoginHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Security\SecureSessionTests.cs" />
     <Compile Include="Unit\Application\AuthenticationServiceTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\HashedPasswordTests.cs" />
     <Compile Include="Unit\MemoryRepository.cs" />
-    <Compile Include="Unit\UserInterface\Widgets\UrlRegistryBase.cs" />
+    <Compile Include="Unit\UserInterface\IndexGetHandlerTests.cs" />
+    <Compile Include="Unit\UserInterface\LoginPostHandlerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Client\specs\login.specs.coffee" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -162,8 +140,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Acceptance\" />
     <Folder Include="Integration\Infrastructure\Application\" />
-    <Folder Include="Unit\UserInterface\TestBatches\" />
+    <Folder Include="Unit\Infrastructure\Application\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\specs\login.specs.js">
+      <DependentUpon>login.specs.coffee</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

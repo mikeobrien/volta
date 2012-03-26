@@ -19,6 +19,14 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         public class PostHandler { public object Execute() { return null; } }
         public class PutHandler { public object ExecutePut() { return null; } }
         public class DeleteHandler { public object ExecuteDelete() { return null; } }
+        public class GetUserHandler { public object Execute() { return null; } }
+        public class PostUserHandler { public object Execute() { return null; } }
+        public class PutUserHandler { public object Execute() { return null; } }
+        public class DeleteUserHandler { public object Execute() { return null; } }
+        public class UserGetHandler { public object Execute() { return null; } }
+        public class UserPostHandler { public object Execute() { return null; } }
+        public class UserPutHandler { public object Execute() { return null; } }
+        public class UserDeleteHandler { public object Execute() { return null; } }
     }
 
     [TestFixture]
@@ -29,7 +37,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
             Namespace.Replace(Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace('.', '/') + "/", string.Empty);
 
         [Test]
-        public void Default_Should_Include_Namespace_Class_And_Method_For_All_Http_Methods()
+        public void default_should_include_namespace_class_and_method_for_all_http_methods()
         {
             var route = CreateRoute<GetHandler>(RegexUrlPolicy.Create(), x => x.Execute());
             route.AllowedHttpMethods.ShouldBeEmpty();
@@ -37,7 +45,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Entire_Namespace()
+        public void should_ignore_entire_namespace()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreNamespace();
@@ -46,7 +54,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Current_Assembly_Namespace_Of_Type()
+        public void should_ignore_current_assembly_namespace_of_type()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreAssemblyNamespace(typeof(RegexUrlPolicyTests));
@@ -55,7 +63,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Current_Assembly_Namespace_Of_Generic_Type()
+        public void should_ignore_current_assembly_namespace_of_generic_type()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreAssemblyNamespace<RegexUrlPolicyTests>();
@@ -64,7 +72,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Current_Assembly()
+        public void should_ignore_current_assembly()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreAssemblyNamespace<RegexUrlPolicyTests>();
@@ -73,7 +81,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Type_Namespace()
+        public void should_ignore_type_namespace()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreNamespace<RegexUrlPolicyTests>();
@@ -82,7 +90,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Custom_Namespace()
+        public void should_ignore_custom_namespace()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreNamespaces("Web.Handlers");
@@ -91,7 +99,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Custom_Regex_Namespace()
+        public void should_ignore_custom_regex_namespace()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreNamespaces("H.*?s");
@@ -100,7 +108,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Multiple_Custom_Regex_Namespaces()
+        public void should_ignore_multiple_custom_regex_namespaces()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreNamespaces("H.*?d", "ers");
@@ -109,7 +117,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Entire_Class_Name()
+        public void should_ignore_entire_class_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreClassName();
@@ -118,7 +126,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Custom_Class_Name()
+        public void should_ignore_custom_class_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreClassNames("Handler");
@@ -127,7 +135,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Custom_Regex_Class_Name()
+        public void should_ignore_custom_regex_class_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreClassNames("H.*?r");
@@ -136,7 +144,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Multiple_Custom_Regex_Class_Names()
+        public void should_ignore_multiple_custom_regex_class_names()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreClassNames("H.*?d", "l.*$");
@@ -145,7 +153,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Entire_Method_Name()
+        public void should_ignore_entire_method_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreMethodName();
@@ -154,7 +162,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Custom_Method_Name()
+        public void should_ignore_custom_method_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreMethodNames("cute");
@@ -163,7 +171,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Custom_Regex_Method_Name()
+        public void should_ignore_custom_regex_method_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreMethodNames("c.*$");
@@ -172,7 +180,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Ignore_Multiple_Custom_Regex_Method_Names()
+        public void should_ignore_multiple_custom_regex_method_names()
         {
             var policy = RegexUrlPolicy.Create();
             policy.IgnoreMethodNames("^.*?e", "u.*$");
@@ -181,7 +189,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Include_Url_Parameters()
+        public void should_include_url_parameters()
         {
             var policy = RegexUrlPolicy.Create();
             var route = CreateRoute<GetByIdAndNameHandler>(policy, x => x.Execute_Id_Name(null));
@@ -189,7 +197,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Get_By_Namespace()
+        public void should_constrain_to_get_by_namespace()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainNamespaceToHttpGet("Web");
@@ -199,7 +207,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Post_By_Namespace()
+        public void should_constrain_to_post_by_namespace()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainNamespaceToHttpPost("Web");
@@ -209,7 +217,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Put_By_Namespace()
+        public void should_constrain_to_put_by_namespace()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainNamespaceToHttpPut("Web");
@@ -219,7 +227,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Delete_By_Namespace()
+        public void should_constrain_to_delete_by_namespace()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainNamespaceToHttpDelete("Web");
@@ -229,7 +237,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Get_By_Class_Name()
+        public void should_constrain_to_get_by_class_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainClassToHttpGet("Get");
@@ -239,7 +247,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Post_By_Class_Name()
+        public void should_constrain_to_post_by_class_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainClassToHttpPost("Post");
@@ -249,7 +257,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Put_By_Class_Name()
+        public void should_constrain_to_put_by_class_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainClassToHttpPut("Put");
@@ -259,7 +267,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Delete_By_Class_Name()
+        public void should_constrain_to_delete_by_class_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainClassToHttpDelete("Delete");
@@ -269,47 +277,87 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Get_By_Class_Name_Starting_With()
+        public void should_constrain_to_get_by_class_name_starting_with()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainClassToHttpGetStartingWith("Get");
-            var route = CreateRoute<GetHandler>(policy, x => x.Execute());
+            var route = CreateRoute<GetUserHandler>(policy, x => x.Execute());
             route.AllowedHttpMethods.Count.ShouldEqual(1);
             route.AllowedHttpMethods.ShouldContain("GET");
         }
 
         [Test]
-        public void Should_Constrain_To_Post_By_Class_Name_Starting_With()
+        public void should_constrain_to_post_by_class_name_starting_with()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainClassToHttpPostStartingWith("Post");
-            var route = CreateRoute<PostHandler>(policy, x => x.Execute());
+            var route = CreateRoute<PostUserHandler>(policy, x => x.Execute());
             route.AllowedHttpMethods.Count.ShouldEqual(1);
             route.AllowedHttpMethods.ShouldContain("POST");
         }
 
         [Test]
-        public void Should_Constrain_To_Put_By_Class_Name_Starting_With()
+        public void should_constrain_to_put_by_class_name_starting_with()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainClassToHttpPutStartingWith("Put");
-            var route = CreateRoute<PutHandler>(policy, x => x.ExecutePut());
+            var route = CreateRoute<PutUserHandler>(policy, x => x.Execute());
             route.AllowedHttpMethods.Count.ShouldEqual(1);
             route.AllowedHttpMethods.ShouldContain("PUT");
         }
 
         [Test]
-        public void Should_Constrain_To_Delete_By_Class_Name_Starting_With()
+        public void should_constrain_to_delete_by_class_name_starting_with()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainClassToHttpDeleteStartingWith("Delete");
-            var route = CreateRoute<DeleteHandler>(policy, x => x.ExecuteDelete());
+            var route = CreateRoute<DeleteUserHandler>(policy, x => x.Execute());
             route.AllowedHttpMethods.Count.ShouldEqual(1);
             route.AllowedHttpMethods.ShouldContain("DELETE");
         }
 
         [Test]
-        public void Should_Constrain_To_Get_By_Method_Name()
+        public void should_constrain_to_get_by_class_name_ending_with()
+        {
+            var policy = RegexUrlPolicy.Create();
+            policy.ConstrainClassToHttpGetEndingWith("GetHandler");
+            var route = CreateRoute<UserGetHandler>(policy, x => x.Execute());
+            route.AllowedHttpMethods.Count.ShouldEqual(1);
+            route.AllowedHttpMethods.ShouldContain("GET");
+        }
+
+        [Test]
+        public void should_constrain_to_post_by_class_name_ending_with()
+        {
+            var policy = RegexUrlPolicy.Create();
+            policy.ConstrainClassToHttpPostEndingWith("PostHandler");
+            var route = CreateRoute<UserPostHandler>(policy, x => x.Execute());
+            route.AllowedHttpMethods.Count.ShouldEqual(1);
+            route.AllowedHttpMethods.ShouldContain("POST");
+        }
+
+        [Test]
+        public void should_constrain_to_put_by_class_name_ending_with()
+        {
+            var policy = RegexUrlPolicy.Create();
+            policy.ConstrainClassToHttpPutEndingWith("PutHandler");
+            var route = CreateRoute<UserPutHandler>(policy, x => x.Execute());
+            route.AllowedHttpMethods.Count.ShouldEqual(1);
+            route.AllowedHttpMethods.ShouldContain("PUT");
+        }
+
+        [Test]
+        public void should_constrain_to_delete_by_class_name_ending_with()
+        {
+            var policy = RegexUrlPolicy.Create();
+            policy.ConstrainClassToHttpDeleteEndingWith("DeleteHandler");
+            var route = CreateRoute<UserDeleteHandler>(policy, x => x.Execute());
+            route.AllowedHttpMethods.Count.ShouldEqual(1);
+            route.AllowedHttpMethods.ShouldContain("DELETE");
+        }
+
+        [Test]
+        public void should_constrain_to_get_by_method_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainMethodToHttpGet("Execute");
@@ -319,7 +367,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Post_By_Method_Name()
+        public void should_constrain_to_post_by_method_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainMethodToHttpPost("Execute");
@@ -329,7 +377,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Put_By_Method_Name()
+        public void should_constrain_to_put_by_method_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainMethodToHttpPut("Put");
@@ -339,7 +387,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Delete_By_Method_Name()
+        public void should_constrain_to_delete_by_method_name()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainMethodToHttpDelete("Delete");
@@ -349,7 +397,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Get_By_Method_Name_Starting_With()
+        public void should_constrain_to_get_by_method_name_starting_with()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainMethodToHttpGet("Execute");
@@ -359,7 +407,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Post_By_Method_Name_Starting_With()
+        public void should_constrain_to_post_by_method_name_starting_with()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainMethodToHttpPost("Execute");
@@ -369,7 +417,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Put_By_Method_Name_Starting_With()
+        public void should_constrain_to_put_by_method_name_starting_with()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainMethodToHttpPut("Put");
@@ -379,7 +427,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web.Fubu
         }
 
         [Test]
-        public void Should_Constrain_To_Delete_By_Method_Name_Starting_With()
+        public void should_constrain_to_delete_by_method_name_starting_with()
         {
             var policy = RegexUrlPolicy.Create();
             policy.ConstrainMethodToHttpDelete("Delete");

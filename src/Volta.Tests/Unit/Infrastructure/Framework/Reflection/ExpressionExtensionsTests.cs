@@ -13,7 +13,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Reflection
         public class SomeType { public string Name { get; set; } }
 
         [Test]
-        public void Should_Return_Equal_Expression()
+        public void should_return_equal_expression()
         {
             Expression<Func<SomeType, object>> expression = x => x.Name;
             var predicate = expression.PropertyEquals(new SomeType {Name = "bob"});

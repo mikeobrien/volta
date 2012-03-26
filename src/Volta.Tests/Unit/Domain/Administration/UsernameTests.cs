@@ -9,7 +9,7 @@ namespace Volta.Tests.Unit.Domain.Administration
     public class UsernameTests
     {
         [Test]
-        public void Should_Equal_Equivalent_Mixed_Case_String()
+        public void should_equal_equivalent_mixed_case_string()
         {
             var stringUsename = "SomeUser";
             var objectUsername = new Username("someuser");
@@ -18,7 +18,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         }
 
         [Test]
-        public void Should_Not_Equal_Different_String()
+        public void should_not_equal_different_string()
         {
             var stringUsename = "SomeUser2";
             var objectUsername = new Username("someuser");
@@ -26,26 +26,26 @@ namespace Volta.Tests.Unit.Domain.Administration
             (objectUsername != stringUsename).ShouldBeTrue();
         }
         [Test]
-        public void Should_Equal_Equivalent_Username()
+        public void should_equal_equivalent_username()
         {
             (new Username("someuser") == new Username("someuser")).ShouldBeTrue();
         }
 
         [Test]
-        public void Should_Not_Equal_Different_Username()
+        public void should_not_equal_different_username()
         {
             (new Username("someuser") != new Username("someuser2")).ShouldBeTrue();
         }
 
         [Test]
-        public void Should_Implicitely_Cast_Username_To_String()
+        public void should_implicitely_cast_username_to_string()
         {
             string stringUsename = new Username("someuser");
             stringUsename.ShouldEqual("someuser");
         }
 
         [Test]
-        public void Should_Implicitely_Cast_String_To_Username()
+        public void should_implicitely_cast_string_to_username()
         {
             Username objectUsername = "someuser";
             objectUsername.ToString().ShouldEqual("someuser");

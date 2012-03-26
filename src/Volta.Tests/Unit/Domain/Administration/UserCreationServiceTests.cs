@@ -12,7 +12,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         private const string Password = "P@$$word";
 
         [Test]
-        public void Should_Create_Unique_Non_Admin_User()
+        public void should_create_unique_non_admin_user()
         {
             var userRepository = new MemoryRepository<User>();
             var userCreationService = new UserCreationService(userRepository);
@@ -24,7 +24,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         }
 
         [Test]
-        public void Should_Create_User_Password_Hash()
+        public void should_create_user_password_hash()
         {
             var userRepository = new MemoryRepository<User>();
             var userCreationService = new UserCreationService(userRepository);
@@ -35,7 +35,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         }
 
         [Test]
-        public void Should_Create_Unique_Admin_User()
+        public void should_create_unique_admin_user()
         {
             var userRepository = new MemoryRepository<User>();
             var userCreationService = new UserCreationService(userRepository);
@@ -44,7 +44,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         }
 
         [Test]
-        public void Should_Not_Create_User_With_Duplicate_Differently_Cased_Usernames()
+        public void should_not_create_user_with_duplicate_differently_cased_usernames()
         {
             var userRepository = new MemoryRepository<User>(new User {Username = Username.ToUpper()});
             var userCreationService = new UserCreationService(userRepository);
@@ -52,14 +52,14 @@ namespace Volta.Tests.Unit.Domain.Administration
         }
 
         [Test]
-        public void Should_Not_Create_User_With_Empty_Username()
+        public void should_not_create_user_with_empty_username()
         {
             var userCreationService = new UserCreationService(new MemoryRepository<User>());
             Assert.Throws<EmptyUsernameException>(() => userCreationService.Create(string.Empty, Password, false));
         }
 
         [Test]
-        public void Should_Not_Create_User_With_Empty_Password()
+        public void should_not_create_user_with_empty_password()
         {
             var userCreationService = new UserCreationService(new MemoryRepository<User>());
             Assert.Throws<EmptyPasswordException>(() => userCreationService.Create(Username, string.Empty, false));

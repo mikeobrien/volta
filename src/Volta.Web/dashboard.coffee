@@ -4,3 +4,5 @@ define ['backbone'], (Backbone) ->
 			'': 'dashboard'
 		dashboard: ->
 			console.log 'dashboard...'
+
+	Router: Router

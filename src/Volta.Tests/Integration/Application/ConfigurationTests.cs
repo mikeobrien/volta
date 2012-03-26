@@ -8,7 +8,7 @@ namespace Volta.Tests.Integration.Application
     class ConfigurationTests
     {
         [Test]
-        public void Should_Load_Configuration()
+        public void should_load_configuration()
         {
             var manager = new Configuration();
             manager.ConnectionString.ShouldEqual("mongodb://yada/yada");

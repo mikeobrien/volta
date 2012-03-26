@@ -142,6 +142,18 @@ namespace Volta.Core.Infrastructure.Framework.Web.Fubu
         public RegexUrlPolicy ConstrainClassToHttpDeleteStartingWith(params string[] patterns)
         { return ConstrainToHttpDelete(Segment.Class, patterns.Select(RegexStartingWith).ToArray()); }
 
+        public RegexUrlPolicy ConstrainClassToHttpGetEndingWith(params string[] patterns)
+        { return ConstrainToHttpGet(Segment.Class, patterns.Select(RegexEndingWith).ToArray()); }
+
+        public RegexUrlPolicy ConstrainClassToHttpPostEndingWith(params string[] patterns)
+        { return ConstrainToHttpPost(Segment.Class, patterns.Select(RegexEndingWith).ToArray()); }
+
+        public RegexUrlPolicy ConstrainClassToHttpPutEndingWith(params string[] patterns)
+        { return ConstrainToHttpPut(Segment.Class, patterns.Select(RegexEndingWith).ToArray()); }
+
+        public RegexUrlPolicy ConstrainClassToHttpDeleteEndingWith(params string[] patterns)
+        { return ConstrainToHttpDelete(Segment.Class, patterns.Select(RegexEndingWith).ToArray()); }
+
         public RegexUrlPolicy ConstrainMethodToHttpGet(params string[] patterns)
         { return ConstrainToHttpGet(Segment.Method, patterns); }
 
@@ -255,6 +267,11 @@ namespace Volta.Core.Infrastructure.Framework.Web.Fubu
         private static string RegexStartingWith(string value)
         {
             return string.Format("^{0}.*", value);
+        }
+
+        private static string RegexEndingWith(string value)
+        {
+            return string.Format(".*{0}$", value);
         }
     }
 }

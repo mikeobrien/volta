@@ -17,7 +17,7 @@ namespace Volta.Tests.Unit.Application
         private readonly IRepository<User> _userRepository = new MemoryRepository<User>(new User { Username = Username, Password = PasswordHash, Administrator = true});
 
         [Test]
-        public void Should_Successfully_Authenticate_With_Correct_Credentials()
+        public void should_successfully_authenticate_with_correct_credentials()
         {
             var authenticationService = new AuthenticationService(_userRepository, new UserCreationService(_userRepository));
             var result = authenticationService.Authenticate(Username, Password);
@@ -27,14 +27,14 @@ namespace Volta.Tests.Unit.Application
         }
 
         [Test]
-        public void Should_Fail_To_Authenticate_With_Incorrect_Credentials()
+        public void should_fail_to_authenticate_with_incorrect_credentials()
         {
             var authenticationService = new AuthenticationService(_userRepository, new UserCreationService(_userRepository));
-            Assert.Throws<AuthenticationService.AccessDeniedException>(() => authenticationService.Authenticate(Username, "yada"));
+            authenticationService.Authenticate(Username, "yada").ShouldBeNull();
         }
 
         [Test]
-        public void Should_Add_And_Successfully_Authenticate_The_First_User()
+        public void should_add_and_successfully_authenticate_the_first_user()
         {
             var userRepository = new MemoryRepository<User>();
             var authenticationService = new AuthenticationService(userRepository, new UserCreationService(userRepository));

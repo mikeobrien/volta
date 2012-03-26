@@ -1,0 +1,23 @@
+﻿<use namespace="Volta.Web" />
+<use namespace="Volta.Core.Infrastructure.Framework.Web" />
+<viewdata model="Volta.Web.IndexModel" />
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- "Put your hand on a hot stove for a minute, and it seems like an hour. Sit with a pretty girl for an hour, and it seems like a minute. That's relativity." -->
+<html>
+  <title>Volta</title>
+  <head>
+    <link rel="shortcut icon" href="images/favicon.ico">
+      <link href="styles/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+      <link rel="StyleSheet" href="styles/application.css" type="text/css"/>
+      <script data-main="main" src="scripts/require/require.js"></script>
+      <script language="javascript">define('args', function() { return !{ Model.ToJavaScript() }; }); </script>
+    </head>
+  <body class="application-body">
+    <div id="content">
+        <div class="progress progress-info progress-striped active load-indicator">
+          <div class="bar" style="width: 100%;"></div>
+        </div>
+    </div>
+  </body>
+</html>

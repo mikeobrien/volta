@@ -2,7 +2,7 @@ namespace Volta.Core.Infrastructure.Framework.Security
 {
     public interface ISecureSession<TToken> where TToken : class
     {
-        void Login(Username username, string password);
+        bool Login(Username username, string password);
         void Login(TToken token);
         void Logout();
         TToken GetCurrentToken();

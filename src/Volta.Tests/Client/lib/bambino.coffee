@@ -2,8 +2,8 @@ window.error = (message) ->
     console.log message
     phantom.exit 1
     
-window.onerror = (message) ->
-    console.log message
+window.onerror = (message, source, line) ->
+    console.log "A Bambino error occured at #{event.error.source}:#{event.error.line}: #{event.error.message}"
     phantom.exit 1
 
 Array.prototype.contains = (item) -> @.indexOf(item) > -1
@@ -214,7 +214,7 @@ class JasmineTestRunner extends Page
     handleEvent: (event) ->
         if event == null then return true
         if event.error
-            console.log "An error occured at #{event.error.source}:#{event.error.line}: #{event.error.message}"
+            console.log "A Jasmine reporter error occured at #{event.error.source}:#{event.error.line}: #{event.error.message}"
             phantom.exit 1
         if event.message then console.log event.message.message
         if event.jasmine
@@ -287,6 +287,7 @@ class JasmineTestRunner extends Page
 
                         reportSuiteResults: (suite) ->
                             specs = suite.specs()
+                            suite.summary = suite.summary ? { start: new Date() }
                             suite.summary.name = suite.getFullName()
                             suite.summary.end = new Date()
                             suite.summary.duration = @elapsed(suite.summary.start, new Date())

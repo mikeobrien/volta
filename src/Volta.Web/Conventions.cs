@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Reflection;
 using FubuMVC.Core;
 using FubuMVC.Spark;
@@ -19,26 +20,29 @@ namespace Volta.Web
                 .IncludeTypeNamesSuffixed("Handler")
                 .IncludeMethodsPrefixed("Execute");
 
+            var publicHandlers = new[] { "PublicGetHandler", "PublicPostHandler", "PublicPutHandler", "PublicDeleteHandler" };
+            var privateHandlers = new[] { "GetHandler", "PostHandler", "PutHandler", "DeleteHandler" };
+
             Routes
+                .HomeIs<IndexGetHandler>(x => x.Execute())
                 .OverrideFolders()
                 .UrlPolicy(RegexUrlPolicy.Create()
                     .IgnoreAssemblyNamespace()
-                    .IgnoreNamespaces("Handlers")
-                    .IgnoreClassName()
+                    .IgnoreClassNames(publicHandlers)
+                    .IgnoreClassNames(privateHandlers)
                     .IgnoreMethodNames("Execute")
-                    .ConstrainClassToHttpGetStartingWith("Get")
-                    .ConstrainClassToHttpGetStartingWith("PublicGet")
-                    .ConstrainClassToHttpPostStartingWith("Post")
-                    .ConstrainClassToHttpPostStartingWith("PublicPost")
-                    .ConstrainClassToHttpPutStartingWith("Put")
-                    .ConstrainClassToHttpPutStartingWith("PublicPut")
-                    .ConstrainClassToHttpDeleteStartingWith("Delete")
-                    .ConstrainClassToHttpDeleteStartingWith("PublicDelete"));
+                    .ConstrainClassToHttpGetEndingWith(publicHandlers[0], privateHandlers[0])
+                    .ConstrainClassToHttpPostEndingWith(publicHandlers[1], privateHandlers[1])
+                    .ConstrainClassToHttpPutEndingWith(publicHandlers[2], privateHandlers[2])
+                    .ConstrainClassToHttpDeleteEndingWith(publicHandlers[3], privateHandlers[3]));
 
-            Policies.WrapBehaviorChainsWith<AuthorizationBehavior>()
-                    .WrapBehaviorChainsWith<ExceptionHandlerBehavior>();
+            Policies
+                .ConditionallyWrapBehaviorChainsWith<AuthorizationBehavior>(x => 
+                    x.HandlerType.Assembly == GetType().Assembly && !x.HasAnyOutputBehavior() &&
+                    !publicHandlers.Any(suffix => x.HandlerType.Name.EndsWith(suffix)))
+                .WrapBehaviorChainsWith<ExceptionHandlerBehavior>();
 
-            Media.ApplyContentNegotiationToActions(x => x.HandlerType.Assembly == GetType().Assembly);
+            Media.ApplyContentNegotiationToActions(x => x.HandlerType.Assembly == GetType().Assembly && !x.HasAnyOutputBehavior());
 
             this.UseSpark();
 

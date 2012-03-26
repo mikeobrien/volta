@@ -113,11 +113,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="dashboard.html" />
-    <Content Include="dashboard.js">
-      <DependentUpon>dashboard.coffee</DependentUpon>
-    </Content>
     <Content Include="error.html" />
-    <Content Include="login.html" />
+    <Content Include="login\login.html" />
     <Content Include="login.js">
       <DependentUpon>login.coffee</DependentUpon>
     </Content>
@@ -135,48 +132,17 @@
     <Compile Include="Behaviors\AuthorizationBehavior.cs" />
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
     <Compile Include="Conventions.cs" />
-    <Compile Include="Handlers\Administration\Users\DeleteHandler.cs" />
-    <Compile Include="Handlers\MessageModel.cs" />
-    <Compile Include="Handlers\PagingModel.cs" />
-    <Compile Include="Handlers\TestBatches\AddHandler.cs" />
-    <Compile Include="Handlers\Widgets\LinksHandler.cs" />
-    <Compile Include="Handlers\TestBatches\QueryHandler.cs" />
-    <Compile Include="Handlers\Administration\Users\AddHandler.cs" />
-    <Compile Include="Handlers\Administration\Users\QueryHandler.cs" />
-    <Compile Include="Handlers\Widgets\TabsHandler.cs" />
-    <Compile Include="Handlers\Widgets\HeaderHandler.cs" />
-    <Compile Include="Handlers\LogoutHandler.cs" />
-    <Compile Include="Handlers\Administration\Users\EditHandler.cs" />
-    <Compile Include="Handlers\DashboardHandler.cs" />
-    <Compile Include="Handlers\LoginHandler.cs" />
-    <Compile Include="Handlers\Widgets\FooterHandler.cs" />
-    <Compile Include="Handlers\Navigation.cs" />
+    <Compile Include="IndexGetHandler.cs" />
+    <Compile Include="login\LoginPublicPostHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registry.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.html" />
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
-    <None Include="dashboard.coffee" />
-    <None Include="Handlers\TestBatches\Add.spark" />
-    <None Include="Handlers\Widgets\Links.spark" />
-    <None Include="Handlers\TestBatches\Query.spark" />
-    <None Include="Handlers\Administration\Users\Add.spark" />
-    <None Include="Handlers\Administration\Users\Query.spark">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Handlers\Widgets\Tabs.spark" />
-    <None Include="Handlers\Widgets\Header.spark" />
-    <None Include="Handlers\Widgets\Footer.spark" />
-    <None Include="Handlers\Administration\Users\Edit.spark">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Handlers\Dashboard.spark" />
-    <None Include="Handlers\Login.spark">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Index.spark" />
     <Content Include="packages.config" />
     <None Include="login.coffee" />
+    <None Include="login\Index.spark" />
     <None Include="main.coffee" />
   </ItemGroup>
   <ItemGroup>

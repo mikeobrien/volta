@@ -30,7 +30,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.IO
         }
 
         [Test]
-        public void Should_Cache_File()
+        public void should_cache_file()
         {
             var cache = new FileCache(_fileCachePath);
             var path = cache.Save(GetFileStream());

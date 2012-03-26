@@ -10,7 +10,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Security
     public class SecureSessionTests
     {
         [Test]
-        public void Should_Login_Token()
+        public void should_login_token()
         {
             var secureSession = new SecureSession<Token>(null, new MemoryTokenStore<Token>());
             var token = new Token(null, false);
@@ -22,7 +22,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Security
         }
 
         [Test]
-        public void Should_Login_Valid_User()
+        public void should_login_valid_user()
         {
             var authenticationService = Substitute.For<IAuthenticationService<Token>>();
             var secureSession = new SecureSession<Token>(authenticationService, new MemoryTokenStore<Token>());
@@ -40,7 +40,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Security
         }
 
         [Test]
-        public void Should_Not_Log_In_An_Invalid_User()
+        public void should_not_log_in_an_invalid_user()
         {
             var authenticationService = Substitute.For<IAuthenticationService<Token>>();
             var secureSession = new SecureSession<Token>(authenticationService, new MemoryTokenStore<Token>());
@@ -55,7 +55,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Security
         }
 
         [Test]
-        public void Should_Logout_User()
+        public void should_logout_user()
         {
             var authenticationService = Substitute.For<IAuthenticationService<Token>>();
             var secureSession = new SecureSession<Token>(authenticationService, new MemoryTokenStore<Token>());

@@ -1,2 +1,0 @@
-﻿<viewdata model="Volta.Web.Handlers.Widgets.FooterOutputModel" />
-Volta v${Model.Version} &bull; Copyright &copy; ${Model.CopyrightYear} Group Sadoway &bull; Cambridge, MA

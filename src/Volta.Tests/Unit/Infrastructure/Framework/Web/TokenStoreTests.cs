@@ -11,7 +11,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web
         public class Token {}
 
         [Test]
-        public void Should_Set_Token()
+        public void should_set_token()
         {
             var sessionState = Substitute.For<ISession>();
             var tokenStore = new TokenStore<Token>(sessionState);
@@ -21,7 +21,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web
         }
 
         [Test]
-        public void Should_Get_Existing_Token()
+        public void should_get_existing_token()
         {
             var sessionState = Substitute.For<ISession>();
             var tokenStore = new TokenStore<Token>(sessionState);
@@ -32,7 +32,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web
         }
 
         [Test]
-        public void Should_Indicate_Token_Exists()
+        public void should_indicate_token_exists()
         {
             var sessionState = Substitute.For<ISession>();
             var tokenStore = new TokenStore<Token>(sessionState);
@@ -41,7 +41,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web
         }
 
         [Test]
-        public void Should_Indicate_Token_Doesent_Exist()
+        public void should_indicate_token_doesent_exist()
         {
             var sessionState = Substitute.For<ISession>();
             var tokenStore = new TokenStore<Token>(sessionState);
@@ -50,7 +50,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Web
         }
 
         [Test]
-        public void Should_Clear_Token()
+        public void should_clear_token()
         {
             var sessionState = Substitute.For<ISession>();
             var tokenStore = new TokenStore<Token>(sessionState);

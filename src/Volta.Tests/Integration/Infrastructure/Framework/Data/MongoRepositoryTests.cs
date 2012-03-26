@@ -49,7 +49,7 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         }
 
         [Test]
-        public void Should_Query()
+        public void should_query()
         {
             var results = _repository.Where(x => x.Name.StartsWith("W")).ToList();
             results.Count.ShouldEqual(2);
@@ -58,7 +58,7 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         }
 
         [Test]
-        public void Should_Add()
+        public void should_add()
         {
             var person = new Person {Id = Guid.Empty, Name = "yada"};
             _repository.Add(person);
@@ -69,7 +69,7 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         }
 
         [Test]
-        public void Should_Update()
+        public void should_update()
         {
             var person = new Person { Id = Person2.Id, Name = "yada" };
             _repository.Update(x => x.Id, person);
@@ -81,7 +81,7 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         }
 
         [Test]
-        public void Should_Delete_Single()
+        public void should_delete_single()
         {
             _repository.Delete(x => x.Id == Person2.Id);
             var collection = _mongo.Connection.GetCollection<Person>().AsQueryable().ToList();

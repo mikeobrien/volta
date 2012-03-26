@@ -26,7 +26,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         }
 
         [Test]
-        public void Should_Update_Existing_User_With_No_Change_To_The_Username()
+        public void should_update_existing_user_with_no_change_to_the_username()
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.GetCurrentToken().Returns(new Token(Username3, true));
@@ -42,7 +42,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         }
 
         [Test]
-        public void Should_Update_Existing_User_With_Modified_Username()
+        public void should_update_existing_user_with_modified_username()
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.GetCurrentToken().Returns(new Token(Username3, true));
@@ -58,7 +58,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         }
 
         [Test]
-        public void Should_Update_Logged_In_User()
+        public void should_update_logged_in_user()
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.GetCurrentToken().Returns(new Token(Username1, true));
@@ -70,7 +70,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         }
 
         [Test]
-        public void Should_Update_Existing_User_And_Ignore_Empty_Password()
+        public void should_update_existing_user_and_ignore_empty_password()
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.GetCurrentToken().Returns(new Token(Username1, true));
@@ -85,7 +85,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         }
 
         [Test]
-        public void Should_Return_An_Error_If_Trying_To_Update_A_User_That_Doesent_Exist()
+        public void should_return_an_error_if_trying_to_update_a_user_that_doesent_exist()
         {
             var service = new UserModificationService(_userRepository, Substitute.For<ISecureSession<Token>>());
             var user = new User { Username = Username2, Administrator = false };
@@ -93,7 +93,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         }
 
         [Test]
-        public void Should_Return_A_Message_If_The_New_Username_Already_Exists()
+        public void should_return_a_message_if_the_new_username_already_exists()
         {
             _userRepository.Add(new User { Username = Username3 });
             var service = new UserModificationService(_userRepository, Substitute.For<ISecureSession<Token>>());
@@ -102,7 +102,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         }
 
         [Test]
-        public void Should_Return_A_Message_If_The_New_Username_Is_Empty()
+        public void should_return_a_message_if_the_new_username_is_empty()
         {
             _userRepository.Add(new User { Username = Username3 });
             var service = new UserModificationService(_userRepository, Substitute.For<ISecureSession<Token>>());

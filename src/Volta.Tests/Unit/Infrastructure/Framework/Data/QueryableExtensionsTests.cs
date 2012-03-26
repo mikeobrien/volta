@@ -14,7 +14,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Data
             new MemoryRepository<Entity>(Enumerable.Range(1, 53).Select(x => new Entity { Id = x }).ToArray());
 
         [Test]
-        public void Should_Return_Paged_Result_With_Correct_Total()
+        public void should_return_paged_result_with_correct_total()
         {
             var result = _userRepository.GetPage(10, 2);
             result.TotalRecords.ShouldEqual(53);

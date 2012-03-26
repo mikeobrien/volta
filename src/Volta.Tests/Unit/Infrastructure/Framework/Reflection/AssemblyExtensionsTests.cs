@@ -10,13 +10,13 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Reflection
     {
 #if DEBUG
         [Test]
-        public void Should_Be_In_Debug_Mode()
+        public void should_be_in_debug_mode()
         {
             Assembly.GetExecutingAssembly().IsInDebugMode().ShouldBeTrue();
         }
 #else
         [Test]
-        public void Should_Be_In_Release_Mode()
+        public void should_be_in_release_mode()
         {
             Assembly.GetExecutingAssembly().IsInDebugMode().ShouldBeFalse();
         }
