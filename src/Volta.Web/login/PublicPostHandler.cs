@@ -1,7 +1,7 @@
 using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Framework.Security;
 
-namespace Volta.Web
+namespace Volta.Web.Login
 {
     public class LoginRequest
     {
@@ -14,11 +14,11 @@ namespace Volta.Web
         public bool success { get; set; }
     }
 
-    public class LoginPublicPostHandler
+    public class PublicPostHandler
     {
         private readonly ISecureSession<Token> _secureSession;
 
-        public LoginPublicPostHandler(ISecureSession<Token> secureSession)
+        public PublicPostHandler(ISecureSession<Token> secureSession)
         {
             _secureSession = secureSession;
         }

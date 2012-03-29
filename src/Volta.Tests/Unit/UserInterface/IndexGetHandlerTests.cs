@@ -11,13 +11,15 @@ namespace Volta.Tests.Unit.UserInterface
     public class IndexGetHandlerTests
     {
         [Test]
-        public void should_return_authentication_flag()
+        public void should()
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
+            secureSession.GetCurrentToken().Returns(new Token("nbohr", true));
             secureSession.IsLoggedIn().Returns(true);
             var handler = new IndexGetHandler(secureSession);
             var model = handler.Execute();
-            model.isLoggedIn.ShouldBeTrue();
+            model.Username.ShouldEqual("nbohr");
+            model.IsAdministrator.ShouldEqual(true);
         }
     }
 }

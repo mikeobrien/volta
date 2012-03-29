@@ -5,7 +5,8 @@ namespace Volta.Web
 {
     public class IndexModel
     {
-        public bool isLoggedIn { get; set; }
+        public string Username { get; set; }
+        public bool IsAdministrator { get; set; }
     }
 
     public class IndexGetHandler
@@ -19,9 +20,11 @@ namespace Volta.Web
 
         public IndexModel Execute()
         {
+            var token = _secureSession.GetCurrentToken();
             return new IndexModel
                 {
-                    isLoggedIn = _secureSession.IsLoggedIn()
+                    Username = token.Username,
+                    IsAdministrator = token.IsAdministrator,
                 };
         }
     }

@@ -1,23 +1,22 @@
-﻿<use namespace="Volta.Web" />
+﻿<use master="Application" />
+<use namespace="Volta.Web" />
 <use namespace="Volta.Core.Infrastructure.Framework.Web" />
-<viewdata model="Volta.Web.IndexModel" />
+<viewdata model="Volta.Web.Login.IndexModel" />
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!-- "Put your hand on a hot stove for a minute, and it seems like an hour. Sit with a pretty girl for an hour, and it seems like a minute. That's relativity." -->
-<html>
-  <title>Volta</title>
-  <head>
-    <link rel="shortcut icon" href="images/favicon.ico">
-      <link href="styles/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-      <link rel="StyleSheet" href="styles/application.css" type="text/css"/>
-      <script data-main="main" src="scripts/require/require.js"></script>
-      <script language="javascript">define('args', function() { return !{ Model.ToJavaScript() }; }); </script>
-    </head>
-  <body class="application-body">
-    <div id="content">
-        <div class="progress progress-info progress-striped active load-indicator">
-          <div class="bar" style="width: 100%;"></div>
-        </div>
+<content:title>Volta Login</content:title>
+
+<if condition="Model.IsNewInstall">
+    <div class="alert login-message">
+        <a class="close" data-dismiss="alert">×</a>
+        <strong>New Install</strong> This is a new install of Volta. The username and password you enter will be the administrator account.
     </div>
-  </body>
-</html>
+</if>
+<div id="login" class="login-content">
+    <img src="../images/volta.logo.large.png"/>
+    <form class="form-inline login-form">
+    <input type="text" class="input-small username" placeholder="Username">
+    <input type="password" class="input-small password" placeholder="Password">
+    <button type="submit" class="btn login">Sign in</button>
+    </form>
+    <div class="alert alert-error login-error-message"></div>
+</div>

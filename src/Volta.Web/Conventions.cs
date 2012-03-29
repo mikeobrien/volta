@@ -37,7 +37,10 @@ namespace Volta.Web
                     .ConstrainClassToHttpDeleteEndingWith(publicHandlers[3], privateHandlers[3]));
 
             Policies
-                .ConditionallyWrapBehaviorChainsWith<AuthorizationBehavior>(x => 
+                .ConditionallyWrapBehaviorChainsWith<AuthorizationBehavior>(x =>
+                    x.HandlerType.Assembly == GetType().Assembly && x.HasAnyOutputBehavior() &&
+                    !publicHandlers.Any(suffix => x.HandlerType.Name.EndsWith(suffix)))
+                .ConditionallyWrapBehaviorChainsWith<AjaxAuthorizationBehavior>(x => 
                     x.HandlerType.Assembly == GetType().Assembly && !x.HasAnyOutputBehavior() &&
                     !publicHandlers.Any(suffix => x.HandlerType.Name.EndsWith(suffix)))
                 .WrapBehaviorChainsWith<ExceptionHandlerBehavior>();

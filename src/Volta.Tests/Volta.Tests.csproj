@@ -112,6 +112,7 @@
     <Compile Include="Integration\Constants.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Data\MongoRepositoryTests.cs" />
     <Compile Include="Unit\Domain\Administration\UserCreationServiceTests.cs" />
+    <Compile Include="Unit\UserInterface\Behaviors\AjaxAuthorizationBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\AuthorizationBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\ExceptionHandlerBehaviorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,13 +121,14 @@
     <Compile Include="Unit\Infrastructure\Framework\HashedPasswordTests.cs" />
     <Compile Include="Unit\MemoryRepository.cs" />
     <Compile Include="Unit\UserInterface\IndexGetHandlerTests.cs" />
-    <Compile Include="Unit\UserInterface\LoginPostHandlerTests.cs" />
+    <Compile Include="Unit\UserInterface\login\PublicPostHandlerTests.cs" />
+    <Compile Include="Unit\UserInterface\login\PublicGetHandlerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Client\specs\login.specs.coffee" />
+    <None Include="Client\specs\login\login.specs.coffee" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -145,7 +147,7 @@
     <Folder Include="Unit\Infrastructure\Application\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client\specs\login.specs.js">
+    <Content Include="Client\specs\login\login.specs.js">
       <DependentUpon>login.specs.coffee</DependentUpon>
     </Content>
   </ItemGroup>

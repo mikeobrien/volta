@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using FubuMVC.Core.Behaviors;
-using FubuMVC.Core.Http;
 using FubuMVC.Core.Runtime;
 using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Framework.Security;
@@ -8,27 +7,34 @@ using Volta.Core.Infrastructure.Framework.Web;
 
 namespace Volta.Web.Behaviors
 {
-    public class AuthorizationBehavior : IActionBehavior
+    public class AjaxAuthorizationBehavior : IActionBehavior
     {
-        public const string LoginUrl = "/login/";
+        public const string UnauthorizedMessage = "You need to login to perform this action.";
 
         private readonly IOutputWriter _writer;
         private readonly IActionBehavior _actionBehavior;
         private readonly ISecureSession<Token> _secureSession;
+        private readonly IWebServer _webServer;
 
-        public AuthorizationBehavior(
+        public AjaxAuthorizationBehavior(
             IOutputWriter writer, 
             IActionBehavior actionBehavior, 
-            ISecureSession<Token> secureSession)
+            ISecureSession<Token> secureSession, 
+            IWebServer webServer)
         {
             _writer = writer;
             _actionBehavior = actionBehavior;
             _secureSession = secureSession;
+            _webServer = webServer;
         }
 
         public void Invoke()
         {
-            if (!_secureSession.IsLoggedIn()) _writer.RedirectToUrl(LoginUrl);
+            if (!_secureSession.IsLoggedIn())
+            {   
+                _webServer.IgnoreErrorStatus = true;
+                _writer.WriteResponseCode(HttpStatusCode.Unauthorized, UnauthorizedMessage);
+            }
             else _actionBehavior.Invoke();
         }
 

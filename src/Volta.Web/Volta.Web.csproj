@@ -114,9 +114,11 @@
   <ItemGroup>
     <Content Include="dashboard.html" />
     <Content Include="error.html" />
-    <Content Include="login\login.html" />
-    <Content Include="login.js">
+    <Content Include="login\login.js">
       <DependentUpon>login.coffee</DependentUpon>
+    </Content>
+    <Content Include="login\main.js">
+      <DependentUpon>main.coffee</DependentUpon>
     </Content>
     <Content Include="main.js">
       <DependentUpon>main.coffee</DependentUpon>
@@ -129,21 +131,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
+    <Compile Include="Behaviors\AjaxAuthorizationBehavior.cs" />
     <Compile Include="Behaviors\AuthorizationBehavior.cs" />
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
     <Compile Include="Conventions.cs" />
     <Compile Include="IndexGetHandler.cs" />
-    <Compile Include="login\LoginPublicPostHandler.cs" />
+    <Compile Include="login\PublicGetHandler.cs" />
+    <Compile Include="login\PublicPostHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
-    <None Include="Index.spark" />
+    <None Include="index.spark">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="packages.config" />
-    <None Include="login.coffee" />
-    <None Include="login\Index.spark" />
+    <None Include="login\login.coffee" />
+    <None Include="login\index.spark" />
+    <None Include="login\main.coffee" />
     <None Include="main.coffee" />
+    <None Include="Shared\Application.spark" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Volta.Core\Volta.Core.csproj">

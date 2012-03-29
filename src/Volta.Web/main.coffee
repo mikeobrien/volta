@@ -9,9 +9,7 @@ require.config
 		"postalajax": "scripts/postal/postal.ajax"
 		"postalscroll": "scripts/postal/postal.scroll"
 
-require ['args', 'jquery', 'login', 'dashboard'], (args, $, Login, Dashboard) ->
-	if !args.isLoggedIn then Login.login()
+require ['args', 'jquery', 'dashboard'], (args, $, Dashboard) ->
 	content = $ '#content'
-	@loginRouter = new Login.Router(content: content)
 	@dashboardRouter = new Dashboard.Router(content: content)
 	Backbone.history.start()

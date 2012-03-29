@@ -3,19 +3,19 @@ using NUnit.Framework;
 using Should;
 using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Framework.Security;
-using Volta.Web;
+using Volta.Web.Login;
 
 namespace Volta.Tests.Unit.UserInterface.Login
 {
     [TestFixture]
-    public class LoginPostHandlerTests
+    public class PublicPostHandlerTests
     {
         [Test]
         public void should_return_successful_authentication_result()
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.Login(null, null).ReturnsForAnyArgs(true);
-            var handler = new LoginPublicPostHandler(secureSession);
+            var handler = new PublicPostHandler(secureSession);
             var model = handler.Execute(new LoginRequest());
             model.success.ShouldBeTrue();
         }
@@ -25,7 +25,7 @@ namespace Volta.Tests.Unit.UserInterface.Login
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.Login(null, null).ReturnsForAnyArgs(false);
-            var handler = new LoginPublicPostHandler(secureSession);
+            var handler = new PublicPostHandler(secureSession);
             var model = handler.Execute(new LoginRequest());
             model.success.ShouldBeFalse();
         }
