@@ -1,17 +1,20 @@
 using System;
-using Norm;
+using MongoDB.Driver;
 
 namespace Volta.Core.Infrastructure.Framework.Data
 {
     public class MongoConnection
     {
-        private readonly Lazy<IMongo> _mongo;
+        private readonly Lazy<MongoServer> _mongo;
 
         public MongoConnection(string connectionString)
         {
-            _mongo = new Lazy<IMongo>(() => Mongo.Create(connectionString));
+            _mongo = new Lazy<MongoServer>(() => MongoServer.Create(connectionString));
+            var database = new Uri(connectionString).AbsolutePath.Substring(1);
+            DefaultDatabase = string.IsNullOrEmpty(database) ? null : database;
         }
 
-        public IMongo Connection { get { return _mongo.Value; } }
+        public MongoServer Connection { get { return _mongo.Value; } }
+        public string DefaultDatabase { get; private set; }
     }
 }

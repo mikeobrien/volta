@@ -1,13 +1,13 @@
-using System;
 using System.Linq;
-using System.Linq.Expressions;
+using MongoDB.Bson;
 
 namespace Volta.Core.Infrastructure.Framework.Data
 {
     public interface IRepository<TEntity> : IQueryable<TEntity> where TEntity : class
     {
+        TEntity Get(ObjectId id);
         void Add(TEntity entity);
-        void Update<TKey>(Expression<Func<TEntity, TKey>> key, TEntity entity);
-        void Delete(Expression<Func<TEntity, bool>> filter);
+        void Update<TKey>(TEntity entity);
+        void Delete(ObjectId id);
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
-using Norm;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using NUnit.Framework;
 using Should;
 using Volta.Core.Infrastructure.Framework.Data;
@@ -13,13 +14,13 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         private MongoConnection _mongo;
         private IRepository<Person> _repository; 
 
-        private static readonly Person Person1 = new Person { Id = Guid.NewGuid(), Name = "Niels" };
-        private static readonly Person Person2 = new Person { Id = Guid.NewGuid(), Name = "Werner" };
-        private static readonly Person Person3 = new Person { Id = Guid.NewGuid(), Name = "Wolfgang" };
+        private static readonly Person Person1 = new Person { Id = ObjectId.GenerateNewId(), Name = "Niels" };
+        private static readonly Person Person2 = new Person { Id = ObjectId.GenerateNewId(), Name = "Werner" };
+        private static readonly Person Person3 = new Person { Id = ObjectId.GenerateNewId(), Name = "Wolfgang" };
 
         public class Person
         {
-            public Guid Id { get; set; }
+            public ObjectId Id { get; set; }
             public string Name { get; set; }
         }
 
@@ -28,7 +29,7 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         {
             _mongo = new MongoConnection(Constants.VoltaConnectionString);
             DropCollection<Person>();
-            var collection = _mongo.Connection.GetCollection<Person>();
+            var collection = GetCollection<Person>();
             collection.Insert(Person1);
             collection.Insert(Person2);
             collection.Insert(Person3);
@@ -39,13 +40,17 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         public void TearDown()
         {
             DropCollection<Person>();
-            _mongo.Connection.Dispose();
+        }
+
+        private MongoCollection<T> GetCollection<T>()
+        {
+            return _mongo.Connection.GetDatabase(_mongo.DefaultDatabase).GetCollection<T>(typeof(T).Name);
         }
 
         private void DropCollection<T>()
         {
-            if (_mongo.Connection.Database.GetAllCollections().Any(x => x.Name.EndsWith(typeof(T).Name)))
-                _mongo.Connection.Database.DropCollection(typeof(T).Name);
+            if (_mongo.Connection.GetDatabase(_mongo.DefaultDatabase).CollectionExists(typeof(T).Name))
+                _mongo.Connection.GetDatabase(_mongo.DefaultDatabase).DropCollection(typeof(T).Name);
         }
 
         [Test]
@@ -58,9 +63,18 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         }
 
         [Test]
-        public void should_add()
+        public void should_get_object()
         {
-            var person = new Person {Id = Guid.Empty, Name = "yada"};
+            var result = _repository.Get(Person1.Id);
+            result.ShouldNotBeNull();
+            result.Id.ShouldEqual(Person1.Id);
+            result.Name.ShouldEqual(Person1.Name);
+        }
+
+        [Test]
+        public void should_add_object()
+        {
+            var person = new Person { Id = Guid.Empty, Name = "yada" };
             _repository.Add(person);
             var result = _mongo.Connection.GetCollection<Person>().AsQueryable().FirstOrDefault(x => x.Id == Guid.Empty);
             result.ShouldNotBeNull();
@@ -69,7 +83,7 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         }
 
         [Test]
-        public void should_update()
+        public void should_update_object()
         {
             var person = new Person { Id = Person2.Id, Name = "yada" };
             _repository.Update(x => x.Id, person);
@@ -81,7 +95,7 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         }
 
         [Test]
-        public void should_delete_single()
+        public void should_delete_object()
         {
             _repository.Delete(x => x.Id == Person2.Id);
             var collection = _mongo.Connection.GetCollection<Person>().AsQueryable().ToList();

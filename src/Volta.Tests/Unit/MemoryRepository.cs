@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using MongoDB.Bson;
 using Volta.Core.Infrastructure.Framework.Data;
 using Volta.Core.Infrastructure.Framework.Reflection;
 
@@ -19,18 +20,23 @@ namespace Volta.Tests.Unit
             _query = _entites.AsQueryable();
         }
          
+        public TEntity Get(ObjectId id)
+        {
+            return _entites.First(???);
+        }
+
         public void Add(TEntity entity)
         {
             _entites.Add(entity);
         }
 
-        public void Update<TType>(Expression<Func<TEntity, TType>> filter, TEntity entity)
+        public void Update<TType>(TEntity entity)
         {
             Delete(filter.PropertyEquals(entity));
             Add(entity);
         }
 
-        public void Delete(Expression<Func<TEntity, bool>> filter)
+        public void Delete(ObjectId id)
         {
             _entites.AsQueryable().Where(filter).Take(1).ToList().ForEach(x => _entites.Remove(x));
         }
