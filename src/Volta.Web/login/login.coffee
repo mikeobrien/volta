@@ -13,7 +13,7 @@ define ['backbone', 'jquery'], (Backbone, $) ->
 			request =
 				username: @$('.username').val()
 				password: @$('.password').val()
-			$.post('', request)
+			$.post('.', request)
 				.success (response) =>
 					if response.success then window.location = '/'
 					else @showError 'Your username or password was not valid.'

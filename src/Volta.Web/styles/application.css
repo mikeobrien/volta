@@ -12,14 +12,7 @@ html { height:100% }
     font-family: arial;
 }
 
-.application-body {
-  background-color: #6E8EA7;
-  background-image: -moz-radial-gradient(center 45deg,circle cover, #6E8EA7, #3C5A76);
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%,800, from(#6E8EA7), to(#3C5A76));
-  background-image: radial-gradient(center 45deg,circle cover, #6E8EA7, #3C5A76);
-}
-
-.login-body {
+.body {
   background-color: #6E8EA7;
   background-image: -moz-radial-gradient(center 45deg,circle cover, #6E8EA7, #3C5A76);
   background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%,800, from(#6E8EA7), to(#3C5A76));

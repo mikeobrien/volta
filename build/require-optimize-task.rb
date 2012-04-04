@@ -105,7 +105,7 @@ class RequireOptimizer
     def get_paths(file)
         paths_section = file.scan(/paths\s*:\s*\{\s*(.*?)\s*\}/m)
         if paths_section.length > 0 and paths_section[0].length > 0
-            return Hash[paths_section[0][0].scan(/\s*[\"\'](\w*)[\"\']\s*:\s*[\"\'](.*?)[\"\']\s*,?/m)]
+            return Hash[paths_section[0][0].scan(/\s*[\"\']*(\w*)[\"\']*\s*:\s*[\"\'](.*?)[\"\']\s*,?/m)]
         end
         Hash.new
     end

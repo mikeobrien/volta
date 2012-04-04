@@ -9,7 +9,7 @@
     <script data-main="main" src="~/scripts/require/require.js"></script>
 	<use content="head" />
   </head>
-  <body class="application-body">
+  <body class="body">
 	<use content="view"/>
   </body>
 </html>
