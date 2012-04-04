@@ -61,9 +61,7 @@ html { height:100% }
 }
 
 .dashboard {
-    height: 400px;
     width: 400px;
-    margin: 0 auto 0 auto;
 }
 
 .dashboard-icon {
@@ -72,4 +70,28 @@ html { height:100% }
 
 .dashboard-link {
     font-size: 24pt;
+}
+
+.header-rule {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.subheading {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dashboard-banner {
+    width: 760px;
+    padding: 10px;
+    background-color: #51708A;
+    background-image: url('../images/banner.background.png');
+}
+
+.footer
+{
+    margin: 10px;
+    text-align: center;
+    color: #fff;
 }

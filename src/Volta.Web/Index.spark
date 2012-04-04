@@ -1,9 +1,10 @@
 ﻿<use master="Application" />
+<use namespace="System" />
 <use namespace="Volta.Web" />
 <use namespace="Volta.Core.Infrastructure.Framework.Web" />
 <viewdata model="Volta.Web.IndexModel" />
 
-<content:title>Volta</content:title>
+<content:title>Volta / Home</content:title>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
       <div class="container">
@@ -18,24 +19,42 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#batches">Manage Batches</a>
+                        <a href="#batches">
+                            <img src="images/battery16.png"/> Manage Batches</a>
                     </li>
                     <li>
-                        <a href="#batches/add">Add Batch</a>
+                        <a href="#batches/add">
+                            <img src="images/battery_add16.png"/> Add Batch</a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="#batches/schedules">Manage Schedules</a>
+                        <a href="#batches/schedules">
+                            <img src="images/battery16.png"/> Manage Schedules</a>
                     </li>
                     <li>
-                        <a href="#batches/schedules/add">Add Schedule</a>
+                        <a href="#batches/schedules/add">
+                            <img src="images/battery16.png"/> Add Schedule</a>
                     </li>
                 </ul>
             </li>
           <if condition="Model.IsAdministrator">
-            <li>
-              <a href="#administration">Administration</a>
-            </li>
+              <li class="dropdown">
+                  <a href="#batches" class="dropdown-toggle" data-toggle="dropdown">
+                      Administration <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li>
+                          <a href="#batches">
+                              <img src="images/battery16.png"/> Manage Users
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#batches/add">
+                              <img src="images/battery_add16.png"/> Add User
+                          </a>
+                      </li>
+                  </ul>
+              </li>
           </if>
         </ul>
         <p class="navbar-text pull-right">
@@ -48,20 +67,48 @@
 <div class="container">
   <div class="content">
       <div class="dashboard">
-          
-          <ul class="nav nav-tabs nav-stacked">
-              <li>
-                  <a href="#batches/add" class="dashboard-link">
-                      <img src="images/battery48.png" class="dashboard-icon"/> Batch Management
-                  </a>
-              </li>
-              <li>
-                  <a href="#batches/add" class="dashboard-link">
-                      <img src="images/battery_add48.png" class="dashboard-icon"/> Add Batch
-                  </a>
-              </li>
-          </ul>
+          <div class="container">
+
+              <div class="hero-unit dashboard-banner">
+                  <img src="images/volta.logo.medium.png"/>
+              </div>
+
+              <div class="row">
+                <div class="span5">
+                    
+                        <h2>Batches</h2>
+                    <hr class="header-rule"/>
+                    <div class="btn-group">
+                        <a href="#" class="btn"><img src="images/battery16.png"/> Manage Batches</a>
+                        <a href="#" class="btn"><img src="images/battery_add16.png"/> Add Batch</a>
+                    </div>
+                    <h4 class="subheading">Recently Added</h4>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li><a href="#">20110516-DJB (wolff)</a></li>
+                    <li><a href="#">20110516-DJB (wolff)</a></li>
+                    <li><a href="#">20110516-DJB (wolff)</a></li>
+                    <li><a href="#">20110516-DJB (wolff)</a></li>
+                    <li><a href="#">20110516-DJB (wolff)</a></li>
+                </ul>
+                </div>
+                <div class="span5">
+                  <h2>System Information</h2>
+                    <hr class="header-rule"/>
+                    <dl class="dl-horizontal">
+                        <dt>Version</dt><dd>1.0.4.5</dd>
+                        <dt>Release Date</dt><dd>4/3/2012 4:45 PM</dd>
+                        <dt>Build Mode</dt><dd>Release</dd>
+                        <dt>Web Server</dt><dd>ENDOR</dd>
+                        <dt>SMTP Server</dt><dd>mail.bellsouth.net</dd>
+                        <dt>Database Server</dt><dd>ENDOR</dd>
+                        <dt>Error email</dt><dd>mob@mikeobrien.net</dd>
+                        <dt>Log path</dt><dd>d:\websites\volta.groupsadoway.org\logs</dd>
+                    </dl>
+                </div>
+              </div>
+          </div>
+
       </div>
   </div>
-
+    <div class="footer">Copyright © ${DateTime.Now.Year} Group Sadoway</div>
 </div>
