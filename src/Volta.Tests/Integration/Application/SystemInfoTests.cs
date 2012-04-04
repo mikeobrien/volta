@@ -14,7 +14,7 @@ namespace Volta.Tests.Integration.Application
     [TestFixture]
     public class SystemInfoTests
     {
-        private readonly Assembly _assembly = Assembly.GetExecutingAssembly();
+        private readonly Assembly _assembly = typeof(SystemInfo).Assembly;
 
         [Test]
         public void should_get_assembly_version()
@@ -27,7 +27,7 @@ namespace Volta.Tests.Integration.Application
         public void should_get_assembly_timestamp()
         {
             var systeminfo = new SystemInfo(Substitute.For<IConnection>(), Substitute.For<ILogger>());
-            systeminfo.BuildDate.ToString().ShouldEqual(File.GetLastWriteTime(_assembly.Location).ToString());
+            systeminfo.BuildDate.ShouldEqual(File.GetLastWriteTime(_assembly.Location));
         }
 
         [Test]
