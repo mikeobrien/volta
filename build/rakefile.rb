@@ -116,7 +116,7 @@ robocopy :deploy => :uglifyjs do |options|
     options.target = "D:/Websites/volta.groupsadoway.org/wwwroot"
     options.exclude_dirs("obj")
     options.include_files("*.dll", "*.config", "*.spark", "*.htm", "*.html", "*.txt", "*.css",
-                          "*.gif", "*.jpg", "*.jpeg", "*.png", "*.js", "*.ico")
+                          "*.gif", "*.jpg", "*.jpeg", "*.png", "*.js", "*.ico", "*.zip")
     options.log_path = File.join(reportsPath, "deploy.log")
 end
 
