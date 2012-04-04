@@ -1,13 +1,15 @@
+using System;
 using System.Linq;
-using MongoDB.Bson;
 
 namespace Volta.Core.Infrastructure.Framework.Data
 {
     public interface IRepository<TEntity> : IQueryable<TEntity> where TEntity : class
     {
-        TEntity Get(ObjectId id);
+        TEntity Get(Guid id);
         void Add(TEntity entity);
-        void Update<TKey>(TEntity entity);
-        void Delete(ObjectId id);
+        void Replace(TEntity entity);
+        void Modify(Guid id, dynamic entity);
+        void Delete(Guid id);
+        void Delete(TEntity entity);
     }
 }

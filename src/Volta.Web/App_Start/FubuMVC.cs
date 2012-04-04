@@ -1,5 +1,5 @@
-using System.Web.Routing;
 using Bottles;
+using Volta.Core.Infrastructure.Application.Data;
 using Volta.Web.App_Start;
 using FubuMVC.Core;
 using FubuMVC.StructureMap;
@@ -13,9 +13,9 @@ namespace Volta.Web.App_Start
     {
         public static void Start()
         {
-            FubuApplication.For<Conventions>()
-                .StructureMap(new Container(new Registry()))
-                .Bootstrap();
+            FubuApplication.For<FubuConventions>().StructureMap(new Container(new Registry())).Bootstrap();
+            MongoConventions.Register();
+            MappingConventions.Register();
             PackageRegistry.AssertNoFailures();
         }
     }

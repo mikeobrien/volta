@@ -1,6 +1,6 @@
 using System.Configuration;
 
-namespace Volta.Core.Application.Configuration
+namespace Volta.Core.Infrastructure.Application.Configuration
 {
     public class ConfigurationSection : System.Configuration.ConfigurationSection
     {

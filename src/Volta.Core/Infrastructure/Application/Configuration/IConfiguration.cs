@@ -1,4 +1,4 @@
-namespace Volta.Core.Application.Configuration
+namespace Volta.Core.Infrastructure.Application.Configuration
 {
     public interface IConfiguration
     {

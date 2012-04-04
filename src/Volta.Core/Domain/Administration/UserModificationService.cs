@@ -35,7 +35,7 @@ namespace Volta.Core.Domain.Administration
             user.Password = !string.IsNullOrEmpty(modifiedUser.Password) ?
                 HashedPassword.Create(modifiedUser.Password).ToString() : user.Password;
             user.Administrator = modifiedUser.Administrator;
-            _userRepository.Update<User>(user);
+            _userRepository.Replace(user);
 
             if (_secureSession.IsLoggedIn() && _secureSession.GetCurrentToken().Username == username) 
                 _secureSession.Login(new Token(user.Username, user.Administrator));

@@ -1,6 +1,6 @@
 using System;
 
-namespace Volta.Core.Application.Configuration
+namespace Volta.Core.Infrastructure.Application.Configuration
 {
     public class Configuration : IConfiguration
     {

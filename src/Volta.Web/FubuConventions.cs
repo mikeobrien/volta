@@ -8,9 +8,9 @@ using Volta.Web.Behaviors;
 
 namespace Volta.Web
 {
-    public class Conventions : FubuRegistry
+    public class FubuConventions : FubuRegistry
     {
-        public Conventions()
+        public FubuConventions()
         {
             var debug = Assembly.GetExecutingAssembly().IsInDebugMode();
 

@@ -1,6 +1,6 @@
-﻿using Volta.Core.Application.Configuration;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Should;
+using Volta.Core.Infrastructure.Application.Configuration;
 
 namespace Volta.Tests.Integration.Application
 {

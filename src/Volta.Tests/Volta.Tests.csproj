@@ -107,6 +107,7 @@
     <Compile Include="Unit\Infrastructure\Framework\Data\MongoConnectionTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Data\QueryableExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\IO\FileCacheTests.cs" />
+    <Compile Include="Unit\Infrastructure\Framework\FuncTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Reflection\AssemblyExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Reflection\ExpressionExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Web\Fubu\RegexUrlPolicyTests.cs" />

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver.Linq;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -16,8 +17,13 @@ namespace Volta.Core.Infrastructure.Framework.Data
     {
         private readonly Lazy<MongoCollection<TEntity>> _collection;
         private readonly Lazy<IQueryable<TEntity>> _query;
-        private static readonly PropertyInfo IdProperty = typeof (TEntity).GetProperty("Id");
-        private static readonly Func<ObjectId, IMongoQuery> IdQuery = id => Query.EQ(IdProperty.Name, id); 
+
+        private static readonly string IdPropertyName = 
+            BsonClassMap.LookupConventions(typeof(TEntity)).IdMemberConvention.FindIdMember(typeof(TEntity));
+        private static readonly PropertyInfo EntityIdProperty = typeof(TEntity).GetProperty(IdPropertyName);
+        private static readonly Func<TEntity, Guid> GetEntityId = (entity) => (Guid)EntityIdProperty.GetValue(entity, null);
+
+        private static readonly Func<Guid, IMongoQuery> IdQuery = id => Query.EQ("_id", id); 
 
         public MongoRepository(MongoConnection mongoConnection)
         {
@@ -28,7 +34,7 @@ namespace Volta.Core.Infrastructure.Framework.Data
             _query = new Lazy<IQueryable<TEntity>>(() => _collection.Value.AsQueryable<TEntity>());
         }
 
-        public TEntity Get(ObjectId id)
+        public TEntity Get(Guid id)
         {
             return _collection.Value.FindOne(IdQuery(id));
         }
@@ -38,14 +44,24 @@ namespace Volta.Core.Infrastructure.Framework.Data
             _collection.Value.Insert(entity);
         }
 
-        public void Update<TKey>(TEntity entity)
+        public void Replace(TEntity entity)
         {
-            _collection.Value.Update(IdQuery((ObjectId)IdProperty.GetValue(entity, null)), UpdateWrapper.Create(entity));
+            _collection.Value.Update(IdQuery(GetEntityId(entity)), UpdateWrapper.Create(entity));
         }
 
-        public void Delete(ObjectId id)
+        public void Modify(Guid id, object entity)
+        {
+            _collection.Value.Update(IdQuery(id), new UpdateDocument("$set", entity.ToBsonDocument()));
+        }
+
+        public void Delete(Guid id)
         {
             _collection.Value.Remove(IdQuery(id));
+        }
+
+        public void Delete(TEntity entity)
+        {
+            Delete(GetEntityId(entity));
         }
 
         public IEnumerator<TEntity> GetEnumerator() { return _query.Value.GetEnumerator(); }

@@ -131,10 +131,11 @@
     <Compile Include="Behaviors\AjaxAuthorizationBehavior.cs" />
     <Compile Include="Behaviors\AuthorizationBehavior.cs" />
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
-    <Compile Include="Conventions.cs" />
+    <Compile Include="FubuConventions.cs" />
     <Compile Include="IndexGetHandler.cs" />
     <Compile Include="login\PublicGetHandler.cs" />
     <Compile Include="login\PublicPostHandler.cs" />
+    <Compile Include="MappingConventions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registry.cs" />
   </ItemGroup>
