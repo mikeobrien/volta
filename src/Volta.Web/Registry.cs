@@ -1,6 +1,7 @@
 using Volta.Core.Application;
 using Volta.Core.Application.Security;
 using Volta.Core.Domain.Administration;
+using Volta.Core.Infrastructure.Application;
 using Volta.Core.Infrastructure.Application.Configuration;
 using Volta.Core.Infrastructure.Framework.Data;
 using Volta.Core.Infrastructure.Framework.Logging;
@@ -13,11 +14,11 @@ namespace Volta.Web
     {
         public Registry()
         {
-            ForSingletonOf<IApplication>().Use<Application>();
+            ForSingletonOf<ISystemInfo>().Use<SystemInfo>();
             ForSingletonOf<IConfiguration>().Use<Configuration>();
             ForSingletonOf<ILogger>().Use<Log4NetLogger>();
 
-            For<MongoConnection>().Use<MongoConnection>().Ctor<string>().Is(x => x.GetInstance<IConfiguration>().ConnectionString);
+            For<IConnection>().Use<MongoConnection>().Ctor<string>().Is(x => x.GetInstance<IConfiguration>().ConnectionString);
             For(typeof(IRepository<>)).Use(typeof(MongoRepository<>));
 
             ForSingletonOf<IWebServer>().Use<WebServer>();

@@ -25,10 +25,10 @@ namespace Volta.Core.Infrastructure.Framework.Data
 
         private static readonly Func<Guid, IMongoQuery> IdQuery = id => Query.EQ("_id", id); 
 
-        public MongoRepository(MongoConnection mongoConnection)
+        public MongoRepository(IConnection mongoConnection)
         {
-            _collection = new Lazy<MongoCollection<TEntity>>(() => 
-                mongoConnection.Connection.
+            _collection = new Lazy<MongoCollection<TEntity>>(() =>
+                mongoConnection.CreateConnection().
                     GetDatabase(mongoConnection.DefaultDatabase).
                     GetCollection<TEntity>(typeof(TEntity).Name));
             _query = new Lazy<IQueryable<TEntity>>(() => _collection.Value.AsQueryable<TEntity>());

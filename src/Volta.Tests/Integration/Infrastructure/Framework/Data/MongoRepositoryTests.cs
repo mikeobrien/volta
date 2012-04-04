@@ -50,13 +50,13 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
 
         private MongoCollection<T> GetCollection<T>()
         {
-            return _mongo.Connection.GetDatabase(_mongo.DefaultDatabase).GetCollection<T>(typeof(T).Name);
+            return _mongo.CreateConnection().GetDatabase(_mongo.DefaultDatabase).GetCollection<T>(typeof(T).Name);
         }
 
         private void DropCollection<T>()
         {
-            if (_mongo.Connection.GetDatabase(_mongo.DefaultDatabase).CollectionExists(typeof(T).Name))
-                _mongo.Connection.GetDatabase(_mongo.DefaultDatabase).DropCollection(typeof(T).Name);
+            if (_mongo.CreateConnection().GetDatabase(_mongo.DefaultDatabase).CollectionExists(typeof(T).Name))
+                _mongo.CreateConnection().GetDatabase(_mongo.DefaultDatabase).DropCollection(typeof(T).Name);
         }
 
         [Test]

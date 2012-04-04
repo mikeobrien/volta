@@ -95,14 +95,15 @@
                   <h2>System Information</h2>
                     <hr class="header-rule"/>
                     <dl class="dl-horizontal">
-                        <dt>Version</dt><dd>1.0.4.5</dd>
-                        <dt>Release Date</dt><dd>4/3/2012 4:45 PM</dd>
-                        <dt>Build Mode</dt><dd>Release</dd>
-                        <dt>Web Server</dt><dd>ENDOR</dd>
-                        <dt>SMTP Server</dt><dd>mail.bellsouth.net</dd>
-                        <dt>Database Server</dt><dd>ENDOR</dd>
-                        <dt>Error email</dt><dd>mob@mikeobrien.net</dd>
-                        <dt>Log path</dt><dd>d:\websites\volta.groupsadoway.org\logs</dd>
+                        <dt>Version</dt><dd>${Model.SystemInfo.Version}</dd>
+                        <dt>Release Date</dt><dd>${Model.SystemInfo.BuildDate}</dd>
+                        <dt>Build Mode</dt><dd>${Model.SystemInfo.DebugMode}</dd>
+                        <dt>Web Server</dt><dd>${Model.SystemInfo.WebServer}</dd>
+                        <dt>SMTP Server</dt><dd>${Model.SystemInfo.SmtpServer}</dd>
+                        <dt>Database</dt><dd>${Model.SystemInfo.Database}</dd>
+                        <dt>Error email</dt><dd>${Model.SystemInfo.ErrorEmail}</dd>
+                        <dt>Error SMTP</dt><dd>${Model.SystemInfo.ErrorEmailSmtp}</dd>
+                        <dt>Log path</dt><dd>${Model.SystemInfo.LogPath}</dd>
                     </dl>
                 </div>
               </div>

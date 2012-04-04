@@ -87,6 +87,9 @@
   <ItemGroup>
     <Compile Include="Application\Security\AuthorizationException.cs" />
     <Compile Include="Infrastructure\Application\Data\MongoConventions.cs" />
+    <Compile Include="Infrastructure\Application\ISystemInfo.cs" />
+    <Compile Include="Infrastructure\Application\SystemInfo.cs" />
+    <Compile Include="Infrastructure\Framework\Data\IConnection.cs" />
     <Compile Include="Infrastructure\Framework\Data\QueryableExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Func.cs" />
     <Compile Include="Infrastructure\Framework\Security\Username.cs" />
@@ -97,8 +100,6 @@
     <Compile Include="Infrastructure\Application\Configuration\ConfigurationSection.cs" />
     <Compile Include="Infrastructure\Application\Configuration\IConfiguration.cs" />
     <Compile Include="Application\Security\AuthenticationService.cs" />
-    <Compile Include="Application\Application.cs" />
-    <Compile Include="Application\IApplication.cs" />
     <Compile Include="Infrastructure\Framework\Reflection\ExpressionExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Security\IAuthenticationService.cs" />
     <Compile Include="Infrastructure\Framework\Security\ISecureSession.cs" />
