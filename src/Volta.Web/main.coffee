@@ -8,7 +8,7 @@ require.config
 		"postal": "scripts/postal/postal"
 		"postalajax": "scripts/postal/postal.ajax"
 		"postalscroll": "scripts/postal/postal.scroll"
-        "bootstrap": "scripts/bootstrap/bootstrap"
+		"bootstrap": "scripts/bootstrap/bootstrap"
 
 require ['jquery', 'dashboard', 'bootstrap'], ($, Dashboard) ->
 	content = $ '#content'
