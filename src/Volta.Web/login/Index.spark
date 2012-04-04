@@ -5,12 +5,6 @@
 
 <content:title>Volta Login</content:title>
 
-<if condition="Model.IsNewInstall">
-    <div class="alert login-message">
-        <a class="close" data-dismiss="alert">×</a>
-        <strong>New Install</strong> This is a new install of Volta. The username and password you enter will be the administrator account.
-    </div>
-</if>
 <div id="login" class="login-content">
     <img src="../images/volta.logo.large.png"/>
     <form class="form-inline login-form">
@@ -20,3 +14,9 @@
     </form>
     <div class="alert alert-error login-error-message"></div>
 </div>
+    <if condition="Model.IsNewInstall">
+        <div class="alert login-message">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>New Install</strong> This is a new install of Volta. The username and password you enter will be the administrator account.
+        </div>
+    </if>

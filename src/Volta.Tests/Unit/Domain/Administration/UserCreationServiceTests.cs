@@ -46,7 +46,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         [Test]
         public void should_not_create_user_with_duplicate_differently_cased_usernames()
         {
-            var userRepository = new MemoryRepository<User>(new User {Username = Username.ToUpper()});
+            var userRepository = new MemoryRepository<User>(new User { Username = Username.ToUpper() });
             var userCreationService = new UserCreationService(userRepository);
             Assert.Throws<DuplicateUsernameException>(() => userCreationService.Create(Username.ToLower(), Password, false));
         }
