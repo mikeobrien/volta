@@ -15,7 +15,7 @@ namespace Volta.Core.Infrastructure.Application
         {
             var assembly = Assembly.GetExecutingAssembly();
             Version = assembly.GetName().Version.ToString();
-            BuildDate = File.GetCreationTime(assembly.Location);
+            BuildDate = File.GetLastWriteTime(assembly.Location);
             DebugMode = assembly.IsInDebugMode() ? Mode.Debug : Mode.Release;
             WebServer = Environment.MachineName;
             SmtpServer = new System.Net.Mail.SmtpClient().Host;

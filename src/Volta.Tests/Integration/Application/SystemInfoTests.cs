@@ -27,7 +27,7 @@ namespace Volta.Tests.Integration.Application
         public void should_get_assembly_timestamp()
         {
             var systeminfo = new SystemInfo(Substitute.For<IConnection>(), Substitute.For<ILogger>());
-            systeminfo.BuildDate.ToString().ShouldEqual(File.GetCreationTime(_assembly.Location).ToString());
+            systeminfo.BuildDate.ToString().ShouldEqual(File.GetLastWriteTime(_assembly.Location).ToString());
         }
 
         [Test]

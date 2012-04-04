@@ -101,9 +101,9 @@
                         <dt>Web Server</dt><dd>${Model.SystemInfo.WebServer}</dd>
                         <dt>SMTP Server</dt><dd>${Model.SystemInfo.SmtpServer}</dd>
                         <dt>Database</dt><dd>${Model.SystemInfo.Database}</dd>
-                        <dt>Error email</dt><dd>${Model.SystemInfo.ErrorEmail}</dd>
+                        <dt>Error Email</dt><dd>${Model.SystemInfo.ErrorEmail}</dd>
                         <dt>Error SMTP</dt><dd>${Model.SystemInfo.ErrorEmailSmtp}</dd>
-                        <dt>Log path</dt><dd class="wrapped-text">${Model.SystemInfo.LogPath}</dd>
+                        <dt>Log Path</dt><dd class="wrapped-text">${Model.SystemInfo.LogPath}</dd>
                     </dl>
                 </div> 
               </div>
