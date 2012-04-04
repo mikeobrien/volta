@@ -100,8 +100,8 @@ end
 require_optimize :optimize_requirejs => :website_config_settings do |options|
     options.path = 'src/Volta.Web'
     options.main_file = 'main.js'
-    options.exclude_path_filter = /\/scripts\//
-    options.include_path_filter = /\/scripts\/require\//
+    options.exclude_path_filter = /[\A\/]scripts\//
+    options.include_path_filter = /[\A\/]scripts\/require\//
     options.noop_plugins 'text'
     options.exclude_modules 'data'
 end

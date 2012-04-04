@@ -61,7 +61,7 @@ class RequireOptimizer
         if $? == 0 then
             File.delete path
             File.rename compiled_main, path
-            File.delete build_file_path
+            #File.delete build_file_path
             return true
         else
             puts command
