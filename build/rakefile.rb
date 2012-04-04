@@ -111,6 +111,7 @@ uglifyjs :uglifyjs => :optimize_requirejs do |options|
 end
 
 robocopy :deploy => :uglifyjs do |options|
+    options.copy_mode = :mirror
     options.source = "src/Volta.Web"
     options.target = "D:/Websites/volta.groupsadoway.org/wwwroot"
     options.exclude_dirs("obj")
