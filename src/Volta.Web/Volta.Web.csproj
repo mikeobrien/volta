@@ -109,7 +109,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dashboard.html" />
     <Content Include="error.html" />
     <Content Include="login\login.js">
       <DependentUpon>login.coffee</DependentUpon>
