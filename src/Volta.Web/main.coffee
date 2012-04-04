@@ -8,8 +8,9 @@ require.config
 		"postal": "scripts/postal/postal"
 		"postalajax": "scripts/postal/postal.ajax"
 		"postalscroll": "scripts/postal/postal.scroll"
+        "bootstrap": "scripts/bootstrap/bootstrap"
 
-require ['args', 'jquery', 'dashboard'], (args, $, Dashboard) ->
+require ['jquery', 'dashboard', 'bootstrap'], ($, Dashboard) ->
 	content = $ '#content'
 	@dashboardRouter = new Dashboard.Router(content: content)
 	Backbone.history.start()

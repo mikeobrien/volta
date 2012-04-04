@@ -14,9 +14,10 @@
     </form>
     <div class="alert alert-error login-error-message"></div>
 </div>
-    <if condition="Model.IsNewInstall">
-        <div class="alert login-message">
-            <a class="close" data-dismiss="alert">×</a>
-            <strong>New Install</strong> This is a new install of Volta. The username and password you enter will be the administrator account.
-        </div>
-    </if>
+
+<if condition="Model.IsNewInstall">
+    <div class="alert login-message">
+        <a class="close" data-dismiss="alert">×</a>
+        <strong>New Install</strong> This is a new install of Volta. The username and password you enter will be the administrator account.
+    </div>
+</if>
