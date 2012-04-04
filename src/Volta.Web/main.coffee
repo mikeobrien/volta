@@ -5,10 +5,10 @@ require.config
         "_config": "scripts/underscore/underscore-config"
         "backbone": "scripts/backbone"
         "text": "scripts/require/text"
-		"postal": "scripts/postal/postal"
-		"postalajax": "scripts/postal/postal.ajax"
-		"postalscroll": "scripts/postal/postal.scroll"
-		"bootstrap": "scripts/bootstrap/bootstrap"
+        "postal": "scripts/postal/postal"
+        "postalajax": "scripts/postal/postal.ajax"
+        "postalscroll": "scripts/postal/postal.scroll"
+        "bootstrap": "scripts/bootstrap/bootstrap"
 
 require ['jquery', 'dashboard', 'bootstrap'], ($, Dashboard) ->
 	content = $ '#content'
