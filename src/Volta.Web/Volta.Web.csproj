@@ -109,6 +109,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="about.html" />
+    <Content Include="about.js">
+      <DependentUpon>about.coffee</DependentUpon>
+    </Content>
     <Content Include="error.html" />
     <Content Include="login\login.js">
       <DependentUpon>login.coffee</DependentUpon>
@@ -140,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
+    <None Include="about.coffee" />
     <None Include="index.spark">
       <SubType>Designer</SubType>
     </None>

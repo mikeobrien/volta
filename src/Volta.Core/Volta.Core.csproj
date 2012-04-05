@@ -116,7 +116,6 @@
     <Compile Include="Infrastructure\Framework\ExpressionExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Logging\ILogger.cs" />
     <Compile Include="Infrastructure\Framework\Logging\Log4NetLogger.cs" />
-    <Compile Include="Infrastructure\Framework\ObjectExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Reflection\AssemblyExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Security\HashedPassword.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\ConfigurationExtensions.cs" />

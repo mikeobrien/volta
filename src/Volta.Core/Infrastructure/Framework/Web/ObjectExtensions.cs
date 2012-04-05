@@ -7,7 +7,7 @@ namespace Volta.Core.Infrastructure.Framework.Web
     {
         public static string ToJavaScript(this object source)
         {
-            return JsonConvert.SerializeObject(source, new JavaScriptDateTimeConverter());
+            return JsonConvert.SerializeObject(source, new JavaScriptDateTimeConverter(), new StringEnumConverter());
         }
     }
 }

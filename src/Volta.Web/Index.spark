@@ -5,6 +5,13 @@
 <viewdata model="Volta.Web.IndexModel" />
 
 <content:title>Volta / Home</content:title>
+<content:head>
+    <script language="javascript">
+        define('data', function() {
+            return { SystemInfo: !{ Model.SystemInfo.ToJavaScript() }};
+        });
+    </script>
+</content:head>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
       <div class="container">
@@ -65,13 +72,9 @@
 </div>
 
 <div class="container">
-  <div class="content">
+  <div class="content" id="content">
       <div class="dashboard">
           <div class="container">
-
-              <div class="hero-unit dashboard-banner">
-                  <img src="images/volta.logo.medium.png"/>
-              </div>
 
               <div class="row">
                 <div class="span5">
@@ -92,20 +95,19 @@
                 </ul>
                 </div>
                 <div class="span5">
-                  <h2>System Information</h2>
+                    
+                        <h2>Arbin Schedules</h2>
                     <hr class="header-rule"/>
-                    <dl class="dl-horizontal">
-                        <dt>Version</dt><dd>${Model.SystemInfo.Version}</dd>
-                        <dt>Release Date</dt><dd>${Model.SystemInfo.BuildDate}</dd>
-                        <dt>Build Mode</dt><dd>${Model.SystemInfo.DebugMode}</dd>
-                        <dt>Web Server</dt><dd>${Model.SystemInfo.WebServer}</dd>
-                        <dt>SMTP Server</dt><dd>${Model.SystemInfo.SmtpServer}</dd>
-                        <dt>Database</dt><dd>${Model.SystemInfo.Database}</dd>
-                        <dt>Error Email</dt><dd>${Model.SystemInfo.ErrorEmail}</dd>
-                        <dt>Error SMTP</dt><dd>${Model.SystemInfo.ErrorEmailSmtp}</dd>
-                        <dt>Log Path</dt><dd class="wrapped-text">${Model.SystemInfo.LogPath}</dd>
-                    </dl>
-                </div> 
+                    <div class="btn-group">
+                        <a href="#batches" class="btn"><img src="images/alarmclock.16.png"/> Manage Schedules</a>
+                        <a href="#batches/add" class="btn"><img src="images/alarmclock.run.16.png"/> Add Schedule</a>
+                    </div>
+                    <h4 class="subheading">Recently Added</h4>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li><a href="#batches/schedules/edit/20110531-DJB-Standard">20110531-DJB-Standard</a></li>
+                    <li><a href="#batches/schedules/20110531-DJB-Standard">20110531-DJB-Standard</a></li>
+                </ul>
+                </div>
               </div>
           </div>
 
