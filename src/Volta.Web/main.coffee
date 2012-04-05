@@ -10,7 +10,9 @@ require.config
         "postalscroll": "scripts/postal/postal.scroll"
         "bootstrap": "scripts/bootstrap/bootstrap"
 
-require ['jquery', 'backbone', 'about', 'bootstrap', '_config'], ($, Backbone, About) ->
+require ['jquery', 'backbone', 'app', 'batches/batches', 'admin/admin', 'bootstrap', '_config'], ($, Backbone, App, Batches, Admin) ->
     content = $ '#content'
-    @aboutRouter = new About.Router(content: content)
+    @appRouter = new App.Router(content: content)
+    @batchesRouter = new Batches.Router(content: content)
+    @adminRouter = new Admin.Router(content: content)
     Backbone.history.start()

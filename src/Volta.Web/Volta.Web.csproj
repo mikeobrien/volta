@@ -110,8 +110,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="about.html" />
-    <Content Include="about.js">
-      <DependentUpon>about.coffee</DependentUpon>
+    <Content Include="admin\admin.js">
+      <DependentUpon>admin.coffee</DependentUpon>
+    </Content>
+    <Content Include="app.js">
+      <DependentUpon>app.coffee</DependentUpon>
+    </Content>
+    <Content Include="batches\batches.js">
+      <DependentUpon>batches.coffee</DependentUpon>
     </Content>
     <Content Include="error.html" />
     <Content Include="login\login.js">
@@ -141,10 +147,13 @@
     <Compile Include="MappingConventions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registry.cs" />
+    <Compile Include="logout\PublicPostHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
-    <None Include="about.coffee" />
+    <None Include="admin\admin.coffee" />
+    <None Include="app.coffee" />
+    <None Include="batches\batches.coffee" />
     <None Include="index.spark">
       <SubType>Designer</SubType>
     </None>

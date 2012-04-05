@@ -1,17 +1,17 @@
 using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Framework.Security;
 
-namespace Volta.Web.Login
+namespace Volta.Web.login
 {
     public class LoginRequest
     {
-        public string username { get; set; }
-        public string password { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 
     public class LoginResponse
     {
-        public bool success { get; set; }
+        public bool Success { get; set; }
     }
 
     public class PublicPostHandler
@@ -26,7 +26,7 @@ namespace Volta.Web.Login
         public LoginResponse Execute(LoginRequest request)
         {
             return new LoginResponse
-            { success = _secureSession.Login(request.username, request.password) };
+            { Success = _secureSession.Login(request.Username, request.Password) };
         }
     }
 }
