@@ -1,4 +1,4 @@
-define ['jquery', 'backbone', 'underscore'], ($, Backbone, _) ->
+define ['jquery', 'backbone', 'underscore', 'admin/users/users'], ($, Backbone, _, Users) ->
 
     class Router extends Backbone.Router
         initialize: (options) ->
@@ -7,8 +7,8 @@ define ['jquery', 'backbone', 'underscore'], ($, Backbone, _) ->
             'admin/users': 'users'
             'admin/users/add': 'addUser'
             'admin/users/edit/:id': 'editUser'
-        users: -> console.log 'users...'
-        addUser: -> console.log 'addUser...'
-        editUser: (id) -> console.log "editUser(#{id})..."
+        users: -> (@view = new Users.EnumView(el: @content)).render()
+        addUser: -> (@view = new Users.AddView(el: @content)).render()
+        editUser: (id) -> (@view = new Users.EditView(el: @content)).render()
 
     Router: Router

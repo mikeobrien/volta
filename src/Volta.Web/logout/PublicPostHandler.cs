@@ -1,7 +1,7 @@
 using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Framework.Security;
 
-namespace Volta.Web.logout
+namespace Volta.Web.Logout
 {
     public class LogoutRequest {}
 

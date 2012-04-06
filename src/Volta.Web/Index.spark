@@ -4,7 +4,7 @@
 <use namespace="Volta.Core.Infrastructure.Framework.Web" />
 <viewdata model="Volta.Web.IndexModel" />
 
-<content:title>Volta / Home</content:title>
+<content:title>Volta</content:title>
 <content:head>
     <link rel="StyleSheet" href="~/styles/application.css" type="text/css"/>
     <script language="javascript">
@@ -78,6 +78,9 @@
 </div>
 
 <div class="container-fluid">
+
+    <div id="messages"></div>
+    
     <div class="content" id="content">
 
         <div class="well" style="height: 110px;padding: 20px;background-image:url(images/banner.background.png);">

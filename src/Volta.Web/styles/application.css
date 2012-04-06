@@ -28,8 +28,11 @@ footer
     text-align: center;
 }
 
-.wrapped-text {
-    word-wrap:break-word;
+.error-message {
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+    display: none;
 }
 
 .about {

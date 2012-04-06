@@ -4,7 +4,6 @@ using Should;
 using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Framework.Security;
 using Volta.Web.Login;
-using Volta.Web.login;
 
 namespace Volta.Tests.Unit.UserInterface.Login
 {

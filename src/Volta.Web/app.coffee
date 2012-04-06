@@ -1,19 +1,32 @@
-define ['jquery', 'backbone', 'underscore', 'text!about.html', 'data'], ($, Backbone, _, aboutTemplate, data) ->
+define ['jquery', 'backbone', 'underscore', 'postal', 'data', 'text!error-template.html', 'text!about.html'], ($, Backbone, _, postal, data, errorTemplate, aboutTemplate) ->
 
     class MenuView extends Backbone.View
         initialize: (options) ->
-            Backbone.history.on 'route', @route, @
             _.bindAll @, 'route'
-        route: (router, route) ->
+            postal.subscribe 'route', @route
+        route: (url) ->
             @$el.find('li').removeClass('active')
-            baseRoute = window.location.hash.substr(1).split('/')[0]
+            baseRoute = url.split('/')[0]
             @$el.find("li[data-route='#{baseRoute}']").addClass('active')
     
+    class ErrorView extends Backbone.View
+        initialize: (options) ->
+            _.bindAll @, 'render'
+            postal.channel('ajax.error.*').subscribe @render
+            postal.channel('error').subscribe @render
+            @template = options.template
+        render: (error) -> 
+            message = $ @template { message: error.message }
+            @$el.append message
+            message.fadeIn 'slow'
+            message.delay(3000).fadeOut('slow').hide
+
     class Router extends Backbone.Router
         initialize: (options) ->
             @content = options.content
-            @menuView = new MenuView(el: $('#menu'))
-            @aboutTemplate = _.template(aboutTemplate, data.SystemInfo)
+            @menuView = new MenuView el: options.menu
+            @errorView = new ErrorView el: options.messages, template: _.template errorTemplate
+            @aboutTemplate = _.template aboutTemplate, data.SystemInfo
         routes:
             'about': 'about'
             'logout': 'logout'
