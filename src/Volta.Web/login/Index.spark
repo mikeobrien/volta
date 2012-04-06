@@ -1,10 +1,13 @@
-﻿<use master="Application" />
+﻿<use master="base" />
 <use namespace="Volta.Web" />
 <use namespace="Volta.Core.Infrastructure.Framework.Web" />
 <viewdata model="Volta.Web.Login.IndexModel" />
 
 <content:title>Volta Login</content:title>
-
+<content:head>
+    <link rel="StyleSheet" href="~/styles/login.css" type="text/css"/>
+</content:head>
+    
 <div id="login" class="login-content">
     <img src="../images/volta.logo.large.png"/>
     <form class="form-inline login-form">

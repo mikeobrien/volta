@@ -1,4 +1,4 @@
-define(['jquery'], function($) {
+Bootstrap = function() {
 
 /* ===================================================
  * bootstrap-transition.js v2.0.2
@@ -1738,4 +1738,8 @@ define(['jquery'], function($) {
 
 }( window.jQuery );
 
-});
+}
+
+if (typeof define === 'function' && define.amd) {
+    define(['jquery'], function() { Bootstrap(); });
+} else { Bootstrap(); }

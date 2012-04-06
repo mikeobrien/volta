@@ -5,11 +5,10 @@
   <head>
     <link rel="shortcut icon" href="~/images/favicon.ico">
     <link href="~/styles/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link rel="StyleSheet" href="~/styles/application.css" type="text/css"/>
     <script data-main="main" src="~/scripts/require/require.js"></script>
 	<use content="head" />
   </head>
-  <body class="body">
+  <body>
 	<use content="view"/>
   </body>
 </html>

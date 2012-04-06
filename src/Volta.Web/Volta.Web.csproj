@@ -131,6 +131,8 @@
     </Content>
     <Content Include="notfound.html" />
     <Content Include="styles\application.css" />
+    <Content Include="styles\error.css" />
+    <Content Include="styles\login.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -162,7 +164,7 @@
     <None Include="login\index.spark" />
     <None Include="login\main.coffee" />
     <None Include="main.coffee" />
-    <None Include="Shared\Application.spark" />
+    <None Include="Shared\base.spark" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Volta.Core\Volta.Core.csproj">
