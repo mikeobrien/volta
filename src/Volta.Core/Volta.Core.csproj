@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.1.266\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Bottles.0.9.1.202\lib\Bottles.dll</HintPath>
@@ -89,6 +92,7 @@
     <Compile Include="Infrastructure\Application\Data\MongoConventions.cs" />
     <Compile Include="Infrastructure\Application\ISystemInfo.cs" />
     <Compile Include="Infrastructure\Application\SystemInfo.cs" />
+    <Compile Include="Infrastructure\Framework\AutoMapper\Extensions.cs" />
     <Compile Include="Infrastructure\Framework\Data\IConnection.cs" />
     <Compile Include="Infrastructure\Framework\Data\QueryableExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Func.cs" />
@@ -113,7 +117,7 @@
     <Compile Include="Infrastructure\Framework\Data\MongoConnection.cs" />
     <Compile Include="Infrastructure\Framework\Data\MongoRepository.cs" />
     <Compile Include="Infrastructure\Framework\ByteArrayExtensions.cs" />
-    <Compile Include="Infrastructure\Framework\ExpressionExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Logging\ILogger.cs" />
     <Compile Include="Infrastructure\Framework\Logging\Log4NetLogger.cs" />
     <Compile Include="Infrastructure\Framework\Reflection\AssemblyExtensions.cs" />

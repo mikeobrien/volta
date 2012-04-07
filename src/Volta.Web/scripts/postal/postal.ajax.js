@@ -2,7 +2,8 @@ define(['jquery', 'postal'], function($, postal) {
     var options = { errors: {} };
 
     $(document).ajaxError(function(error, xhr, settings, thrownError) {
-        var json = !xhr.getResponseHeader('content-type').indexOf('application/json');
+        var json = parseInt(xhr.getResponseHeader('content-length')) > 0 && 
+                   !xhr.getResponseHeader('content-type').indexOf('application/json');
         var status = options.errors[xhr.status] || {};
         return postal.channel("ajax.error." + (status.alias || xhr.status)).publish({
             status: status.alias || xhr.status,

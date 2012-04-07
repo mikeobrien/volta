@@ -3,15 +3,18 @@ require.config
         "jquery": "scripts/jquery/jquery"
         "underscore": "scripts/underscore/underscore"
         "_config": "scripts/underscore/underscore-config"
-        "backbone": "scripts/backbone"
+        "backbone": "scripts/backbone/backbone"
+        "backbone/lazycollection": "scripts/backbone/lazycollection"
         "text": "scripts/require/text"
         "postal": "scripts/postal/postal"
         "postalajax": "scripts/postal/postal.ajax"
         "postalscroll": "scripts/postal/postal.scroll"
         "bootstrap": "scripts/bootstrap/bootstrap"
 
-require ['jquery', 'backbone', 'postal', 'postalajax', 'postalscroll', 'app', 'batches/batches', 
-         'admin/admin', 'bootstrap', '_config'], ($, Backbone, postal, postalAjax, postalScroll, App, Batches, Admin) ->
+plugins = ['bootstrap', '_config', 'backbone/lazycollection']
+
+require ['jquery', 'backbone', 'postal', 'postalajax', 'postalscroll', 'app', 'batches/batches', 'admin/admin'].concat(plugins)
+         , ($, Backbone, postal, postalAjax, postalScroll, App, Batches, Admin) ->
     
     window.onerror = (message, source, line) -> 
         $.post 'errors', { Source: source, Line: line, Message: message }
@@ -25,9 +28,10 @@ require ['jquery', 'backbone', 'postal', 'postalajax', 'postalscroll', 'app', 'b
     postalScroll.bottomOffset = 100
 
     content = $ '#content'
-    @appRouter = new App.Router(content: content, menu: $('#menu'), messages: $('#messages'))
-    @batchesRouter = new Batches.Router(content: content)
-    @adminRouter = new Admin.Router(content: content)
+
+    App.start $('#menu'), $('#messages'), content
+    Admin.start content
+    Batches.start content
 
     Backbone.history.on 'route', -> postal.publish('route', window.location.hash.substr(1))
     Backbone.history.start()

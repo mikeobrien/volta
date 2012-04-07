@@ -17,4 +17,5 @@ define ['jquery', 'backbone', 'underscore'], ($, Backbone, _) ->
         addSchedule: -> console.log 'addSchedule...'
         editSchedule: (id) -> console.log "editSchedule(#{id})..."
 
-    Router: Router
+    start: (content) ->
+        @router = new Router(content: content)

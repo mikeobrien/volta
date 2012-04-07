@@ -33,7 +33,7 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         [SetUp]
         public void Setup()
         {
-            _mongo = new MongoConnection(Constants.VoltaConnectionString);
+            _mongo = new MongoConnection(Constants.VoltaIntegrationConnectionString);
             DropCollection<_Person>();
             var collection = GetCollection<_Person>();
             collection.Insert(Person1);

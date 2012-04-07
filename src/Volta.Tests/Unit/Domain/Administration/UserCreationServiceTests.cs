@@ -10,17 +10,19 @@ namespace Volta.Tests.Unit.Domain.Administration
     {
         private const string Username = "Username";
         private const string Password = "P@$$word";
+        private const string Email = "test@test.com";
 
         [Test]
         public void should_create_unique_non_admin_user()
         {
             var userRepository = new MemoryRepository<User>();
             var userCreationService = new UserCreationService(userRepository);
-            var user = userCreationService.Create(Username, Password, false);
+            var user = userCreationService.Create(Username, Password, Email, false);
             userRepository.Count().ShouldEqual(1);
             userRepository.First().ShouldEqual(user);
             user.Username.ShouldEqual(Username.ToLower());
             user.Administrator.ShouldBeFalse();
+            user.Email.ShouldEqual(Email);
         }
 
         [Test]
@@ -28,7 +30,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         {
             var userRepository = new MemoryRepository<User>();
             var userCreationService = new UserCreationService(userRepository);
-            var user = userCreationService.Create(Username, Password, false);
+            var user = userCreationService.Create(Username, Password, Email, false);
             user.Password.ShouldNotBeNull();
             user.Password.ShouldNotBeEmpty();
             user.Password.ShouldNotEqual(Password);
@@ -39,7 +41,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         {
             var userRepository = new MemoryRepository<User>();
             var userCreationService = new UserCreationService(userRepository);
-            var user = userCreationService.Create(Username, Password, true);
+            var user = userCreationService.Create(Username, Password, Email, true);
             user.Administrator.ShouldBeTrue();
         }
 
@@ -48,21 +50,21 @@ namespace Volta.Tests.Unit.Domain.Administration
         {
             var userRepository = new MemoryRepository<User>(new User { Username = Username.ToUpper() });
             var userCreationService = new UserCreationService(userRepository);
-            Assert.Throws<DuplicateUsernameException>(() => userCreationService.Create(Username.ToLower(), Password, false));
+            Assert.Throws<DuplicateUsernameException>(() => userCreationService.Create(Username.ToLower(), Password, Email, false));
         }
 
         [Test]
         public void should_not_create_user_with_empty_username()
         {
             var userCreationService = new UserCreationService(new MemoryRepository<User>());
-            Assert.Throws<EmptyUsernameException>(() => userCreationService.Create(string.Empty, Password, false));
+            Assert.Throws<EmptyUsernameException>(() => userCreationService.Create(string.Empty, Password, Email, false));
         }
 
         [Test]
         public void should_not_create_user_with_empty_password()
         {
             var userCreationService = new UserCreationService(new MemoryRepository<User>());
-            Assert.Throws<EmptyPasswordException>(() => userCreationService.Create(Username, string.Empty, false));
+            Assert.Throws<EmptyPasswordException>(() => userCreationService.Create(Username, string.Empty, Email, false));
         }
     }
 }

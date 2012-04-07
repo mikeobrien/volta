@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Integration\Application\SystemInfoTests.cs" />
+    <Compile Include="Acceptance\GenerateTestData.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Log4NetLoggerTests.cs" />
     <Compile Include="Unit\Domain\Administration\UserModificationServiceTests.cs" />
     <Compile Include="Unit\Domain\Administration\UsernameTests.cs" />
@@ -153,7 +154,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Acceptance\" />
     <Folder Include="Integration\Infrastructure\Application\" />
     <Folder Include="Unit\Infrastructure\Application\" />
   </ItemGroup>

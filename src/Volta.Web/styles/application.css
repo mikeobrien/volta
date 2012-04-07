@@ -18,6 +18,24 @@ body {
     margin-bottom: 10px;
 }
 
+.page-header {
+    margin-top: 0;
+    height: 20px;
+}
+
+.page-header h2 {
+    display: inline;
+}
+
+.page-header-links {
+    float: right;
+}
+
+tr .links
+{
+    text-align: right;
+}
+
 footer
 {
     border-top: 1px solid #c0c0c0;

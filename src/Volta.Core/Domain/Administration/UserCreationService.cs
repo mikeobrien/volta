@@ -18,7 +18,7 @@ namespace Volta.Core.Domain.Administration
             _userRepository = userRepository;
         }
 
-        public User Create(Username username, string password, bool isAdministrator)
+        public User Create(Username username, string password, string email, bool isAdministrator)
         {
             if (_userRepository.Any(x => x.Username == (string)username))
                 throw new DuplicateUsernameException();
@@ -29,6 +29,7 @@ namespace Volta.Core.Domain.Administration
                 {
                     Username = username,
                     Password = HashedPassword.Create(password).ToString(),
+                    Email = email,
                     Administrator = isAdministrator
                 };
             _userRepository.Add(user);

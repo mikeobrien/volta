@@ -32,6 +32,7 @@ namespace Volta.Core.Domain.Administration
                 throw new DuplicateUsernameException();
 
             user.Username = modifiedUser.Username;
+            user.Email = modifiedUser.Email;
             user.Password = !string.IsNullOrEmpty(modifiedUser.Password) ?
                 HashedPassword.Create(modifiedUser.Password).ToString() : user.Password;
             user.Administrator = modifiedUser.Administrator;

@@ -7,8 +7,12 @@ define ['jquery', 'backbone', 'underscore', 'admin/users/users'], ($, Backbone, 
             'admin/users': 'users'
             'admin/users/add': 'addUser'
             'admin/users/edit/:id': 'editUser'
-        users: -> (@view = new Users.EnumView(el: @content)).render()
+        users: -> 
+            users = new Users.Collection()
+            users.fetch()
+            new Users.ListView(el: @content, collection: users).render()
         addUser: -> (@view = new Users.AddView(el: @content)).render()
         editUser: (id) -> (@view = new Users.EditView(el: @content)).render()
 
-    Router: Router
+    start: (content) ->
+        @router = new Router(content: content)

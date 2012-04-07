@@ -1,4 +1,6 @@
-define ['jquery', 'backbone', 'underscore', 'postal', 'data', 'text!error-template.html', 'text!about.html'], ($, Backbone, _, postal, data, errorTemplate, aboutTemplate) ->
+define ['jquery', 'backbone', 'underscore', 'postal', 'data', 
+        'text!error-template.html', 'text!about.html']
+        , ($, Backbone, _, postal, data, errorTemplate, aboutTemplate) ->
 
     class MenuView extends Backbone.View
         initialize: (options) ->
@@ -24,8 +26,6 @@ define ['jquery', 'backbone', 'underscore', 'postal', 'data', 'text!error-templa
     class Router extends Backbone.Router
         initialize: (options) ->
             @content = options.content
-            @menuView = new MenuView el: options.menu
-            @errorView = new ErrorView el: options.messages, template: _.template errorTemplate
             @aboutTemplate = _.template aboutTemplate, data.SystemInfo
         routes:
             'about': 'about'
@@ -33,4 +33,7 @@ define ['jquery', 'backbone', 'underscore', 'postal', 'data', 'text!error-templa
         about: -> @content.html(@aboutTemplate)
         logout: -> $.post('logout', -> window.location = 'login/')
 
-    Router: Router
+    start: (menu, messages, content) ->
+        @menuView = new MenuView el: menu
+        @errorView = new ErrorView el: messages, template: _.template errorTemplate
+        @router = new Router content: content

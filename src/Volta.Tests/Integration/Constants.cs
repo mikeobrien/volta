@@ -4,6 +4,7 @@ namespace Volta.Tests.Integration
 {
     public class Constants
     {
-        public static string VoltaConnectionString = ConfigurationManager.ConnectionStrings["VoltaIntegration"].ConnectionString;
+        public static string VoltaAcceptanceConnectionString = ConfigurationManager.ConnectionStrings["VoltaAcceptance"].ConnectionString;
+        public static string VoltaIntegrationConnectionString = ConfigurationManager.ConnectionStrings["VoltaIntegration"].ConnectionString;
     }
 }

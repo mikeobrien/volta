@@ -1,20 +1,16 @@
-﻿using System;
-using Volta.Core.Infrastructure.Framework;
+﻿using AutoMapper;
+using Volta.Core.Domain.Administration;
+using Volta.Core.Infrastructure.Framework.AutoMapper;
+using Volta.Web.Admin.Users;
 
 namespace Volta.Web
 {
     public class MappingConventions
     {
-        private static readonly Action Command = Func.Lazy(true, RegisterMappings);
-    
         public static void Register()
         {
-            Command();
-        }
-
-        private static void RegisterMappings()
-        {
-            
+            Mapper.CreateMap<User, UserModel>().ForMember(x => x.password, x => x.Ignore());
+            Mapper.CreateMap<UserModel, User>();
         }
     }
 }

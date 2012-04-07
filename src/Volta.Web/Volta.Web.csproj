@@ -43,9 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=2.1.265.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+    <Reference Include="AutoMapper, Version=2.1.266.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AutoMapper.2.1.265\lib\net40\AutoMapper.dll</HintPath>
+      <HintPath>..\packages\AutoMapper.2.1.266\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -115,7 +115,8 @@
     </Content>
     <Content Include="admin\users\add-template.html" />
     <Content Include="admin\users\edit-template.html" />
-    <Content Include="admin\users\enum-template.html" />
+    <Content Include="admin\users\list-item-template.html" />
+    <Content Include="admin\users\list-template.html" />
     <Content Include="admin\users\users.js">
       <DependentUpon>users.coffee</DependentUpon>
     </Content>
@@ -145,6 +146,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\users\UserModel.cs" />
+    <Compile Include="admin\users\UsersGetHandler.cs" />
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="Behaviors\AjaxAuthorizationBehavior.cs" />
     <Compile Include="Behaviors\AuthorizationBehavior.cs" />

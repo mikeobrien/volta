@@ -10,6 +10,7 @@ namespace Volta.Core.Domain.Administration
         public Guid Id { get; set; }
         public string Username { get { return _username; } set { _username = value; } }
         public string Password { get; set; }
+        public string Email { get; set; }
         public bool Administrator { get; set; }
     }
 }
