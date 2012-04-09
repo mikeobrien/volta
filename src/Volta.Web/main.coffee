@@ -1,6 +1,8 @@
 require.config
     paths:
         "jquery": "scripts/jquery/jquery"
+        "jqueryajaxdates": "scripts/jquery/jquery.ajax.dateparser"
+        "jquerysimplemodal": "scripts/jquery/jquery.simplemodal"
         "underscore": "scripts/underscore/underscore"
         "_config": "scripts/underscore/underscore-config"
         "backbone": "scripts/backbone/backbone"
@@ -11,10 +13,10 @@ require.config
         "postalscroll": "scripts/postal/postal.scroll"
         "bootstrap": "scripts/bootstrap/bootstrap"
 
-plugins = ['bootstrap', '_config', 'backbone/lazycollection']
+plugins = ['jqueryajaxdates', 'jquerysimplemodal', 'bootstrap', '_config', 'backbone/lazycollection']
 
 require ['jquery', 'backbone', 'postal', 'postalajax', 'postalscroll', 'app', 'batches/batches', 'admin/admin'].concat(plugins)
-         , ($, Backbone, postal, postalAjax, postalScroll, App, Batches, Admin) ->
+        , ($, Backbone, postal, postalAjax, postalScroll, App, Batches, Admin) ->
     
     window.onerror = (message, source, line) -> 
         $.post 'errors', { Source: source, Line: line, Message: message }

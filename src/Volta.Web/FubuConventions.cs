@@ -1,6 +1,9 @@
+using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using FubuMVC.Core;
+using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Spark;
 using Volta.Core.Infrastructure.Framework.Reflection;
 using Volta.Core.Infrastructure.Framework.Web.Fubu;
@@ -35,14 +38,19 @@ namespace Volta.Web
                     .ConstrainClassToHttpPutEndingWith(publicHandlers[2], privateHandlers[2])
                     .ConstrainClassToHttpDeleteEndingWith(publicHandlers[3], privateHandlers[3]));
 
-            Policies
-                .ConditionallyWrapBehaviorChainsWith<AuthorizationBehavior>(x =>
-                    x.HandlerType.Assembly == GetType().Assembly && x.HasAnyOutputBehavior() &&
-                    !publicHandlers.Any(suffix => x.HandlerType.Name.EndsWith(suffix)))
-                .ConditionallyWrapBehaviorChainsWith<AjaxAuthorizationBehavior>(x => 
+            Expression<Func<ActionCall, bool>> viewHandler = x =>
+                x.HandlerType.Assembly == GetType().Assembly && x.HasAnyOutputBehavior() &&
+                !publicHandlers.Any(suffix => x.HandlerType.Name.EndsWith(suffix));
+
+            Expression<Func<ActionCall, bool>> ajaxHandler = x =>
                     x.HandlerType.Assembly == GetType().Assembly && !x.HasAnyOutputBehavior() &&
-                    !publicHandlers.Any(suffix => x.HandlerType.Name.EndsWith(suffix)))
-                .WrapBehaviorChainsWith<ExceptionHandlerBehavior>();
+                    !publicHandlers.Any(suffix => x.HandlerType.Name.EndsWith(suffix));
+
+            Policies
+                .ConditionallyWrapBehaviorChainsWith<AuthorizationBehavior>(viewHandler)
+                .ConditionallyWrapBehaviorChainsWith<AjaxAuthorizationBehavior>(ajaxHandler)
+                .ConditionallyWrapBehaviorChainsWith<ExceptionHandlerBehavior>(viewHandler)
+                .ConditionallyWrapBehaviorChainsWith<AjaxExceptionHandlerBehavior>(ajaxHandler);
 
             Media.ApplyContentNegotiationToActions(x => x.HandlerType.Assembly == GetType().Assembly && !x.HasAnyOutputBehavior());
 

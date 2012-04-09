@@ -7,7 +7,7 @@ using Volta.Core.Infrastructure.Framework.Data;
 
 namespace Volta.Web.Admin.Users
 {
-    public class UsersRequest
+    public class UsersGetRequest
     {
         public int Index { get; set; }
     }
@@ -22,7 +22,7 @@ namespace Volta.Web.Admin.Users
             _users = users;
         }
 
-        public List<UserModel> Execute(UsersRequest request)
+        public List<UserModel> Execute(UsersGetRequest request)
         {
             return Mapper.Map<List<UserModel>>(_users.OrderBy(x => x.Username).Page(request.Index, PageSize).ToList());
         }

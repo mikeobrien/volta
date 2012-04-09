@@ -1,10 +1,7 @@
-﻿using System.Net;
-using FubuMVC.Core.Behaviors;
-using FubuMVC.Core.Http;
+﻿using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
 using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Framework.Security;
-using Volta.Core.Infrastructure.Framework.Web;
 
 namespace Volta.Web.Behaviors
 {

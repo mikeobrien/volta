@@ -22,7 +22,8 @@ define ['jquery', 'backbone', 'underscore', 'postal',
         render: ->
             @$el.html @template(@model.toJSON())
             @
-        delete: ->
+        delete: -> 
+            $.modal('<div style="background-color"></div>')
             @model.destroy wait: true
 
     class ListItemsView extends Backbone.View

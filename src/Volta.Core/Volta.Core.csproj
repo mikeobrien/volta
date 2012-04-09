@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\Security\AuthorizationException.cs" />
+    <Compile Include="Domain\ValidationException.cs" />
     <Compile Include="Infrastructure\Application\Data\MongoConventions.cs" />
     <Compile Include="Infrastructure\Application\ISystemInfo.cs" />
     <Compile Include="Infrastructure\Application\SystemInfo.cs" />
