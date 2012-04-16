@@ -31,7 +31,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         public void should_update_existing_user_with_no_change_to_the_username()
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
-            secureSession.GetCurrentToken().Returns(new Token(UserId, Username3, true));
+            secureSession.GetCurrentToken().Returns(new Token(Guid.NewGuid(), Username3, true));
             secureSession.IsLoggedIn().Returns(true);
             var service = new UserModificationService(_userRepository, secureSession);
             service.Modify(UserId, Username1, null, false, Password);
@@ -46,7 +46,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         public void should_update_existing_user_with_modified_username()
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
-            secureSession.GetCurrentToken().Returns(new Token(UserId, Username3, true));
+            secureSession.GetCurrentToken().Returns(new Token(Guid.NewGuid(), Username3, true));
             secureSession.IsLoggedIn().Returns(true);
             var service = new UserModificationService(_userRepository, secureSession);
             service.Modify(UserId, Username2, null, false, Password);
@@ -80,7 +80,7 @@ namespace Volta.Tests.Unit.Domain.Administration
             modifiedUser.Username.ShouldEqual(Username2);
             modifiedUser.PasswordHash.ShouldEqual(PasswordHash);
             modifiedUser.Administrator.ShouldBeFalse();
-            service.Modify(UserId, Username1, null, false, "");
+            service.Modify(UserId, Username2, null, false, "");
             modifiedUser = _userRepository.First();
             modifiedUser.Username.ShouldEqual(Username2);
             modifiedUser.PasswordHash.ShouldEqual(PasswordHash);
