@@ -1,4 +1,5 @@
-﻿using NSubstitute;
+﻿using System;
+using NSubstitute;
 using NUnit.Framework;
 using Should;
 using Volta.Core.Application.Security;
@@ -15,7 +16,7 @@ namespace Volta.Tests.Unit.UserInterface
         public void should()
         {
             var secureSession = Substitute.For<ISecureSession<Token>>();
-            secureSession.GetCurrentToken().Returns(new Token("nbohr", true));
+            secureSession.GetCurrentToken().Returns(new Token(Guid.NewGuid(), "nbohr", true));
             secureSession.IsLoggedIn().Returns(true);
             var handler = new IndexGetHandler(secureSession, Substitute.For<ISystemInfo>());
             var model = handler.Execute();

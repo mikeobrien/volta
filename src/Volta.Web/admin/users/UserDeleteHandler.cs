@@ -1,21 +1,19 @@
 using Volta.Core.Domain.Administration;
-using Volta.Core.Infrastructure.Framework.Data;
 
 namespace Volta.Web.Admin.Users
 {
     public class UserDeleteHandler
     {
-        public const int PageSize = 20;
-        private readonly IRepository<User> _users;
+        private readonly IUserDeletionService _deletionService;
 
-        public UserDeleteHandler(IRepository<User> users)
+        public UserDeleteHandler(IUserDeletionService deletionService)
         {
-            _users = users;
+            _deletionService = deletionService;
         }
 
         public void Execute_id(UserModel request)
         {
-            _users.Delete(request.id);
+            _deletionService.Delete(request.id);
         }
     }
 }

@@ -8,11 +8,18 @@ define ['jquery', 'backbone', 'underscore', 'admin/users/users'], ($, Backbone, 
             'admin/users/add': 'addUser'
             'admin/users/edit/:id': 'editUser'
         users: -> 
-            users = new Users.Collection()
+            users = new Users.Users()
+            @render new Users.ListView(collection: users).render().el
             users.fetch()
-            new Users.ListView(el: @content, collection: users).render()
-        addUser: -> (@view = new Users.AddView(el: @content)).render()
-        editUser: (id) -> (@view = new Users.EditView(el: @content)).render()
+        addUser: -> 
+            @render new Users.AddView(router: @).render().el
+        editUser: (id) -> 
+            user = new Users.User id: id
+            @render new Users.EditView(model: user, router: @).el
+            user.fetch()
+        render: (el) ->
+            @content.empty()
+            @content.append el
 
     start: (content) ->
         @router = new Router(content: content)

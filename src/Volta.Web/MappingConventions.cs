@@ -9,8 +9,8 @@ namespace Volta.Web
     {
         public static void Register()
         {
-            Mapper.CreateMap<User, UserModel>().ForMember(x => x.password, x => x.Ignore());
-            Mapper.CreateMap<UserModel, User>();
+            Mapper.CreateMap<User, UserModel>().ForMember(x => x.password, x => x.Ignore()).
+                ToBidirectional().ForMember(x => x.PasswordHash, x => x.Ignore());
         }
     }
 }

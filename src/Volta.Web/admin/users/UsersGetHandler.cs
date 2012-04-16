@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
@@ -12,12 +13,12 @@ namespace Volta.Web.Admin.Users
         public int Index { get; set; }
     }
 
-    public class UsersGetHandler
+    public class UserGetHandler
     {
         public const int PageSize = 20;
         private readonly IRepository<User> _users;
 
-        public UsersGetHandler(IRepository<User> users)
+        public UserGetHandler(IRepository<User> users)
         {
             _users = users;
         }

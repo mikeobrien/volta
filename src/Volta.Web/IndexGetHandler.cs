@@ -1,3 +1,4 @@
+using System;
 using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Application;
 using Volta.Core.Infrastructure.Framework.Security;
@@ -7,6 +8,7 @@ namespace Volta.Web
     public class IndexModel
     {
         public string Username { get; set; }
+        public Guid UserId { get; set; }
         public bool IsAdministrator { get; set; }
         public ISystemInfo SystemInfo { get; set; }
     }
@@ -27,6 +29,7 @@ namespace Volta.Web
             var token = _secureSession.GetCurrentToken();
             return new IndexModel
                 {
+                    UserId = token.UserId,
                     Username = token.Username,
                     IsAdministrator = token.IsAdministrator,
                     SystemInfo = _systemInfo

@@ -23,14 +23,14 @@ namespace Volta.Core.Application.Security
         public Token Authenticate(Username username, string password)
         {
             var user = _userRepository.FirstOrDefault(x => x.Username == (string)username);
-            if (user != null && HashedPassword.FromHash(user.Password).MatchesPassword(password)) return CreateToken(user);
+            if (user != null && HashedPassword.FromHash(user.PasswordHash).MatchesPassword(password)) return CreateToken(user);
             if (!_userRepository.Any()) return CreateToken(_userCreationService.Create(username, password, null, true));
             return null;
         }
 
         private static Token CreateToken(User user)
         {
-            return new Token(user.Username, user.Administrator);
+            return new Token(user.Id, user.Username, user.Administrator);
         }
     }
 }

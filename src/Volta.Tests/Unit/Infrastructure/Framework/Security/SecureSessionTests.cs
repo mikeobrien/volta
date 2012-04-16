@@ -1,3 +1,4 @@
+using System;
 using Volta.Core.Application.Security;
 using NSubstitute;
 using NUnit.Framework;
@@ -13,7 +14,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Security
         public void should_login_token()
         {
             var secureSession = new SecureSession<Token>(null, new MemoryTokenStore<Token>());
-            var token = new Token(null, false);
+            var token = new Token(Guid.Empty, null, false);
 
             secureSession.Login(token);
 
@@ -26,15 +27,17 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Security
         {
             var authenticationService = Substitute.For<IAuthenticationService<Token>>();
             var secureSession = new SecureSession<Token>(authenticationService, new MemoryTokenStore<Token>());
+            var userId = Guid.NewGuid();
 
             authenticationService.Authenticate(Arg.Any<string>(), Arg.Any<string>()).
-                                  ReturnsForAnyArgs(new Token("username", true));
+                                  ReturnsForAnyArgs(new Token(userId, "username", true));
 
             secureSession.Login("username", "password");
 
             secureSession.IsLoggedIn().ShouldBeTrue();
             var token = secureSession.GetCurrentToken();
             token.ShouldNotBeNull();
+            token.UserId.ShouldEqual(userId);
             token.Username.ToString().ShouldEqual("username");
             token.IsAdministrator.ShouldBeTrue();
         }
@@ -61,7 +64,7 @@ namespace Volta.Tests.Unit.Infrastructure.Framework.Security
             var secureSession = new SecureSession<Token>(authenticationService, new MemoryTokenStore<Token>());
 
             authenticationService.Authenticate(Arg.Any<string>(), Arg.Any<string>()).
-                                  ReturnsForAnyArgs(new Token(null, false));
+                                  ReturnsForAnyArgs(new Token(Guid.Empty, null, false));
 
             secureSession.Login("username", "password");
             secureSession.Logout();

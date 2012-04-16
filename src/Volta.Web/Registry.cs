@@ -1,4 +1,3 @@
-using Volta.Core.Application;
 using Volta.Core.Application.Security;
 using Volta.Core.Domain.Administration;
 using Volta.Core.Infrastructure.Application;
@@ -29,6 +28,7 @@ namespace Volta.Web
 
             For<IUserCreationService>().Use<UserCreationService>();
             For<IUserModificationService>().Use<UserModificationService>();
+            For<IUserDeletionService>().Use<UserDeletionService>();
         }
     }
 }

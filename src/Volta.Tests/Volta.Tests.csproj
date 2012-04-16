@@ -109,6 +109,7 @@
     <Compile Include="Integration\Application\SystemInfoTests.cs" />
     <Compile Include="Acceptance\GenerateTestData.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Log4NetLoggerTests.cs" />
+    <Compile Include="Unit\Domain\Administration\UserDeletionServiceTests.cs" />
     <Compile Include="Unit\Domain\Administration\UserModificationServiceTests.cs" />
     <Compile Include="Unit\Domain\Administration\UsernameTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Data\MongoConnectionTests.cs" />

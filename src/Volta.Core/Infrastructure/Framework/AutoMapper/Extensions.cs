@@ -4,9 +4,9 @@ namespace Volta.Core.Infrastructure.Framework.AutoMapper
 {
     public static class Extensions
     {
-        public static void IsBidirectional<TSource, TDestination>(this IMappingExpression<TSource, TDestination> expression)
+        public static IMappingExpression<TDestination, TSource> ToBidirectional<TSource, TDestination>(this IMappingExpression<TSource, TDestination> expression)
         {
-            Mapper.CreateMap<TDestination, TSource>();
+            return Mapper.CreateMap<TDestination, TSource>();
         }
     }
 }

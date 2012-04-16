@@ -31,9 +31,9 @@ namespace Volta.Tests.Unit.Domain.Administration
             var userRepository = new MemoryRepository<User>();
             var userCreationService = new UserCreationService(userRepository);
             var user = userCreationService.Create(Username, Password, Email, false);
-            user.Password.ShouldNotBeNull();
-            user.Password.ShouldNotBeEmpty();
-            user.Password.ShouldNotEqual(Password);
+            user.PasswordHash.ShouldNotBeNull();
+            user.PasswordHash.ShouldNotBeEmpty();
+            user.PasswordHash.ShouldNotEqual(Password);
         }
 
         [Test]

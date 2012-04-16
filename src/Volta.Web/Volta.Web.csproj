@@ -146,6 +146,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\users\UserPostHandler.cs" />
+    <Compile Include="admin\users\UserPutHandler.cs" />
+    <Compile Include="admin\users\UserGetHandler.cs" />
     <Compile Include="admin\users\UserDeleteHandler.cs" />
     <Compile Include="admin\users\UserModel.cs" />
     <Compile Include="admin\users\UsersGetHandler.cs" />

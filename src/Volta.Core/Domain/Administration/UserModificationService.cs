@@ -6,7 +6,8 @@ using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Core.Domain.Administration
 {
-    public class UserNotFoundException : Exception { }
+    public class UserNotFoundException : ValidationException
+        { public UserNotFoundException() : base("User not found.") {}}
 
     public class UserModificationService : IUserModificationService
     {
@@ -19,27 +20,26 @@ namespace Volta.Core.Domain.Administration
             _secureSession = secureSession;
         }
 
-        public User Modify(Username username, User modifiedUser)
+        public User Modify(Guid id, Username username, string email, bool administrator, string password = null)
         {
-            if (string.IsNullOrEmpty(modifiedUser.Username))
+            if (string.IsNullOrEmpty(username))
                 throw new EmptyUsernameException();
 
-            var user = _userRepository.FirstOrDefault(x => x.Username == (string)username);
+            var user = _userRepository.Get(id);
 
             if (user == null) throw new UserNotFoundException();
 
-            if (username != modifiedUser.Username && _userRepository.Any(x => x.Username == modifiedUser.Username))
+            if (user.Username != username && _userRepository.Any(x => x.Username == username))
                 throw new DuplicateUsernameException();
 
-            user.Username = modifiedUser.Username;
-            user.Email = modifiedUser.Email;
-            user.Password = !string.IsNullOrEmpty(modifiedUser.Password) ?
-                HashedPassword.Create(modifiedUser.Password).ToString() : user.Password;
-            user.Administrator = modifiedUser.Administrator;
+            user.Username = username;
+            user.Email = email;
+            if (!string.IsNullOrEmpty(password)) user.SetPassword(password);
+            user.Administrator = administrator;
             _userRepository.Replace(user);
 
-            if (_secureSession.IsLoggedIn() && _secureSession.GetCurrentToken().Username == username) 
-                _secureSession.Login(new Token(user.Username, user.Administrator));
+            if (_secureSession.IsLoggedIn() && _secureSession.GetCurrentToken().UserId == user.Id) 
+                _secureSession.Login(new Token(user.Id, user.Username, user.Administrator));
 
             return user;
         }

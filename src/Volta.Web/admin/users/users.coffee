@@ -6,10 +6,12 @@ define ['jquery', 'backbone', 'underscore', 'postal',
         , ($, Backbone, _, postal, listTemplate, listItemTemplate, editTemplate, addTemplate) ->
 
     class User extends Backbone.Model
+        urlRoot : '/admin/users'
 
-    class Collection extends Backbone.LazyCollection
+    class Users extends Backbone.LazyCollection
         model: User
         url: '/admin/users'
+        batchSize: 20
 
     class ListItemView extends Backbone.View
         tagName: 'tr'
@@ -23,8 +25,11 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             @$el.html @template(@model.toJSON())
             @
         delete: -> 
-            $.modal('<div style="background-color"></div>')
-            @model.destroy wait: true
+            $.dialog
+                title: 'Delete User'
+                body: 'Are you sure you want to delete this user?'
+                button: 'Delete'
+                command: => @model.destroy wait: true
 
     class ListItemsView extends Backbone.View
         initialize: (options) ->
@@ -53,6 +58,7 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             @itemsView = new ListItemsView
                 el: @$ '.enum-items'
                 collection: @collection
+            @
         more: -> @collection.fetch()
         start: ->
             @$('.spinner').show()
@@ -62,18 +68,72 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             if more then @$('.more').show() else @$('.more').hide()
 
     class EditView extends Backbone.View
-        initialize: ->
-            _.bindAll @, 'render'
+        events:
+            'click .save': 'save'
+        initialize: (options) ->
+            _.bindAll @, 'render', 'save'
+            @router = options.router
+            @template = _.template editTemplate
+            @model.on 'change', @render, @
         render: ->
-            @$el.html editTemplate
+            @$el.html @template(@model.toJSON())
+            @
+        save: ->
+            if @$('#password').val() != @$('#password2').val()
+                @$('.password').addClass('error')
+                @$('.password .message').html('Passwords do not match')
+                return false
+            else
+                @$('.password').removeClass('error')
+                @$('.password .message').html('')
+            @model.save
+                username: @$('#username').val()
+                email: @$('#email').val()
+                password: @$('#password').val()
+                administrator: @$('#administrator').is(':checked')
+            , 
+                success: => @router.navigate 'admin/users', trigger: true
+                wait: true
+            return false
 
     class AddView extends Backbone.View
-        initialize: ->
-            _.bindAll @, 'render'
+        events:
+            'click .save': 'save'
+        initialize: (options) ->
+            _.bindAll @, 'render', 'save'
+            @router = options.router
+            @model = new User()
         render: ->
             @$el.html addTemplate
+            @
+        save: ->
+            if @$('#username').val() == ''
+                @$('.username').addClass('error')
+                @$('.username .message').html('Username cannot be blank')
+                return false
+            if @$('#password').val() != @$('#password2').val()
+                @$('.password').addClass('error')
+                @$('.password .message').html('Passwords do not match')
+                return false
+            if @$('#password').val() == ''
+                @$('.password').addClass('error')
+                @$('.password .message').html('Password cannot be blank')
+                return false
+            else
+                @$('.password').removeClass('error')
+                @$('.password .message').html('')
+            @model.save
+                username: @$('#username').val()
+                email: @$('#email').val()
+                password: @$('#password').val()
+                administrator: @$('#administrator').is(':checked')
+            , 
+                success: => @router.navigate 'admin/users', trigger: true
+                wait: true
+            return false
 
-    Collection: Collection
+    User: User
+    Users: Users
     ListView : ListView
     EditView: EditView
     AddView: AddView

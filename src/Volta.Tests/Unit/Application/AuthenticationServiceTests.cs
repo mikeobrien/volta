@@ -14,7 +14,7 @@ namespace Volta.Tests.Unit.Application
         private const string Password = "P@$$word";
         private const string PasswordHash = "7cf40b7962f449e093fe3a40f97bf70b4e0bfb02a6787c6912fa74990a4d2b07ffd24984f7612c62ae8810e49aa358db";
 
-        private readonly IRepository<User> _userRepository = new MemoryRepository<User>(new User { Username = Username, Password = PasswordHash, Administrator = true});
+        private readonly IRepository<User> _userRepository = new MemoryRepository<User>(new User { Username = Username, PasswordHash = PasswordHash, Administrator = true});
 
         [Test]
         public void should_successfully_authenticate_with_correct_credentials()

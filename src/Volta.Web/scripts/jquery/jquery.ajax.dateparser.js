@@ -1,5 +1,6 @@
 ﻿define(['jquery'], function($) {
     $.ajaxPrefilter(function(ajax) {
+        if (!ajax.success) return;
         var success = ajax.success;
 
         var parseValue = function(name, value) {

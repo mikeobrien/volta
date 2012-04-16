@@ -35,7 +35,7 @@ namespace Volta.Tests.Unit
         public void Replace(TEntity entity)
         {
             Delete(entity);
-            Add(entity);
+            _entites.Add(entity);
         }
 
         public void Modify(Guid id, object entity)

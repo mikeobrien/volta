@@ -30,7 +30,9 @@ define ['jquery', 'backbone', 'underscore', 'postal', 'data',
         routes:
             'about': 'about'
             'logout': 'logout'
-        about: -> @content.html(@aboutTemplate)
+        about: -> 
+            @content.empty()
+            @content.html @aboutTemplate
         logout: -> $.post('logout', -> window.location = 'login/')
 
     start: (menu, messages, content) ->
