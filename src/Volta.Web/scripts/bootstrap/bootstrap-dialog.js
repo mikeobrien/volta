@@ -13,7 +13,7 @@
             content += '</div>';
             var dialog = $(content);
             dialog.find('.cancel').click(function() { dialog.modal('hide') });
-            dialog.find('.ok').click(function() { option.command(); dialog.modal('hide') });
+            dialog.find('.ok').click(function() { if (option.command(dialog)) dialog.modal('hide') });
             dialog.on('hidden', function () { dialog.remove() });
             dialog.modal('show');
             dialog.css('top', '50%');

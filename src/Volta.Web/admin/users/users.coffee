@@ -29,7 +29,9 @@ define ['jquery', 'backbone', 'underscore', 'postal',
                 title: 'Delete User'
                 body: 'Are you sure you want to delete this user?'
                 button: 'Delete'
-                command: => @model.destroy wait: true
+                command: => 
+                    @model.destroy wait: true
+                    true
 
     class ListItemsView extends Backbone.View
         initialize: (options) ->

@@ -126,6 +126,7 @@
     <Content Include="batches\batches.js">
       <DependentUpon>batches.coffee</DependentUpon>
     </Content>
+    <Content Include="login-template.html" />
     <Content Include="error-template.html" />
     <Content Include="error.html" />
     <Content Include="login\login.js">

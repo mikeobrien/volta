@@ -8,8 +8,8 @@ require.config
         "backbone/lazycollection": "scripts/backbone/lazycollection"
         "text": "scripts/require/text"
         "postal": "scripts/postal/postal"
-        "postalajax": "scripts/postal/postal.ajax"
-        "postalscroll": "scripts/postal/postal.scroll"
+        "postalajax": "scripts/postal/postal-ajax"
+        "postalscroll": "scripts/postal/postal-scroll"
         "bootstrap": "scripts/bootstrap/bootstrap"
         "bootstrapdialog": "scripts/bootstrap/bootstrap-dialog"
 

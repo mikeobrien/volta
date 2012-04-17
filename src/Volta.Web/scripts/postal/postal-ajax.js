@@ -8,7 +8,8 @@ define(['jquery', 'postal'], function($, postal) {
         return postal.channel("ajax.error." + (status.alias || xhr.status)).publish({
             status: status.alias || xhr.status,
             message: status.message || thrownError,
-            data: json ? $.parseJSON(xhr.responseText) : xhr.responseText
+            data: json ? $.parseJSON(xhr.responseText) : xhr.responseText,
+            settings: settings
         });
     });
     
