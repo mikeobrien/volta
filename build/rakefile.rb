@@ -64,7 +64,7 @@ bambino :javascript_unit_tests => :test_config_settings do |options|
     options.html_output = true
     options.output_path = File.join(reportsPath, "bambino")
     options.add_script_paths('src/Volta.Tests/Client/lib/jasmine/jasmine-jquery.js')
-    options.add_module_paths('src/Volta.Web/scripts/underscore/underscore-config.js')
+    options.add_module_paths('src/Volta.Web/scripts/underscore/underscore.config.js')
 end
 
 gallio :unit_tests => :javascript_unit_tests do |options|
