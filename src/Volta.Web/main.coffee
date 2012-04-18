@@ -1,19 +1,20 @@
 require.config
     paths:
         "jquery": "scripts/jquery/jquery"
-        "jqueryajaxdates": "scripts/jquery/jquery.ajax.dateparser"
         "underscore": "scripts/underscore/underscore"
-        "_config": "scripts/underscore/underscore-config"
         "backbone": "scripts/backbone/backbone"
-        "backbone/lazycollection": "scripts/backbone/lazycollection"
         "text": "scripts/require/text"
         "postal": "scripts/postal/postal"
-        "postalajax": "scripts/postal/postal-ajax"
-        "postalscroll": "scripts/postal/postal-scroll"
-        "bootstrap": "scripts/bootstrap/bootstrap"
-        "bootstrapdialog": "scripts/bootstrap/bootstrap-dialog"
+        "postalajax": "scripts/postal/postal.ajax-events"
+        "postalscroll": "scripts/postal/postal.window-scroll-events"
 
-plugins = ['jqueryajaxdates', 'bootstrap', 'bootstrapdialog', '_config', 'backbone/lazycollection']
+plugins = [
+    'scripts/jquery/jquery.ajax-dateparser', 
+    'scripts/jquery/jquery.cache-ajax-deferreds',
+    'scripts/bootstrap/bootstrap', 
+    'scripts/bootstrap/bootstrap.dialog', 
+    'scripts/underscore/underscore.config', 
+    'scripts/backbone/backbone.lazy']
 
 require ['jquery', 'backbone', 'postal', 'postalajax', 'postalscroll', 'app', 'batches/batches', 'admin/admin'].concat(plugins)
         , ($, Backbone, postal, postalAjax, postalScroll, App, Batches, Admin) ->

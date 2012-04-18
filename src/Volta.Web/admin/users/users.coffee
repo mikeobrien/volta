@@ -17,8 +17,8 @@ define ['jquery', 'backbone', 'underscore', 'postal',
         tagName: 'tr'
         events:
             'click .delete': 'delete'
+        template: _.template listItemTemplate
         initialize: ->
-            @template = _.template listItemTemplate
             _.bindAll @, 'render', 'delete'
             @model.on 'destroy', @remove, @
         render: ->
@@ -33,49 +33,21 @@ define ['jquery', 'backbone', 'underscore', 'postal',
                     @model.destroy wait: true
                     true
 
-    class ListItemsView extends Backbone.View
-        initialize: (options) ->
-            _.bindAll @, 'render', 'renderResult'
-            @collection.on 'reset', @render, @
-            @collection.on 'add', @renderResult, @
-        render: ->
-            @$el.empty()
-            @collection.each @renderResult
-        renderResult: (result) ->
-            view = new ListItemView 
-                model: result
-            @$el.append view.render().el
-
-    class ListView extends Backbone.View
-        events:
-            'click .more': 'more'
-        initialize: (options) ->
-            _.bindAll @, 'render', 'more', 'start', 'end'
-            @template = _.template listTemplate
-            postal.channel('scroll.bottom').subscribe @more
-            @collection.on 'fetch:start', @start, @
-            @collection.on 'fetch:end', @end, @
-        render: ->
-            @$el.html @template()
-            @itemsView = new ListItemsView
-                el: @$ '.enum-items'
-                collection: @collection
-            @
-        more: -> @collection.fetch()
-        start: ->
-            @$('.spinner').show()
-            @$('.more').hide()
-        end: (more) ->
-            @$('.spinner').hide()
-            if more then @$('.more').show() else @$('.more').hide()
+    class ListView extends Backbone.LazyView
+        template: listTemplate
+        itemsSelector: '.list-items'
+        itemView: ListItemView
+        initialize: ->
+            super()
+            postal.channel('window.scroll.bottom').subscribe @more
 
     class EditView extends Backbone.View
         events:
             'click .save': 'save'
+        template: _.template editTemplate
         initialize: (options) ->
             _.bindAll @, 'render', 'save'
             @router = options.router
-            @template = _.template editTemplate
             @model.on 'change', @render, @
         render: ->
             @$el.html @template(@model.toJSON())
@@ -101,12 +73,13 @@ define ['jquery', 'backbone', 'underscore', 'postal',
     class AddView extends Backbone.View
         events:
             'click .save': 'save'
+        template: addTemplate
         initialize: (options) ->
             _.bindAll @, 'render', 'save'
             @router = options.router
             @model = new User()
         render: ->
-            @$el.html addTemplate
+            @$el.html @template
             @
         save: ->
             if @$('#username').val() == ''

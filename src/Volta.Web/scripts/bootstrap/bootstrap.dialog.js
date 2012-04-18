@@ -18,12 +18,11 @@
             dialog.modal('show');
             dialog.css('top', '50%');
             dialog.css('margin-top', -1 * (dialog.height() / 2));
+            if (option.initialize) option.initialize(dialog);
         }
     }
     
     if (typeof define === 'function' && define.amd) {
-        define(['jquery'], function($) { plugin($) });
+        define(['jquery'], plugin);
     } else { plugin(window.jQuery) }
 })();
-
-
