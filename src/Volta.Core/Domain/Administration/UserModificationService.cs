@@ -6,9 +6,6 @@ using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Core.Domain.Administration
 {
-    public class UserNotFoundException : ValidationException
-        { public UserNotFoundException() : base("User not found.") {}}
-
     public class UserModificationService : IUserModificationService
     {
         private readonly IRepository<User> _userRepository;
@@ -27,7 +24,7 @@ namespace Volta.Core.Domain.Administration
 
             var user = _userRepository.Get(id);
 
-            if (user == null) throw new UserNotFoundException();
+            if (user == null) throw new NotFoundException("User");
 
             if (user.Username != username && _userRepository.Any(x => x.Username == (string)username))
                 throw new DuplicateUsernameException();

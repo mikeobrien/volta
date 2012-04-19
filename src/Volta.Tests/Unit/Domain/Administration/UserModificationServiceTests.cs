@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Should;
 using System.Linq;
 using Volta.Core.Application.Security;
+using Volta.Core.Domain;
 using Volta.Core.Domain.Administration;
 using Volta.Core.Infrastructure.Framework.Data;
 using Volta.Core.Infrastructure.Framework.Security;
@@ -91,7 +92,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         public void should_return_an_error_if_trying_to_update_a_user_that_doesent_exist()
         {
             var service = new UserModificationService(_userRepository, Substitute.For<ISecureSession<Token>>());
-            Assert.Throws<UserNotFoundException>(() => service.Modify(Guid.NewGuid(), Username2, null, false));
+            Assert.Throws<NotFoundException>(() => service.Modify(Guid.NewGuid(), Username2, null, false));
         }
 
         [Test]

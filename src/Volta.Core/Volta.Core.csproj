@@ -91,6 +91,8 @@
     <Compile Include="Application\Security\AuthorizationException.cs" />
     <Compile Include="Domain\Administration\IUserDeletionService.cs" />
     <Compile Include="Domain\Administration\UserDeletionService.cs" />
+    <Compile Include="Domain\Batches\ScheduleFile.cs" />
+    <Compile Include="Domain\NotFoundException.cs" />
     <Compile Include="Domain\ValidationException.cs" />
     <Compile Include="Infrastructure\Application\Data\MongoConventions.cs" />
     <Compile Include="Infrastructure\Application\ISystemInfo.cs" />

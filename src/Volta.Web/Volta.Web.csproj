@@ -126,6 +126,13 @@
     <Content Include="batches\batches.js">
       <DependentUpon>batches.coffee</DependentUpon>
     </Content>
+    <Content Include="batches\schedules\add-template.html" />
+    <Content Include="batches\schedules\edit-template.html" />
+    <Content Include="batches\schedules\list-item-template.html" />
+    <Content Include="batches\schedules\list-template.html" />
+    <Content Include="batches\schedules\schedules.js">
+      <DependentUpon>schedules.coffee</DependentUpon>
+    </Content>
     <Content Include="login-template.html" />
     <Content Include="error-template.html" />
     <Content Include="error.html" />
@@ -154,6 +161,12 @@
     <Compile Include="admin\users\UserModel.cs" />
     <Compile Include="admin\users\UsersGetHandler.cs" />
     <Compile Include="App_Start\FubuMVC.cs" />
+    <Compile Include="batches\schedules\ScheduleDeleteHandler.cs" />
+    <Compile Include="batches\schedules\ScheduleGetHandler.cs" />
+    <Compile Include="batches\schedules\ScheduleModel.cs" />
+    <Compile Include="batches\schedules\SchedulePostHandler.cs" />
+    <Compile Include="batches\schedules\SchedulePutHandler.cs" />
+    <Compile Include="batches\schedules\SchedulesGetHandler.cs" />
     <Compile Include="Behaviors\AjaxAuthorizationBehavior.cs" />
     <Compile Include="Behaviors\AuthorizationBehavior.cs" />
     <Compile Include="Behaviors\AjaxExceptionHandlerBehavior.cs" />
@@ -174,6 +187,7 @@
     <None Include="admin\users\users.coffee" />
     <None Include="app.coffee" />
     <None Include="batches\batches.coffee" />
+    <None Include="batches\schedules\schedules.coffee" />
     <None Include="index.spark">
       <SubType>Designer</SubType>
     </None>

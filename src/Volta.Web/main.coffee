@@ -9,12 +9,12 @@ require.config
         "postalscroll": "scripts/postal/postal.window-scroll-events"
 
 plugins = [
-    'scripts/jquery/jquery.ajax-dateparser', 
+    'scripts/jquery/jquery.ajax-date-parser', 
     'scripts/jquery/jquery.cache-ajax-deferreds',
     'scripts/bootstrap/bootstrap', 
     'scripts/bootstrap/bootstrap.dialog', 
     'scripts/bootstrap/bootstrap.validate',
-    'scripts/underscore/underscore.config', 
+    'scripts/underscore/underscore.mustache', 
     'scripts/backbone/backbone.lazy']
 
 require ['jquery', 'backbone', 'postal', 'postalajax', 'postalscroll', 'app', 'batches/batches', 'admin/admin'].concat(plugins)
@@ -33,7 +33,7 @@ require ['jquery', 'backbone', 'postal', 'postalajax', 'postalscroll', 'app', 'b
 
     content = $ '#content'
 
-    App.start $('#menu'), $('#messages'), content
+    App.start $('.navbar-fixed-top'), $('#messages'), content
     Admin.start content
     Batches.start content
 

@@ -16,7 +16,7 @@
 
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
-        <div class="container-fluid" id="menu">
+        <div class="container-fluid">
             <a class="brand" href="#">Volta</a>
             <ul class="nav">
                 <li class="dropdown" data-route="batches">
@@ -71,7 +71,7 @@
                 </li>
             </ul>
             <p class="navbar-text pull-right">
-                logged in as <a href="#admin/users/edit/${Model.UserId}">${Model.Username}</a> | <a href="#logout">logout</a>
+                logged in as <a href="#admin/users/edit/${Model.UserId}">${Model.Username}</a> | <a class="logout">logout</a>
             </p>
         </div>
     </div>

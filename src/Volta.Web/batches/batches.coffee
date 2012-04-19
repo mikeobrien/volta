@@ -1,4 +1,4 @@
-define ['jquery', 'backbone', 'underscore'], ($, Backbone, _) ->
+define ['jquery', 'backbone', 'underscore', 'batches/schedules/schedules'], ($, Backbone, _, Schedules) ->
 
     class Router extends Backbone.Router
         initialize: (options) ->
@@ -13,9 +13,19 @@ define ['jquery', 'backbone', 'underscore'], ($, Backbone, _) ->
         batches: -> console.log 'batches...'
         addBatch: -> console.log 'addBatch...'
         editBatch: (id) -> console.log "editBatch(#{id})..."
-        schedules: -> console.log 'schedules...'
-        addSchedule: -> console.log 'addSchedule...'
-        editSchedule: (id) -> console.log "editSchedule(#{id})..."
+        schedules: ->
+            schedules = new Schedules.Schedules()
+            @render new Schedules.ListView(collection: schedules).render().el
+            schedules.fetch()
+        addSchedule: ->
+            @render new Schedules.AddView(router: @).render().el
+        editSchedule: (id) ->
+            schedule = new Schedules.Schedule id: id
+            @render new Schedules.EditView(model: schedule, router: @).el
+            schedule.fetch()
+        render: (el) ->
+            @content.empty()
+            @content.append el
 
     start: (content) ->
         @router = new Router(content: content)

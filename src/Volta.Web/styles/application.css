@@ -73,6 +73,11 @@ footer
     padding-left:220px;
 }
 
+.logout {
+	cursor: pointer;
+	cursor: hand;    
+}
+
 .modal-backdrop {
     opacity: 0.5;
 }

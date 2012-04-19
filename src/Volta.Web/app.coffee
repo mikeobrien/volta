@@ -2,14 +2,17 @@ define ['jquery', 'backbone', 'underscore', 'postal', 'data',
         'text!error-template.html', 'text!about.html', 'text!login-template.html']
         , ($, Backbone, _, postal, data, errorTemplate, aboutTemplate, loginTemplate) ->
 
-    class MenuView extends Backbone.View
+    class NavBarView extends Backbone.View
+        events:
+            'click .logout': 'logout'
         initialize: (options) ->
-            _.bindAll @, 'route'
+            _.bindAll @, 'route', 'logout'
             postal.subscribe 'route', @route
         route: (url) ->
-            @$el.find('li').removeClass('active')
+            @$el.find('.nav li').removeClass('active')
             baseRoute = url.split('/')[0]
-            @$el.find("li[data-route='#{baseRoute}']").addClass('active')
+            @$el.find(".nav li[data-route='#{baseRoute}']").addClass('active')
+        logout: -> $.post('logout', -> window.location = 'login/')
     
     class ErrorView extends Backbone.View
         template: _.template errorTemplate
@@ -63,14 +66,12 @@ define ['jquery', 'backbone', 'underscore', 'postal', 'data',
             @content = options.content
         routes:
             'about': 'about'
-            'logout': 'logout'
         about: -> 
             @content.empty()
             @content.html @aboutTemplate
-        logout: -> $.post('logout', -> window.location = 'login/')
 
     start: (menu, messages, content) ->
-        @menuView = new MenuView el: menu
+        @navBarView = new NavBarView el: menu
         @errorView = new ErrorView el: messages
         @loginView = new LoginView 
         @router = new Router content: content
