@@ -3,7 +3,7 @@ using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Web.Logout
 {
-    public class LogoutRequest {}
+    public class LogoutModel {}
 
     public class PublicPostHandler
     {
@@ -14,9 +14,10 @@ namespace Volta.Web.Logout
             _secureSession = secureSession;
         }
 
-        public void Execute(LogoutRequest request)
+        public LogoutModel Execute(LogoutModel request)
         {
             _secureSession.Logout();
+            return request; // Need to return something so that an empty json object is returned. If not it does weird stuff in FF.
         }
     }
 }

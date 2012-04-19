@@ -54,7 +54,7 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             @
         save: ->
             if @$el.validate('#username', ((x) -> x == ''), 'Username cannot be blank') |
-               @$el.validate(['#password', '#password2'], ((x, y) -> x != y), 'Passwords do not match') then return
+               @$el.validate(['#password', '#password2'], ((x, y) -> x != y), 'Passwords do not match') then return false
             @model.save
                 username: @$('#username').val()
                 email: @$('#email').val()
@@ -79,7 +79,7 @@ define ['jquery', 'backbone', 'underscore', 'postal',
         save: ->
             if @$el.validate('#username', ((x) -> x == ''), 'Username cannot be blank') |
                (@$el.validate('#password', ((x) -> x == ''), 'Password cannot be blank') ||
-                @$el.validate(['#password', '#password2'], ((x, y) -> x != y), 'Passwords do not match')) then return
+                @$el.validate(['#password', '#password2'], ((x, y) -> x != y), 'Passwords do not match')) then return false
             @model.save
                 username: @$('#username').val()
                 email: @$('#email').val()
