@@ -5,37 +5,38 @@
 <form class="form-horizontal">
     <fieldset>
         <div class="control-group">
-        <label class="control-label" for="username">Username</label>
-        <div class="controls">
-            <input type="text" class="input-xlarge" id="username" value="{{ username }}">
-        </div>
-        </div>
-        <div class="control-group">
-        <label class="control-label" for="email">Email</label>
-        <div class="controls">
-            <input type="text" class="input-xlarge" id="email" value="{{ email }}">
-        </div>
-        </div>
-        <div class="control-group password">
-        <label class="control-label" for="password">Password</label>
-        <div class="controls">
-            <input type="password" class="input-xlarge" id="password">
-            <span class="help-inline message"></span>
-        </div>
-        </div>
-        <div class="control-group password">
-        <label class="control-label" for="password2">Retype Password</label>
-        <div class="controls">
-            <input type="password" class="input-xlarge" id="password2">
-        </div>
+            <label class="control-label" for="username">Username</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="username" value="{{ username }}">
+                <span class="help-inline"></span>
+            </div>
         </div>
         <div class="control-group">
-        <label class="control-label" for="administrator">Administrator</label>
-        <div class="controls">
-            <label class="checkbox">
-            <input type="checkbox" id="administrator" {{ administrator ? 'checked="checked"' : '' }}>
-            </label>
+            <label class="control-label" for="email">Email</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="email" value="{{ email }}">
+            </div>
         </div>
+        <div class="control-group password">
+            <label class="control-label" for="password">Password</label>
+            <div class="controls">
+                <input type="password" class="input-xlarge" id="password">
+                <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="control-group password">
+            <label class="control-label" for="password2">Retype Password</label>
+            <div class="controls">
+                <input type="password" class="input-xlarge" id="password2">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="administrator">Administrator</label>
+            <div class="controls">
+                <label class="checkbox">
+                <input type="checkbox" id="administrator" {{ administrator ? 'checked="checked"' : '' }}>
+                </label>
+            </div>
         </div>
         <div class="form-actions">
         <button type="submit" class="btn btn-primary save">Save</button>

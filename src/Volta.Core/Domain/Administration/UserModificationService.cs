@@ -29,7 +29,7 @@ namespace Volta.Core.Domain.Administration
 
             if (user == null) throw new UserNotFoundException();
 
-            if (user.Username != username && _userRepository.Any(x => x.Username == username))
+            if (user.Username != username && _userRepository.Any(x => x.Username == (string)username))
                 throw new DuplicateUsernameException();
 
             user.Username = username;

@@ -13,6 +13,7 @@ plugins = [
     'scripts/jquery/jquery.cache-ajax-deferreds',
     'scripts/bootstrap/bootstrap', 
     'scripts/bootstrap/bootstrap.dialog', 
+    'scripts/bootstrap/bootstrap.validate',
     'scripts/underscore/underscore.config', 
     'scripts/backbone/backbone.lazy']
 
