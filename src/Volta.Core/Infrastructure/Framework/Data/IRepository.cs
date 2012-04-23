@@ -8,7 +8,7 @@ namespace Volta.Core.Infrastructure.Framework.Data
         TEntity Get(Guid id);
         void Add(TEntity entity);
         void Replace(TEntity entity);
-        void Modify(Guid id, dynamic entity);
+        void Modify(Guid id, Action<Updates<TEntity>> updates);
         void Delete(Guid id);
         void Delete(TEntity entity);
     }

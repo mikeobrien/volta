@@ -38,25 +38,16 @@ namespace Volta.Tests.Unit
             _entites.Add(entity);
         }
 
-        public void Modify(Guid id, object entity)
+        public void Modify(Guid id, Action<Updates<TEntity>> updates)
         {
-            var entityToUpdate = Get(id);
-            if (entityToUpdate != null) return;
-            var values = entity.GetType().GetProperties().Where(x => x.CanRead && x.GetGetMethod().IsPublic).
-                            Select(x => new { x.Name, Value = x.GetValue(entity, null)}).Union(
-                         entity.GetType().GetFields().Where(x => x.IsPublic).
-                            Select(x => new { x.Name, Value = x.GetValue(entity)}));
-            foreach (var value in values)
-            {
-                var property = entityToUpdate.GetType().GetProperty(value.Name);
-                if (property != null)
-                {
-                    property.SetValue(entityToUpdate, value.Value, null);
-                    continue;
-                }
-                var field = entityToUpdate.GetType().GetField(value.Name);
-                if (field != null) field.SetValue(entityToUpdate, value.Value);
-            }
+            var values = new Dictionary<MemberInfo, object>();
+            updates(new Updates<TEntity>(values));
+            var entity = Get(id);
+            values.ToList().ForEach(x => {
+                if (x.Key.MemberType == MemberTypes.Property)
+                    ((PropertyInfo) x.Key).SetValue(entity, x.Value, null);
+                else ((FieldInfo)x.Key).SetValue(entity, x.Value);
+            });
         }
 
         public void Delete(Guid id)

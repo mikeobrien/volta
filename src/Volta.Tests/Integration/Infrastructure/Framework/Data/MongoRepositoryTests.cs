@@ -102,20 +102,9 @@ namespace Volta.Tests.Integration.Infrastructure.Framework.Data
         }
 
         [Test]
-        public void should_update_object_entity()
+        public void should_update_entity_field()
         {
-            _repository.Modify(Person2.Id, new PersonName { Name = "yada" });
-            var result = GetCollection<_Person>().AsQueryable<_Person>().FirstOrDefault(x => x.Id == Person2.Id);
-            result.ShouldNotBeNull();
-            result.Name.ShouldEqual("yada");
-            result.Id.ShouldEqual(Person2.Id);
-            result.Age.ShouldEqual(45);
-        }
-
-        [Test]
-        public void should_update_dynamic_entity()
-        {
-            _repository.Modify(Person2.Id, new { Name = "yada" });
+            _repository.Modify(Person2.Id, x => x.Set(y => y.Name, "yada"));
             var result = GetCollection<_Person>().AsQueryable<_Person>().FirstOrDefault(x => x.Id == Person2.Id);
             result.ShouldNotBeNull();
             result.Name.ShouldEqual("yada");

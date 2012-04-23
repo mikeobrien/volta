@@ -11,6 +11,7 @@ require.config
 plugins = [
     'scripts/jquery/jquery.ajax-date-parser', 
     'scripts/jquery/jquery.cache-ajax-deferreds',
+    'scripts/jquery/jquery.form',
     'scripts/bootstrap/bootstrap', 
     'scripts/bootstrap/bootstrap.dialog', 
     'scripts/bootstrap/bootstrap.validate',

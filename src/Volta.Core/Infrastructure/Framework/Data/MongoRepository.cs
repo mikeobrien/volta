@@ -49,9 +49,12 @@ namespace Volta.Core.Infrastructure.Framework.Data
             _collection.Value.Update(IdQuery(GetEntityId(entity)), UpdateWrapper.Create(entity));
         }
 
-        public void Modify(Guid id, object entity)
+        public void Modify(Guid id, Action<Updates<TEntity>> updates)
         {
-            _collection.Value.Update(IdQuery(id), new UpdateDocument("$set", entity.ToBsonDocument()));
+            var values = new Dictionary<MemberInfo, object>();
+            updates(new Updates<TEntity>(values));
+            var document = new BsonDocument(values.ToDictionary(x => x.Key.Name, x => x.Value));
+            _collection.Value.Update(IdQuery(id), new UpdateDocument("$set", document));
         }
 
         public void Delete(Guid id)

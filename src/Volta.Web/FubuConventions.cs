@@ -37,6 +37,8 @@ namespace Volta.Web
                     .ConstrainClassToHttpPostEndingWith(publicHandlers[1], privateHandlers[1])
                     .ConstrainClassToHttpPutEndingWith(publicHandlers[2], privateHandlers[2])
                     .ConstrainClassToHttpDeleteEndingWith(publicHandlers[3], privateHandlers[3]));
+            
+            ApplyConvention<DownloadDataConvention>();
 
             Expression<Func<ActionCall, bool>> viewHandler = x =>
                 x.HandlerType.Assembly == GetType().Assembly && x.HasAnyOutputBehavior() &&

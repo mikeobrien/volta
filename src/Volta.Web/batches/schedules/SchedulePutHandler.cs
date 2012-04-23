@@ -14,7 +14,9 @@ namespace Volta.Web.Batches.Schedules
 
         public void Execute_id(ScheduleModel request)
         {
-            _schedules.Modify(request.id, new { request.name, request.file });
+            _schedules.Modify(request.id, x => x
+                .Set(y => y.Name, request.name)
+                .Set(y => y.File, request.file));
         }
     }
 }

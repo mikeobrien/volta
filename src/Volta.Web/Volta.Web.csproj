@@ -161,6 +161,7 @@
     <Compile Include="admin\users\UserModel.cs" />
     <Compile Include="admin\users\UsersGetHandler.cs" />
     <Compile Include="App_Start\FubuMVC.cs" />
+    <Compile Include="batches\schedules\download\GetHandler.cs" />
     <Compile Include="batches\schedules\ScheduleDeleteHandler.cs" />
     <Compile Include="batches\schedules\ScheduleGetHandler.cs" />
     <Compile Include="batches\schedules\ScheduleModel.cs" />

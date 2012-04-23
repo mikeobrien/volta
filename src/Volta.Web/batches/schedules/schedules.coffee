@@ -66,23 +66,27 @@ define ['jquery', 'backbone', 'underscore', 'postal',
     class AddView extends Backbone.View
         events:
             'click .save': 'save'
+            'change #file': 'setName'
         template: addTemplate
         initialize: (options) ->
-            _.bindAll @, 'render', 'save'
+            _.bindAll @, 'render', 'save', 'setName'
             @router = options.router
-            @model = new Schedule()
         render: ->
             @$el.html @template
             @
+        setName: (input) ->
+            name = @$('#name')
+            if name.val() then return
+            path = @$('#file').val()
+            start = path.lastIndexOf('\\') + 1
+            name.val(path.substr(start, path.lastIndexOf('.') - start))
         save: ->
             if @$el.validate('#name', ((x) -> x == ''), 'Name cannot be blank') |
                @$el.validate('#file', ((x) -> x == ''), 'No file selected') then return false
-            @model.save
-                name: @$('#name').val()
-                file: @$('#file').val()
-            , 
+            @$('form').ajaxSubmit
+                url: '/batches/schedules'
+                type: 'POST'
                 success: => @router.navigate 'batches/schedules', trigger: true
-                wait: true
             return false
 
     Schedule: Schedule
