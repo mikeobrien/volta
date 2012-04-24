@@ -16,7 +16,8 @@ plugins = [
     'scripts/bootstrap/bootstrap.dialog', 
     'scripts/bootstrap/bootstrap.validate',
     'scripts/underscore/underscore.mustache', 
-    'scripts/backbone/backbone.lazy']
+    'scripts/backbone/backbone.lazy',
+    'scripts/moment']
 
 require ['jquery', 'backbone', 'postal', 'postalajax', 'postalscroll', 'app', 'batches/batches', 'admin/admin'].concat(plugins)
         , ($, Backbone, postal, postalAjax, postalScroll, App, Batches, Admin) ->

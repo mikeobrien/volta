@@ -141,12 +141,11 @@
                 </div>
                 <h4 class="subheading">Recently Added</h4>
                 <ul class="nav nav-tabs nav-stacked">
-                    <li>
-                        <a href="#batches/schedules/edit/20110531-DJB-Standard">20110531-DJB-Standard</a>
-                    </li>
-                    <li>
-                        <a href="#batches/schedules/edit/20110531-DJB-Standard">20110531-DJB-Standard</a>
-                    </li>
+                    <for each="var schedule in Model.Schedules">
+                        <li>
+                            <a href="#batches/schedules/edit/${schedule.Id}">${schedule.Name} (${schedule.CreatedBy})</a>
+                        </li>
+                    </for>
                 </ul>
             </div>
         </div>

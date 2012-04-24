@@ -24,7 +24,12 @@ namespace Volta.Web.Batches.Schedules
         public List<ScheduleModel> Execute(SchedulesGetRequest request)
         {
             return _schedules.OrderBy(x => x.Name).Page(request.Index, PageSize).
-                Select(x => new ScheduleModel {id = x.Id, name = x.Name}).ToList();
+                Select(x => new ScheduleModel {
+                                    id = x.Id, 
+                                    name = x.Name, 
+                                    createdBy = x.CreatedBy, 
+                                    created = x.Created
+                                }).ToList();
         }
     }
 }

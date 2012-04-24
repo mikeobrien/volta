@@ -12,7 +12,7 @@
             var objectType = getType({}), arrayType = getType([]);
             
             var parseValue = function(value) {
-                if (typeof value === 'string' && !value.search(/^\/Date\(\d+\)\/$/))
+                if (typeof value === 'string' && !value.search(/^\/Date\(-*\d+\)\/$/))
                     return new Date(parseInt(value.substr(6)));
                 else return value;
             };
