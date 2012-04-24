@@ -1,25 +1,28 @@
 ﻿<div class="page-header">
-    <h2>Add Schedule</h2>
+    <h2>Add Batch</h2>
 </div>
     
 <form class="form-horizontal">
     <fieldset>
         <div class="control-group username">
-        <label class="control-label" for="name">Name</label>
+        <label class="control-label" for="schedule">Arbin Schedule</label>
         <div class="controls">
-            <input type="text" class="input-xlarge" id="name" name="name">
-            <span class="help-inline message"></span>
+            <select id="schedule" name="scheduleId">
+                {[ _.each(schedules, function(schedule) { ]} 
+                    <option value="{{ schedule.id }}">{{ schedule.name }}</option> 
+                {[ }); ]}
+            </select>
         </div>
         </div>
         <div class="control-group">
-        <label class="control-label" for="file">Schedule File</label>
+        <label class="control-label" for="file">Arbin Data File</label>
             <div class="controls">
                 <input class="input-file" id="file" name="file" type="file">
             </div>
         </div>
         <div class="form-actions">
         <button type="submit" class="btn btn-primary save">Add</button>
-        <a href="/#batches/schedules" class="btn">Cancel</a>
+        <a href="/#batches" class="btn">Cancel</a>
         </div>
     </fieldset>
 </form>

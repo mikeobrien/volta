@@ -110,21 +110,11 @@
                 </div>
                 <h4 class="subheading">Recently Added</h4>
                 <ul class="nav nav-tabs nav-stacked">
-                    <li>
-                        <a href="#batches/edit/20110516-DJB">20110516-DJB (wolff), 20g-Li/14g-Sb/45g-Pb, 1 Ah</a>
-                    </li>
-                    <li>
-                        <a href="#batches/edit/20110516-DJB">20110516-DJB (wolff), 20g-Li/14g-Sb/45g-Pb, 1 Ah</a>
-                    </li>
-                    <li>
-                        <a href="#batches/edit/20110516-DJB">20110516-DJB (wolff), 20g-Li/14g-Sb/45g-Pb, 1 Ah</a>
-                    </li>
-                    <li>
-                        <a href="#batches/edit/20110516-DJB">20110516-DJB (wolff), 20g-Li/14g-Sb/45g-Pb, 1 Ah</a>
-                    </li>
-                    <li>
-                        <a href="#batches/edit/20110516-DJB">20110516-DJB (wolff), 20g-Li/14g-Sb/45g-Pb, 1 Ah</a>
-                    </li>
+                    <for each="var batch in Model.Batches">
+                        <li>
+                            <a href="#batches/edit/${batch.Id}">${batch.Name} (${batch.CreatedBy})</a>
+                        </li>
+                    </for>
                 </ul>
             </div>
             <div class="span5">

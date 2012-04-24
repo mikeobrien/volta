@@ -8,6 +8,10 @@ define ['jquery', 'backbone', 'underscore', 'postal',
     class Schedule extends Backbone.Model
         urlRoot : '/batches/schedules'
 
+    class AllSchedules extends Backbone.Collection
+        model: Schedule
+        url: '/batches/schedules'
+
     class Schedules extends Backbone.LazyCollection
         model: Schedule
         url: '/batches/schedules'
@@ -91,6 +95,7 @@ define ['jquery', 'backbone', 'underscore', 'postal',
 
     Schedule: Schedule
     Schedules: Schedules
+    AllSchedules: AllSchedules
     ListView : ListView
     EditView: EditView
     AddView: AddView

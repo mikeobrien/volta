@@ -123,9 +123,13 @@
     <Content Include="app.js">
       <DependentUpon>app.coffee</DependentUpon>
     </Content>
+    <Content Include="batches\add-template.html" />
     <Content Include="batches\batches.js">
       <DependentUpon>batches.coffee</DependentUpon>
     </Content>
+    <Content Include="batches\edit-template.html" />
+    <Content Include="batches\list-item-template.html" />
+    <Content Include="batches\list-template.html" />
     <Content Include="batches\schedules\add-template.html" />
     <Content Include="batches\schedules\edit-template.html" />
     <Content Include="batches\schedules\list-item-template.html" />
@@ -161,6 +165,12 @@
     <Compile Include="admin\users\UserModel.cs" />
     <Compile Include="admin\users\UsersGetHandler.cs" />
     <Compile Include="App_Start\FubuMVC.cs" />
+    <Compile Include="batches\BatchDeleteHandler.cs" />
+    <Compile Include="batches\BatchGetHandler.cs" />
+    <Compile Include="batches\BatchModel.cs" />
+    <Compile Include="batches\BatchPostHandler.cs" />
+    <Compile Include="batches\BatchPutHandler.cs" />
+    <Compile Include="batches\BatchesGetHandler.cs" />
     <Compile Include="batches\schedules\download\GetHandler.cs" />
     <Compile Include="batches\schedules\ScheduleDeleteHandler.cs" />
     <Compile Include="batches\schedules\ScheduleGetHandler.cs" />

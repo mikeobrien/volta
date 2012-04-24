@@ -3,11 +3,11 @@ using Volta.Core.Infrastructure.Framework.Data;
 
 namespace Volta.Web.Batches.Schedules
 {
-    public class UserPutHandler
+    public class SchedulePutHandler
     {
         private readonly IRepository<ScheduleFile> _schedules;
 
-        public UserPutHandler(IRepository<ScheduleFile> schedules)
+        public SchedulePutHandler(IRepository<ScheduleFile> schedules)
         {
             _schedules = schedules;
         }
