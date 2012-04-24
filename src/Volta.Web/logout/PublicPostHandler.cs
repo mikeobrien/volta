@@ -14,10 +14,9 @@ namespace Volta.Web.Logout
             _secureSession = secureSession;
         }
 
-        public LogoutModel Execute(LogoutModel request)
+        public void Execute(LogoutModel request)
         {
             _secureSession.Logout();
-            return request; // Need to return something so that an empty json object is returned. If not it does weird stuff in FF.
         }
     }
 }

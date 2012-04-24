@@ -1,3 +1,8 @@
+//     bootstrap.validate.js 0.1.0
+//     (c) 2012 Mike O'Brien
+//     May be freely distributed under the MIT license.
+//     https://github.com/mikeobrien/jsplugins
+
 (function() {
     var plugin = function($) {
         $.fn.validate = function (selectors, predicate, message) {
