@@ -129,6 +129,7 @@
     <Compile Include="Infrastructure\Framework\Logging\Log4NetLogger.cs" />
     <Compile Include="Infrastructure\Framework\Reflection\AssemblyExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Security\HashedPassword.cs" />
+    <Compile Include="Infrastructure\Framework\Web\Fubu\CacheBusterBehavior.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\ConfigurationExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\DownloadDataConvention.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\DownloadDataBehavior.cs" />

@@ -82,3 +82,9 @@ footer
 .modal-backdrop {
     opacity: 0.5;
 }
+
+.upload-progress {
+    width:300px;
+    float: right;
+    margin:0px
+}

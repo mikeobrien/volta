@@ -77,10 +77,15 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             @
         save: ->
             if @$el.validate('#file', ((x) -> x == ''), 'No file selected') then return false
+            $('.save').attr('disabled', true)
+            progress = $ '.progress .bar'
             @$('form').ajaxSubmit
                 url: '/batches'
                 type: 'POST'
                 success: => @router.navigate 'batches', trigger: true
+                error: => $('.save').attr('disabled', false)
+                uploadProgress: (event, position, total, percentComplete) ->
+                    progress.width(percentComplete + '%')
             return false
 
     class Router extends Backbone.Router

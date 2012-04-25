@@ -49,6 +49,7 @@ namespace Volta.Web
                     !publicHandlers.Any(suffix => x.HandlerType.Name.EndsWith(suffix));
 
             Policies
+                .WrapBehaviorChainsWith<CacheBusterBehavior>()
                 .ConditionallyWrapBehaviorChainsWith<AuthorizationBehavior>(viewHandler)
                 .ConditionallyWrapBehaviorChainsWith<AjaxAuthorizationBehavior>(ajaxHandler)
                 .ConditionallyWrapBehaviorChainsWith<ExceptionHandlerBehavior>(viewHandler)
