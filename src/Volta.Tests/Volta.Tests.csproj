@@ -108,6 +108,10 @@
   <ItemGroup>
     <Compile Include="Integration\Application\SystemInfoTests.cs" />
     <Compile Include="Acceptance\GenerateTestData.cs" />
+    <Compile Include="Integration\Infrastructure\Framework\Arbin\ScheduleTests.cs" />
+    <Compile Include="Integration\Infrastructure\Framework\Data\IniFileTests.cs" />
+    <Compile Include="Integration\Infrastructure\Framework\Data\JetQueryTests.cs" />
+    <Compile Include="Integration\Infrastructure\Framework\IO\TempFileTests.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Log4NetLoggerTests.cs" />
     <Compile Include="Unit\Domain\Administration\UserDeletionServiceTests.cs" />
     <Compile Include="Unit\Domain\Administration\UserModificationServiceTests.cs" />
@@ -143,6 +147,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Client\specs\login\login.specs.coffee" />
+    <None Include="Integration\Infrastructure\Framework\Arbin\test.sdu">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +169,9 @@
   <ItemGroup>
     <Content Include="Client\specs\login\login.specs.js">
       <DependentUpon>login.specs.coffee</DependentUpon>
+    </Content>
+    <Content Include="Integration\Infrastructure\Framework\Data\test.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

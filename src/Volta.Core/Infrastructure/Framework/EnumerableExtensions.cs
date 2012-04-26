@@ -17,5 +17,10 @@ namespace Volta.Core.Infrastructure.Framework
         {
             return items.Skip(PagesToSkip(pageIndex, pageSize)).Take(pageSize);
         }
+
+        public static IEnumerable<T> Concat<T>(this IEnumerable<T> items, T item)
+        {
+            return items.Concat(new [] {item});
+        }
     }
 }

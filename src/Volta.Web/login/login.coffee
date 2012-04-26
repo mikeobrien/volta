@@ -16,7 +16,9 @@ define ['backbone', 'jquery'], (Backbone, $) ->
             $.post('.', request)
                 .success (response) =>
                     if response.Success then window.location = '/'
-                    else @showError 'Your username or password was not valid.'
+                    else 
+                        @showError 'Your username or password was not valid.'
+                        @$('.password').select()
                 .error (response) => 
                     @showError if response.status == 500 then 'A system error has occured.' else 'Unable to access the server.'
                 .complete => @$('.login').attr('disabled', false)

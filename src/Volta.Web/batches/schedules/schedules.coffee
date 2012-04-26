@@ -6,15 +6,15 @@ define ['jquery', 'backbone', 'underscore', 'postal',
         , ($, Backbone, _, postal, listTemplate, listItemTemplate, editTemplate, addTemplate) ->
 
     class Schedule extends Backbone.Model
-        urlRoot : '/batches/schedules'
+        urlRoot : 'batches/schedules'
 
     class AllSchedules extends Backbone.Collection
         model: Schedule
-        url: '/batches/schedules'
+        url: 'batches/schedules'
 
     class Schedules extends Backbone.LazyCollection
         model: Schedule
-        url: '/batches/schedules'
+        url: 'batches/schedules'
         batchSize: 20
 
     class ListItemView extends Backbone.View
@@ -88,7 +88,7 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             if @$el.validate('#name', ((x) -> x == ''), 'Name cannot be blank') |
                @$el.validate('#file', ((x) -> x == ''), 'No file selected') then return false
             @$('form').ajaxSubmit
-                url: '/batches/schedules'
+                url: 'batches/schedules'
                 type: 'POST'
                 success: => @router.navigate 'batches/schedules', trigger: true
             return false

@@ -7,11 +7,11 @@ define ['jquery', 'backbone', 'underscore', 'postal',
         , ($, Backbone, _, postal, Schedules, listTemplate, listItemTemplate, editTemplate, addTemplate) ->
 
     class Batch extends Backbone.Model
-        urlRoot : '/batches'
+        urlRoot : 'batches'
 
     class Batches extends Backbone.LazyCollection
         model: Batch
-        url: '/batches'
+        url: 'batches'
         batchSize: 20
 
     class ListItemView extends Backbone.View
@@ -80,7 +80,7 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             $('.save').attr('disabled', true)
             progress = $ '.progress .bar'
             @$('form').ajaxSubmit
-                url: '/batches'
+                url: 'batches'
                 type: 'POST'
                 success: => @router.navigate 'batches', trigger: true
                 error: => $('.save').attr('disabled', false)

@@ -98,11 +98,17 @@
     <Compile Include="Infrastructure\Application\Data\MongoConventions.cs" />
     <Compile Include="Infrastructure\Application\ISystemInfo.cs" />
     <Compile Include="Infrastructure\Application\SystemInfo.cs" />
+    <Compile Include="Infrastructure\Framework\Arbin\ArbinData.cs" />
+    <Compile Include="Infrastructure\Framework\Arbin\Schedule.cs" />
     <Compile Include="Infrastructure\Framework\AutoMapper\Extensions.cs" />
     <Compile Include="Infrastructure\Framework\Data\IConnection.cs" />
+    <Compile Include="Infrastructure\Framework\Data\IniFile.cs" />
+    <Compile Include="Infrastructure\Framework\Data\JetQuery.cs" />
     <Compile Include="Infrastructure\Framework\Data\QueryableExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Data\Updates.cs" />
     <Compile Include="Infrastructure\Framework\Func.cs" />
+    <Compile Include="Infrastructure\Framework\IO\TempFile.cs" />
+    <Compile Include="Infrastructure\Framework\RegexExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Security\Username.cs" />
     <Compile Include="Domain\Administration\IUserCreationService.cs" />
     <Compile Include="Domain\Administration\IUserModificationService.cs" />
