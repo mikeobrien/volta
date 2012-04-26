@@ -113,8 +113,8 @@
     <Compile Include="Integration\Infrastructure\Framework\Data\JetQueryTests.cs" />
     <Compile Include="Integration\Infrastructure\Framework\IO\TempFileTests.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Log4NetLoggerTests.cs" />
-    <Compile Include="Unit\Domain\Administration\UserDeletionServiceTests.cs" />
-    <Compile Include="Unit\Domain\Administration\UserModificationServiceTests.cs" />
+    <Compile Include="Unit\Domain\Administration\UserDeleteServiceTests.cs" />
+    <Compile Include="Unit\Domain\Administration\UserUpdateServiceTests.cs" />
     <Compile Include="Unit\Domain\Administration\UsernameTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Data\MongoConnectionTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Data\QueryableExtensionsTests.cs" />
@@ -128,7 +128,7 @@
     <Compile Include="Integration\Application\ConfigurationTests.cs" />
     <Compile Include="Integration\Constants.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Data\MongoRepositoryTests.cs" />
-    <Compile Include="Unit\Domain\Administration\UserCreationServiceTests.cs" />
+    <Compile Include="Unit\Domain\Administration\UserFactoryTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\AjaxAuthorizationBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\AuthorizationBehaviorTests.cs" />
     <Compile Include="Unit\UserInterface\Behaviors\AjaxExceptionHandlerBehaviorTests.cs" />

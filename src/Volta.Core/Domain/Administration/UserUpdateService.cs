@@ -6,12 +6,12 @@ using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Core.Domain.Administration
 {
-    public class UserModificationService : IUserModificationService
+    public class UserUpdateService : IUserUpdateService
     {
         private readonly IRepository<User> _userRepository;
         private readonly ISecureSession<Token> _secureSession;
 
-        public UserModificationService(IRepository<User> userRepository, ISecureSession<Token> secureSession)
+        public UserUpdateService(IRepository<User> userRepository, ISecureSession<Token> secureSession)
         {
             _userRepository = userRepository;
             _secureSession = secureSession;

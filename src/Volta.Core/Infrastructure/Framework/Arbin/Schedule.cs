@@ -7,6 +7,8 @@ namespace Volta.Core.Infrastructure.Framework.Arbin
 {
     public class Schedule
     {
+        public Schedule() {}
+
         public Schedule(string file)
         {
             Steps = new List<Step>();

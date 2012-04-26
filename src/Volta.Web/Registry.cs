@@ -2,6 +2,7 @@ using Volta.Core.Application.Security;
 using Volta.Core.Domain.Administration;
 using Volta.Core.Infrastructure.Application;
 using Volta.Core.Infrastructure.Application.Configuration;
+using Volta.Core.Infrastructure.Framework.Arbin;
 using Volta.Core.Infrastructure.Framework.Data;
 using Volta.Core.Infrastructure.Framework.Logging;
 using Volta.Core.Infrastructure.Framework.Security;
@@ -26,9 +27,9 @@ namespace Volta.Web
             For<ISecureSession<Token>>().Use<SecureSession<Token>>();
             For<IAuthenticationService<Token>>().Use<AuthenticationService>();
 
-            For<IUserCreationService>().Use<UserCreationService>();
-            For<IUserModificationService>().Use<UserModificationService>();
-            For<IUserDeletionService>().Use<UserDeletionService>();
+            For<IUserFactory>().Use<UserFactory>();
+            For<IUserUpdateService>().Use<UserUpdateService>();
+            For<IUserDeleteService>().Use<UserDeleteService>();
         }
     }
 }

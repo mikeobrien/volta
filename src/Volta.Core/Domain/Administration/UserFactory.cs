@@ -11,11 +11,11 @@ namespace Volta.Core.Domain.Administration
     public class EmptyPasswordException : ValidationException
         { public EmptyPasswordException() : base("Password cannot be empty.") {}}
 
-    public class UserCreationService : IUserCreationService
+    public class UserFactory : IUserFactory
     {
         private readonly IRepository<User> _userRepository;
 
-        public UserCreationService(IRepository<User> userRepository)
+        public UserFactory(IRepository<User> userRepository)
         {
             _userRepository = userRepository;
         }
@@ -34,7 +34,6 @@ namespace Volta.Core.Domain.Administration
                     Email = email,
                     Administrator = administrator
                 };
-            _userRepository.Add(user);
             return user;
         }
     }

@@ -39,9 +39,10 @@ namespace Volta.Core.Infrastructure.Framework.Data
             return _collection.Value.FindOne(IdQuery(id));
         }
 
-        public void Add(TEntity entity)
+        public TEntity Add(TEntity entity)
         {
             _collection.Value.Insert(entity);
+            return entity;
         }
 
         public void Replace(TEntity entity)

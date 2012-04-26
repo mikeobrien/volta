@@ -4,16 +4,16 @@ namespace Volta.Web.Admin.Users
 {
     public class UserDeleteHandler
     {
-        private readonly IUserDeletionService _deletionService;
+        private readonly IUserDeleteService _deleteService;
 
-        public UserDeleteHandler(IUserDeletionService deletionService)
+        public UserDeleteHandler(IUserDeleteService deleteService)
         {
-            _deletionService = deletionService;
+            _deleteService = deleteService;
         }
 
         public void Execute_id(UserModel request)
         {
-            _deletionService.Delete(request.id);
+            _deleteService.Delete(request.id);
         }
     }
 }

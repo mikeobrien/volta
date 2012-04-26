@@ -11,7 +11,7 @@ using Volta.Core.Infrastructure.Framework.Security;
 namespace Volta.Tests.Unit.Domain.Administration
 {
     [TestFixture]
-    public class UserDeletionServiceTests
+    public class UserDeleteServiceTests
     {
         private const string Username1 = "someuser";
         private const string Username2 = "anotheruser";
@@ -30,7 +30,7 @@ namespace Volta.Tests.Unit.Domain.Administration
             var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.GetCurrentToken().Returns(new Token(Guid.NewGuid(), Username1, true));
             secureSession.IsLoggedIn().Returns(true);
-            var service = new UserDeletionService(_userRepository, secureSession);
+            var service = new UserDeleteService(_userRepository, secureSession);
             service.Delete(UserId);
             _userRepository.Count().ShouldEqual(0);
         }
@@ -42,7 +42,7 @@ namespace Volta.Tests.Unit.Domain.Administration
             var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.GetCurrentToken().Returns(new Token(UserId, Username1, true));
             secureSession.IsLoggedIn().Returns(true);
-            var service = new UserDeletionService(_userRepository, secureSession);
+            var service = new UserDeleteService(_userRepository, secureSession);
             Assert.Throws<DeleteCurrentUserException>(() => service.Delete(UserId));
             _userRepository.Count().ShouldEqual(1);
         }

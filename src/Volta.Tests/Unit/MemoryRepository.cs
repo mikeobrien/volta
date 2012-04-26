@@ -26,10 +26,11 @@ namespace Volta.Tests.Unit
             return _entites.FirstOrDefault(x => GetId(x) == id);
         }
 
-        public void Add(TEntity entity)
+        public TEntity Add(TEntity entity)
         {
             IdProperty.SetValue(entity, Guid.NewGuid(), null);
             _entites.Add(entity);
+            return entity;
         }
 
         public void Replace(TEntity entity)

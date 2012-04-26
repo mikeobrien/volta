@@ -4,9 +4,9 @@ namespace Volta.Web.Admin.Users
 {
     public class UserPutHandler
     {
-        private readonly IUserModificationService _modificationService;
+        private readonly IUserUpdateService _modificationService;
 
-        public UserPutHandler(IUserModificationService modificationService)
+        public UserPutHandler(IUserUpdateService modificationService)
         {
             _modificationService = modificationService;
         }

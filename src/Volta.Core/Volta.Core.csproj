@@ -89,9 +89,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\Security\AuthorizationException.cs" />
-    <Compile Include="Domain\Administration\IUserDeletionService.cs" />
-    <Compile Include="Domain\Administration\UserDeletionService.cs" />
+    <Compile Include="Domain\Administration\IUserDeleteService.cs" />
+    <Compile Include="Domain\Administration\UserDeleteService.cs" />
     <Compile Include="Domain\Batches\Batch.cs" />
+    <Compile Include="Domain\Batches\BatchFactory.cs" />
     <Compile Include="Domain\Batches\ScheduleFile.cs" />
     <Compile Include="Domain\NotFoundException.cs" />
     <Compile Include="Domain\ValidationException.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Infrastructure\Application\ISystemInfo.cs" />
     <Compile Include="Infrastructure\Application\SystemInfo.cs" />
     <Compile Include="Infrastructure\Framework\Arbin\ArbinData.cs" />
+    <Compile Include="Infrastructure\Framework\Arbin\IArbinData.cs" />
     <Compile Include="Infrastructure\Framework\Arbin\Schedule.cs" />
     <Compile Include="Infrastructure\Framework\AutoMapper\Extensions.cs" />
     <Compile Include="Infrastructure\Framework\Data\IConnection.cs" />
@@ -110,9 +112,8 @@
     <Compile Include="Infrastructure\Framework\IO\TempFile.cs" />
     <Compile Include="Infrastructure\Framework\RegexExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Security\Username.cs" />
-    <Compile Include="Domain\Administration\IUserCreationService.cs" />
-    <Compile Include="Domain\Administration\IUserModificationService.cs" />
-    <Compile Include="Domain\Administration\UserModificationService.cs" />
+    <Compile Include="Domain\Administration\IUserUpdateService.cs" />
+    <Compile Include="Domain\Administration\UserUpdateService.cs" />
     <Compile Include="Infrastructure\Application\Configuration\Configuration.cs" />
     <Compile Include="Infrastructure\Application\Configuration\ConfigurationSection.cs" />
     <Compile Include="Infrastructure\Application\Configuration\IConfiguration.cs" />
@@ -125,7 +126,7 @@
     <Compile Include="Application\Security\Token.cs" />
     <Compile Include="Domain\Administration\IUserFactory.cs" />
     <Compile Include="Domain\Administration\User.cs" />
-    <Compile Include="Domain\Administration\UserCreationService.cs" />
+    <Compile Include="Domain\Administration\UserFactory.cs" />
     <Compile Include="Infrastructure\Framework\Data\IRepository.cs" />
     <Compile Include="Infrastructure\Framework\Data\MongoConnection.cs" />
     <Compile Include="Infrastructure\Framework\Data\MongoRepository.cs" />

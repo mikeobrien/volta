@@ -4,6 +4,6 @@ namespace Volta.Core.Domain.Administration
 {
     public interface IUserFactory
     {
-        User Create(Username username, string password, bool admin);
+        User Create(Username username, string password, string email, bool admin);
     }
 }

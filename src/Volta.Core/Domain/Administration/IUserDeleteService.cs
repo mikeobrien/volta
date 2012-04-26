@@ -2,7 +2,7 @@ using System;
 
 namespace Volta.Core.Domain.Administration
 {
-    public interface IUserDeletionService
+    public interface IUserDeleteService
     {
         void Delete(Guid id);
     }

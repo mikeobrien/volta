@@ -12,7 +12,7 @@ using Volta.Core.Infrastructure.Framework.Security;
 namespace Volta.Tests.Unit.Domain.Administration
 {
     [TestFixture]
-    public class UserModificationServiceTests
+    public class UserUpdateServiceTests
     {
         private const string Username1 = "someuser";
         private const string Username2 = "anotheruser";
@@ -34,7 +34,7 @@ namespace Volta.Tests.Unit.Domain.Administration
             var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.GetCurrentToken().Returns(new Token(Guid.NewGuid(), Username3, true));
             secureSession.IsLoggedIn().Returns(true);
-            var service = new UserModificationService(_userRepository, secureSession);
+            var service = new UserUpdateService(_userRepository, secureSession);
             service.Modify(UserId, Username1, null, false, Password);
             var modifiedUser = _userRepository.First();
             modifiedUser.Username.ShouldEqual(Username1);
@@ -49,7 +49,7 @@ namespace Volta.Tests.Unit.Domain.Administration
             var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.GetCurrentToken().Returns(new Token(Guid.NewGuid(), Username3, true));
             secureSession.IsLoggedIn().Returns(true);
-            var service = new UserModificationService(_userRepository, secureSession);
+            var service = new UserUpdateService(_userRepository, secureSession);
             service.Modify(UserId, Username2, null, false, Password);
             var modifiedUser = _userRepository.First();
             modifiedUser.Username.ShouldEqual(Username2);
@@ -64,7 +64,7 @@ namespace Volta.Tests.Unit.Domain.Administration
             var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.GetCurrentToken().Returns(new Token(UserId, Username1, true));
             secureSession.IsLoggedIn().Returns(true);
-            var service = new UserModificationService(_userRepository, secureSession);
+            var service = new UserUpdateService(_userRepository, secureSession);
             service.Modify(UserId, Username1, null, false, Password);
             secureSession.Received().Login(Arg.Is<Token>(x => x.Username == Username1 && !x.IsAdministrator));
         }
@@ -75,7 +75,7 @@ namespace Volta.Tests.Unit.Domain.Administration
             var secureSession = Substitute.For<ISecureSession<Token>>();
             secureSession.GetCurrentToken().Returns(new Token(UserId, Username1, true));
             secureSession.IsLoggedIn().Returns(true);
-            var service = new UserModificationService(_userRepository, secureSession);
+            var service = new UserUpdateService(_userRepository, secureSession);
             service.Modify(UserId, Username2, null, false);
             var modifiedUser = _userRepository.First();
             modifiedUser.Username.ShouldEqual(Username2);
@@ -91,7 +91,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         [Test]
         public void should_return_an_error_if_trying_to_update_a_user_that_doesent_exist()
         {
-            var service = new UserModificationService(_userRepository, Substitute.For<ISecureSession<Token>>());
+            var service = new UserUpdateService(_userRepository, Substitute.For<ISecureSession<Token>>());
             Assert.Throws<NotFoundException>(() => service.Modify(Guid.NewGuid(), Username2, null, false));
         }
 
@@ -99,7 +99,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         public void should_return_a_message_if_the_new_username_already_exists()
         {
             _userRepository.Add(new User { Username = Username3 });
-            var service = new UserModificationService(_userRepository, Substitute.For<ISecureSession<Token>>());
+            var service = new UserUpdateService(_userRepository, Substitute.For<ISecureSession<Token>>());
             Assert.Throws<DuplicateUsernameException>(() => service.Modify(UserId, Username3, null, true));
         }
 
@@ -107,7 +107,7 @@ namespace Volta.Tests.Unit.Domain.Administration
         public void should_return_a_message_if_the_new_username_is_empty()
         {
             _userRepository.Add(new User { Username = Username3 });
-            var service = new UserModificationService(_userRepository, Substitute.For<ISecureSession<Token>>());
+            var service = new UserUpdateService(_userRepository, Substitute.For<ISecureSession<Token>>());
             Assert.Throws<EmptyUsernameException>(() => service.Modify(UserId, string.Empty, null, true));
         }
     }

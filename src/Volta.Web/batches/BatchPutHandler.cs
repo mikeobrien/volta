@@ -15,7 +15,7 @@ namespace Volta.Web.Batches
         public void Execute_id(BatchModel request)
         {
             _batches.Modify(request.id, x => x
-                .Set(y => y.Name, request.name));
+                .Set(y => y.BatchId, request.name));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Volta.Tests.Acceptance
         [Test] 
         public void generate_users()
         {
-            var users = new UserCreationService(new MongoRepository<User>(new MongoConnection(Constants.VoltaAcceptanceConnectionString)));
+            var users = new UserFactory(new MongoRepository<User>(new MongoConnection(Constants.VoltaAcceptanceConnectionString)));
             Enumerable.Range(1, 50).ToList().ForEach(x => users.Create(string.Format("testuser{0}", x), "t3$t", string.Format("test{0}@test.com", x), x % 5 == 0));
         }
     }

@@ -8,12 +8,12 @@ namespace Volta.Core.Domain.Administration
     public class DeleteCurrentUserException : ValidationException 
         { public DeleteCurrentUserException() : base("Cannot delete the currently logged in user.") {}}
 
-    public class UserDeletionService : IUserDeletionService
+    public class UserDeleteService : IUserDeleteService
     {
         private readonly IRepository<User> _users;
         private readonly ISecureSession<Token> _secureSession;
 
-        public UserDeletionService(IRepository<User> users, ISecureSession<Token> secureSession)
+        public UserDeleteService(IRepository<User> users, ISecureSession<Token> secureSession)
         {
             _users = users;
             _secureSession = secureSession;
