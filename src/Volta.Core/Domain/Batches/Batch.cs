@@ -5,15 +5,23 @@ namespace Volta.Core.Domain.Batches
 {
     public class Batch
     {
+        public Batch()
+        {
+            Cells = new List<Cell>();
+            ComponentPhase = new Phase();
+            AssemblyPhase = new Phase();
+            OperationPhase = new Phase();
+        }
+
         public Guid Id { get; set; }
 
-        public string BatchId { get; set; } // 20110612-DB
+        public string Name { get; set; } // Global_Table.Test_Name
 
         public Phase ComponentPhase { get; set; }
         public Phase AssemblyPhase { get; set; }
         public Phase OperationPhase { get; set; }
 
-        public List<Cell> Cells { get; set; }
+        public List<Cell> Cells { get; set; } // Global_Table.Count()
 
         public string GloveBox { get; set; }  // Thor, Hobgoblin
         public double OperatingTemperature { get; set; } // C
@@ -28,12 +36,19 @@ namespace Volta.Core.Domain.Batches
 
     public class Phase
     {
-        public string Operator { get; set; } // DJB
+        public string Operator { get; set; } // Global_Table.Creator
         public string SOP { get; set; } // 110.02, 111.02, 112.02
     }
 
     public class Cell
     {
+        public Cell()
+        {
+            POS = new Electrode();
+            Sheath = new Sheath();
+            Electrolyte = new Electrolyte();
+            Crucible = new Crucible();
+        }
         public string Chemistry { get; set; } // LiSbPb, LiSb, NaBi
         public double NominalCapacity { get; set; } // Ah, 1Ah, 20, Ah, 200Ah
         public double InnerDiameter { get; set; } // mm
@@ -72,6 +87,11 @@ namespace Volta.Core.Domain.Batches
 
     public class Electrode
     {
+        public Electrode()
+        {
+            Elements = new List<Element>();
+        }
+
         public double Length { get; set; } // mm
         public List<Element> Elements { get; set; } // Li, Sb, Pb
     }

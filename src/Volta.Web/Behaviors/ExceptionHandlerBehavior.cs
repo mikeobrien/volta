@@ -30,7 +30,7 @@ namespace Volta.Web.Behaviors
             catch (Exception e)
             {
                 _logger.Write(e);
-                _outputWriter.RedirectToUrl("/Error.htm");
+                _outputWriter.RedirectToUrl("/Error.html");
             }
         }
 

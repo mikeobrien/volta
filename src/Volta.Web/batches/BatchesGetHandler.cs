@@ -23,10 +23,10 @@ namespace Volta.Web.Batches
 
         public List<BatchModel> Execute(BatchesGetRequest request)
         {
-            return _batches.OrderBy(x => x.BatchId).Page(request.Index, PageSize).
+            return _batches.OrderBy(x => x.Name).Page(request.Index, PageSize).
                 Select(x => new BatchModel {
                                     id = x.Id, 
-                                    name = x.BatchId, 
+                                    name = x.Name, 
                                     createdBy = x.CreatedBy, 
                                     created = x.Created
                                 }).ToList();

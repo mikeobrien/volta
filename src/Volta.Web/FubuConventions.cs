@@ -40,7 +40,7 @@ namespace Volta.Web
             
             ApplyConvention<DownloadDataConvention>();
 
-            Expression<Func<ActionCall, bool>> viewHandler = x =>
+            Func<ActionCall, bool> viewHandler = x =>
                 x.HandlerType.Assembly == GetType().Assembly && x.HasAnyOutputBehavior() &&
                 !publicHandlers.Any(suffix => x.HandlerType.Name.EndsWith(suffix));
 
@@ -50,9 +50,9 @@ namespace Volta.Web
 
             Policies
                 .WrapBehaviorChainsWith<CacheBusterBehavior>()
-                .ConditionallyWrapBehaviorChainsWith<AuthorizationBehavior>(viewHandler)
+                .ConditionallyWrapBehaviorChainsWith<AuthorizationBehavior>(x => viewHandler(x))
                 .ConditionallyWrapBehaviorChainsWith<AjaxAuthorizationBehavior>(ajaxHandler)
-                .ConditionallyWrapBehaviorChainsWith<ExceptionHandlerBehavior>(viewHandler)
+                .ConditionallyWrapBehaviorChainsWith<ExceptionHandlerBehavior>(x => viewHandler(x) && !debug)
                 .ConditionallyWrapBehaviorChainsWith<AjaxExceptionHandlerBehavior>(ajaxHandler);
 
             Media.ApplyContentNegotiationToActions(x => x.HandlerType.Assembly == GetType().Assembly && !x.HasAnyOutputBehavior());

@@ -36,8 +36,7 @@ namespace Volta.Web.Batches
             using (var arbinData = new ArbinData(arbinFile.Path))
             {
                 _batches.Add(_batchFactory.Create(
-                    Path.GetFileNameWithoutExtension(request.file.FileName), 
-                    new Schedule(_schedules.Get(request.scheduleId).File),
+                    _schedules.Get(request.scheduleId),
                     arbinData));
             }
         }
