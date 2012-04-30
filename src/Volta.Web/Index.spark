@@ -83,15 +83,10 @@
     <div id="messages"></div>
     
     <div class="content" id="content">
-        <mustache src="~/dashboard-template.html" data="Model.Dashboard" />
+        <div style="height:400px;text-align:center">
+            <img src="images/spinner.gif" style="margin-top:160px" />
+        </div>
     </div>
 </div>
 
 <footer>Copyright © ${DateTime.Now.Year} Group Sadoway</footer>
-
-<script>
-if (window.location.hash != '#' && window.location.hash != '')
-{
-    document.getElementById('content').innerHTML='<div style="height:400px;text-align:center"><img src="images/spinner.gif" style="margin-top:160px" /></div>';
-}
-</script>

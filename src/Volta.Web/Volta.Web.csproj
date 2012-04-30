@@ -83,9 +83,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Nustache.Core">
-      <HintPath>..\packages\Nustache.1.12.3.6\lib\net20\Nustache.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Spark, Version=1.6.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
       <HintPath>..\packages\Spark.1.6\lib\NET40\Spark.dll</HintPath>
     </Reference>
