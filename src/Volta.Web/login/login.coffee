@@ -1,10 +1,11 @@
-define ['backbone', 'jquery'], (Backbone, $) ->
+define ['backbone', 'jquery', 'postal'], (Backbone, $, postal) ->
 
     class View extends Backbone.View
         events:
             'click .login': 'login'
         initialize: (options) ->
             _.bindAll @, 'render', 'login', 'showError'
+            postal.channel('error').subscribe (error) => @showError(error.message)
         render: ->
             @$('.username').focus()
         login: (event) ->

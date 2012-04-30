@@ -138,6 +138,7 @@
     <Compile Include="Infrastructure\Framework\Security\HashedPassword.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\CacheBusterBehavior.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\ConfigurationExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Web\Fubu\SSLRedirectBehavior.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\DownloadDataConvention.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\DownloadDataBehavior.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\RegexUrlPolicy.cs" />

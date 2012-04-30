@@ -24,7 +24,7 @@ require ['jquery', 'backbone', 'postal', 'postalajax', 'postalscroll', 'app', 'b
         , ($, Backbone, postal, postalAjax, postalScroll, App, Batches, Admin) ->
     
     window.onerror = (message, source, line) -> 
-        $.post 'errors', { Source: source, Line: line, Message: message }
+        $.post 'errors', { source: source, line: line, message: message }
         postal.publish('error', message: 'Oops! A browser error has occured. This has been logged and will be fixed as soon as possible.')
 
     postalAjax.errors[0] = 

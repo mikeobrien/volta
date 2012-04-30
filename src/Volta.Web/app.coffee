@@ -72,7 +72,8 @@ define ['jquery', 'backbone', 'underscore', 'postal', 'mustache', 'data',
             'about': 'about'
         dashboard: ->
             $.get 'dashboard', (data) => @render(Mustache.render(dashboardTemplate, data))
-        about: -> @render @aboutTemplate
+        about: -> 
+            @render @aboutTemplate
         render: (el) ->
             @content.empty()
             @content.append el

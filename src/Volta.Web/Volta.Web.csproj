@@ -188,7 +188,7 @@
     <Compile Include="Behaviors\AjaxExceptionHandlerBehavior.cs" />
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
     <Compile Include="DashboardGetHandler.cs" />
-    <Compile Include="errors\PublicPostHandler.cs" />
+    <Compile Include="ErrorsPublicPostHandler.cs" />
     <Compile Include="FubuConventions.cs" />
     <Compile Include="IndexGetHandler.cs" />
     <Compile Include="login\PublicGetHandler.cs" />
