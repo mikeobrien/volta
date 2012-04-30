@@ -24,7 +24,7 @@ namespace Volta.Core.Application.Security
         {
             var user = _userRepository.FirstOrDefault(x => x.Username == (string)username);
             if (user != null && HashedPassword.FromHash(user.PasswordHash).MatchesPassword(password)) return CreateToken(user);
-            if (!_userRepository.Any()) return CreateToken(_userRepository.Add(_userFactory.Create(username, password, null, true)));
+            if (!_userRepository.Any()) return CreateToken(_userFactory.Create(username, password, null, true, "volta"));
             return null;
         }
 

@@ -9,5 +9,7 @@ namespace Volta.Web.Admin.Users
         public string email { get; set; }
         public string password { get; set; }
         public bool administrator { get; set; }
+        public DateTime created { get; set; }
+        public string createdBy { get; set; }
     }
 }

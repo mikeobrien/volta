@@ -12,6 +12,8 @@ namespace Volta.Core.Domain.Administration
         public string PasswordHash { get; set; }
         public string Email { get; set; }
         public bool Administrator { get; set; }
+        public DateTime Created { get; set; }
+        public string CreatedBy { get; set; }
 
         public void SetPassword(string password)
         {

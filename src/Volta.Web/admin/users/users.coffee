@@ -53,8 +53,8 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             @$el.html @template(@model.toJSON())
             @
         save: ->
-            if @$el.validate('#username', ((x) -> x == ''), 'Username cannot be blank') |
-               @$el.validate(['#password', '#password2'], ((x, y) -> x != y), 'Passwords do not match') then return false
+            if @$el.validateHasValue('#username', 'Username cannot be blank') |
+               @$el.validateMatch('#password', '#password2', 'Passwords do not match') then return false
             @model.save
                 username: @$('#username').val()
                 email: @$('#email').val()
@@ -77,9 +77,9 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             @$el.html @template
             @
         save: ->
-            if @$el.validate('#username', ((x) -> x == ''), 'Username cannot be blank') |
-               (@$el.validate('#password', ((x) -> x == ''), 'Password cannot be blank') ||
-                @$el.validate(['#password', '#password2'], ((x, y) -> x != y), 'Passwords do not match')) then return false
+            if @$el.validateHasValue('#username', 'Username cannot be blank') |
+               (@$el.validateHasValue('#password', 'Password cannot be blank') ||
+                @$el.validateMatch('#password', '#password2', 'Passwords do not match')) then return false
             @model.save
                 username: @$('#username').val()
                 email: @$('#email').val()

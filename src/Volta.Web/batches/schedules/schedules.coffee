@@ -57,8 +57,8 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             @$el.html @template(@model.toJSON())
             @
         save: ->
-            if @$el.validate('#name', ((x) -> x == ''), 'Name cannot be blank') |
-               @$el.validate('#file', ((x) -> x == ''), 'File cannot be empty') then return false
+            if @$el.validateHasValue('#name', 'Name cannot be blank') |
+               @$el.validateHasValue('#file', 'File cannot be empty') then return false
             @model.save
                 name: @$('#name').val()
                 file: @$('#file').val()
@@ -85,8 +85,8 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             start = path.lastIndexOf('\\') + 1
             name.val(path.substr(start, path.lastIndexOf('.') - start))
         save: ->
-            if @$el.validate('#name', ((x) -> x == ''), 'Name cannot be blank') |
-               @$el.validate('#file', ((x) -> x == ''), 'No file selected') then return false
+            if @$el.validateHasValue('#name', 'Name cannot be blank') |
+               @$el.validateHasValue('#file', 'No file selected') then return false
             @$('form').ajaxSubmit
                 url: 'batches/schedules'
                 type: 'POST'

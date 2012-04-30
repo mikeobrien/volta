@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Volta.Core.Application.Security;
-using Volta.Core.Domain.Batches;
 using Volta.Core.Infrastructure.Application;
-using Volta.Core.Infrastructure.Framework.Data;
 using Volta.Core.Infrastructure.Framework.Security;
 
 namespace Volta.Web
@@ -15,27 +11,23 @@ namespace Volta.Web
         public Guid UserId { get; set; }
         public bool IsAdministrator { get; set; }
         public ISystemInfo SystemInfo { get; set; }
-        public IEnumerable<ScheduleFile> Schedules { get; set; }
-        public IEnumerable<Batch> Batches { get; set; }
+        public DashboardModel Dashboard { get; set; }
     }
 
     public class IndexGetHandler
     {
         private readonly ISecureSession<Token> _secureSession;
+        private readonly DashboardGetHandler _dashboard;
         private readonly ISystemInfo _systemInfo;
-        private readonly IRepository<ScheduleFile> _schedules;
-        private readonly IRepository<Batch> _batches;
 
         public IndexGetHandler(
-            ISecureSession<Token> secureSession, 
-            ISystemInfo systemInfo,
-            IRepository<ScheduleFile> schedules,
-            IRepository<Batch> batches)
+            ISecureSession<Token> secureSession,
+            DashboardGetHandler dashboard,
+            ISystemInfo systemInfo)
         {
             _secureSession = secureSession;
+            _dashboard = dashboard;
             _systemInfo = systemInfo;
-            _schedules = schedules;
-            _batches = batches;
         }
 
         public IndexModel Execute()
@@ -46,9 +38,8 @@ namespace Volta.Web
                     UserId = token.UserId,
                     Username = token.Username,
                     IsAdministrator = token.IsAdministrator,
-                    SystemInfo = _systemInfo,
-                    Schedules = _schedules.OrderBy(x => x.Created).Take(5),
-                    Batches = _batches.OrderBy(x => x.Created).Take(5)
+                    Dashboard = _dashboard.ExecuteDashboard(),
+                    SystemInfo = _systemInfo
                 };
         }
     }

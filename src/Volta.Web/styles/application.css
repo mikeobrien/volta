@@ -88,3 +88,18 @@ footer
     float: right;
     margin:0px
 }
+
+.input-append .numeric
+{
+    text-align: right;
+}
+
+.sub-form-header
+{
+    margin: 10px;
+}
+
+.form-header
+{
+    margin: 20px 0;
+}

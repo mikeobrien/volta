@@ -126,7 +126,7 @@
     <Compile Include="Application\Security\Token.cs" />
     <Compile Include="Domain\Administration\IUserFactory.cs" />
     <Compile Include="Domain\Administration\User.cs" />
-    <Compile Include="Domain\Administration\UserFactory.cs" />
+    <Compile Include="Domain\Administration\UserCreateService.cs" />
     <Compile Include="Infrastructure\Framework\Data\IRepository.cs" />
     <Compile Include="Infrastructure\Framework\Data\MongoConnection.cs" />
     <Compile Include="Infrastructure\Framework\Data\MongoRepository.cs" />

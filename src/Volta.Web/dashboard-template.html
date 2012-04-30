@@ -1,0 +1,56 @@
+﻿<div class="well" style="height: 110px;padding: 20px;background-image:url(images/banner.background.png);">
+    <div style="float: left;">
+        <img src="images/volta.logo.large.png"/>
+    </div>
+    <div style="float: right; text-align: right;color:#fff">
+        v{{version}}<br/>
+        Released {{buildDate}}<br/>
+        Logged in as {{username}}<br/>
+        {{userType}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="span5">
+
+        <h2>Batches</h2>
+        <hr class="header-rule"/>
+        <div class="btn-group">
+            <a href="#batches" class="btn">
+                <img src="images/battery.16.png"/> Manage Batches
+            </a>
+            <a href="#batches/add" class="btn">
+                <img src="images/battery.add.16.png"/> Add Batch
+            </a>
+        </div>
+        <h4 class="subheading">Recently Added</h4>
+        <ul class="nav nav-tabs nav-stacked">
+            {{#batches}}
+                <li>
+                <a href="#batches/edit/{{id}}">{{name}}  <span class="label label-inverse">{{createdBy}}</span></a>
+                </li>
+            {{/batches}}
+        </ul>
+    </div>
+    <div class="span5">
+
+        <h2>Arbin Schedules</h2>
+        <hr class="header-rule"/>
+        <div class="btn-group">
+            <a href="#batches/schedules" class="btn">
+                <img src="images/alarmclock.16.png"/> Manage Schedules
+            </a>
+            <a href="#batches/schedules/add" class="btn">
+                <img src="images/alarmclock.add.16.png"/> Add Schedule
+            </a>
+        </div>
+        <h4 class="subheading">Recently Added</h4>
+        <ul class="nav nav-tabs nav-stacked">
+            {{#schedules}}
+                <li>
+                <a href="#batches/schedules/edit/{{id}}">{{name}}  <span class="label label-inverse">{{createdBy}}</span></a>
+                </li>
+            {{/schedules}}
+        </ul>
+    </div>
+</div>

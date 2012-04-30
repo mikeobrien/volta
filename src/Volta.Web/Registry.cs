@@ -27,7 +27,7 @@ namespace Volta.Web
             For<ISecureSession<Token>>().Use<SecureSession<Token>>();
             For<IAuthenticationService<Token>>().Use<AuthenticationService>();
 
-            For<IUserFactory>().Use<UserFactory>();
+            For<IUserFactory>().Use<UserCreateService>();
             For<IUserUpdateService>().Use<UserUpdateService>();
             For<IUserDeleteService>().Use<UserDeleteService>();
         }

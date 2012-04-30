@@ -83,6 +83,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Nustache.Core">
+      <HintPath>..\packages\Nustache.1.12.3.6\lib\net20\Nustache.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Spark, Version=1.6.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
       <HintPath>..\packages\Spark.1.6\lib\NET40\Spark.dll</HintPath>
     </Reference>
@@ -137,6 +140,7 @@
     <Content Include="batches\schedules\schedules.js">
       <DependentUpon>schedules.coffee</DependentUpon>
     </Content>
+    <Content Include="dashboard-template.html" />
     <Content Include="login-template.html" />
     <Content Include="error-template.html" />
     <Content Include="error.html" />
@@ -150,6 +154,7 @@
       <DependentUpon>main.coffee</DependentUpon>
     </Content>
     <Content Include="notfound.html" />
+    <Content Include="Shared\bindings.xml" />
     <Content Include="styles\application.css" />
     <Content Include="styles\error.css" />
     <Content Include="styles\login.css" />
@@ -182,6 +187,7 @@
     <Compile Include="Behaviors\AuthorizationBehavior.cs" />
     <Compile Include="Behaviors\AjaxExceptionHandlerBehavior.cs" />
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
+    <Compile Include="DashboardGetHandler.cs" />
     <Compile Include="errors\PublicPostHandler.cs" />
     <Compile Include="FubuConventions.cs" />
     <Compile Include="IndexGetHandler.cs" />
@@ -190,7 +196,7 @@
     <Compile Include="MappingConventions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registry.cs" />
-    <Compile Include="logout\PublicPostHandler.cs" />
+    <Compile Include="LogoutPublicPostHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />

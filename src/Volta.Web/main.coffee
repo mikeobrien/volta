@@ -7,6 +7,7 @@ require.config
         "postal": "scripts/postal/postal"
         "postalajax": "scripts/postal/postal.ajax-events"
         "postalscroll": "scripts/postal/postal.window-scroll-events"
+        "mustache": "scripts/mustache"
 
 plugins = [
     'scripts/jquery/jquery.ajax-date-parser', 

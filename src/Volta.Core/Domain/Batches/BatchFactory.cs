@@ -15,7 +15,7 @@ namespace Volta.Core.Domain.Batches
             _secureSession = secureSession;
         }
 
-        public Batch Create(ScheduleFile scheduleFile, IArbinData arbinData)
+        public Batch Create(IArbinData arbinData)
         {
             var global = arbinData.GetGlobal().ToList();
             var batch = new Batch();
@@ -27,8 +27,6 @@ namespace Volta.Core.Domain.Batches
             batch.ComponentPhase.Operator = primaryOperator;
             batch.AssemblyPhase.Operator = primaryOperator;
             batch.OperationPhase.Operator = primaryOperator;
-            batch.ScheduleId = scheduleFile.Id;
-            batch.ScheduleName = scheduleFile.Name;
             return batch;
         }
     }

@@ -1,6 +1,9 @@
-define ['jquery', 'backbone', 'underscore', 'postal', 'data', 
-        'text!error-template.html', 'text!about.html', 'text!login-template.html']
-        , ($, Backbone, _, postal, data, errorTemplate, aboutTemplate, loginTemplate) ->
+define ['jquery', 'backbone', 'underscore', 'postal', 'mustache', 'data', 
+        'text!error-template.html', 
+        'text!about.html', 
+        'text!login-template.html',
+        'text!dashboard-template.html']
+        , ($, Backbone, _, postal, Mustache, data, errorTemplate, aboutTemplate, loginTemplate, dashboardTemplate) ->
 
     class NavBarView extends Backbone.View
         events:
@@ -65,10 +68,14 @@ define ['jquery', 'backbone', 'underscore', 'postal', 'data',
         initialize: (options) ->
             @content = options.content
         routes:
+            '': 'dashboard'
             'about': 'about'
-        about: -> 
+        dashboard: ->
+            $.get 'dashboard', (data) => @render(Mustache.render(dashboardTemplate, data))
+        about: -> @render @aboutTemplate
+        render: (el) ->
             @content.empty()
-            @content.html @aboutTemplate
+            @content.append el
 
     start: (menu, messages, content) ->
         @navBarView = new NavBarView el: menu

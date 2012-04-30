@@ -1,19 +1,9 @@
 ﻿<div class="page-header">
-    <h2>Add Batch</h2>
+    <h2>Upload Arbin Data</h2>
 </div>
     
 <form class="form-horizontal">
     <fieldset>
-        <div class="control-group username">
-        <label class="control-label" for="schedule">Arbin Schedule</label>
-        <div class="controls">
-            <select id="schedule" name="scheduleId">
-                {[ _.each(schedules, function(schedule) { ]} 
-                    <option value="{{ schedule.id }}">{{ schedule.name }}</option> 
-                {[ }); ]}
-            </select>
-        </div>
-        </div>
         <div class="control-group">
         <label class="control-label" for="file">Arbin Data File</label>
             <div class="controls">
@@ -21,8 +11,9 @@
             </div>
         </div>
         <div class="form-actions">
-        <button type="submit" class="btn btn-primary save">Add</button>
+        <button type="submit" class="btn btn-primary save">Upload</button>
         <a href="/#batches" class="btn">Cancel</a>
+            <span class="help-inline"></span>
         <div class="progress upload-progress">
             <div class="bar" style="width: 0;"></div>
         </div>

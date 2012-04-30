@@ -1,7 +1,7 @@
 using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Framework.Security;
 
-namespace Volta.Web.Logout
+namespace Volta.Web
 {
     public class LogoutModel {}
 
@@ -14,7 +14,7 @@ namespace Volta.Web.Logout
             _secureSession = secureSession;
         }
 
-        public void Execute(LogoutModel request)
+        public void ExecuteLogout(LogoutModel request)
         {
             _secureSession.Logout();
         }

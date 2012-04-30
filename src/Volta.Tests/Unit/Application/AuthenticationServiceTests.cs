@@ -19,7 +19,7 @@ namespace Volta.Tests.Unit.Application
         [Test]
         public void should_successfully_authenticate_with_correct_credentials()
         {
-            var authenticationService = new AuthenticationService(_userRepository, new UserFactory(_userRepository));
+            var authenticationService = new AuthenticationService(_userRepository, new UserCreateService(_userRepository));
             var result = authenticationService.Authenticate(Username, Password);
             result.ShouldNotBeNull();
             result.Username.ToString().ShouldEqual(Username);
@@ -29,7 +29,7 @@ namespace Volta.Tests.Unit.Application
         [Test]
         public void should_fail_to_authenticate_with_incorrect_credentials()
         {
-            var authenticationService = new AuthenticationService(_userRepository, new UserFactory(_userRepository));
+            var authenticationService = new AuthenticationService(_userRepository, new UserCreateService(_userRepository));
             authenticationService.Authenticate(Username, "yada").ShouldBeNull();
         }
 
@@ -37,7 +37,7 @@ namespace Volta.Tests.Unit.Application
         public void should_add_and_successfully_authenticate_the_first_user()
         {
             var userRepository = new MemoryRepository<User>();
-            var authenticationService = new AuthenticationService(userRepository, new UserFactory(userRepository));
+            var authenticationService = new AuthenticationService(userRepository, new UserCreateService(userRepository));
             authenticationService.Authenticate(Username, Password);
             userRepository.Count().ShouldEqual(1);
         }

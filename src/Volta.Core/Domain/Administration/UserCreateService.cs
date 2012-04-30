@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using Volta.Core.Application.Security;
 using Volta.Core.Infrastructure.Framework.Data;
 using Volta.Core.Infrastructure.Framework.Security;
 
@@ -11,16 +13,16 @@ namespace Volta.Core.Domain.Administration
     public class EmptyPasswordException : ValidationException
         { public EmptyPasswordException() : base("Password cannot be empty.") {}}
 
-    public class UserFactory : IUserFactory
+    public class UserCreateService : IUserFactory
     {
         private readonly IRepository<User> _userRepository;
 
-        public UserFactory(IRepository<User> userRepository)
+        public UserCreateService(IRepository<User> userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public User Create(Username username, string password, string email, bool administrator)
+        public User Create(Username username, string password, string email, bool administrator, string createdBy)
         {
             if (_userRepository.Any(x => x.Username == (string)username))
                 throw new DuplicateUsernameException();
@@ -32,8 +34,12 @@ namespace Volta.Core.Domain.Administration
                     Username = username,
                     PasswordHash = HashedPassword.Create(password).ToString(),
                     Email = email,
-                    Administrator = administrator
+                    Administrator = administrator,
+                    Created = DateTime.Now,
+                    CreatedBy = createdBy
                 };
+
+            _userRepository.Add(user);
             return user;
         }
     }

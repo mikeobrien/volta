@@ -27,9 +27,6 @@ namespace Volta.Core.Domain.Batches
         public double OperatingTemperature { get; set; } // C
         public double CyclingCurrent { get; set; } // A
 
-        public Guid ScheduleId { get; set; }
-        public string ScheduleName { get; set; }
-
         public string CreatedBy { get; set; }
         public DateTime Created { get; set; }
     }
@@ -49,6 +46,7 @@ namespace Volta.Core.Domain.Batches
             Electrolyte = new Electrolyte();
             Crucible = new Crucible();
         }
+
         public string Chemistry { get; set; } // LiSbPb, LiSb, NaBi
         public double NominalCapacity { get; set; } // Ah, 1Ah, 20, Ah, 200Ah
         public double InnerDiameter { get; set; } // mm
@@ -66,6 +64,9 @@ namespace Volta.Core.Domain.Batches
         public Sheath Sheath { get; set; }
         public Electrolyte Electrolyte { get; set; }
         public Crucible Crucible { get; set; }
+
+        public Guid ScheduleId { get; set; }
+        public string ScheduleName { get; set; }
     }
 
     public class Crucible

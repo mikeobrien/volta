@@ -54,7 +54,7 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             @$el.html @template(@model.toJSON())
             @
         save: ->
-            if @$el.validate('#name', ((x) -> x == ''), 'Name cannot be blank') then return false
+            if @$el.validateHasValue('#name', 'Name cannot be blank') then return false
             @model.save
                 name: @$('#name').val()
             , 
@@ -69,20 +69,18 @@ define ['jquery', 'backbone', 'underscore', 'postal',
         initialize: (options) ->
             _.bindAll @, 'render', 'save'
             @router = options.router
-            @schedules = options.schedules
-            @schedules.on 'reset', @render, @
-            @schedules.fetch()
         render: ->
-            @$el.html @template(schedules: @schedules.toJSON())
+            @$el.html @template()
             @
         save: ->
-            if @$el.validate('#file', ((x) -> x == ''), 'No file selected') then return false
+            if @$el.validateHasValue('#file', 'No file selected') then return false
             $('.save').attr('disabled', true)
             progress = $ '.progress .bar'
             @$('form').ajaxSubmit
                 url: 'batches'
                 type: 'POST'
-                success: => @router.navigate 'batches', trigger: true
+                dataType: 'json'
+                success: (data) => @router.navigate 'batches/edit/' + data.id, trigger: true
                 error: => $('.save').attr('disabled', false)
                 uploadProgress: (event, position, total, percentComplete) ->
                     progress.width(percentComplete + '%')
@@ -103,8 +101,7 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             @render new ListView(collection: batches).render().el
             batches.fetch()
         addBatch: ->
-            schedules = new Schedules.AllSchedules()
-            @render new AddView(router: @, schedules: schedules).render().el
+            @render new AddView(router: @).render().el
         editBatch: (id) ->
             batch = new Batch id: id
             @render new EditView(model: batch, router: @).el
