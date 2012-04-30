@@ -26,7 +26,7 @@ namespace Volta.Tests.Unit.UserInterface.Behaviors
             exceptionHandlerBehavior.Invoke();
 
             innerBehavior.Received().Invoke();
-            outputWriter.Received().RedirectToUrl("/Error.htm");
+            outputWriter.Received().RedirectToUrl("/Error.html");
             logger.Received().Write(exception);
         }
 
