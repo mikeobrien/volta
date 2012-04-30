@@ -40,21 +40,16 @@ namespace Volta.Web
             
             ApplyConvention<DownloadDataConvention>();
 
-            Func<ActionCall, bool> viewHandler = x =>
-                x.HandlerType.Assembly == GetType().Assembly && x.HasAnyOutputBehavior() &&
-                !publicHandlers.Any(suffix => x.HandlerType.Name.EndsWith(suffix));
-
-            Expression<Func<ActionCall, bool>> ajaxHandler = x =>
-                    x.HandlerType.Assembly == GetType().Assembly && !x.HasAnyOutputBehavior() &&
-                    !publicHandlers.Any(suffix => x.HandlerType.Name.EndsWith(suffix));
+            Func<ActionCall, bool> isView = x => x.HandlerType.Assembly == GetType().Assembly && x.HasAnyOutputBehavior();
+            Func<ActionCall, bool> isSecure = x => !publicHandlers.Any(suffix => x.HandlerType.Name.EndsWith(suffix));
 
             Policies
-                .ConditionallyWrapBehaviorChainsWith<SSLRedirectBehavior>(x => viewHandler(x) && !debug)
+                .ConditionallyWrapBehaviorChainsWith<AuthorizationBehavior>(x => isView(x) && isSecure(x))
+                .ConditionallyWrapBehaviorChainsWith<AjaxAuthorizationBehavior>(x => !isView(x) && isSecure(x))
+                .ConditionallyWrapBehaviorChainsWith<ExceptionHandlerBehavior>(x => isView(x) && !debug)
+                .ConditionallyWrapBehaviorChainsWith<AjaxExceptionHandlerBehavior>(x => !isView(x))
                 .WrapBehaviorChainsWith<CacheBusterBehavior>()
-                .ConditionallyWrapBehaviorChainsWith<AuthorizationBehavior>(x => viewHandler(x))
-                .ConditionallyWrapBehaviorChainsWith<AjaxAuthorizationBehavior>(ajaxHandler)
-                .ConditionallyWrapBehaviorChainsWith<ExceptionHandlerBehavior>(x => viewHandler(x) && !debug)
-                .ConditionallyWrapBehaviorChainsWith<AjaxExceptionHandlerBehavior>(ajaxHandler);
+                .ConditionallyWrapBehaviorChainsWith<SSLRedirectBehavior>(x => isView(x) && !debug);
 
             Media.ApplyContentNegotiationToActions(x => x.HandlerType.Assembly == GetType().Assembly && !x.HasAnyOutputBehavior());
 

@@ -19,7 +19,7 @@ namespace Volta.Core.Infrastructure.Framework.Web.Fubu
 
         public void Invoke()
         {
-            var url = _request.RawUrl();
+            var url = _request.FullUrl();
             if (url.StartsWith("https://")) _innerBehavior.Invoke();
             else _outputWriter.RedirectToUrl(url.Replace("http://", "https://"));
         }
