@@ -2,8 +2,8 @@ using Volta.Core.Application.Security;
 using Volta.Core.Domain.Administration;
 using Volta.Core.Infrastructure.Application;
 using Volta.Core.Infrastructure.Application.Configuration;
-using Volta.Core.Infrastructure.Framework.Arbin;
 using Volta.Core.Infrastructure.Framework.Data;
+using Volta.Core.Infrastructure.Framework.Latex;
 using Volta.Core.Infrastructure.Framework.Logging;
 using Volta.Core.Infrastructure.Framework.Security;
 using Volta.Core.Infrastructure.Framework.Web;
@@ -30,6 +30,8 @@ namespace Volta.Web
             For<IUserFactory>().Use<UserCreateService>();
             For<IUserUpdateService>().Use<UserUpdateService>();
             For<IUserDeleteService>().Use<UserDeleteService>();
+
+            For<ILatex>().Use<LatexEngine>();
         }
     }
 }

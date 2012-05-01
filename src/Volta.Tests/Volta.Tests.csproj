@@ -112,6 +112,7 @@
     <Compile Include="Integration\Infrastructure\Framework\Data\IniFileTests.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Data\JetQueryTests.cs" />
     <Compile Include="Integration\Infrastructure\Framework\IO\TempFileTests.cs" />
+    <Compile Include="Integration\Infrastructure\Framework\Latex\LatexTests.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Log4NetLoggerTests.cs" />
     <Compile Include="Unit\Domain\Administration\UserDeleteServiceTests.cs" />
     <Compile Include="Unit\Domain\Administration\UserUpdateServiceTests.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Unit\Infrastructure\Framework\Data\QueryableExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\IO\FileCacheTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\FuncTests.cs" />
+    <Compile Include="Unit\Infrastructure\Framework\Latex\LatexArgumentFactoryTest.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Reflection\AssemblyExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Reflection\ExpressionExtensionsTests.cs" />
     <Compile Include="Unit\Infrastructure\Framework\Web\Fubu\RegexUrlPolicyTests.cs" />
@@ -148,6 +150,9 @@
     </None>
     <None Include="Client\specs\login\login.specs.coffee" />
     <None Include="Integration\Infrastructure\Framework\Arbin\test.sdu">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Integration\Infrastructure\Framework\Latex\template.razor">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

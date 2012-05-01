@@ -74,6 +74,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.0.8\lib\net40\RazorEngine.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
@@ -81,6 +84,10 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\RazorEngine.3.0.8\lib\net40\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -111,6 +118,11 @@
     <Compile Include="Infrastructure\Framework\Data\Updates.cs" />
     <Compile Include="Infrastructure\Framework\Func.cs" />
     <Compile Include="Infrastructure\Framework\IO\TempFile.cs" />
+    <Compile Include="Infrastructure\Framework\Latex\ILatex.cs" />
+    <Compile Include="Infrastructure\Framework\Latex\LatexEngine.cs" />
+    <Compile Include="Infrastructure\Framework\Latex\LatexArgumentFactory.cs" />
+    <Compile Include="Infrastructure\Framework\Latex\LatexOptions.cs" />
+    <Compile Include="Infrastructure\Framework\Latex\LatexResult.cs" />
     <Compile Include="Infrastructure\Framework\RegexExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Security\Username.cs" />
     <Compile Include="Domain\Administration\IUserUpdateService.cs" />
