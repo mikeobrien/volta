@@ -43,7 +43,7 @@
                         </li>
                         <li>
                             <a href="#batches/templates">
-                                <img src="images/template.16.png"/> Templates
+                                <img src="images/template.16.png"/> Presentation Templates
                             </a>
                         </li>
                     </ul>
@@ -72,7 +72,7 @@
                 </li>
             </ul>
             <p class="navbar-text pull-right">
-                logged in as <a href="#admin/users/edit/${Model.UserId}">${Model.Username}</a> | <a class="logout">logout</a>
+                logged in as <a href="#admin/users/edit/${Model.UserId}" title="Edit your account">${Model.Username}</a> | <a class="logout">logout</a>
             </p>
         </div>
     </div>

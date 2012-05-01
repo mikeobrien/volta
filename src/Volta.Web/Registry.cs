@@ -5,6 +5,7 @@ using Volta.Core.Infrastructure.Application.Configuration;
 using Volta.Core.Infrastructure.Framework.Data;
 using Volta.Core.Infrastructure.Framework.Latex;
 using Volta.Core.Infrastructure.Framework.Logging;
+using Volta.Core.Infrastructure.Framework.Razor;
 using Volta.Core.Infrastructure.Framework.Security;
 using Volta.Core.Infrastructure.Framework.Web;
 
@@ -31,7 +32,8 @@ namespace Volta.Web
             For<IUserUpdateService>().Use<UserUpdateService>();
             For<IUserDeleteService>().Use<UserDeleteService>();
 
-            For<ILatex>().Use<LatexEngine>();
+            For<ILatexEngine>().Use<LatexEngine>();
+            For<IRazorEngine>().Use<RazorEngine>();
         }
     }
 }

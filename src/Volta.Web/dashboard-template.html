@@ -20,14 +20,14 @@
                 <img src="images/battery.16.png"/> Manage Batches
             </a>
             <a href="#batches/add" class="btn">
-                <img src="images/battery.add.16.png"/> Add Batch
+                <img src="images/battery.add.16.png"/> Import Batch Data
             </a>
         </div>
         <h4 class="subheading">Recently Added</h4>
         <ul class="nav nav-tabs nav-stacked">
             {{#batches}}
                 <li>
-                <a href="#batches/edit/{{id}}">{{name}}  <span class="label label-inverse">{{createdBy}}</span></a>
+                <a href="#batches/edit/{{id}}" title="Edit batch">{{name}}  <span class="label label-inverse">{{createdBy}}</span></a>
                 </li>
             {{/batches}}
         </ul>
@@ -48,7 +48,7 @@
         <ul class="nav nav-tabs nav-stacked">
             {{#schedules}}
                 <li>
-                <a href="#batches/schedules/edit/{{id}}">{{name}}  <span class="label label-inverse">{{createdBy}}</span></a>
+                <a href="#batches/schedules/edit/{{id}}" title="Edit schedule">{{name}}  <span class="label label-inverse">{{createdBy}}</span></a>
                 </li>
             {{/schedules}}
         </ul>

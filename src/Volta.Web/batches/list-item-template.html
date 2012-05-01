@@ -1,7 +1,10 @@
-﻿<td style="width:300px"><a href="#batches/edit/{{ id }}">{{ name }}</a></td>
+﻿﻿<td style="width:300px"><a href="#batches/edit/{{ id }}">{{ name }}</a></td>
 <td>{{ createdBy }}</td>
 <td>{{ moment(created).from() }}</td>
 <td class="links">
-    <a href="batches/download/{{ id }}" class="btn"><img src="images/disk.16.png"/></a>
-    <a class="btn delete"><img src="images/delete.16.png"/></a>
+    <div class="btn-group" style="width:115px">
+        <a href="#batches/presentation/{{ id }}" class="btn" title="Generate presentation"><img src="images/template.16.png"/></a>
+        <a href="#batches/download/{{ id }}" class="btn" title="Download batch data"><img src="images/disk.16.png"/></a>
+        <a class="btn delete" title="Delete batch"><img src="images/delete.16.png"/></a>
+    </div>
 </td>

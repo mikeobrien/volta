@@ -5,9 +5,19 @@ using System.Linq;
 
 namespace Volta.Core.Infrastructure.Framework.Latex
 {
-    public class LatexEngine : ILatex
+    public class LatexException : Exception
     {
-        public LatexResult GeneratePdf(string path, LatexOptions options = null)
+        public LatexException(string output) : base("An error occured rendering the latex document.")
+        {
+            Output = output;
+        }
+
+        public string Output { get; set; }
+    }
+
+    public class LatexEngine : ILatexEngine
+    {
+        public string GeneratePdf(string path, LatexOptions options = null)
         {
             var latexPath = Environment.GetEnvironmentVariable("path", EnvironmentVariableTarget.Machine).Split(';')
                 .FirstOrDefault(x => File.Exists(Path.Combine(x, "latex.exe")));
@@ -34,7 +44,8 @@ namespace Volta.Core.Infrastructure.Framework.Latex
             Directory.GetFiles(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + ".*")
                 .Where(x => x != path && x != outputPath).ToList()
                 .ForEach(File.Delete);
-            return new LatexResult(error, output, outputPath);
+            if (error) throw new LatexException(output);
+            return outputPath;
         } 
     }
 }

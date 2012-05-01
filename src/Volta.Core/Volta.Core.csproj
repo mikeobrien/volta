@@ -102,6 +102,7 @@
     <Compile Include="Domain\Batches\BatchFactory.cs" />
     <Compile Include="Domain\Batches\Template.cs" />
     <Compile Include="Domain\Batches\ScheduleFile.cs" />
+    <Compile Include="Domain\Batches\TemplateRenderingService.cs" />
     <Compile Include="Domain\NotFoundException.cs" />
     <Compile Include="Domain\ValidationException.cs" />
     <Compile Include="Infrastructure\Application\Data\MongoConventions.cs" />
@@ -118,11 +119,13 @@
     <Compile Include="Infrastructure\Framework\Data\Updates.cs" />
     <Compile Include="Infrastructure\Framework\Func.cs" />
     <Compile Include="Infrastructure\Framework\IO\TempFile.cs" />
-    <Compile Include="Infrastructure\Framework\Latex\ILatex.cs" />
+    <Compile Include="Infrastructure\Framework\Latex\ILatexEngine.cs" />
     <Compile Include="Infrastructure\Framework\Latex\LatexEngine.cs" />
     <Compile Include="Infrastructure\Framework\Latex\LatexArgumentFactory.cs" />
     <Compile Include="Infrastructure\Framework\Latex\LatexOptions.cs" />
     <Compile Include="Infrastructure\Framework\Latex\LatexResult.cs" />
+    <Compile Include="Infrastructure\Framework\Razor\IRazorEngine.cs" />
+    <Compile Include="Infrastructure\Framework\Razor\RazorEngine.cs" />
     <Compile Include="Infrastructure\Framework\RegexExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Security\Username.cs" />
     <Compile Include="Domain\Administration\IUserUpdateService.cs" />

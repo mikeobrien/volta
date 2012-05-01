@@ -3,4 +3,8 @@
 <td class="image">{{ administrator ? '<img src="images/check.16.png"/>' : '' }}</td>
 <td>{{ createdBy }}</td>
 <td>{{ moment(created).from() }}</td>
-<td class="links"><a class="btn delete"><img src="images/delete.16.png"/></a></td>
+<td class="links">
+    <div class="btn-group" style="width:40px">
+        <a class="btn delete" title="Delete user"><img src="images/delete.16.png"/></a>                  
+    </div>
+</td>

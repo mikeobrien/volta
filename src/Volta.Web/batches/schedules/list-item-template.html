@@ -2,6 +2,8 @@
 <td>{{ createdBy }}</td>
 <td>{{ moment(created).from() }}</td>
 <td class="links">
-    <a href="batches/schedules/download/{{ id }}" class="btn"><img src="images/disk.16.png"/></a>
-    <a class="btn delete"><img src="images/delete.16.png"/></a>
+    <div class="btn-group" style="width:75px">
+        <a href="batches/schedules/download/{{ id }}" class="btn" title="Download schedule file"><img src="images/disk.16.png"/></a>
+        <a class="btn delete" title="Delete schedule"><img src="images/delete.16.png"/></a>
+    </div>
 </td>

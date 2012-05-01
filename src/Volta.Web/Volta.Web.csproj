@@ -130,8 +130,9 @@
     <Content Include="batches\batches.js">
       <DependentUpon>batches.coffee</DependentUpon>
     </Content>
-    <Content Include="batches\edit-template.html" />
     <Content Include="batches\list-item-template.html" />
+    <Content Include="batches\presentation\presentation-template.html" />
+    <Content Include="batches\edit-template.html" />
     <Content Include="batches\list-template.html" />
     <Content Include="batches\schedules\add-template.html" />
     <Content Include="batches\schedules\edit-template.html" />
