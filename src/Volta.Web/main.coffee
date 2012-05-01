@@ -20,7 +20,7 @@ plugins = [
     'scripts/backbone/backbone.lazy',
     'scripts/moment']
 
-require ['jquery', 'backbone', 'postal', 'postalajax', 'postalscroll', 'app', 'batches/batches', 'admin/admin'].concat(plugins)
+require ['jquery', 'backbone', 'postal', 'postalajax', 'postalscroll', 'app', 'batches/app', 'admin/app'].concat(plugins)
         , ($, Backbone, postal, postalAjax, postalScroll, App, Batches, Admin) ->
     
     window.onerror = (message, source, line) -> 

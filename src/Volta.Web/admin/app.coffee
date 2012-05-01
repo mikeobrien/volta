@@ -20,6 +20,6 @@ define ['jquery', 'backbone', 'underscore', 'admin/users/users'], ($, Backbone, 
         render: (el) ->
             @content.empty()
             @content.append el
-
+             
     start: (content) ->
         @router = new Router(content: content)

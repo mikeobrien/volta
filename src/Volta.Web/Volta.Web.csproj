@@ -110,8 +110,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="about.html" />
-    <Content Include="admin\admin.js">
-      <DependentUpon>admin.coffee</DependentUpon>
+    <Content Include="admin\app.js">
+      <DependentUpon>app.coffee</DependentUpon>
     </Content>
     <Content Include="admin\users\add-template.html" />
     <Content Include="admin\users\edit-template.html" />
@@ -124,6 +124,9 @@
       <DependentUpon>app.coffee</DependentUpon>
     </Content>
     <Content Include="batches\add-template.html" />
+    <Content Include="batches\app.js">
+      <DependentUpon>app.coffee</DependentUpon>
+    </Content>
     <Content Include="batches\batches.js">
       <DependentUpon>batches.coffee</DependentUpon>
     </Content>
@@ -143,6 +146,9 @@
     <Content Include="batches\templates\list-template.html" />
     <Content Include="batches\templates\templates.js">
       <DependentUpon>templates.coffee</DependentUpon>
+    </Content>
+    <Content Include="common\views.js">
+      <DependentUpon>views.coffee</DependentUpon>
     </Content>
     <Content Include="dashboard-template.html" />
     <Content Include="login-template.html" />
@@ -211,12 +217,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
-    <None Include="admin\admin.coffee" />
+    <None Include="admin\app.coffee" />
     <None Include="admin\users\users.coffee" />
     <None Include="app.coffee" />
     <None Include="batches\batches.coffee" />
+    <None Include="batches\app.coffee" />
     <None Include="batches\schedules\schedules.coffee" />
     <None Include="batches\templates\templates.coffee" />
+    <None Include="common\views.coffee" />
     <None Include="index.spark">
       <SubType>Designer</SubType>
     </None>

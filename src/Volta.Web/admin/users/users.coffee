@@ -1,9 +1,9 @@
-define ['jquery', 'backbone', 'underscore', 'postal',
+define ['jquery', 'backbone', 'underscore', 'postal', 'common/views',
         'text!admin/users/list-template.html', 
         'text!admin/users/list-item-template.html', 
         'text!admin/users/edit-template.html', 
         'text!admin/users/add-template.html']
-        , ($, Backbone, _, postal, listTemplate, listItemTemplate, editTemplate, addTemplate) ->
+        , ($, Backbone, _, postal, Views, listTemplate, listItemTemplate, editTemplate, addTemplate) ->
 
     class User extends Backbone.Model
         urlRoot : '/admin/users'
@@ -13,45 +13,16 @@ define ['jquery', 'backbone', 'underscore', 'postal',
         url: '/admin/users'
         batchSize: 20
 
-    class ListItemView extends Backbone.View
-        tagName: 'tr'
-        events:
-            'click .delete': 'delete'
+    class ListItemView extends Views.ListItemView
+        itemName: 'User'
         template: _.template listItemTemplate
-        initialize: ->
-            _.bindAll @, 'render', 'delete'
-            @model.on 'destroy', @remove, @
-        render: ->
-            @$el.html @template(@model.toJSON())
-            @
-        delete: -> 
-            $.dialog
-                title: 'Delete User'
-                body: 'Are you sure you want to delete this user?'
-                button: 'Delete'
-                command: => 
-                    @model.destroy wait: true
-                    true
 
-    class ListView extends Backbone.LazyView
+    class ListView extends Views.ListView
         template: listTemplate
-        itemsSelector: '.list-items'
         itemView: ListItemView
-        initialize: ->
-            super()
-            postal.channel('window.scroll.bottom').subscribe @more
 
-    class EditView extends Backbone.View
-        events:
-            'click .save': 'save'
+    class EditView extends Views.EditView
         template: _.template editTemplate
-        initialize: (options) ->
-            _.bindAll @, 'render', 'save'
-            @router = options.router
-            @model.on 'change', @render, @
-        render: ->
-            @$el.html @template(@model.toJSON())
-            @
         save: ->
             if @$el.validateHasValue('#username', 'Username cannot be blank') |
                @$el.validateMatch('#password', '#password2', 'Passwords do not match') then return false
@@ -65,22 +36,13 @@ define ['jquery', 'backbone', 'underscore', 'postal',
                 wait: true
             return false
 
-    class AddView extends Backbone.View
-        events:
-            'click .save': 'save'
+    class AddView extends Views.AddView
         template: addTemplate
-        initialize: (options) ->
-            _.bindAll @, 'render', 'save'
-            @router = options.router
-            @model = new User()
-        render: ->
-            @$el.html @template
-            @
         save: ->
             if @$el.validateHasValue('#username', 'Username cannot be blank') |
                (@$el.validateHasValue('#password', 'Password cannot be blank') ||
                 @$el.validateMatch('#password', '#password2', 'Passwords do not match')) then return false
-            @model.save
+            new User().save
                 username: @$('#username').val()
                 email: @$('#email').val()
                 password: @$('#password').val()
