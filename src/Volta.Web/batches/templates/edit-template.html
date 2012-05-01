@@ -1,0 +1,32 @@
+﻿<div class="page-header">
+    <h2>Edit Template {{ name }}</h2>
+</div>
+    
+<form class="form-horizontal">
+    <fieldset>
+        <div class="control-group username">
+        <label class="control-label" for="name">Name</label>
+        <div class="controls">
+            <input type="text" class="input-xlarge" id="name" name="name" value="{{ name }}">
+            <span class="help-inline message"></span>
+        </div>
+        </div>
+        <div class="control-group">
+        <label class="control-label" for="source">Source</label>
+        <div class="controls">
+            <textarea class="input-xlarge" style="width: 700px; font-family: courier new" id="source" name="source" rows="20">{{ source }}</textarea>
+        </div>
+        </div>
+        <div class="control-group">
+        <label class="control-label" for="file">Template File</label>
+            <div class="controls">
+                <input class="input-file" id="file" name="file" type="file">
+            </div>
+        </div>
+        <div class="form-actions">
+        <button type="submit" class="btn btn-primary save">Save</button>
+        <a href="/#batches/schedules" class="btn">Cancel</a>
+            <span class="help-inline"></span>
+        </div>
+    </fieldset>
+    </form>

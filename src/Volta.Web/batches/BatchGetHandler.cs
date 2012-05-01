@@ -6,11 +6,6 @@ using Volta.Core.Infrastructure.Framework.Data;
 
 namespace Volta.Web.Batches
 {
-    public class BatchGetRequest
-    {
-        public Guid Id { get; set; }
-    }
-
     public class BatchGetHandler
     {
         private readonly IRepository<Batch> _batches;
@@ -20,9 +15,9 @@ namespace Volta.Web.Batches
             _batches = batches;
         }
 
-        public BatchModel Execute_Id(BatchGetRequest request)
+        public BatchModel Execute_id(BatchModel request)
         {
-            var schedule = _batches.Get(request.Id);
+            var schedule = _batches.Get(request.id);
             if (schedule == null) throw new NotFoundException("Batch");
             return Mapper.Map<BatchModel>(schedule);
         }

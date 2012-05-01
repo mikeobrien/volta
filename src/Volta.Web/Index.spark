@@ -27,7 +27,7 @@
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#batches">
-                                <img src="images/battery.16.png"/> Manage Batches
+                                <img src="images/battery.16.png"/> Batches
                             </a>
                         </li>
                         <li>
@@ -38,12 +38,12 @@
                         <li class="divider"></li>
                         <li>
                             <a href="#batches/schedules">
-                                <img src="images/alarmclock.16.png"/> Manage Arbin Schedules
+                                <img src="images/alarmclock.16.png"/> Arbin Schedules
                             </a>
                         </li>
                         <li>
-                            <a href="#batches/schedules/add">
-                                <img src="images/alarmclock.add.16.png"/> Add Arbin Schedule
+                            <a href="#batches/templates">
+                                <img src="images/template.16.png"/> Templates
                             </a>
                         </li>
                     </ul>
@@ -56,7 +56,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="#admin/users">
-                                    <img src="images/users.16.png"/> Manage Users
+                                    <img src="images/users.16.png"/> Users
                                 </a>
                             </li>
                             <li>

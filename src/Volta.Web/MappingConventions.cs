@@ -5,6 +5,7 @@ using Volta.Core.Infrastructure.Framework.AutoMapper;
 using Volta.Web.Admin.Users;
 using Volta.Web.Batches;
 using Volta.Web.Batches.Schedules;
+using Volta.Web.Batches.Templates;
 
 namespace Volta.Web
 {
@@ -16,6 +17,7 @@ namespace Volta.Web
                 ToBidirectional().ForMember(x => x.PasswordHash, x => x.Ignore());
             Mapper.CreateMap<ScheduleFile, ScheduleModel>().ToBidirectional();
             Mapper.CreateMap<Batch, BatchModel>().ToBidirectional();
+            Mapper.CreateMap<Template, TemplateModel>().ToBidirectional();
         }
     }
 }

@@ -5,25 +5,20 @@ using Volta.Core.Domain.Batches;
 using Volta.Core.Infrastructure.Framework.Data;
 using Volta.Core.Infrastructure.Framework.Web.Fubu;
 
-namespace Volta.Web.Batches.Schedules.Download
+namespace Volta.Web.Batches.Schedules
 {
-    public class GetRequest
-    {
-        public Guid Id { get; set; }
-    }
-
-    public class GetHandler
+    public class DownloadGetHandler
     {
         private readonly IRepository<ScheduleFile> _schedules;
 
-        public GetHandler(IRepository<ScheduleFile> schedules)
+        public DownloadGetHandler(IRepository<ScheduleFile> schedules)
         {
             _schedules = schedules;
         }
 
-        public DownloadDataModel Execute_Id(ScheduleGetRequest request)
+        public DownloadDataModel ExecuteDownload_id(ScheduleModel request)
         {
-            var schedule = _schedules.Get(request.Id);
+            var schedule = _schedules.Get(request.id);
             if (schedule == null) throw new NotFoundException("Schedule");
             return new DownloadDataModel {
                 Data = Encoding.GetEncoding(1252).GetBytes(schedule.File), 

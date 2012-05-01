@@ -6,11 +6,6 @@ using Volta.Core.Infrastructure.Framework.Data;
 
 namespace Volta.Web.Batches.Schedules
 {
-    public class ScheduleGetRequest
-    {
-        public Guid Id { get; set; }
-    }
-
     public class ScheduleGetHandler
     {
         private readonly IRepository<ScheduleFile> _schedules;
@@ -20,9 +15,9 @@ namespace Volta.Web.Batches.Schedules
             _schedules = schedules;
         }
 
-        public ScheduleModel Execute_Id(ScheduleGetRequest request)
+        public ScheduleModel Execute_id(ScheduleModel request)
         {
-            var schedule = _schedules.Get(request.Id);
+            var schedule = _schedules.Get(request.id);
             if (schedule == null) throw new NotFoundException("Schedule");
             return Mapper.Map<ScheduleModel>(schedule);
         }

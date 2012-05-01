@@ -137,6 +137,13 @@
     <Content Include="batches\schedules\schedules.js">
       <DependentUpon>schedules.coffee</DependentUpon>
     </Content>
+    <Content Include="batches\templates\add-template.html" />
+    <Content Include="batches\templates\edit-template.html" />
+    <Content Include="batches\templates\list-item-template.html" />
+    <Content Include="batches\templates\list-template.html" />
+    <Content Include="batches\templates\templates.js">
+      <DependentUpon>templates.coffee</DependentUpon>
+    </Content>
     <Content Include="dashboard-template.html" />
     <Content Include="login-template.html" />
     <Content Include="error-template.html" />
@@ -173,13 +180,20 @@
     <Compile Include="batches\BatchPostHandler.cs" />
     <Compile Include="batches\BatchPutHandler.cs" />
     <Compile Include="batches\BatchesGetHandler.cs" />
-    <Compile Include="batches\schedules\download\GetHandler.cs" />
+    <Compile Include="batches\schedules\DownloadGetHandler.cs" />
     <Compile Include="batches\schedules\ScheduleDeleteHandler.cs" />
     <Compile Include="batches\schedules\ScheduleGetHandler.cs" />
     <Compile Include="batches\schedules\ScheduleModel.cs" />
     <Compile Include="batches\schedules\SchedulePostHandler.cs" />
     <Compile Include="batches\schedules\SchedulePutHandler.cs" />
     <Compile Include="batches\schedules\SchedulesGetHandler.cs" />
+    <Compile Include="batches\templates\DownloadGetHandler.cs" />
+    <Compile Include="batches\templates\TemplateDeleteHandler.cs" />
+    <Compile Include="batches\templates\TemplateGetHandler.cs" />
+    <Compile Include="batches\templates\TemplateModel.cs" />
+    <Compile Include="batches\templates\TemplatePostHandler.cs" />
+    <Compile Include="batches\templates\TemplateEditPostHandler.cs" />
+    <Compile Include="batches\templates\TemplatesGetHandler.cs" />
     <Compile Include="Behaviors\AjaxAuthorizationBehavior.cs" />
     <Compile Include="Behaviors\AuthorizationBehavior.cs" />
     <Compile Include="Behaviors\AjaxExceptionHandlerBehavior.cs" />
@@ -202,6 +216,7 @@
     <None Include="app.coffee" />
     <None Include="batches\batches.coffee" />
     <None Include="batches\schedules\schedules.coffee" />
+    <None Include="batches\templates\templates.coffee" />
     <None Include="index.spark">
       <SubType>Designer</SubType>
     </None>

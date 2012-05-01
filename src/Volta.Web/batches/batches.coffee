@@ -1,10 +1,11 @@
 define ['jquery', 'backbone', 'underscore', 'postal',
         'batches/schedules/schedules',
+        'batches/templates/templates',
         'text!batches/list-template.html', 
         'text!batches/list-item-template.html', 
         'text!batches/edit-template.html', 
         'text!batches/add-template.html']
-        , ($, Backbone, _, postal, Schedules, listTemplate, listItemTemplate, editTemplate, addTemplate) ->
+        , ($, Backbone, _, postal, Schedules, Templates, listTemplate, listItemTemplate, editTemplate, addTemplate) ->
 
     class Batch extends Backbone.Model
         urlRoot : 'batches'
@@ -96,6 +97,9 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             'batches/schedules': 'schedules'
             'batches/schedules/add': 'addSchedule'
             'batches/schedules/edit/:id': 'editSchedule'
+            'batches/templates': 'templates'
+            'batches/templates/add': 'addTemplate'
+            'batches/templates/edit/:id': 'editTemplate'
         batches: ->
             batches = new Batches()
             @render new ListView(collection: batches).render().el
@@ -116,6 +120,16 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             schedule = new Schedules.Schedule id: id
             @render new Schedules.EditView(model: schedule, router: @).el
             schedule.fetch()
+        templates: ->
+            templates = new Templates.Templates()
+            @render new Templates.ListView(collection: templates).render().el
+            templates.fetch()
+        addTemplate: ->
+            @render new Templates.AddView(router: @).render().el
+        editTemplate: (id) ->
+            template = new Templates.Template id: id
+            @render new Templates.EditView(model: template, router: @).el
+            template.fetch()
         render: (el) ->
             @content.empty()
             @content.append el

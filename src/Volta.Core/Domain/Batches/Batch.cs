@@ -72,7 +72,7 @@ namespace Volta.Core.Domain.Batches
     public class Crucible
     {
         public string BatchId { get; set; } // 20110612-DB
-        public string Vender { get; set; }
+        public string Vendor { get; set; }
         public double InnerHeight { get; set; } // mm
     }
 
@@ -111,7 +111,7 @@ namespace Volta.Core.Domain.Batches
     {
         public string Name { get; set; }
         public double Mass { get; set; } // g
-        public string Vender { get; set; }
+        public string Vendor { get; set; }
         public string StockNumber { get; set; }
     }
 }
