@@ -51,7 +51,8 @@ namespace Volta.Tests.Integration.Domain.Batches
             try
             {
                 var result = renderService.RenderLatex(TemplateId, BatchId);
-                result.ShouldEqual(@"\begin{document}
+                result.ShouldEqual(@"\documentclass[12pt]{article}
+\begin{document}
   Hello yada.
 \end{document}");
             }
