@@ -32,7 +32,7 @@
                         </li>
                         <li>
                             <a href="#batches/add">
-                                <img src="images/battery.add.16.png"/> Add Batch
+                                <img src="images/battery.add.16.png"/> Import Batch Data
                             </a>
                         </li>
                         <li class="divider"></li>
