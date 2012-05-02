@@ -3,7 +3,7 @@ using System.Web;
 using Volta.Core.Domain.Batches;
 using Volta.Core.Infrastructure.Framework.Arbin;
 using Volta.Core.Infrastructure.Framework.Data;
-using Volta.Core.Infrastructure.Framework.IO;
+using Volta.Core.Infrastructure.Framework.IO.FileStore;
 
 namespace Volta.Web.Batches
 {
@@ -21,24 +21,29 @@ namespace Volta.Web.Batches
     {
         private readonly IRepository<Batch> _batches;
         private readonly BatchFactory _batchFactory;
+        private readonly IFileStore _fileStore;
 
         public BatchPostHandler(
             IRepository<Batch> batches, 
-            BatchFactory batchFactory)
+            BatchFactory batchFactory, 
+            IFileStore fileStore)
         {
             _batches = batches;
             _batchFactory = batchFactory;
+            _fileStore = fileStore;
         }
 
         public BatchPostResponse Execute(BatchPostRequest request)
         {
-            using (var arbinFile = new TempFile(request.file.InputStream))
-            using (var arbinData = new ArbinData(arbinFile.Path))
+            var dataId = _fileStore.Save(request.file.InputStream, Lifespan.Transient);
+            Batch batch;
+            using (var arbinData = new ArbinData(_fileStore.GetPath(dataId)))
             {
-                var batch = _batchFactory.Create(arbinData);
+                batch = _batchFactory.Create(arbinData);
                 _batches.Add(batch);
-                return new BatchPostResponse { id = batch.Id };
             }
+            _fileStore.Delete(dataId);
+            return new BatchPostResponse { id = batch.Id };
         }
     }
 }

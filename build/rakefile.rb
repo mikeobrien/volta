@@ -93,6 +93,7 @@ xml_config :website_config_settings => :integration_tests do |options|
     options.xml_file = "src/Volta.Web/Web.config"
     options.xml_root = "/configuration/"
     options.set_node("volta/@connectionString", ENV["VOLTA_PROD_CONN_STRING"])
+    options.set_node("volta/@fileStorePath", ENV["VOLTA_FILE_STORE_PATH"])
     options.set_node("log4net/appender[@name='LogFileAppender']/file/@value", ENV["VOLTA_LOG_FILE_PATH"])
     options.set_node("log4net/appender[@name='EmailAppender']/smtpHost/@value", ENV["VOLTA_SMTP_HOST"])
     options.set_node("system.net/mailSettings/smtp/network/@host", ENV["VOLTA_SMTP_HOST"])

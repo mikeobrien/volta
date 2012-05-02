@@ -11,6 +11,7 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             'batches': 'batches'
             'batches/add': 'addBatch'
             'batches/edit/:id': 'editBatch'
+            'batches/presentation/:id': 'generatePresentation'
             'batches/schedules': 'schedules'
             'batches/schedules/add': 'addSchedule'
             'batches/schedules/edit/:id': 'editSchedule'
@@ -27,6 +28,8 @@ define ['jquery', 'backbone', 'underscore', 'postal',
             batch = new Batches.Batch id: id
             @render new Batches.EditView(model: batch, router: @).el
             batch.fetch()
+        generatePresentation: (id) ->
+            @render new Batches.PresentationView(batchId: id, router: @).el
         schedules: ->
             schedules = new Schedules.Schedules()
             @render new Schedules.ListView(collection: schedules).render().el

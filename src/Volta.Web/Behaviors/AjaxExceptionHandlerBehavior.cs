@@ -49,7 +49,7 @@ namespace Volta.Web.Behaviors
                 {
                     _outputWriter.WriteResponseCode(HttpStatusCode.InternalServerError, "A system error has occured.");
                     _logger.Write(e);
-                    if (ReturnError) _outputWriter.Write(MimeType.Text, e.ToString());
+                    if (ReturnError) _outputWriter.Write(FubuMVC.Core.Runtime.MimeType.Text, e.ToString());
                 }
             }
         }

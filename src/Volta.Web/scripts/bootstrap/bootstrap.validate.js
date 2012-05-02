@@ -1,4 +1,4 @@
-//     bootstrap.validate.js 0.1.0
+//     bootstrap.validate.js 0.1.1
 //     (c) 2012 Mike O'Brien
 //     May be freely distributed under the MIT license.
 //     https://github.com/mikeobrien/jsplugins
@@ -16,16 +16,8 @@
                 input = $(input[0]);
                 values.push(input.val());
                 var element = input;
-                var controlGroup;
-                while (true) {
-                    element = element.parent();
-                    if (element == null) break;
-                    if (element.hasClass('control-group')) controlGroup = element;
-                    if (element.hasClass('form-horizontal')) {
-                        form = element;
-                        break;
-                    }
-                }
+                form = input.parents('.form-horizontal:first');
+                var controlGroup = input.parents('.control-group:first');
                 if (controlGroup) {
                     controlGroups.push(controlGroup);
                     controlGroup.removeClass('error');

@@ -23,8 +23,9 @@ namespace Volta.Web.Batches.Templates
 
         public List<TemplateModel> Execute(TemplatesGetRequest request)
         {
-            return _templates.OrderBy(x => x.Name).Page(request.Index, PageSize).
-                Select(x => new TemplateModel {
+            IQueryable<Template> templates = _templates.OrderBy(x => x.Name);
+            if (request.Index > 0) templates = templates.Page(request.Index, PageSize);
+            return templates.Select(x => new TemplateModel {
                                     id = x.Id, 
                                     name = x.Name, 
                                     createdBy = x.CreatedBy, 

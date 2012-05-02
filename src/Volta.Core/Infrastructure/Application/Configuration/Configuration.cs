@@ -8,5 +8,6 @@ namespace Volta.Core.Infrastructure.Application.Configuration
             () => (ConfigurationSection)System.Configuration.ConfigurationManager.GetSection("volta"));
 
         public string ConnectionString { get { return _configurationSection.Value.ConnectionString; } }
+        public string FileStorePath { get { return _configurationSection.Value.FileStorePath; } }
     }
 }

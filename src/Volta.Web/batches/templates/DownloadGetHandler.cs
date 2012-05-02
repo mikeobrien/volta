@@ -20,11 +20,10 @@ namespace Volta.Web.Batches.Templates
         {
             var template = _templates.Get(request.id);
             if (template == null) throw new NotFoundException("Template");
-            return new DownloadDataModel {
-                Data = Encoding.ASCII.GetBytes(template.Source), 
-                Filename = template.Name + ".tex",
-                MimeType = "text/plain; charset=us-ascii"
-            };
+            return new DownloadDataModel(
+                Encoding.ASCII.GetBytes(template.Source),
+                template.Name + ".tex",
+                "text/plain; charset=us-ascii");
         }
     }
 }

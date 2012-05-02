@@ -4,12 +4,13 @@ using System.Linq;
 using Microsoft.CSharp.RuntimeBinder;
 using RazorEngine.Templating;
 using Volta.Core.Infrastructure.Framework.Data;
+using Volta.Core.Infrastructure.Framework.IO.FileStore;
 using Volta.Core.Infrastructure.Framework.Latex;
 using Volta.Core.Infrastructure.Framework.Razor;
 
 namespace Volta.Core.Domain.Batches
 {
-    public class TemplateRenderingService
+    public class PresentationService
     {
         public class RenderException : Exception
         {
@@ -25,16 +26,29 @@ namespace Volta.Core.Domain.Batches
         private readonly IRepository<Template> _templates;
         private readonly ILatexEngine _latexEngine;
         private readonly IRazorEngine _razorEngine;
+        private readonly IFileStore _fileStore;
 
-        public TemplateRenderingService(IRepository<Batch> batches, IRepository<Template> templates, ILatexEngine latexEngine, IRazorEngine razorEngine)
+        public PresentationService(
+            IRepository<Batch> batches, 
+            IRepository<Template> templates, 
+            ILatexEngine latexEngine, 
+            IRazorEngine razorEngine,
+            IFileStore fileStore)
         {
             _batches = batches;
             _templates = templates;
             _latexEngine = latexEngine;
             _razorEngine = razorEngine;
+            _fileStore = fileStore;
         }
 
-        public string RenderLatex(Guid templateId, Guid batchId)
+
+        public Guid RenderLatex(Guid templateId, Guid batchId)
+        {
+            return _fileStore.Save(RenderLatexTemplate(templateId, batchId), Lifespan.Transient);
+        }
+
+        private string RenderLatexTemplate(Guid templateId, Guid batchId)
         {
             var template = _templates.Get(templateId);
             var batch = _batches.Get(batchId);
@@ -54,26 +68,28 @@ namespace Volta.Core.Domain.Batches
             }
         }
 
-        public string RenderPdf(Guid templateId, Guid batchId)
+        public Guid RenderPdf(Guid templateId, Guid batchId)
         {
-            var path = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString(), Guid.NewGuid() + ".tex");
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
-            File.WriteAllText(path, RenderLatex(templateId, batchId));
-            string outputPath;
+            var file = _fileStore.Create(Lifespan.Transient);
+            var latexFile = file.Path + ".tex";
+            File.WriteAllText(latexFile, RenderLatexTemplate(templateId, batchId));
             try
             {
-                outputPath = _latexEngine.GeneratePdf(path, new LatexOptions { OutputDirectory = Path.GetDirectoryName(path)});
+                var outputPath = _latexEngine.GeneratePdf(latexFile, new LatexOptions {
+                        OutputDirectory = Path.GetDirectoryName(file.Path), 
+                        Interaction = LatexOptions.InteractionMode.NonStopMode
+                    });
+                File.Move(outputPath, file.Path);
             }
             catch (LatexException exception)
             {
-                Directory.Delete(Path.GetDirectoryName(path), true);
                 throw new RenderException(exception.Output);
             }
             finally
             {
-                if (File.Exists(path)) File.Delete(path);
+                if (File.Exists(latexFile)) File.Delete(latexFile);
             }
-            return outputPath;
+            return file.Id;
         }
     }
 }

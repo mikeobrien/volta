@@ -1,0 +1,39 @@
+﻿<div class="page-header">
+    <h2>Generate Presentation for {{batch.name}}</h2>
+</div>
+    
+<form class="form-horizontal">
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="templateId">Template</label>
+            <div class="controls">
+                <select id="templateId" name="templateId">
+                    {{#templates}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/templates}}                  
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Format</label>
+            <div class="controls">
+                <label class="radio">
+                    <input type="radio" name="format" id="format" value="tex" checked="">
+                    LaTeX Document
+                </label>
+                <label class="radio">
+                    <input type="radio" name="format" id="format" value="pdf">
+                    PDF Document
+                </label>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary generate">Generate</button>
+            <a href="#batches" class="btn">Done</a>
+            <span class="help-inline"></span>
+            <div class="progress progress-striped active form-progress">
+                <div class="bar" style="width: 0;"></div>
+            </div>
+        </div>
+    </fieldset>
+</form>

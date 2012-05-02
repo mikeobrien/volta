@@ -28,7 +28,8 @@ namespace Volta.Core.Infrastructure.Framework.Latex
                {
                    Arguments = arguments,
                    UseShellExecute = false,
-                   RedirectStandardOutput = true
+                   RedirectStandardOutput = true,
+                   RedirectStandardError = true
                };
 
             bool error;
@@ -36,6 +37,7 @@ namespace Volta.Core.Infrastructure.Framework.Latex
             using (var process = Process.Start(processInfo))
             {
                 output = process.StandardOutput.ReadToEnd();
+                output += process.StandardError.ReadToEnd();
                 process.WaitForExit();
                 error = process.ExitCode != 0;
             }

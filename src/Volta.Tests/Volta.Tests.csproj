@@ -108,11 +108,11 @@
   <ItemGroup>
     <Compile Include="Integration\Application\SystemInfoTests.cs" />
     <Compile Include="Acceptance\GenerateTestData.cs" />
-    <Compile Include="Integration\Domain\Batches\TemplateRenderingServiceTests.cs" />
+    <Compile Include="Integration\Domain\Batches\PresentationServiceTests.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Arbin\ScheduleTests.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Data\IniFileTests.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Data\JetQueryTests.cs" />
-    <Compile Include="Integration\Infrastructure\Framework\IO\TempFileTests.cs" />
+    <Compile Include="Integration\Infrastructure\Framework\IO\FileStore\FileStoreTests.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Latex\LatexEngineTests.cs" />
     <Compile Include="Integration\Infrastructure\Framework\Log4NetLoggerTests.cs" />
     <Compile Include="Unit\Domain\Administration\UserDeleteServiceTests.cs" />

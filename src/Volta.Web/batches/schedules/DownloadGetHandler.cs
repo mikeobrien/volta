@@ -20,11 +20,10 @@ namespace Volta.Web.Batches.Schedules
         {
             var schedule = _schedules.Get(request.id);
             if (schedule == null) throw new NotFoundException("Schedule");
-            return new DownloadDataModel {
-                Data = Encoding.GetEncoding(1252).GetBytes(schedule.File), 
-                Filename = schedule.Name + ".sdu", 
-                MimeType = "text/plain; charset=windows-1252"
-            };
+            return new DownloadDataModel(
+                Encoding.GetEncoding(1252).GetBytes(schedule.File), 
+                schedule.Name + ".sdu", 
+                "text/plain; charset=windows-1252");
         }
     }
 }

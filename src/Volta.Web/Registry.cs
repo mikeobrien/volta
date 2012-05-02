@@ -3,6 +3,7 @@ using Volta.Core.Domain.Administration;
 using Volta.Core.Infrastructure.Application;
 using Volta.Core.Infrastructure.Application.Configuration;
 using Volta.Core.Infrastructure.Framework.Data;
+using Volta.Core.Infrastructure.Framework.IO.FileStore;
 using Volta.Core.Infrastructure.Framework.Latex;
 using Volta.Core.Infrastructure.Framework.Logging;
 using Volta.Core.Infrastructure.Framework.Razor;
@@ -27,6 +28,8 @@ namespace Volta.Web
             For<ITokenStore<Token>>().Use<TokenStore<Token>>();
             For<ISecureSession<Token>>().Use<SecureSession<Token>>();
             For<IAuthenticationService<Token>>().Use<AuthenticationService>();
+
+            For<IFileStore>().Use<FileStore>().Ctor<string>().Is(x => x.GetInstance<IConfiguration>().FileStorePath);
 
             For<IUserFactory>().Use<UserCreateService>();
             For<IUserUpdateService>().Use<UserUpdateService>();

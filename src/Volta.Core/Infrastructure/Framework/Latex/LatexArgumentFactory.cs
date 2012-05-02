@@ -85,7 +85,7 @@ namespace Volta.Core.Infrastructure.Framework.Latex
                             (x.Value is bool? && ((bool?)x.Value) == true)))
                 .Select(x => x.Value is bool? ?
                     string.Format("-{0}", x.Name) :
-                    string.Format("-{0}={1}", x.Name, x.Value));
+                    string.Format("-{0}={1}", x.Name, x.Value.GetType().IsEnum ? x.Value.ToString().ToLower() : x.Value));
             return arguments.Any() ?
                 string.Format("{0} {1}", arguments.Aggregate((i, a) => i + " " + a), path) :
                 path;

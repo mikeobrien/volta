@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Should;
 using Volta.Core.Domain.Batches;
 using Volta.Core.Infrastructure.Framework.Data;
+using Volta.Core.Infrastructure.Framework.IO.FileStore;
 using Volta.Core.Infrastructure.Framework.Latex;
 using Volta.Core.Infrastructure.Framework.Razor;
 using Volta.Tests.Unit;
@@ -12,7 +13,7 @@ using Volta.Tests.Unit;
 namespace Volta.Tests.Integration.Domain.Batches
 {
     [TestFixture]
-    public class TemplateRenderingServiceTests
+    public class PresentationServiceTests
     {
         private const string Template = @"\documentclass[12pt]{article}
 \begin{document}
@@ -47,16 +48,17 @@ namespace Volta.Tests.Integration.Domain.Batches
         [Test]
         public void should_render_razor_template()
         {
-            var renderService = new TemplateRenderingService(_batches, _templates, new LatexEngine(), new RazorEngine());
+            var fileStore = new FileStore();
+            var renderService = new PresentationService(_batches, _templates, new LatexEngine(), new RazorEngine(), fileStore);
             try
             {
-                var result = renderService.RenderLatex(TemplateId, BatchId);
-                result.ShouldEqual(@"\documentclass[12pt]{article}
+                var fileId = renderService.RenderLatex(TemplateId, BatchId);
+                File.ReadAllText(fileStore.GetPath(fileId)).ShouldEqual(@"\documentclass[12pt]{article}
 \begin{document}
   Hello yada.
 \end{document}");
             }
-            catch (TemplateRenderingService.RenderException exception)
+            catch (PresentationService.RenderException exception)
             {
                 Debug.WriteLine(exception.Details);
                 throw;
@@ -66,31 +68,33 @@ namespace Volta.Tests.Integration.Domain.Batches
         [Test]
         public void should_throw_render_exception_when_razor_template_malformed()
         {
-            var renderService = new TemplateRenderingService(_batches, _templates, new LatexEngine(), new RazorEngine());
-            Assert.Throws<TemplateRenderingService.RenderException>(() => renderService.RenderLatex(BadFormatRazorTemplateId, BatchId));
+            var renderService = new PresentationService(_batches, _templates, new LatexEngine(), new RazorEngine(), new FileStore());
+            Assert.Throws<PresentationService.RenderException>(() => renderService.RenderLatex(BadFormatRazorTemplateId, BatchId));
         }
 
         [Test]
         public void should_throw_render_exception_when_razor_binding_error()
         {
-            var renderService = new TemplateRenderingService(_batches, _templates, new LatexEngine(), new RazorEngine());
-            Assert.Throws<TemplateRenderingService.RenderException>(() => renderService.RenderLatex(BadBindingRazorTemplateId, BatchId));
+            var renderService = new PresentationService(_batches, _templates, new LatexEngine(), new RazorEngine(), new FileStore());
+            Assert.Throws<PresentationService.RenderException>(() => renderService.RenderLatex(BadBindingRazorTemplateId, BatchId));
         }
 
         [Test]
         public void should_render_latex_pdf()
         {
-            var renderService = new TemplateRenderingService(_batches, _templates, new LatexEngine(), new RazorEngine());
-            string path;
+            var fileStore = new FileStore();
+            var renderService = new PresentationService(_batches, _templates, new LatexEngine(), new RazorEngine(), fileStore);
+            Guid id;
             try
             {
-                path = renderService.RenderPdf(TemplateId, BatchId);
+                id = renderService.RenderPdf(TemplateId, BatchId);
             }
-            catch (TemplateRenderingService.RenderException exception)
+            catch (PresentationService.RenderException exception)
             {
                 Debug.WriteLine(exception.Details);
                 throw;
             }
+            var path = fileStore.GetPath(id);
             Debug.WriteLine(path);
             File.Exists(path).ShouldBeTrue();
             new FileInfo(path).Length.ShouldNotEqual(0);
@@ -100,8 +104,8 @@ namespace Volta.Tests.Integration.Domain.Batches
         [Test]
         public void should_throw_render_exception_when_latex_malformed()
         {
-            var renderService = new TemplateRenderingService(_batches, _templates, new LatexEngine(), new RazorEngine());
-            Assert.Throws<TemplateRenderingService.RenderException>(() => renderService.RenderPdf(BadLatexTemplateId, BatchId));
+            var renderService = new PresentationService(_batches, _templates, new LatexEngine(), new RazorEngine(), new FileStore());
+            Assert.Throws<PresentationService.RenderException>(() => renderService.RenderPdf(BadLatexTemplateId, BatchId));
         }
     }
 }

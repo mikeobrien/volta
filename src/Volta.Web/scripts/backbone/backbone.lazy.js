@@ -16,6 +16,11 @@
             var error, success, that = this;
             options || (options = {});
             
+            if (options.all == true) {
+                Backbone.Collection.prototype.fetch.call(this, options);
+                return;
+            }
+            
             if (options.reset) {
                 this.index = 1;
                 this.lastLength = 0;

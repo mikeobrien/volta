@@ -131,7 +131,7 @@
       <DependentUpon>batches.coffee</DependentUpon>
     </Content>
     <Content Include="batches\list-item-template.html" />
-    <Content Include="batches\presentation\presentation-template.html" />
+    <Content Include="batches\presentation-template.html" />
     <Content Include="batches\edit-template.html" />
     <Content Include="batches\list-template.html" />
     <Content Include="batches\schedules\add-template.html" />
@@ -187,6 +187,7 @@
     <Compile Include="batches\BatchPostHandler.cs" />
     <Compile Include="batches\BatchPutHandler.cs" />
     <Compile Include="batches\BatchesGetHandler.cs" />
+    <Compile Include="batches\PresentationPostHandler.cs" />
     <Compile Include="batches\schedules\DownloadGetHandler.cs" />
     <Compile Include="batches\schedules\ScheduleDeleteHandler.cs" />
     <Compile Include="batches\schedules\ScheduleGetHandler.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="Behaviors\AjaxExceptionHandlerBehavior.cs" />
     <Compile Include="Behaviors\ExceptionHandlerBehavior.cs" />
     <Compile Include="DashboardGetHandler.cs" />
+    <Compile Include="DownloadGetHandler.cs" />
     <Compile Include="ErrorsPublicPostHandler.cs" />
     <Compile Include="FubuConventions.cs" />
     <Compile Include="IndexGetHandler.cs" />

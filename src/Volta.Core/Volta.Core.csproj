@@ -102,7 +102,7 @@
     <Compile Include="Domain\Batches\BatchFactory.cs" />
     <Compile Include="Domain\Batches\Template.cs" />
     <Compile Include="Domain\Batches\ScheduleFile.cs" />
-    <Compile Include="Domain\Batches\TemplateRenderingService.cs" />
+    <Compile Include="Domain\Batches\PresentationService.cs" />
     <Compile Include="Domain\NotFoundException.cs" />
     <Compile Include="Domain\ValidationException.cs" />
     <Compile Include="Infrastructure\Application\Data\MongoConventions.cs" />
@@ -118,7 +118,12 @@
     <Compile Include="Infrastructure\Framework\Data\QueryableExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Data\Updates.cs" />
     <Compile Include="Infrastructure\Framework\Func.cs" />
-    <Compile Include="Infrastructure\Framework\IO\TempFile.cs" />
+    <Compile Include="Infrastructure\Framework\IO\FileStore\FileStore.cs" />
+    <Compile Include="Infrastructure\Framework\IO\FileStore\IFileStore.cs" />
+    <Compile Include="Infrastructure\Framework\IO\FileStore\StoreFile.cs" />
+    <Compile Include="Infrastructure\Framework\IO\FileStore\StoreFileInfo.cs" />
+    <Compile Include="Infrastructure\Framework\IO\StreamExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\IO\StringExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Latex\ILatexEngine.cs" />
     <Compile Include="Infrastructure\Framework\Latex\LatexEngine.cs" />
     <Compile Include="Infrastructure\Framework\Latex\LatexArgumentFactory.cs" />
@@ -154,6 +159,7 @@
     <Compile Include="Infrastructure\Framework\Security\HashedPassword.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\CacheBusterBehavior.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\ConfigurationExtensions.cs" />
+    <Compile Include="Infrastructure\Framework\Web\Fubu\DownloadDataModel.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\SSLRedirectBehavior.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\DownloadDataConvention.cs" />
     <Compile Include="Infrastructure\Framework\Web\Fubu\DownloadDataBehavior.cs" />
@@ -162,6 +168,7 @@
     <Compile Include="Infrastructure\Framework\Web\ISession.cs" />
     <Compile Include="Infrastructure\Framework\Web\IWebServer.cs" />
     <Compile Include="Infrastructure\Framework\Web\JavascriptException.cs" />
+    <Compile Include="Infrastructure\Framework\Web\MimeType.cs" />
     <Compile Include="Infrastructure\Framework\Web\ObjectExtensions.cs" />
     <Compile Include="Infrastructure\Framework\Web\Session.cs" />
     <Compile Include="Infrastructure\Framework\Web\TokenStore.cs" />
@@ -171,7 +178,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Infrastructure\Framework\Web\mime.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

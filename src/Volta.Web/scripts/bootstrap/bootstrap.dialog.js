@@ -1,4 +1,4 @@
-//     bootstrap.dialog.js 0.1.0
+//     bootstrap.dialog.js 0.1.1
 //     (c) 2012 Mike O'Brien
 //     May be freely distributed under the MIT license.
 //     https://github.com/mikeobrien/jsplugins
@@ -13,7 +13,7 @@
             content +=   '<div class="modal-body">' + option.body + '</div>';
             content +=   '<div class="modal-footer">';
             content +=     '<a class="btn btn-primary ok">' + option.button + '</a>';
-            content +=     '<a class="btn cancel">Cancel</a>';
+            if (!(option.cancel == false)) content +=     '<a class="btn cancel">Cancel</a>';
             content +=   '</div>';
             content += '</div>';
             var dialog = $(content);
